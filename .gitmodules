@@ -1,0 +1,3 @@
+[submodule "coreui"]
+	path = coreui
+	url = git@github.com:alexdicksonroig/coreui.git
