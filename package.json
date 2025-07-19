@@ -1,6 +1,9 @@
 {
   "name": "ecom-template",
   "private": true,
+  "workspaces": [
+    "coreui/*"
+  ],
   "type": "module",
   "scripts": {
     "build": "react-router build",
