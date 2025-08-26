@@ -38,4 +38,4 @@ const TableHOC = createNameSpacedComponent(Table, {
   Caption: TableCaption,
 })
 
-export { AccordionHOC as Accordion, AlertHOC as Alert, Button, CardHOC as Card, Input, Label, Separator, Skeleton, TableHOC as Table }
+export { AccordionHOC as Accordion, AlertHOC as Alert, Button, CardHOC as Card, Input, Label, Separator, Skeleton }

@@ -1,4 +1,5 @@
 # Welcome to React Router!
+(Alex) I am using framework mode just FYI
 
 A modern, production-ready template for building full-stack React applications using React Router.
 
