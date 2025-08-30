@@ -3,10 +3,7 @@ import { ChevronDown } from 'lucide-react'
 import CreateContext from '../../lib/createContext'
 
 // Accordion Context for managing open/closed state
-const [useAccordion, AccordionContext] = CreateContext()
-
-// Accordion Item Context for providing item ID to children
-const [useAccordionItem, AccordionItemContext] = CreateContext()
+const [useAccordionContext, AccordionContext] = CreateContext()
 
 type AccordionProps = {
   children: React.ReactNode
@@ -17,73 +14,65 @@ type AccordionProps = {
 type AccordionItemProps = {
   children: React.ReactNode
   className?: string
-  id: string
-} & React.HTMLAttributes<HTMLDivElement>
+  itemId: string
+  headerText: string
+} & React.HTMLAttributes<HTMLButtonElement>
 
 type AccordionTriggerProps = {
-  children: React.ReactNode
-  className?: string
-} & React.ButtonHTMLAttributes<HTMLButtonElement>
+  isOpen: boolean
+  children?: React.ReactNode
+}
 
 type AccordionContentProps = {
   children: React.ReactNode
-  className?: string
+  isOpen: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
 const Accordion: React.FC<AccordionProps> = ({ children, className, defaultOpenItem, ...props }) => {
-  const [openItem, setOpenItem] = useState<string | null>(defaultOpenItem || null)
+  const [openItem, setOpenItem] = useState<string | undefined>(defaultOpenItem)
 
   return (
     <AccordionContext.Provider value={{ openItem, setOpenItem }}>
-      <div className={`accordion ${className || ''}`} {...props}>
+      <div className={`flex flex-col $accordion {className || ''}`} {...props}>
         {children}
       </div>
     </AccordionContext.Provider>
   )
 }
 
-const AccordionItem: React.FC<AccordionItemProps> = ({ className, children, id, ...props }) => {
-  return (
-    <AccordionItemContext.Provider value={{ itemId: id }}>
-      <div className={`border-b ${className || ''}`} {...props}>
-        {children}
-      </div>
-    </AccordionItemContext.Provider>
-  )
-}
-
-const AccordionTrigger: React.FC<AccordionTriggerProps> = ({ className, children, ...props }) => {
-  const { openItem, setOpenItem } = useAccordion()
-  const { itemId } = useAccordionItem()
-  
+const AccordionItem: React.FC<AccordionItemProps> = ({ className, children, itemId, headerText, ...props }) => {
+  const { openItem, setOpenItem } = useAccordionContext()
   const isOpen = openItem === itemId
-  
+
   const handleClick = () => {
     setOpenItem(isOpen ? null : itemId)
   }
 
   return (
+    <button className={`border-b ${className || ''}`} onClick={handleClick} {...props}>
+      <AccordionTrigger isOpen={isOpen}>{headerText}</AccordionTrigger>
+      <AccordionContent isOpen={isOpen}>{children}</AccordionContent>
+    </button>
+  )
+}
+
+const AccordionTrigger: React.FC<AccordionTriggerProps> = ({ isOpen, children }) => {
+  return (
     <div className="flex">
-      <button
-        className={`flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline text-left ${isOpen ? '[&>svg]:rotate-180' : ''} ${className || ''}`}
-        onClick={handleClick}
-        {...props}>
+      <div className={`flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline text-left ${isOpen ? '[&>svg]:rotate-180' : ''}`}>
         {children}
         <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" />
-      </button>
+      </div>
     </div>
   )
 }
 
-const AccordionContent: React.FC<AccordionContentProps> = ({ className, children, ...props }) => {
-  const { openItem } = useAccordion()
-  const { itemId } = useAccordionItem()
-  
-  const isOpen = openItem === itemId
-
+const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, children }) => {
   return (
-    <div className={`overflow-hidden text-sm transition-[max-height] duration-300 ${isOpen ? 'max-h-screen' : 'max-h-0'} ${className || ''}`} {...props}>
-      <div className={`pb-4 pt-0 ${className || ''}`}>{children}</div>
+    <div className={`grid text-sm text-left transition-[grid-template-rows] duration-300 ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+      <div className="overflow-hidden">
+        <div className="pb-4">{children}</div>
+      </div>
     </div>
   )
 }

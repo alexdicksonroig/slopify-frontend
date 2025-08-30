@@ -59,7 +59,7 @@ export default function App({ loaderData }) {
         fetchClientSecret: () => Api.post("/create-checkout-session"),
       }}
     >
-      <Outlet />
+      <Outlet />;
     </CheckoutProvider>
   )
 }
