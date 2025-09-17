@@ -31,18 +31,9 @@ export function Component({ ...props }) {
   )
 }
 
-export function Component2({}) {
-  return (
-    <div className="relative bg-gray-500 p-7">
-      Parent
-      <div className="absolute top-0 left-0 bg-gray-300 transform -translate-y-full p-9">Child</div>
-    </div>
-  )
-}
-
 const meta = {
   title: 'Components/Popover',
-  component: Component2,
+  component: Component,
 } satisfies Meta<typeof Separator>
 
 export default meta
