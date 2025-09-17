@@ -7,6 +7,7 @@ import { Input } from './input'
 import { Label } from './label'
 import { Separator } from './separator'
 import { Skeleton } from './skeleton'
+import { Popover } from './popover'
 import { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption } from './table'
 
 const AccordionHOC = createNameSpacedComponent(Accordion, {
@@ -38,4 +39,4 @@ const TableHOC = createNameSpacedComponent(Table, {
   Caption: TableCaption,
 })
 
-export { AccordionHOC as Accordion, AlertHOC as Alert, Button, CardHOC as Card, Input, Label, Separator, Skeleton }
+export { AccordionHOC as Accordion, AlertHOC as Alert, Button, CardHOC as Card, Input, Label, Separator, Skeleton, Popover }
