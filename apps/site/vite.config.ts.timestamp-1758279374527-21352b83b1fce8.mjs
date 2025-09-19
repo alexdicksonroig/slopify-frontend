@@ -1,0 +1,12 @@
+// vite.config.ts
+import { reactRouter } from "file:///Users/alexdickson3/Projects/slopify-frontend/node_modules/.pnpm/@react-router+dev@7.9.1_@react-router+serve@7.9.1_react-router@7.9.1_react-dom@19.0.0_r_a59f77594181ef98087af07618cc9aeb/node_modules/@react-router/dev/dist/vite.js";
+import tailwindcss from "file:///Users/alexdickson3/Projects/slopify-frontend/node_modules/.pnpm/@tailwindcss+vite@4.1.13_vite@5.4.20_@types+node@20.19.17_lightningcss@1.30.1_/node_modules/@tailwindcss/vite/dist/index.mjs";
+import { defineConfig } from "file:///Users/alexdickson3/Projects/slopify-frontend/node_modules/.pnpm/vite@5.4.20_@types+node@20.19.17_lightningcss@1.30.1/node_modules/vite/dist/node/index.js";
+import tsconfigPaths from "file:///Users/alexdickson3/Projects/slopify-frontend/node_modules/.pnpm/vite-tsconfig-paths@5.1.4_typescript@5.9.2_vite@5.4.20_@types+node@20.19.17_lightningcss@1.30.1_/node_modules/vite-tsconfig-paths/dist/index.js";
+var vite_config_default = defineConfig({
+  plugins: [tailwindcss(), reactRouter(), tsconfigPaths()]
+});
+export {
+  vite_config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZS5jb25maWcudHMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImNvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9kaXJuYW1lID0gXCIvVXNlcnMvYWxleGRpY2tzb24zL1Byb2plY3RzL3Nsb3BpZnktZnJvbnRlbmQvYXBwcy9zaXRlXCI7Y29uc3QgX192aXRlX2luamVjdGVkX29yaWdpbmFsX2ZpbGVuYW1lID0gXCIvVXNlcnMvYWxleGRpY2tzb24zL1Byb2plY3RzL3Nsb3BpZnktZnJvbnRlbmQvYXBwcy9zaXRlL3ZpdGUuY29uZmlnLnRzXCI7Y29uc3QgX192aXRlX2luamVjdGVkX29yaWdpbmFsX2ltcG9ydF9tZXRhX3VybCA9IFwiZmlsZTovLy9Vc2Vycy9hbGV4ZGlja3NvbjMvUHJvamVjdHMvc2xvcGlmeS1mcm9udGVuZC9hcHBzL3NpdGUvdml0ZS5jb25maWcudHNcIjtpbXBvcnQgeyByZWFjdFJvdXRlciB9IGZyb20gXCJAcmVhY3Qtcm91dGVyL2Rldi92aXRlXCI7XG5pbXBvcnQgdGFpbHdpbmRjc3MgZnJvbSBcIkB0YWlsd2luZGNzcy92aXRlXCI7XG5pbXBvcnQgeyBkZWZpbmVDb25maWcgfSBmcm9tIFwidml0ZVwiO1xuaW1wb3J0IHRzY29uZmlnUGF0aHMgZnJvbSBcInZpdGUtdHNjb25maWctcGF0aHNcIjtcblxuZXhwb3J0IGRlZmF1bHQgZGVmaW5lQ29uZmlnKHtcbiAgcGx1Z2luczogW3RhaWx3aW5kY3NzKCksIHJlYWN0Um91dGVyKCksIHRzY29uZmlnUGF0aHMoKV0sXG59KTtcbiJdLAogICJtYXBwaW5ncyI6ICI7QUFBdVYsU0FBUyxtQkFBbUI7QUFDblgsT0FBTyxpQkFBaUI7QUFDeEIsU0FBUyxvQkFBb0I7QUFDN0IsT0FBTyxtQkFBbUI7QUFFMUIsSUFBTyxzQkFBUSxhQUFhO0FBQUEsRUFDMUIsU0FBUyxDQUFDLFlBQVksR0FBRyxZQUFZLEdBQUcsY0FBYyxDQUFDO0FBQ3pELENBQUM7IiwKICAibmFtZXMiOiBbXQp9Cg==
