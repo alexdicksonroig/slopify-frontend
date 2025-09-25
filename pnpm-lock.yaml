@@ -6,7 +6,11 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    dependencies:
+      '@coreui':
+        specifier: workspace:*
+        version: link:packages/coreui
 
   apps/site:
     dependencies:

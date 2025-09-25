@@ -21,8 +21,7 @@ type AccordionItemProps = {
 
 type AccordionTriggerProps = {
   isOpen: boolean
-}& React.HTMLAttributes<HTMLDivElement>
-
+} & React.HTMLAttributes<HTMLDivElement>
 
 type AccordionContentProps = {
   isOpen: boolean
@@ -59,9 +58,9 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ className, children, item
 const AccordionTrigger: React.FC<AccordionTriggerProps> = ({ isOpen, children }) => {
   return (
     <div className="flex">
-      <div className={clsx('flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline text-left', isOpen ? '[&>svg]:rotate-180' : undefined)}>
+      <div className={clsx('flex flex-1 items-center justify-between py-4 text-sm font-medium hover:underline text-left')}>
         {children}
-        <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" />
+        <ChevronDown className={clsx('h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200', isOpen ? 'rotate-x-180' : undefined)} />
       </div>
     </div>
   )

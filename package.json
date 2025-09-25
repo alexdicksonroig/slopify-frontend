@@ -4,5 +4,8 @@
   "scripts": {
     "build": "pnpm --color run -r build",
     "dev": "pnpm --color run -r dev"
+  },
+  "dependencies": {
+    "@coreui": "workspace:*"
   }
 }

@@ -1,16 +1,16 @@
-import React, { useState } from "react"
+import React, {useState} from 'react'
 
-import { PaymentElement, useCheckout } from "@stripe/react-stripe-js"
-import { Button, Input, Label } from "@/components"
+import {PaymentElement, useCheckout} from '@stripe/react-stripe-js'
+import {Button, Input, Label} from '@coreui/components'
 
 const validateEmail = async (email, checkout) => {
   const updateResult = await checkout.updateEmail(email)
-  const isValid = updateResult.type !== "error"
+  const isValid = updateResult.type !== 'error'
 
-  return { isValid, message: !isValid ? updateResult.error.message : null }
+  return {isValid, message: !isValid ? updateResult.error.message : null}
 }
 
-const EmailInput = ({ email, setEmail, error, setError }) => {
+const EmailInput = ({email, setEmail, error, setError}) => {
   const checkout = useCheckout()
 
   const handleBlur = async () => {
@@ -18,7 +18,7 @@ const EmailInput = ({ email, setEmail, error, setError }) => {
       return
     }
 
-    const { isValid, message } = await validateEmail(email, checkout)
+    const {isValid, message} = await validateEmail(email, checkout)
     if (!isValid) {
       setError(message)
     }
@@ -31,18 +31,18 @@ const EmailInput = ({ email, setEmail, error, setError }) => {
 
   return (
     <>
-      <Label className="mb-2">
+      <Label className='mb-2'>
         Email
         <Input
-          id="email"
-          type="text"
+          id='email'
+          type='text'
           value={email}
           onChange={handleChange}
           onBlur={handleBlur}
-          className={error ? "error" : ""}
+          className={error ? 'error' : ''}
         />
       </Label>
-      {error && <div id="email-errors">{error}</div>}
+      {error && <div id='email-errors'>{error}</div>}
     </>
   )
 }
@@ -50,7 +50,7 @@ const EmailInput = ({ email, setEmail, error, setError }) => {
 const CheckoutForm = () => {
   const checkout = useCheckout()
 
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState(null)
   const [message, setMessage] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -60,7 +60,7 @@ const CheckoutForm = () => {
 
     setIsLoading(true)
 
-    const { isValid, message } = await validateEmail(email, checkout)
+    const {isValid, message} = await validateEmail(email, checkout)
     if (!isValid) {
       setEmailError(message)
       setMessage(message)
@@ -75,7 +75,7 @@ const CheckoutForm = () => {
     // your `return_url`. For some payment methods like iDEAL, your customer will
     // be redirected to an intermediate site first to authorize the payment, then
     // redirected to the `return_url`.
-    if (confirmResult.type === "error") {
+    if (confirmResult.type === 'error') {
       setMessage(confirmResult.error.message)
     }
 
@@ -91,16 +91,16 @@ const CheckoutForm = () => {
         setError={setEmailError}
       />
       <Label>Payment</Label>
-      <PaymentElement id="payment-element" />
-      <Button disabled={isLoading} id="submit" className="mt-2">
+      <PaymentElement id='payment-element' />
+      <Button disabled={isLoading} id='submit' className='mt-2'>
         {isLoading ? (
-          <div className="spinner"></div>
+          <div className='spinner'></div>
         ) : (
           `Pay ${checkout.total.total.amount} now`
         )}
       </Button>
       {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      {message && <div id='payment-message'>{message}</div>}
     </form>
   )
 }
