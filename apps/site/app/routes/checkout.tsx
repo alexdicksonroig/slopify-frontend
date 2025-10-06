@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import {PaymentElement, useCheckout} from '@stripe/react-stripe-js'
-import {Button, Input, Label} from '@coreui/components'
+import {Button, Input, Label} from '@components'
 
 const validateEmail = async (email, checkout) => {
   const updateResult = await checkout.updateEmail(email)
