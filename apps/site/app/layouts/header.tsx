@@ -1,7 +1,8 @@
-import {Fragment, useState} from 'react'
+import {useState} from 'react'
 import {Menu, ShoppingBag, X} from 'lucide-react'
 import {Outlet} from 'react-router'
 import {useOutsideClick} from '@lib'
+import clsx from 'clsx'
 
 const MobileMenu = ({
   open,
@@ -11,13 +12,15 @@ const MobileMenu = ({
   setOpen: (open: boolean) => void
 }) => {
   const ref = useOutsideClick<HTMLDivElement>(() => setOpen(false))
-  if (!open) return null
   return (
     <div
       ref={ref}
-      className='z-5 data-closed:-translate-x-full fixed h-full w-full max-w-sm overflow-y-auto bg-white p-4 shadow-xl transition duration-300 ease-in-out'
+      className={clsx(
+        'z-5 fixed h-full w-full max-w-sm overflow-y-auto bg-white p-4 shadow-xl transition duration-200 ease-in-out',
+        open ? 'translate-x-0' : '-translate-x-full'
+      )}
     >
-      <X onClick={() => setOpen(false)} />
+      <X onClick={() => setOpen(false)} className='text-gray-400' />
       Hola
     </div>
   )
