@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 
 import {PaymentElement, useCheckout} from '@stripe/react-stripe-js'
 import {Button, Input, Label} from '@components'
