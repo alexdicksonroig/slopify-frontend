@@ -1,8 +1,5 @@
 import { Context, useContext } from 'react'
 
-declare const CreateContext: <T = any>() => [
-  () => T,
-  Context<T>
-]
+declare const CreateContext: <T = any>() => [() => T, Context<T>]
 
-export default CreateContext 
+export default CreateContext

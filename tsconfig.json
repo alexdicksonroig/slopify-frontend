@@ -1,6 +1,6 @@
 {
-"include": ["packages/**/*", "apps/**/*"],
-"compilerOptions": {
+  "include": ["packages/**/*", "apps/**/*"],
+  "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",

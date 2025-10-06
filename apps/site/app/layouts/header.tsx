@@ -15,7 +15,7 @@ const MobileMenu = ({
   return (
     <div
       ref={ref}
-      className='fixed h-full z-5 w-full max-w-sm overflow-y-auto bg-white shadow-xl transition duration-300 ease-in-out data-closed:-translate-x-full p-4'
+      className='z-5 data-closed:-translate-x-full fixed h-full w-full max-w-sm overflow-y-auto bg-white p-4 shadow-xl transition duration-300 ease-in-out'
     >
       <X onClick={() => setOpen(false)} />
       Hola

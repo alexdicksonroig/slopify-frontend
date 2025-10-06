@@ -1,5 +1,5 @@
-import { Skeleton } from "@/components/components/skeleton"
-import { Meta } from "@storybook/react"
+import { Skeleton } from '@/components/components/skeleton'
+import { Meta } from '@storybook/react'
 
 export function Component() {
   return (

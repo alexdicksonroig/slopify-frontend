@@ -1,7 +1,5 @@
 import * as React from 'react'
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from 'embla-carousel-react'
+import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 import { Button } from '@/components/components/button'
@@ -39,15 +37,7 @@ function useCarousel() {
   return context
 }
 
-const Carousel = ({
-  orientation = 'horizontal',
-  opts,
-  setApi,
-  plugins,
-  className,
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> & CarouselProps) => {
+const Carousel = ({ orientation = 'horizontal', opts, setApi, plugins, className, children, ...props }: React.HTMLAttributes<HTMLDivElement> & CarouselProps) => {
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
@@ -116,63 +106,38 @@ const Carousel = ({
         carouselRef,
         api: api,
         opts,
-        orientation:
-          orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
+        orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
         scrollPrev,
         scrollNext,
         canScrollPrev,
         canScrollNext,
       }}>
-      <div
-        onKeyDownCapture={handleKeyDown}
-        className={`relative ${className}`}
-        role="region"
-        aria-roledescription="carousel"
-        {...props}>
+      <div onKeyDownCapture={handleKeyDown} className={`relative ${className}`} role="region" aria-roledescription="carousel" {...props}>
         {children}
       </div>
     </CarouselContext.Provider>
   )
 }
 
-const CarouselContent = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => {
+const CarouselContent = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   const { carouselRef, orientation } = useCarousel()
 
   return (
     <div ref={carouselRef} className="overflow-hidden">
-      <div
-        className={`flex ${orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col'} ${className}`}
-        {...props}
-      />
+      <div className={`flex ${orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col'} ${className}`} {...props} />
     </div>
   )
 }
 
-const CarouselItem = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => {
+const CarouselItem = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   const { orientation } = useCarousel()
 
   return (
-    <div
-      role="group"
-      aria-roledescription="slide"
-      className={`min-w-0 shrink-0 grow-0 basis-full ${orientation === 'horizontal' ? 'pl-4' : 'pt-4'} ${className}`}
-      {...props}
-    />
+    <div role="group" aria-roledescription="slide" className={`min-w-0 shrink-0 grow-0 basis-full ${orientation === 'horizontal' ? 'pl-4' : 'pt-4'} ${className}`} {...props} />
   )
 }
 
-const CarouselPrevious = ({
-  className,
-  variant = 'outline',
-  size = 'icon',
-  ...props
-}: React.ComponentProps<typeof Button>) => {
+const CarouselPrevious = ({ className, variant = 'outline', size = 'icon', ...props }: React.ComponentProps<typeof Button>) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
   return (
@@ -189,12 +154,7 @@ const CarouselPrevious = ({
   )
 }
 
-const CarouselNext = ({
-  className,
-  variant = 'outline',
-  size = 'icon',
-  ...props
-}: React.ComponentProps<typeof Button>) => {
+const CarouselNext = ({ className, variant = 'outline', size = 'icon', ...props }: React.ComponentProps<typeof Button>) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
 
   return (
@@ -211,11 +171,4 @@ const CarouselNext = ({
   )
 }
 
-export {
-  type CarouselApi,
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-}
+export { type CarouselApi, Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext }

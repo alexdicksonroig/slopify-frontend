@@ -49,7 +49,6 @@ export default tseslint.config({
 })
 ```
 
-
 TODO:
 -Themes/dark mode
 -Box component with skeleton when pending
