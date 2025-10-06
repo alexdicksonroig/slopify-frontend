@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useOutsideClick } from '@/lib/hooks'
 import clsx from 'clsx'
 
 export type PopoverProps = {
@@ -11,21 +11,7 @@ export type PopoverProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 export const Popover: React.FC<PopoverProps> = ({ id, open, onOpenChange, className = '', children, placement = 'top', ...rest }) => {
-  const popoverRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    function handleDocumentMouseDown(event: MouseEvent) {
-      if (!open) return
-      const popoverEl = popoverRef.current
-      if (popoverEl && event.target instanceof Node && !popoverEl.contains(event.target)) {
-        onOpenChange(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleDocumentMouseDown)
-    return () => document.removeEventListener('mousedown', handleDocumentMouseDown)
-  }, [open, onOpenChange])
-
+  const popoverRef = useOutsideClick(() => onOpenChange(false))
   const placementClasses = placement === 'bottom' ? ['top-full', 'left-0', 'translate-y-0'] : ['top-0', 'left-0', '-translate-y-full']
 
   return (
