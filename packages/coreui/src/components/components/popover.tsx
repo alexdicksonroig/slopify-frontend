@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect, useRef } from 'react'
 import clsx from 'clsx'
 
 export type PopoverProps = {
@@ -11,9 +11,9 @@ export type PopoverProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 export const Popover: React.FC<PopoverProps> = ({ id, open, onOpenChange, className = '', children, placement = 'top', ...rest }) => {
-  const popoverRef = React.useRef<HTMLDivElement>(null)
+  const popoverRef = useRef<HTMLDivElement>(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     function handleDocumentMouseDown(event: MouseEvent) {
       if (!open) return
       const popoverEl = popoverRef.current
@@ -26,17 +26,10 @@ export const Popover: React.FC<PopoverProps> = ({ id, open, onOpenChange, classN
     return () => document.removeEventListener('mousedown', handleDocumentMouseDown)
   }, [open, onOpenChange])
 
-  const placementClasses = placement === 'bottom'
-    ? ['top-full', 'left-0', 'translate-y-0']
-    : ['top-0', 'left-0', '-translate-y-full']
+  const placementClasses = placement === 'bottom' ? ['top-full', 'left-0', 'translate-y-0'] : ['top-0', 'left-0', '-translate-y-full']
 
   return (
-    <div
-      id={id}
-      ref={popoverRef}
-      {...rest}
-      className={clsx('absolute', 'transform', placementClasses, className, open ? 'block' : 'hidden')}
-    >
+    <div id={id} ref={popoverRef} {...rest} className={clsx('absolute', 'transform', placementClasses, className, open ? 'block' : 'hidden')}>
       {children}
     </div>
   )

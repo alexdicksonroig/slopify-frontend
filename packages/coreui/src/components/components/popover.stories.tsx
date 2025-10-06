@@ -10,7 +10,7 @@ export function Component({ ...props }) {
 
   return (
     <div className="relative">
-      <Popover id="my-popover" placement="bottom" open={open} onOpenChange={setOpen}>
+      <Popover open={open} onOpenChange={setOpen}>
         <div className="space-y-1">
           <h4 className="text-sm font-medium leading-none">Separator example</h4>
           <p className="text-sm text-muted-foreground">Horizontal and vertical separators</p>
