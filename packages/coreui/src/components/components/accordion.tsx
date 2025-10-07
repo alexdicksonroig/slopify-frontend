@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import clsx from 'clsx'
-import { ChevronDown } from 'lucide-react'
+import {ChevronDown} from 'lucide-react'
 import CreateContext from '../../lib/createContext'
 
 // Accordion Context for managing open/closed state
@@ -27,11 +27,16 @@ type AccordionContentProps = {
   isOpen: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
-const Accordion: React.FC<AccordionProps> = ({ children, className, defaultOpenItem, ...props }) => {
+const Accordion: React.FC<AccordionProps> = ({
+  children,
+  className,
+  defaultOpenItem,
+  ...props
+}) => {
   const [openItem, setOpenItem] = useState<string | undefined>(defaultOpenItem)
 
   return (
-    <AccordionContext.Provider value={{ openItem, setOpenItem }}>
+    <AccordionContext.Provider value={{openItem, setOpenItem}}>
       <div className={clsx('flex flex-col', className)} {...props}>
         {children}
       </div>
@@ -39,8 +44,14 @@ const Accordion: React.FC<AccordionProps> = ({ children, className, defaultOpenI
   )
 }
 
-const AccordionItem: React.FC<AccordionItemProps> = ({ className, children, itemId, headerText, ...props }) => {
-  const { openItem, setOpenItem } = useAccordionContext()
+const AccordionItem: React.FC<AccordionItemProps> = ({
+  className,
+  children,
+  itemId,
+  headerText,
+  ...props
+}) => {
+  const {openItem, setOpenItem} = useAccordionContext()
   const isOpen = openItem === itemId
 
   const handleClick = () => {
@@ -55,25 +66,39 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ className, children, item
   )
 }
 
-const AccordionTrigger: React.FC<AccordionTriggerProps> = ({ isOpen, children }) => {
+const AccordionTrigger: React.FC<AccordionTriggerProps> = ({isOpen, children}) => {
   return (
-    <div className="flex">
-      <div className={clsx('flex flex-1 items-center justify-between py-4 text-sm font-medium text-left')}>
+    <div className='flex'>
+      <div
+        className={clsx(
+          'flex flex-1 items-center justify-between py-4 text-sm font-medium text-left'
+        )}
+      >
         {children}
-        <ChevronDown className={clsx('h-4 w-4 shrink-0 text-muted-foreground', isOpen ? 'rotate-180' : undefined)} />
+        <ChevronDown
+          className={clsx(
+            'h-4 w-4 shrink-0 text-muted-foreground',
+            isOpen ? 'rotate-180' : undefined
+          )}
+        />
       </div>
     </div>
   )
 }
 
-const AccordionContent: React.FC<AccordionContentProps> = ({ isOpen, children }) => {
+const AccordionContent: React.FC<AccordionContentProps> = ({isOpen, children}) => {
   return (
-    <div className={clsx('grid text-sm text-left transition-[grid-template-rows] duration-300', isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')}>
-      <div className="overflow-hidden">
-        <div className="pb-4">{children}</div>
+    <div
+      className={clsx(
+        'grid text-sm text-left transition-[grid-template-rows] duration-300',
+        isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+      )}
+    >
+      <div className='overflow-hidden'>
+        <div className='pb-4'>{children}</div>
       </div>
     </div>
   )
 }
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+export {Accordion, AccordionItem, AccordionTrigger, AccordionContent}

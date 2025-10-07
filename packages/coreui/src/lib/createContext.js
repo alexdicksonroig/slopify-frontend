@@ -1,4 +1,4 @@
-import { createContext, useContext as useDefaultContext } from 'react'
+import {createContext, useContext as useDefaultContext} from 'react'
 
 const CreateContext = () => {
   const contexts = createContext([{}, () => {}])

@@ -1,5 +1,11 @@
-import { createNameSpacedComponent } from '@/lib/helpers'
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from './carousel'
+import {createNameSpacedComponent} from '@/lib/helpers'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from './carousel'
 
 const CarouselHOC = createNameSpacedComponent(Carousel, {
   Content: CarouselContent,
@@ -8,4 +14,4 @@ const CarouselHOC = createNameSpacedComponent(Carousel, {
   Next: CarouselNext,
 })
 
-export { CarouselHOC as Carousel }
+export {CarouselHOC as Carousel}

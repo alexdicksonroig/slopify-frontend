@@ -16,7 +16,8 @@ const MobileMenu = ({
     <div
       ref={ref}
       className={clsx(
-        'z-5 fixed h-full w-full max-w-sm overflow-y-auto bg-white p-4 shadow-xl transition duration-200 ease-in-out',
+        `z-5 fixed h-full w-full max-w-sm overflow-y-auto bg-white p-4 shadow-xl
+        transition duration-200 ease-in-out lg:hidden`,
         open ? 'translate-x-0' : '-translate-x-full'
       )}
     >
@@ -24,7 +25,8 @@ const MobileMenu = ({
         <button
           type='button'
           onClick={() => setOpen(false)}
-          className='relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400'
+          className='relative -m-2 inline-flex items-center justify-center rounded-md p-2
+            text-gray-400'
         >
           <span className='absolute -inset-0.5' />
           <span className='sr-only'>Close menu</span>
@@ -66,7 +68,10 @@ export default function Example() {
     <>
       <MobileMenu open={open} setOpen={setOpen} />
       <header className='relative bg-white'>
-        <p className='flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8'>
+        <p
+          className='flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm
+            font-medium text-white sm:px-6 lg:px-8'
+        >
           Get free delivery on orders over $100
         </p>
 
@@ -94,7 +99,10 @@ export default function Example() {
               </a>
             </div>
             <div className='ml-auto flex items-center'>
-              <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
+              <div
+                className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end
+                  lg:space-x-6'
+              >
                 <a
                   href='#'
                   className='text-sm font-medium text-gray-700 hover:text-gray-800'
