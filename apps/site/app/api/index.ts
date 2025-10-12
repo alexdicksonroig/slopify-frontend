@@ -1,3 +1,3 @@
-import * as Api from './api'
+import * as Api from "./api";
 
-export {Api}
+export { Api };

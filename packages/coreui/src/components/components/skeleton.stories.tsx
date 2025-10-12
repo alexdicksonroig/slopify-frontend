@@ -1,21 +1,21 @@
-import {Skeleton} from '@/components/components/skeleton'
-import {Meta} from '@storybook/react'
+import type { Meta } from "@storybook/react";
+import { Skeleton } from "@/components/components/skeleton";
 
 export function Component() {
-  return (
-    <div className='flex items-center space-x-4'>
-      <Skeleton className='h-12 w-12 rounded-full' />
-      <div className='space-y-2'>
-        <Skeleton className='h-4 w-[250px]' />
-        <Skeleton className='h-4 w-[200px]' />
-      </div>
-    </div>
-  )
+	return (
+		<div className="flex items-center space-x-4">
+			<Skeleton className="h-12 w-12 rounded-full" />
+			<div className="space-y-2">
+				<Skeleton className="h-4 w-[250px]" />
+				<Skeleton className="h-4 w-[200px]" />
+			</div>
+		</div>
+	);
 }
 
 const meta = {
-  title: 'Components/Skeleton',
-  component: Component,
-} satisfies Meta<typeof Skeleton>
+	title: "Components/Skeleton",
+	component: Component,
+} satisfies Meta<typeof Skeleton>;
 
-export default meta
+export default meta;

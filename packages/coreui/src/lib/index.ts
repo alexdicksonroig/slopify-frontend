@@ -1,3 +1,3 @@
-import {useOutsideClick} from './hooks'
+import { useOutsideClick } from "./hooks";
 
-export {useOutsideClick}
+export { useOutsideClick };
