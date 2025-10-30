@@ -1,4 +1,3 @@
-import type * as React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 export const alertStyles = tv({

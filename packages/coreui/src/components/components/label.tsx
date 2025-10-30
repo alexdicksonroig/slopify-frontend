@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import type React from "react";
 
 type LabelProps = {
 	children: React.ReactNode;

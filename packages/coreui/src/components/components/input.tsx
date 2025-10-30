@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import type * as React from "react";
 
 const Input = ({
 	className,

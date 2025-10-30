@@ -1,4 +1,9 @@
 {
 	"include": ["src"],
-	"extends": "../../tsconfig.json"
+	"extends": "../../tsconfig.json",
+  		"paths": {
+			"@components": ["packages/coreui/src/components"],
+			"@lib": ["packages/coreui/src/lib"]
+		}
+
 }

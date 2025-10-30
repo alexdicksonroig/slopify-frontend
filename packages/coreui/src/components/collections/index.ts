@@ -1,4 +1,4 @@
-import { createNameSpacedComponent } from "@/lib/helpers";
+import { createNameSpacedComponent } from "@lib/helpers";
 import {
 	Carousel,
 	CarouselContent,

@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import type * as React from "react";
 
 interface SeparatorProps extends React.HTMLAttributes<HTMLHRElement> {
 	orientation?: "horizontal" | "vertical";

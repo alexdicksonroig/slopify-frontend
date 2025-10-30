@@ -29,7 +29,7 @@
 		"types": ["node"],
 		"paths": {
 			"@components": ["packages/coreui/src/components"],
-			"@lib": ["packages/coreui/src/lib"]
+			"@lib/*": ["packages/coreui/src/lib/*"]
 		}
 	}
 }

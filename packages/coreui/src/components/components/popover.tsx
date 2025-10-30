@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useOutsideClick } from "@/lib/hooks";
+import { useOutsideClick } from "@lib/hooks";
 
 export type PopoverProps = {
 	id?: string;
@@ -19,7 +19,7 @@ export const Popover: React.FC<PopoverProps> = ({
 	placement = "top",
 	...rest
 }) => {
-	const popoverRef = useOutsideClick(() => onOpenChange(false));
+	const popoverRef = useOutsideClick<HTMLDivElement>(() => onOpenChange(false));
 	const placementClasses =
 		placement === "bottom"
 			? ["top-full", "left-0", "translate-y-0"]
