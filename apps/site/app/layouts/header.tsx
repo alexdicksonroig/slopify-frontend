@@ -5,65 +5,6 @@ import { Outlet } from "react-router";
 
 import { useOutsideClick } from "@lib/hooks";
 
-const MobileMenu = ({
-  open,
-  setOpen,
-}: {
-  open: boolean;
-  setOpen: (open: boolean) => void;
-}) => {
-  const ref = useOutsideClick<HTMLDivElement>(() => setOpen(false));
-  return (
-    <div
-      ref={ref}
-      className={clsx(
-        `z-5 fixed h-full w-4/5 overflow-y-auto bg-white p-4 shadow-xl
-        transition duration-200 ease-in-out lg:hidden`,
-        open ? "translate-x-0" : "-translate-x-full",
-      )}
-    >
-      <div className="flex px-4 pb-2 pt-5">
-        <button
-          type="button"
-          onClick={() => setOpen(false)}
-          className="relative -m-2 inline-flex items-center justify-center rounded-md p-2
-            text-gray-400"
-        >
-          <span className="absolute -inset-0.5" />
-          <span className="sr-only">Close menu</span>
-          <X className="text-gray-400" />
-        </button>
-      </div>
-      <div className="space-y-6 px-4 py-6">
-        <div className="flow-root">
-          <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-            Sign in
-          </a>
-        </div>
-        <div className="flow-root">
-          <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-            Create account
-          </a>
-        </div>
-      </div>
-
-      <div className="border-t border-gray-200 px-4 py-6">
-        <a href="#" className="-m-2 flex items-center p-2">
-          <img
-            alt=""
-            src="https://tailwindcss.com/plus-assets/img/flags/flag-canada.svg"
-            className="block h-auto w-5 shrink-0"
-          />
-          <span className="ml-3 block text-base font-medium text-gray-900">
-            CAD
-          </span>
-          <span className="sr-only">, change currency</span>
-        </a>
-      </div>
-    </div>
-  );
-};
-
 export default function Example() {
   const [open, setOpen] = useState(false);
 
@@ -95,7 +36,7 @@ export default function Example() {
 
             {/* Logo */}
             <div className="ml-4 flex lg:ml-0">
-              <a href="#">
+              <a href="/">
                 <span className="sr-only">Your Company</span>
                 <img
                   alt=""
@@ -155,3 +96,62 @@ export default function Example() {
     </>
   );
 }
+
+const MobileMenu = ({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}) => {
+  const ref = useOutsideClick<HTMLDivElement>(() => setOpen(false));
+  return (
+    <div
+      ref={ref}
+      className={clsx(
+        `z-5 fixed h-full w-4/5 overflow-y-auto bg-white p-4 shadow-xl
+        transition duration-200 ease-in-out lg:hidden`,
+        open ? "translate-x-0" : "-translate-x-full",
+      )}
+    >
+      <div className="flex px-4 pb-2 pt-5">
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="relative -m-2 inline-flex items-center justify-center rounded-md p-2
+            text-gray-400"
+        >
+          <span className="absolute -inset-0.5" />
+          <span className="sr-only">Close menu</span>
+          <X className="text-gray-400" />
+        </button>
+      </div>
+      <div className="space-y-6 px-4 py-6">
+        <div className="flow-root">
+          <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+            Sign in
+          </a>
+        </div>
+        <div className="flow-root">
+          <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+            Create account
+          </a>
+        </div>
+      </div>
+
+      <div className="border-t border-gray-200 px-4 py-6">
+        <a href="#" className="-m-2 flex items-center p-2">
+          <img
+            alt=""
+            src="https://tailwindcss.com/plus-assets/img/flags/flag-canada.svg"
+            className="block h-auto w-5 shrink-0"
+          />
+          <span className="ml-3 block text-base font-medium text-gray-900">
+            CAD
+          </span>
+          <span className="sr-only">, change currency</span>
+        </a>
+      </div>
+    </div>
+  );
+};
