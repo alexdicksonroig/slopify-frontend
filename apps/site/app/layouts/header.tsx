@@ -17,7 +17,7 @@ const MobileMenu = ({
     <div
       ref={ref}
       className={clsx(
-        `z-5 fixed h-full w-full max-w-sm overflow-y-auto bg-white p-4 shadow-xl
+        `z-5 fixed h-full w-4/5 overflow-y-auto bg-white p-4 shadow-xl
         transition duration-200 ease-in-out lg:hidden`,
         open ? "translate-x-0" : "-translate-x-full",
       )}
