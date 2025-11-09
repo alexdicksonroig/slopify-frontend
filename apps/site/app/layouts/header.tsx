@@ -12,6 +12,7 @@ export default function Example() {
     <>
       <MobileMenu open={open} setOpen={setOpen} />
       <header className="relative bg-white">
+        <title>Slopify</title>
         <p
           className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm
             font-medium text-white sm:px-6 lg:px-8"
