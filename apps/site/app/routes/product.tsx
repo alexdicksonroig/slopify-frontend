@@ -1,26 +1,23 @@
 export default function Product({ params }) {
+  console.log(params);
   return (
     <div className="md:pt-6">
-      <div className="mx-auto  max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
+      <div className="mx-auto max-w-2xl max-h-md sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
         <img
-          src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-secondary-product-shot.jpg"
+          src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
           alt="Two each of gray, white, and black shirts laying flat."
-          className="row-span-2 aspect-3/4 size-full rounded-lg object-cover max-lg:hidden"
+          className="col-span-2 row-span-2 aspect-3/4 size-full rounded-lg object-cover"
+          style={{ viewTransitionName: "product-image" }}
         />
         <img
           src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg"
           alt="Model wearing plain black basic tee."
-          className="col-start-2 aspect-3/2 size-full rounded-lg object-cover max-lg:hidden"
+          className="col-start-3 aspect-3/2 size-full rounded-lg object-cover max-lg:hidden"
         />
         <img
           src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg"
           alt="Model wearing plain gray basic tee."
-          className="col-start-2 row-start-2 aspect-3/2 size-full rounded-lg object-cover max-lg:hidden"
-        />
-        <img
-          src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
-          alt="Model wearing plain white basic tee."
-          className="row-span-2 aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-3/4"
+          className="col-start-3 row-start-1 aspect-3/2 size-full rounded-lg object-cover max-lg:hidden"
         />
       </div>
 
@@ -34,91 +31,9 @@ export default function Product({ params }) {
         <div className="mt-4 lg:row-span-3 lg:mt-0">
           <h2 className="sr-only">Product information</h2>
           <p className="text-3xl tracking-tight text-gray-900">$192</p>
-
-          <div className="mt-6">
-            <h3 className="sr-only">Reviews</h3>
-            <div className="flex items-center">
-              <div className="flex items-center">
-                <svg
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  data-slot="icon"
-                  aria-hidden="true"
-                  className="size-5 shrink-0 text-gray-900"
-                >
-                  <path
-                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                    clip-rule="evenodd"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-                <svg
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  data-slot="icon"
-                  aria-hidden="true"
-                  className="size-5 shrink-0 text-gray-900"
-                >
-                  <path
-                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                    clip-rule="evenodd"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-                <svg
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  data-slot="icon"
-                  aria-hidden="true"
-                  className="size-5 shrink-0 text-gray-900"
-                >
-                  <path
-                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                    clip-rule="evenodd"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-                <svg
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  data-slot="icon"
-                  aria-hidden="true"
-                  className="size-5 shrink-0 text-gray-900"
-                >
-                  <path
-                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                    clip-rule="evenodd"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-                <svg
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  data-slot="icon"
-                  aria-hidden="true"
-                  className="size-5 shrink-0 text-gray-200"
-                >
-                  <path
-                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                    clip-rule="evenodd"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </div>
-              <p className="sr-only">4 out of 5 stars</p>
-              <a
-                href="#"
-                className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                117 reviews
-              </a>
-            </div>
-          </div>
-
           <form className="mt-10">
             <div>
               <h3 className="text-sm font-medium text-gray-900">Color</h3>
-
               <fieldset aria-label="Choose a color" className="mt-4">
                 <div className="flex items-center gap-x-3">
                   <div className="flex rounded-full outline -outline-offset-1 outline-black/10">

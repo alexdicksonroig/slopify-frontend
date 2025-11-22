@@ -1,6 +1,6 @@
 import { Link, useViewTransitionState } from "react-router";
 
-const products = [
+export const products = [
   {
     id: 1,
     name: "Basic Tee",
@@ -115,7 +115,7 @@ const products = [
 ];
 
 type Product = {
-  id: string;
+  id: number;
   name: string;
   imageSrc: string;
   imageAlt: string;
@@ -128,6 +128,7 @@ type ProductCard = Pick<
 >;
 
 function ProductCard({ id, name, imageSrc, imageAlt, price }: ProductCard) {
+  const href = `/product/${id}`;
   const isTransitioning = useViewTransitionState(href);
 
   return (
@@ -139,13 +140,16 @@ function ProductCard({ id, name, imageSrc, imageAlt, price }: ProductCard) {
           className="aspect-square w-full rounded-md bg-gray-200 object-cover
                   group-hover:opacity-75 lg:aspect-auto lg:h-80"
           style={{
-            viewTransitionName: ,
+            viewTransitionName: isTransitioning ? "product-image" : "none",
           }}
         />
         <div className="mt-4 flex justify-between">
           <div>
-            <h3 className="text-sm text-gray-700">{name}</h3>
-            <p className="mt-1 text-sm text-gray-500">{color}</p>
+            <h3
+              className="text-sm text-gray-700"
+            >
+              {name}
+            </h3>
           </div>
           <p className="text-sm font-medium text-gray-900">{price}</p>
         </div>
@@ -160,13 +164,12 @@ export default function Products() {
       <h2 className="text-2xl font-bold tracking-tight text-gray-900">
         Customers also purchased
       </h2>
-
       <div
         className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4
             xl:gap-x-8"
       >
-        {products.map((product) => (
-          <ProductCard {...{ ...product }} />
+        {products.map(({ id, name, imageSrc, imageAlt, price }) => (
+          <ProductCard {...{ id, name, imageSrc, imageAlt, price }} />
         ))}
       </div>
     </div>
