@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"old-dev": "vite",
-		"dev": "storybook dev -p 6006",
+		"dev": "storybook dev -p 6006 --no-open",
 		"build": "tsc -b && vite build",
 		"preview": "vite preview",
 		"build-storybook": "storybook build"
