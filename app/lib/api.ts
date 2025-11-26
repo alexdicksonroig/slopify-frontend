@@ -29,7 +29,7 @@ export const get = async (
 
 export const post = async (
 	path: string,
-	body: Record<string, unknown>,
+	body?: Record<string, unknown>,
 	onError = console.error,
 ) => {
 	const url = new URL(baseOrigin);

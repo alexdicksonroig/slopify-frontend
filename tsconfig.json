@@ -1,11 +1,12 @@
 {
-	"include": ["packages/**/*", "apps/**/*"],
+	"include": ["packages/**/*", "app/**/*"],
 	"compilerOptions": {
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": ".",
 		"declaration": true,
 		"emitDecoratorMetadata": true,
+        "outDir": "dist",
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
@@ -29,7 +30,8 @@
 		"types": ["node"],
 		"paths": {
 			"@components": ["packages/coreui/src/components"],
-			"@lib/*": ["packages/coreui/src/lib/*"]
+			"@lib/*": ["packages/coreui/src/lib/*"],
+            "@site/*": ["app/*"]
 		}
 	}
 }
