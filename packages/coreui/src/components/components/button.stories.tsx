@@ -5,8 +5,8 @@ import {
 	Button,
 	type ButtonProps,
 	buttonStyles,
-} from "@/components/components/button";
-import { hideArgs } from "@/lib/helpers";
+} from "@components/components/button";
+import { hideArgs } from "@lib/helpers";
 
 export function Component({ ...props }: ButtonProps) {
 	return (

@@ -1,6 +1,6 @@
 import { CheckoutProvider } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { get, post } from "@site/lib/api";
+import * as Api from "@site/lib/api";
 import Checkout from "./checkout";
 
 const stripePromise = loadStripe(
@@ -8,7 +8,7 @@ const stripePromise = loadStripe(
 );
 
 export async function clientLoader({ params }) {
-  const products = await get("products/");
+  const products = await Api.get("products/");
   return { products };
 }
 
@@ -17,7 +17,7 @@ export default function Payment({ loaderData }) {
     <CheckoutProvider
       stripe={stripePromise}
       options={{
-        fetchClientSecret: () => post("/create-checkout-session"),
+        fetchClientSecret: () => Api.post("/create-checkout-session"),
       }}
     >
       <div className="mx-5 mt-5">

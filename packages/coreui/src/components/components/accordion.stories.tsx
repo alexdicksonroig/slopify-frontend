@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react";
 
-import { Accordion, AccordionItem } from "@/components/components/accordion";
+import { Accordion, AccordionItem } from "@components/components/accordion";
 
 export function Component() {
 	return (

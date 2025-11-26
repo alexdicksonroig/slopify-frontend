@@ -6,7 +6,7 @@ import {
 	AlertDescription,
 	AlertTitle,
 	alertStyles,
-} from "@/components/components/alert";
+} from "@components/components/alert";
 
 export function Component({ ...props }) {
 	return (

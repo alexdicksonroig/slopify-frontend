@@ -5,8 +5,8 @@ import {
 	CarouselItem,
 	CarouselNext,
 	CarouselPrevious,
-} from "@/components/collections/carousel";
-import { Card, CardContent } from "@/components/components/card";
+} from "@components/collections/carousel";
+import { Card, CardContent } from "@components/components/card";
 
 export function Component() {
 	return (
