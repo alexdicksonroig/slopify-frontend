@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Link, useViewTransitionState } from "react-router";
 
 export const products = [
@@ -137,19 +138,14 @@ function ProductCard({ id, name, imageSrc, imageAlt, price }: ProductCard) {
         <img
           alt={imageAlt}
           src={imageSrc}
-          className="aspect-square w-full rounded-md bg-gray-200 object-cover
-                  group-hover:opacity-75 lg:aspect-auto lg:h-80"
-          style={{
-            viewTransitionName: isTransitioning ? "product-image" : "none",
-          }}
+          className={clsx(
+            "aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:[view-transition-name:none]",
+            { "[view-transition-name:product-image]": isTransitioning },
+          )}
         />
         <div className="mt-4 flex justify-between">
           <div>
-            <h3
-              className="text-sm text-gray-700"
-            >
-              {name}
-            </h3>
+            <h3 className="text-sm text-gray-700">{name}</h3>
           </div>
           <p className="text-sm font-medium text-gray-900">{price}</p>
         </div>
