@@ -1,12 +1,11 @@
 export default function Product({ params }) {
-  console.log(params);
   return (
     <div className="md:pt-6">
-      <div className="mx-auto max-w-2xl max-h-md sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
+      <div className="mx-auto max-w-2xl max-h-96 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
         <img
           src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg"
           alt="Two each of gray, white, and black shirts laying flat."
-          className="col-span-2 row-span-2 aspect-3/4 size-full rounded-lg object-cover"
+          className="col-span-2 row-span-2 aspect-3/4 size-full rounded-lg max-h-96 object-cover"
           style={{ viewTransitionName: "product-image" }}
         />
         <img
