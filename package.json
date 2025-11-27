@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "react-router build && pnpm --color run -r build",
+    "build": "react-router build",
     "dev": "react-router dev --open && pnpm --color run -r dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
