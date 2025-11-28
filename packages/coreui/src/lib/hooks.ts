@@ -13,6 +13,7 @@ export function useOutsideClick<T extends HTMLElement>(
 				event.target instanceof Node &&
 				!element.contains(event.target)
 			) {
+                event.stopPropagation();
 				callback();
 			}
 		}
