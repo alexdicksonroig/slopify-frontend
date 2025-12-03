@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react";
 import React from "react";
-import { Separator } from "@components/components/separator";
+import { Separator } from "@components";
 import { Button } from "./button";
 import { Popover } from "./popover";
 

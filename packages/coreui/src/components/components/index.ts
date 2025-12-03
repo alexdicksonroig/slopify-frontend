@@ -65,6 +65,7 @@ export {
   AlertHOC as Alert,
   Button,
   CardHOC as Card,
+  TableHOC as Table,
   Input,
   Label,
   Separator,

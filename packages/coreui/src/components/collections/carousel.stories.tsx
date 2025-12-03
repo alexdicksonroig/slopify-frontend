@@ -1,37 +1,32 @@
 import type { Meta } from "@storybook/react";
-import {
-	Carousel,
-	CarouselContent,
-	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
-} from "@components/collections/carousel";
-import { Card, CardContent } from "@components/components/card";
+import { Carousel } from "@components";
+import { Card } from "@components";
 
 export function Component() {
-	return (
-		<Carousel className="w-full max-w-sm">
-			<CarouselContent className="-ml-1">
-				{Array.from({ length: 5 }).map((_, index) => (
-					<CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
-						<div className="p-1">
-							<Card>
-								<CardContent className="flex aspect-square items-center justify-center p-6">
-									<span className="text-2xl font-semibold">{index + 1}</span>
-								</CardContent>
-							</Card>
-						</div>
-					</CarouselItem>
-				))}
-			</CarouselContent>
-			<CarouselPrevious />
-			<CarouselNext />
-		</Carousel>
-	);
+  return (
+    <Carousel className="w-full max-w-sm">
+      <Carousel.Content className="-ml-1">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <Carousel.Item key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
+            <div className="p-1">
+              <Card>
+                <Card.Content className="flex aspect-square items-center justify-center p-6">
+                  <span className="text-2xl font-semibold">{index + 1}</span>
+                </Card.Content>
+              </Card>
+            </div>
+          </Carousel.Item>
+        ))}
+      </Carousel.Content>
+      <Carousel.Previous />
+      <Carousel.Next />
+    </Carousel>
+  );
 }
+
 const meta = {
-	title: "Collections/Carousel",
-	component: Carousel,
+  title: "Collections/Carousel",
+  component: Carousel,
 } satisfies Meta<typeof Carousel>;
 
 export default meta;

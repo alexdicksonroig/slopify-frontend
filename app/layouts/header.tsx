@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useState } from "react";
-import { Outlet } from "react-router";
+import { Link, Outlet } from "react-router";
 
 import { useOutsideClick } from "@lib/hooks";
 
@@ -83,9 +83,9 @@ export default function Example() {
               {/* Cart */}
               <div className="ml-4 flow-root lg:ml-6">
                 <a href="#" className="group -m-2 flex items-center p-2">
-                  <span className="ml-2">
+                  <Link className="ml-2" to="/cart">
                     <ShoppingBag className="h-5 w-5 text-gray-700 hover:text-gray-800" />
-                  </span>
+                  </Link>
                   <span className="sr-only">items in cart, view bag</span>
                 </a>
               </div>
