@@ -1,8 +1,8 @@
-import { ProductImageGallery } from "../../components/ProductImageGallery";
-import { ColorSelector } from "../../components/ColorSelector";
-import { SizeSelector } from "../../components/SizeSelector";
-import { ProductInfo } from "../../components/ProductInfo";
-import { ProductDetails } from "../../components/ProductDetails";
+import { ProductImageGallery } from "./components/ProductImageGallery";
+import { ColorSelector } from "./components/ColorSelector";
+import { SizeSelector } from "./components/SizeSelector";
+import { ProductInfo } from "./components/ProductInfo";
+import { ProductDetails } from "./components/ProductDetails";
 
 export default function Product({ params }) {
   const productImages = [
