@@ -87,12 +87,7 @@ const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
         )}
       >
         {children}
-        <ChevronDown
-          className={clsx(
-            "h-4 w-4 shrink-0 text-muted-foreground",
-            isOpen ? "rotate-180" : undefined,
-          )}
-        />
+        <div>{isOpen ? "-" : "+"}</div>
       </div>
     </div>
   );
