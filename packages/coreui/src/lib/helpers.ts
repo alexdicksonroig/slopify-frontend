@@ -20,9 +20,8 @@ export const createNameSpacedComponent = <
 	mainComponent: T,
 	composedComponents: U,
 ) => {
-	const composedComponent = { ...(mainComponent as object) };
 	Object.keys(composedComponents).forEach((key) => {
-		(composedComponent as any)[key] = composedComponents[key];
+		(mainComponent as any)[key] = composedComponents[key];
 	});
-	return composedComponent as T & U;
+	return mainComponent as T & U;
 };
