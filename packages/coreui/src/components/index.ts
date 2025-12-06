@@ -1,6 +1,7 @@
 import { Carousel } from "./collections";
 import {
   Accordion,
+  Select,
   Table,
   Alert,
   Button,
@@ -22,4 +23,5 @@ export {
   Label,
   Separator,
   Skeleton,
+  Select,
 };

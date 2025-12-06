@@ -18,6 +18,7 @@ import {
 import { Input } from "./input";
 import { Label } from "./label";
 import { Popover } from "./popover";
+import { Select } from "./select";
 import { Separator } from "./separator";
 import { Skeleton } from "./skeleton";
 import {
@@ -71,4 +72,5 @@ export {
   Separator,
   Skeleton,
   Popover,
+  Select,
 };
