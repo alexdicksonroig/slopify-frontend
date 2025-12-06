@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-border);
+  }
+}
+
 @theme {
   --radius: 0.625rem;
-
   --color-background: oklch(1 0 0);
   --color-foreground: oklch(0.145 0 0);
   --color-card: oklch(1 0 0);
