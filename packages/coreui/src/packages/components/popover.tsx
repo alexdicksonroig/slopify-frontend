@@ -1,4 +1,3 @@
-import { useOutsideClick } from "@lib/hooks";
 import clsx from "clsx";
 import { Overlay } from "./overlay";
 

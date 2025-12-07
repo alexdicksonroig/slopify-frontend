@@ -14,15 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./card";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "./dialog";
+import { Dialog } from "./dialog";
 import { Input } from "./input";
 import { Label } from "./label";
 import { Overlay } from "./overlay";
@@ -55,15 +47,6 @@ const CardHOC = createNameSpacedComponent(Card, {
   Content: CardContent,
 });
 
-const DialogHOC = createNameSpacedComponent(Dialog, {
-  Trigger: DialogTrigger,
-  Content: DialogContent,
-  Header: DialogHeader,
-  Footer: DialogFooter,
-  Title: DialogTitle,
-  Description: DialogDescription,
-});
-
 const TableHOC = createNameSpacedComponent(Table, {
   Header: TableHeader,
   Body: TableBody,
@@ -78,7 +61,7 @@ export {
   AccordionHOC as Accordion,
   Button,
   CardHOC as Card,
-  DialogHOC as Dialog,
+  Dialog,
   TableHOC as Table,
   Input,
   Label,

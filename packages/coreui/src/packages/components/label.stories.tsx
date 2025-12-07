@@ -3,15 +3,9 @@ import type { Meta } from "@storybook/react";
 
 export function Component() {
   return (
-    <div className="flex items-center space-x-2">
+    <div>
+      <Label htmlFor="terms">Label for this input</Label>
       <Input id="terms" />
-      <Label
-        htmlFor="terms"
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed
-          peer-disabled:opacity-70"
-      >
-        Label for this input
-      </Label>
     </div>
   );
 }
