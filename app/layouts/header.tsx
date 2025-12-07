@@ -1,3 +1,4 @@
+import { Overlay } from "@components";
 import { useOutsideClick } from "@lib/hooks";
 import clsx from "clsx";
 import { Menu, ShoppingBag, X } from "lucide-react";
@@ -108,7 +109,7 @@ const MobileMenu = ({
   return (
     <>
       {/* Overlay */}
-      {open && <div className="fixed inset-0 bg-black/5 z-3" />}
+      <Overlay active={open} onClick={() => setOpen(false)} />
       <div
         ref={ref}
         className={clsx(

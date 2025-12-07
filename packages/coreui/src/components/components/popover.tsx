@@ -1,17 +1,17 @@
 import { useOutsideClick } from "@lib/hooks";
 import clsx from "clsx";
+import { Overlay } from "./overlay";
 
 export type PopoverProps = {
-  id?: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
   className?: string;
   children: React.ReactNode;
   placement?: "top" | "bottom";
+  overlayOpacity?: "light" | "medium" | "dark";
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export const Popover: React.FC<PopoverProps> = ({
-  id,
   open,
   onOpenChange,
   className = "",
@@ -19,27 +19,28 @@ export const Popover: React.FC<PopoverProps> = ({
   placement = "top",
   ...rest
 }) => {
-  const popoverRef = useOutsideClick<HTMLDivElement>(() => onOpenChange(false));
   const placementClasses =
     placement === "bottom"
       ? ["top-full", "left-0", "translate-y-0"]
       : ["top-0", "left-0", "-translate-y-full"];
 
   return (
-    <div
-      id={id}
-      ref={popoverRef}
-      {...rest}
-      className={clsx(
-        "absolute",
-        "transform",
-        placementClasses,
-        className,
-        open ? "block" : "hidden",
-      )}
-    >
-      {children}
-    </div>
+    <>
+      <Overlay active={open} onClick={() => onOpenChange(false)} transparent />
+      <div
+        {...rest}
+        className={clsx(
+          "z-4",
+          "absolute",
+          "transform",
+          placementClasses,
+          className,
+          open ? "block" : "hidden",
+        )}
+      >
+        {children}
+      </div>
+    </>
   );
 };
 
