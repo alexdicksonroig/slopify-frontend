@@ -1,4 +1,4 @@
-import { Button, Input } from "@components";
+import { Button, Input } from "packages/coreui/src/packages";
 import { useActionState } from "react";
 
 async function increment(previousState: number) {

@@ -1,3 +1,4 @@
+import { Select } from "@components";
 import clsx from "clsx";
 import { Link, useViewTransitionState } from "react-router";
 
@@ -155,8 +156,16 @@ function ProductCard({ id, name, imageSrc, imageAlt, price }: ProductCard) {
 }
 
 export default function Products() {
+  const options = [
+    { label: "Apple", value: "apple" },
+    { label: "Banana", value: "banana" },
+    { label: "Cherry", value: "cherry" },
+    { label: "Date", value: "date" },
+    { label: "Elderberry", value: "elderberry" },
+  ];
   return (
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <Select options={options} />
       <h2 className="text-2xl font-bold tracking-tight text-gray-900">
         Customers also purchased
       </h2>
