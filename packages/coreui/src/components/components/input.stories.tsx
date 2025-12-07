@@ -1,6 +1,5 @@
-import type { Meta } from "@storybook/react";
-
 import { Input } from "@components";
+import type { Meta } from "@storybook/react";
 
 export function Component({ ...props }) {
   return <Input type="date" placeholder="Write something..." {...props} />;
@@ -12,7 +11,15 @@ const meta = {
   argTypes: {
     type: {
       control: { type: "select" },
-      options: ["text", "email", "password", "date", "number", "search", "file"],
+      options: [
+        "text",
+        "email",
+        "password",
+        "date",
+        "number",
+        "search",
+        "file",
+      ],
     },
   },
 } satisfies Meta<typeof Input>;

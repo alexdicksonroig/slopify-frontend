@@ -1,15 +1,15 @@
 import { Carousel } from "./collections";
 import {
   Accordion,
-  Select,
-  Table,
   Alert,
   Button,
   Card,
   Input,
   Label,
+  Select,
   Separator,
   Skeleton,
+  Table,
 } from "./components";
 
 export {

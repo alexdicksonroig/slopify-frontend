@@ -1,8 +1,7 @@
-import type { Meta } from "@storybook/react";
-import { fn } from "@storybook/test";
-
 import { Button } from "@components";
 import { hideArgs } from "@lib/helpers";
+import type { Meta } from "@storybook/react";
+import { fn } from "@storybook/test";
 
 import { buttonStyles } from "./button";
 

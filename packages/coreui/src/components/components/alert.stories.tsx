@@ -1,7 +1,6 @@
+import { Alert } from "@components";
 import type { Meta } from "@storybook/react";
 import { Terminal } from "lucide-react";
-
-import { Alert } from "@components";
 
 import { alertStyles } from "./alert";
 

@@ -1,5 +1,5 @@
-import type { Meta } from "@storybook/react";
 import { Input, Label } from "@components";
+import type { Meta } from "@storybook/react";
 
 export function Component() {
   return (

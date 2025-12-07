@@ -1,10 +1,12 @@
 import { Button, Input, Label } from "@components";
 
 import * as Api from "@site/lib/api";
-import { CheckoutProvider } from "@stripe/react-stripe-js";
+import {
+  CheckoutProvider,
+  PaymentElement,
+  useCheckout,
+} from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-
-import { PaymentElement, useCheckout } from "@stripe/react-stripe-js";
 import { useState } from "react";
 
 const validateEmail = async (email, checkout) => {

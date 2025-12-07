@@ -1,6 +1,6 @@
+import * as Api from "@site/lib/api";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
-import * as Api from "@site/lib/api";
 
 export default function Return() {
   const [searchParams] = useSearchParams();

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { Popover } from "./popover";
 
 export type SelectOption = {

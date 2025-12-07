@@ -1,7 +1,7 @@
+import { createStrictContext } from "@lib/createStrictContext";
 import clsx from "clsx";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
-import { createStrictContext } from "@lib/createStrictContext";
 
 type AccordionContext = {
   openItem: string | undefined;

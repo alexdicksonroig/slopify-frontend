@@ -1,14 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
+function CartItem() {}
 
-function CartItem() {
-
-}
-
-function CartList() {
-  
-}
+function CartList() {}
 
 export default function Cart({ loaderData }) {
   const navigate = useNavigate();

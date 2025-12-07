@@ -1,6 +1,5 @@
+import { Card, Carousel } from "@components";
 import type { Meta } from "@storybook/react";
-import { Carousel } from "@components";
-import { Card } from "@components";
 
 export function Component() {
   return (

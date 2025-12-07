@@ -1,6 +1,5 @@
-import type { Meta } from "@storybook/react";
-
 import { Table } from "@components";
+import type { Meta } from "@storybook/react";
 
 const invoices = [
   {

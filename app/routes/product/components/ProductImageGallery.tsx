@@ -17,7 +17,9 @@ export function ProductImageGallery({ images }: ProductImageGalleryProps) {
           src={image.src}
           alt={image.alt}
           className={image.className}
-          style={index === 0 ? { viewTransitionName: "product-image" } : undefined}
+          style={
+            index === 0 ? { viewTransitionName: "product-image" } : undefined
+          }
         />
       ))}
     </div>

@@ -1,9 +1,8 @@
+import { useOutsideClick } from "@lib/hooks";
 import clsx from "clsx";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet } from "react-router";
-
-import { useOutsideClick } from "@lib/hooks";
 
 export default function Example() {
   const [open, setOpen] = useState(false);
