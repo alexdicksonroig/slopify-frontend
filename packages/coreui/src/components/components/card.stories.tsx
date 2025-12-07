@@ -12,7 +12,7 @@ export function Component({ ...props }) {
       </Card.Header>
       <Card.Content>
         <form>
-          <div className="grid w-full items-center gap-4">
+          <div className="grid w-full items-center">
             <div className="flex flex-col space-y-1.5">
               <Input id="name" placeholder="Name of your project" />
             </div>
