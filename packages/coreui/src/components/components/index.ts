@@ -5,7 +5,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./accordion";
-import { Alert, AlertDescription, AlertTitle } from "./alert";
 import { Button } from "./button";
 import {
   Card,
@@ -48,11 +47,6 @@ const AccordionHOC = createNameSpacedComponent(Accordion, {
   Content: AccordionContent,
 });
 
-const AlertHOC = createNameSpacedComponent(Alert, {
-  Title: AlertTitle,
-  Description: AlertDescription,
-});
-
 const CardHOC = createNameSpacedComponent(Card, {
   Header: CardHeader,
   Footer: CardFooter,
@@ -82,7 +76,6 @@ const TableHOC = createNameSpacedComponent(Table, {
 
 export {
   AccordionHOC as Accordion,
-  AlertHOC as Alert,
   Button,
   CardHOC as Card,
   DialogHOC as Dialog,
