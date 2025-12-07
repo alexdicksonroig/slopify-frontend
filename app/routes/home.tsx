@@ -5,6 +5,6 @@ export default function Home({ loaderData }) {
   const navigate = useNavigate();
   useEffect(() => {
     navigate("/products");
-  }, []);
+  }, [navigate]);
   return <div>Hola</div>;
 }

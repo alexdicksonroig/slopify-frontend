@@ -23,7 +23,7 @@ export function useOutsideClick<T extends HTMLElement>(
     return () => {
       document.removeEventListener("mousedown", handleDocumentMouseDown);
     };
-  }, [callback]);
+  }, [handleDocumentMouseDown]);
 
   return elementRef;
 }
