@@ -8,6 +8,9 @@ export function Component({ ...props }) {
 const meta = {
   title: "Components/Overlay",
   component: Component,
+  args: {
+    active: true,
+  },
   argTypes: {
     active: {
       control: { type: "boolean" },

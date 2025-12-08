@@ -14,12 +14,13 @@ export function Component({ ...props }) {
   ];
 
   return (
-    <div className="w-full">
+    <div>
       <Select
         value={value}
         onChange={setValue}
         options={options}
         placeholder="Select a fruit"
+        className="w-48"
         {...props}
       />
     </div>

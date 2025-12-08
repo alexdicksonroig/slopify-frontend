@@ -43,7 +43,7 @@ export const Select: React.FC<SelectProps> = ({
   };
 
   return (
-    <div id={id} className={clsx("relative w-full", className)} {...rest}>
+    <div id={id} className={clsx("relative", className)} {...rest}>
       <button
         type="button"
         onClick={handleToggle}
