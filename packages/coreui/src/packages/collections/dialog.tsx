@@ -6,6 +6,7 @@ export type DialogProps = {
   onOpenChange: (open: boolean) => void;
   className?: string;
   children: React.ReactNode;
+  isModal?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export const Dialog: React.FC<DialogProps> = ({
@@ -13,15 +14,19 @@ export const Dialog: React.FC<DialogProps> = ({
   onOpenChange,
   className = "",
   children,
+  isModal = true,
   ...rest
 }) => {
   return (
     <>
-      <Overlay active={open} onClick={() => onOpenChange(false)} transparent />
+      <Overlay
+        active={open}
+        onClick={isModal ? undefined : () => onOpenChange(false)}
+      />
       <Card
         {...rest}
         className={clsx(
-          "fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-4 w-[350px] h-fit",
+          "fixed left-1/2 top-auto sm:top-1/2 bottom-0 sm:bottom-auto -translate-x-1/2 sm:-translate-y-1/2 z-4 w-full sm:w-[350px] h-fit",
           `${open ? "flex" : "hidden"}`,
           className,
         )}
