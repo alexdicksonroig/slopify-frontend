@@ -74,13 +74,30 @@ function CartItemComponent({
         />
       </div>
 
-      <div className="ml-4 flex flex-1 flex-col">
-        <div>
-          <div className="flex justify-between text-base font-medium text-gray-900">
-            <h3>{item.name}</h3>
-            <p className="ml-4">${item.price.toFixed(2)}</p>
-          </div>
-          <p className="mt-1 text-sm text-gray-500">
+      <div className="ml-4 flex flex-1 flex-col relative">
+        <button
+          type="button"
+          onClick={() => onRemove(item.id)}
+          className="absolute -top-1 right-0 font-medium text-gray-400 hover:text-gray-500"
+        >
+          <svg
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <div className="space-y-3">
+          <h3 className="text-base font-medium text-gray-900 pr-6">{item.name}</h3>
+          <p className="text-sm text-gray-500">
             {item.color}
             {item.size && (
               <>
@@ -89,35 +106,31 @@ function CartItemComponent({
               </>
             )}
           </p>
+          <p className="text-sm font-medium text-gray-900">
+            ${item.price.toFixed(2)}
+          </p>
         </div>
-        <div className="flex flex-1 items-end justify-between text-sm">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-1 items-end text-sm mt-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
             <Select
-              onChange={(e) =>
-                onQuantityChange(item.id, Number(e.target.value))
-              }
+              value={item.quantity.toString()}
+              onChange={(value) => onQuantityChange(item.id, Number(value))}
               options={[1, 2, 3, 4, 5, 6, 7, 8].map((num) => ({
                 label: num.toString(),
                 value: num.toString(),
               }))}
-              className="w-1"
-            >
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                <option key={num} value={num}>
-                  {num}
-                </option>
-              ))}
-            </Select>
+              className="w-20"
+            />
 
             {item.inStock ? (
-              <p className="flex items-center gap-1 whitespace-nowrap">
-                <Check className="text-green-400" />
+              <p className="flex items-center gap-1 text-sm text-gray-600">
+                <Check className="h-4 w-4 text-green-500" />
                 In stock
               </p>
             ) : (
-              <p className="flex items-center text-sm text-gray-500 whitespace-nowrap">
+              <p className="flex items-center text-sm text-gray-500">
                 <svg
-                  className="mr-1.5 h-4 w-4"
+                  className="mr-1.5 h-4 w-4 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -132,26 +145,6 @@ function CartItemComponent({
               </p>
             )}
           </div>
-
-          <button
-            type="button"
-            onClick={() => onRemove(item.id)}
-            className="font-medium text-gray-400 hover:text-gray-500"
-          >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
         </div>
       </div>
     </li>
