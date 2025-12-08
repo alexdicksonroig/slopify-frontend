@@ -9,7 +9,7 @@ export function Component() {
   return (
     <div className="relative">
       <Popover open={open} onOpenChange={setOpen}>
-        <div className="p-3">
+        <div className=" mb-2 p-3 border">
           <div className="space-y-1">
             <h4 className="text-sm font-medium leading-none">
               Separator example
