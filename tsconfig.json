@@ -3,7 +3,6 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
     "declaration": true,
     "emitDecoratorMetadata": true,
     "outDir": "dist",
@@ -28,6 +27,7 @@
     "strictPropertyInitialization": false,
     "target": "ESNext",
     "types": ["node"],
+    "baseUrl": ".",
     "paths": {
       "@library": ["packages/coreui/src"],
       "@app/*": ["app/*"]
