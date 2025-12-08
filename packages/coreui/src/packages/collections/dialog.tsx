@@ -21,8 +21,8 @@ export const Dialog: React.FC<DialogProps> = ({
       <Card
         {...rest}
         className={clsx(
-          "fixed inset-0 z-4 max-w-lg w-full hidden",
-          { flex: open },
+          "fixed inset-0 z-4 w-[350px] h-fit",
+          `${open ? "flex" : "hidden"}`,
           className,
         )}
       >
