@@ -19,7 +19,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   return (
     <div
       className={clsx(
-        "fixed inset-0 z-3 blur-md",
+        "fixed inset-0 z-3",
         { "bg-black/30": !transparent },
         className,
       )}
