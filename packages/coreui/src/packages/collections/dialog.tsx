@@ -17,11 +17,11 @@ export const Dialog: React.FC<DialogProps> = ({
 }) => {
   return (
     <>
-      <Overlay active={open} onClick={() => onOpenChange(false)} />
+      <Overlay active={open} onClick={() => onOpenChange(false)} transparent />
       <Card
         {...rest}
         className={clsx(
-          "fixed inset-0 z-4 w-[350px] h-fit",
+          "fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-4 w-[350px] h-fit",
           `${open ? "flex" : "hidden"}`,
           className,
         )}

@@ -16,10 +16,8 @@ export function Component() {
         <Card.Content>
           <p>Dialog content goes here. You can add any content you want.</p>
         </Card.Content>
-        <Card.Footer>
-          <Button onClick={() => setOpen(false)} variant="secondary">
-            Close
-          </Button>
+        <Card.Footer className="justify-end">
+          <Button onClick={() => setOpen(false)}>Close</Button>
         </Card.Footer>
       </Dialog>
     </>
