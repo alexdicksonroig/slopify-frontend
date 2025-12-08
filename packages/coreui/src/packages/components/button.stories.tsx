@@ -1,5 +1,5 @@
-import { Button } from "@components";
-import { hideArgs } from "@lib/helpers";
+import { Button } from "./index";
+import { hideArgs } from "../../lib/helpers";
 import type { Meta } from "@storybook/react";
 import { fn } from "@storybook/test";
 

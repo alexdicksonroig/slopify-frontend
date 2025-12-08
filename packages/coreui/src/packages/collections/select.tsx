@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { useState } from "react";
-import { Popover } from "./popover";
+import { Popover } from "./index";
 
 export type SelectOption = {
   label: string;
@@ -49,7 +49,7 @@ export const Select: React.FC<SelectProps> = ({
         onClick={handleToggle}
         disabled={disabled}
         className={clsx(
-          "flex h-9 items-center justify-between rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-colors gap-1",
+          "flex h-9 items-center justify-between rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-colors gap-1 w-full",
           "placeholder:text-muted-foreground",
           "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
           "disabled:cursor-not-allowed disabled:opacity-50",

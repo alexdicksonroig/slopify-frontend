@@ -1,4 +1,4 @@
-import { createNameSpacedComponent } from "@lib/helpers";
+import { createNameSpacedComponent } from "../../lib/helpers";
 import {
   Accordion,
   AccordionContent,
@@ -14,12 +14,9 @@ import {
   CardHeader,
   CardTitle,
 } from "./card";
-import { Dialog } from "./dialog";
 import { Input } from "./input";
 import { Label } from "./label";
 import { Overlay } from "./overlay";
-import { Popover } from "./popover";
-import { Select } from "./select";
 import { Separator } from "./separator";
 import { Skeleton } from "./skeleton";
 import {
@@ -61,13 +58,10 @@ export {
   AccordionHOC as Accordion,
   Button,
   CardHOC as Card,
-  Dialog,
   TableHOC as Table,
   Input,
   Label,
   Overlay,
   Separator,
   Skeleton,
-  Popover,
-  Select,
 };

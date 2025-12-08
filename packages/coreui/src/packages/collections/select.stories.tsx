@@ -1,4 +1,4 @@
-import { Select } from "@components";
+import { Select } from "./index";
 import type { Meta } from "@storybook/react";
 import { useState } from "react";
 
@@ -14,7 +14,7 @@ export function Component({ ...props }) {
   ];
 
   return (
-    <div className="w-64">
+    <div className="w-full">
       <Select
         value={value}
         onChange={setValue}
@@ -27,7 +27,7 @@ export function Component({ ...props }) {
 }
 
 const meta = {
-  title: "Components/Select",
+  title: "Collections/Select",
   component: Component,
   argTypes: {
     disabled: {

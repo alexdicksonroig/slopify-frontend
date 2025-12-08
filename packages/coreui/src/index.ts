@@ -1,18 +1,16 @@
-import { Carousel } from "./collections";
+import { Carousel, Dialog, Select, Popover } from "./packages/collections";
 import {
-  Accordion,
-  Popover,
   Overlay,
+  Table,
+  Accordion,
   Button,
   Card,
-  Dialog,
   Input,
   Label,
-  Select,
   Separator,
   Skeleton,
-  Table,
-} from "./components";
+} from "./packages/components";
+import { createStrictContext } from "./lib/createStrictContext";
 
 export {
   Popover,
@@ -28,4 +26,5 @@ export {
   Separator,
   Skeleton,
   Select,
+  createStrictContext,
 };

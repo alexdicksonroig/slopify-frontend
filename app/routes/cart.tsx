@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Button, Select } from "@components";
+import { Select } from "@library";
 import { Check } from "lucide-react";
 
 type CartItem = {

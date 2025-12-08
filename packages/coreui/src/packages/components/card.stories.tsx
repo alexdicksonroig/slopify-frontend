@@ -1,4 +1,4 @@
-import { Button, Card, Input } from "@components";
+import { Button, Card, Input } from "./index";
 import type { Meta } from "@storybook/react";
 
 export function Component({ ...props }) {

@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import { Overlay } from "./overlay";
-import { Card } from "./card";
+import { Overlay, Card } from "../components";
 
 export type DialogProps = {
   open: boolean;

@@ -1,4 +1,4 @@
-import { Separator } from "@components";
+import { Separator } from "./index";
 import type { Meta } from "@storybook/react";
 
 export function Component({ ...props }) {

@@ -1,4 +1,4 @@
-import { Skeleton } from "@components";
+import { Skeleton } from "./index";
 import type { Meta } from "@storybook/react";
 
 export function Component() {

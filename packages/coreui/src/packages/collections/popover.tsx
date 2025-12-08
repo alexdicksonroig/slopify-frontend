@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Overlay } from "./overlay";
+import { Overlay } from "../components";
 
 export type PopoverProps = {
   open: boolean;

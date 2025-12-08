@@ -1,4 +1,4 @@
-import * as Api from "@site/lib/api";
+import * as Api from "@app/lib/api";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 

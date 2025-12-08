@@ -1,8 +1,7 @@
-import { Separator } from "@components";
+import { Separator, Button } from "../components";
+import { Popover } from "./index";
 import type { Meta } from "@storybook/react";
 import React from "react";
-import { Button } from "./button";
-import { Popover } from "./popover";
 
 export function Component() {
   const [open, setOpen] = React.useState(false);
@@ -41,7 +40,7 @@ export function Component() {
 }
 
 const meta = {
-  title: "Components/Popover",
+  title: "Collections/Popover",
   component: Component,
 } satisfies Meta<typeof Separator>;
 

@@ -1,4 +1,4 @@
-import { Accordion } from "@components";
+import { Accordion } from "./index";
 import type { Meta } from "@storybook/react";
 
 export function Component() {

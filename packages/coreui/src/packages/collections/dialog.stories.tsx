@@ -1,14 +1,7 @@
 import type { Meta } from "@storybook/react";
 import { useState } from "react";
-import { Dialog } from "./dialog";
-import {
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "./card";
-import { Button } from "./button";
+import { Dialog } from "./index";
+import { Card, Button } from "../components";
 
 export function Component() {
   const [open, setOpen] = useState(false);
@@ -17,24 +10,24 @@ export function Component() {
     <>
       <Button onClick={() => setOpen(true)}>Open Dialog</Button>
       <Dialog open={open} onOpenChange={setOpen}>
-        <CardHeader>
-          <CardTitle>Dialog Title</CardTitle>
-        </CardHeader>
-        <CardContent>
+        <Card.Header>
+          <Card.Title>Dialog Title</Card.Title>
+        </Card.Header>
+        <Card.Content>
           <p>Dialog content goes here. You can add any content you want.</p>
-        </CardContent>
-        <CardFooter>
+        </Card.Content>
+        <Card.Footer>
           <Button onClick={() => setOpen(false)} variant="secondary">
             Close
           </Button>
-        </CardFooter>
+        </Card.Footer>
       </Dialog>
     </>
   );
 }
 
 const meta = {
-  title: "Components/Dialog",
+  title: "Collections/Dialog",
   component: Component,
 } satisfies Meta<typeof Dialog>;
 

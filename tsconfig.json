@@ -29,9 +29,8 @@
     "target": "ESNext",
     "types": ["node"],
     "paths": {
-      "@components": ["packages/coreui/src/packages"],
-      "@lib/*": ["packages/coreui/src/lib/*"],
-      "@site/*": ["app/*"]
+      "@library": ["packages/coreui/src"],
+      "@app/*": ["app/*"]
     }
   }
 }

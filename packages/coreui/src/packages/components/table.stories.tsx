@@ -1,4 +1,4 @@
-import { Table } from "@components";
+import { Table } from "./index";
 import type { Meta } from "@storybook/react";
 
 const invoices = [

@@ -1,4 +1,4 @@
-import { createStrictContext } from "@lib/createStrictContext";
+import { createStrictContext } from "../../lib/createStrictContext";
 import clsx from "clsx";
 import { useState } from "react";
 

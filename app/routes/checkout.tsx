@@ -1,6 +1,6 @@
-import { Button, Input, Label } from "@components";
+import { Button, Input, Label } from "@library";
 
-import * as Api from "@site/lib/api";
+import * as Api from "@app/lib/api";
 import {
   CheckoutProvider,
   PaymentElement,

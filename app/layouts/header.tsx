@@ -1,9 +1,8 @@
-import { Overlay } from "@components";
-import { useOutsideClick } from "@lib/hooks";
 import clsx from "clsx";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet } from "react-router";
+import { Overlay } from "@library";
 
 export default function Example() {
   const [open, setOpen] = useState(false);
@@ -105,13 +104,10 @@ const MobileMenu = ({
   open: boolean;
   setOpen: (open: boolean) => void;
 }) => {
-  const ref = useOutsideClick<HTMLDivElement>(() => setOpen(false));
   return (
     <>
-      {/* Overlay */}
       <Overlay active={open} onClick={() => setOpen(false)} />
       <div
-        ref={ref}
         className={clsx(
           `z-5 fixed h-full w-4/5 overflow-y-auto bg-white p-4 shadow-xl
         transition duration-200 ease-in-out lg:hidden`,
