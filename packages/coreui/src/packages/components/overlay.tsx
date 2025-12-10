@@ -20,7 +20,7 @@ export const Overlay: React.FC<OverlayProps> = ({
     <div
       className={clsx(
         "fixed inset-0 z-3",
-        { "bg-black/30": !transparent },
+        { "bg-black/15": !transparent },
         className,
       )}
       onClick={onClick}
