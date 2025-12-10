@@ -1,5 +1,6 @@
 import { Carousel, Dialog, Select, Popover } from "./packages/collections";
 import {
+  Drawer,
   Overlay,
   Table,
   Accordion,
@@ -13,6 +14,7 @@ import {
 import { createStrictContext } from "./lib/createStrictContext";
 
 export {
+  Drawer,
   Popover,
   Overlay,
   Table,

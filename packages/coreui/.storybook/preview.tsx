@@ -5,7 +5,6 @@ import "../src/index.css";
 
 export const parameters: Parameters = {
   layout: "centered",
-  actions: { argTypesRegex: "^on[A-Z].*" },
   controls: { expanded: true },
   darkMode: {
     stylePreview: true,

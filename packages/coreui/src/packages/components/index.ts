@@ -14,6 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./card";
+import { Drawer } from "./drawer";
 import { Input } from "./input";
 import { Label } from "./label";
 import { Overlay } from "./overlay";
@@ -58,6 +59,7 @@ export {
   AccordionHOC as Accordion,
   Button,
   CardHOC as Card,
+  Drawer,
   TableHOC as Table,
   Input,
   Label,
