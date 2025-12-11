@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { Popover } from "./index";
+import { Button, type ButtonProps } from "../components";
 
 export type SelectOption = {
   label: string;
@@ -15,6 +16,8 @@ export type SelectProps = {
   placeholder?: string;
   className?: string;
   disabled?: boolean;
+  variant?: ButtonProps["variant"];
+  size?: ButtonProps["size"];
 } & Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">;
 
 export const Select: React.FC<SelectProps> = ({
@@ -25,6 +28,8 @@ export const Select: React.FC<SelectProps> = ({
   placeholder = "Select an option",
   className = "",
   disabled = false,
+  variant = "outline",
+  size = "default",
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,29 +48,24 @@ export const Select: React.FC<SelectProps> = ({
   };
 
   return (
-    <div
-      id={id}
-      className={clsx(
-        "relative border border-input rounded-md shadow-xs",
-        className,
-      )}
-      {...rest}
-    >
-      <button
+    <div id={id} className={clsx("relative", className)} {...rest}>
+      <Button
         type="button"
         onClick={handleToggle}
         disabled={disabled}
+        variant={variant}
+        size={size}
         className={clsx(
-          "flex h-9 items-center justify-between bg-transparent px-3 py-1 transition-colors gap-1 w-full",
-          "placeholder:text-muted-foreground",
-          "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
-          "disabled:cursor-not-allowed disabled:opacity-50",
+          "justify-between w-full hover:no-underline",
           !selectedOption && "text-muted-foreground",
         )}
       >
         <span>{selectedOption?.label || placeholder}</span>
         <svg
-          className={clsx("h-4 w-4", isOpen && "rotate-180")}
+          className={clsx(
+            "h-4 w-4 transition-transform",
+            isOpen && "rotate-180",
+          )}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -78,7 +78,7 @@ export const Select: React.FC<SelectProps> = ({
             d="M19 9l-7 7-7-7"
           />
         </svg>
-      </button>
+      </Button>
 
       <Popover
         open={isOpen}
