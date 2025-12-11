@@ -2,12 +2,13 @@ import { Menu, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet } from "react-router";
 import { Drawer } from "@library";
+import Footer from "./footer";
 
 export default function Example() {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Drawer open={open} onClose={() => setOpen(false)}>
         <div className="space-y-6 px-4 py-6">
           <div className="flow-root">
@@ -119,6 +120,7 @@ export default function Example() {
         </nav>
       </header>
       <Outlet />
-    </>
+      <Footer />
+    </div>
   );
 }
