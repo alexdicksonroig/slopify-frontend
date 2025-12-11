@@ -21,7 +21,7 @@ export const Drawer: React.FC<DrawerProps> = ({
       <div
         className={clsx(
           `z-5 fixed inset-0 h-screen w-4/5 overflow-y-auto
-        transition duration-200 ease-in-out lg:hidden p-2`,
+        transition duration-200 ease-in-out lg:hidden`,
           open ? "translate-x-0" : "-translate-x-full",
           className,
         )}
