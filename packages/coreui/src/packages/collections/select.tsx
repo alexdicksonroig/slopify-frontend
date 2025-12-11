@@ -84,7 +84,7 @@ export const Select: React.FC<SelectProps> = ({
         open={isOpen}
         onOpenChange={setIsOpen}
         placement="bottom"
-        className="right-0 z-50 mt-1 w-fit rounded-md border border-input bg-popover text-popover-foreground shadow-md"
+        className="right-0 z-50 mt-1 min-w-fit w-full rounded-md border border-input bg-popover text-popover-foreground shadow-md"
       >
         <div className="max-h-60 overflow-auto p-1">
           {options.map((option) => (
