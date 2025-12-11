@@ -6,7 +6,6 @@ export function Component({ ...props }) {
 }
 
 const meta = {
-  title: "Components/Input",
   component: Component,
   argTypes: {
     type: {

@@ -22,7 +22,6 @@ export function Component({ ...props }) {
   );
 }
 const meta = {
-  title: "Components/Separator",
   component: Component,
 } satisfies Meta<typeof Separator>;
 

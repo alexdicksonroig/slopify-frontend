@@ -35,7 +35,6 @@ export function Component({ ...props }) {
 }
 
 const meta = {
-  title: "Components/Drawer",
   component: Component,
   args: {
     open: true,

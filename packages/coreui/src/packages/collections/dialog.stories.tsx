@@ -25,7 +25,6 @@ export function Component() {
 }
 
 const meta = {
-  title: "Collections/Dialog",
   component: Component,
 } satisfies Meta<typeof Dialog>;
 

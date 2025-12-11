@@ -26,7 +26,6 @@ export function Component() {
 }
 
 const meta = {
-  title: "Collections/Popover",
   component: Component,
 } satisfies Meta<typeof Separator>;
 

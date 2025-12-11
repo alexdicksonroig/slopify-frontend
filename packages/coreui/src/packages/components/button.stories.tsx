@@ -14,7 +14,6 @@ export function Component({ ...props }) {
 }
 
 const meta = {
-  title: "Components/Button",
   component: Component,
   argTypes: {
     variant: {

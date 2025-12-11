@@ -11,7 +11,6 @@ export function Component() {
 }
 
 const meta = {
-  title: "Components/Label",
   component: Component,
 } satisfies Meta<typeof Label>;
 

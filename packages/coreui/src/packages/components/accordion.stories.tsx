@@ -19,7 +19,6 @@ export function Component() {
 }
 
 const meta = {
-  title: "Components/Accordion",
   component: Component,
 } satisfies Meta<typeof Accordion>;
 

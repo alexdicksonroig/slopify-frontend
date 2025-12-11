@@ -27,7 +27,7 @@ export function Component({ ...props }) {
     </Card>
   );
 }
-const meta = { title: "Components/Card",
+const meta = {
   component: Component,
   parameters: {
     layout: "centered",

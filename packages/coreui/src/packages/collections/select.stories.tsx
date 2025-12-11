@@ -28,7 +28,6 @@ export function Component({ ...props }) {
 }
 
 const meta = {
-  title: "Collections/Select",
   component: Component,
   argTypes: {
     disabled: {

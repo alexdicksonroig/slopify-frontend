@@ -14,7 +14,6 @@ export function Component() {
 }
 
 const meta = {
-  title: "Components/Skeleton",
   component: Component,
 } satisfies Meta<typeof Skeleton>;
 

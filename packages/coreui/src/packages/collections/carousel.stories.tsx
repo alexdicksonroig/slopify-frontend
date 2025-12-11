@@ -25,7 +25,6 @@ export function Component() {
 }
 
 const meta = {
-  title: "Collections/Carousel",
   component: Carousel,
 } satisfies Meta<typeof Carousel>;
 
