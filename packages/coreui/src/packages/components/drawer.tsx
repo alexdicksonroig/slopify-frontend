@@ -41,7 +41,7 @@ export const Drawer: React.FC<DrawerProps> = ({
           className,
         )}
       >
-        <div className="bg-white p-4 shadow-xl rounded-md h-full">
+        <div className="bg-white p-4 shadow-xl h-full">
           <div className="flex px-4 pb-2 pt-5">
             <button
               type="button"
