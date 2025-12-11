@@ -18,8 +18,13 @@ export default function Filters() {
         </h1>
 
         <div className="flex items-center">
-          <Select options={SORT_OPTIONS} placeholder="Sort" variant="link" />
-          <Button variant="link" className="text-muted-foreground">
+          <Select
+            options={SORT_OPTIONS}
+            placeholder="Sort"
+            variant="link"
+            className="px-2"
+          />
+          <Button variant="link" className="text-muted-foreground px-2">
             <span>Filter</span>
             <svg
               viewBox="0 0 20 20"

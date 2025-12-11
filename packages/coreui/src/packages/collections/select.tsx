@@ -48,7 +48,7 @@ export const Select: React.FC<SelectProps> = ({
   };
 
   return (
-    <div id={id} className={clsx("relative", className)} {...rest}>
+    <div id={id} className="relative" {...rest}>
       <Button
         type="button"
         onClick={handleToggle}
@@ -58,6 +58,7 @@ export const Select: React.FC<SelectProps> = ({
         className={clsx(
           "justify-between w-full hover:no-underline",
           !selectedOption && "text-muted-foreground",
+          className,
         )}
       >
         <span>{selectedOption?.label || placeholder}</span>

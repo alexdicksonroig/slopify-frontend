@@ -57,7 +57,7 @@ export default function Example() {
             >
               <span className="absolute -inset-0.5" />
               <Menu className="h-5 w-5" stroke="currentColor" />
-              <span>Menu</span>
+              <span className="sr-only">Menu</span>
             </button>
 
             {/* Logo */}
