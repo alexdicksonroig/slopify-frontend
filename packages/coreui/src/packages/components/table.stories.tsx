@@ -83,7 +83,7 @@ export function Component({
 }
 
 const meta = {
-  title: "Components/Table",
+  title: "",
   component: Component,
 } satisfies Meta<typeof Table>;
 

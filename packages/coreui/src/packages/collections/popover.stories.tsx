@@ -9,30 +9,16 @@ export function Component() {
   return (
     <div className="relative">
       <Popover open={open} onOpenChange={setOpen}>
-        <div className=" mb-2 p-3 border">
+        <div className="mb-2 p-3 border rounded-md">
           <div className="space-y-1">
-            <h4 className="text-sm font-medium leading-none">
-              Separator example
+            <h4 className="text-sm font-medium leading-none whitespace-nowrap">
+              This is an example
             </h4>
-            <p className="text-sm text-muted-foreground">
-              Horizontal and vertical separators
-            </p>
-          </div>
-          <Separator className="my-4" />
-          <div className="flex h-5 items-center space-x-4 text-sm">
-            <div>Blog</div>
-            <Separator orientation="vertical" />
-            <div>Docs</div>
-            <Separator orientation="vertical" />
-            <div>Source</div>
+            <p className="text-sm text-muted-foreground">Of a popover</p>
           </div>
         </div>
       </Popover>
-      <Button
-        title="open popover"
-        variant="outline"
-        onClick={() => setOpen((open) => !open)}
-      >
+      <Button title="open popover" onClick={() => setOpen((open) => !open)}>
         Open Popover
       </Button>
     </div>

@@ -1,3 +1,4 @@
+import { Button } from "@library";
 import { ColorSelector } from "./components/ColorSelector";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
@@ -83,12 +84,12 @@ export default function Product({ params }) {
             <ColorSelector colors={colorOptions} />
             <SizeSelector sizes={sizeOptions} />
 
-            <button
+            <Button
               type="submit"
-              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
+              className="mt-10 flex w-full h-12 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3  text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden uppercase"
             >
               Add to bag
-            </button>
+            </Button>
           </form>
         </div>
 
