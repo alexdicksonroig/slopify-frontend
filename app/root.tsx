@@ -41,7 +41,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 export function HydrateFallback() {
-  return <p>Loading, please wait...</p>;
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+    </div>
+  );
 }
 
 export default function App() {
