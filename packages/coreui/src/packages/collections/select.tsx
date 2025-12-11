@@ -56,7 +56,7 @@ export const Select: React.FC<SelectProps> = ({
         onClick={handleToggle}
         disabled={disabled}
         className={clsx(
-          "flex h-9 items-center justify-between bg-transparent px-3 py-1 text-sm  transition-colors gap-1 w-full",
+          "flex h-9 items-center justify-between bg-transparent px-3 py-1 transition-colors gap-1 w-full",
           "placeholder:text-muted-foreground",
           "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
           "disabled:cursor-not-allowed disabled:opacity-50",

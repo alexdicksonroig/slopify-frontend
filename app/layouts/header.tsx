@@ -53,11 +53,11 @@ export default function Example() {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="relative rounded-md bg-white p-2 text-gray-400 lg:hidden"
+              className="relative rounded-md bg-white p-2 text-gray-500 lg:hidden flex items-center gap-2"
             >
               <span className="absolute -inset-0.5" />
-              <span className="sr-only">Open menu</span>
-              <Menu className="h-5 w-5 text-gray-700 hover:text-gray-800" />
+              <Menu className="h-5 w-5" stroke="currentColor" />
+              <span>Menu</span>
             </button>
 
             {/* Logo */}
