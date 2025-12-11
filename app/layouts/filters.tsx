@@ -18,7 +18,11 @@ export default function Filters() {
         </h1>
 
         <div className="flex items-center">
-          <Select options={SORT_OPTIONS} placeholder="Sort"  />
+          <Select
+            options={SORT_OPTIONS}
+            placeholder="Sort"
+            className="!border-none !shadow-none"
+          />
           <button
             type="button"
             command="show-modal"

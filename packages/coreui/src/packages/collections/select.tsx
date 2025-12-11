@@ -43,13 +43,20 @@ export const Select: React.FC<SelectProps> = ({
   };
 
   return (
-    <div id={id} className={clsx("relative", className)} {...rest}>
+    <div
+      id={id}
+      className={clsx(
+        "relative border border-input rounded-md shadow-xs",
+        className,
+      )}
+      {...rest}
+    >
       <button
         type="button"
         onClick={handleToggle}
         disabled={disabled}
         className={clsx(
-          "flex h-9 items-center justify-between rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-colors gap-1 w-full",
+          "flex h-9 items-center justify-between bg-transparent px-3 py-1 text-sm  transition-colors gap-1 w-full",
           "placeholder:text-muted-foreground",
           "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
           "disabled:cursor-not-allowed disabled:opacity-50",
