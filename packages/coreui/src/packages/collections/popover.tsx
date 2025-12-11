@@ -20,8 +20,8 @@ export const Popover: React.FC<PopoverProps> = ({
 }) => {
   const placementClasses =
     placement === "bottom"
-      ? ["top-full", "left-0", "translate-y-0"]
-      : ["top-0", "left-0", "-translate-y-full"];
+      ? ["top-full", "translate-y-0"]
+      : ["top-0", "-translate-y-full"];
 
   return (
     <>
