@@ -134,7 +134,7 @@ function ProductCard({ id, name, imageSrc, imageAlt, price }: ProductCard) {
   //const isTransitioning = useViewTransitionState(href);
 
   return (
-    <Link to={`/product/${id}`} viewTransition>
+    <Link to={`/product/${id}`}>
       <div key={id} className="group relative">
         <img
           alt={imageAlt}
