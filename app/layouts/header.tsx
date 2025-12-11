@@ -1,11 +1,22 @@
 import { Menu, ShoppingBag } from "lucide-react";
 import { useState } from "react";
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import { Drawer } from "@library";
 import Footer from "./footer";
 
 export default function Example() {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleCartClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname === "/cart") {
+      navigate(-1);
+    } else {
+      navigate("/cart");
+    }
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -108,12 +119,13 @@ export default function Example() {
 
               {/* Cart */}
               <div className="ml-4 flow-root lg:ml-6">
-                <a href="#" className="group -m-2 flex items-center p-2">
-                  <Link className="ml-2" to="/cart">
-                    <ShoppingBag className="h-5 w-5 text-gray-700 hover:text-gray-800" />
-                  </Link>
+                <button
+                  onClick={handleCartClick}
+                  className="group -m-2 flex items-center p-2"
+                >
+                  <ShoppingBag className="h-5 w-5 text-gray-700 hover:text-gray-800" />
                   <span className="sr-only">items in cart, view bag</span>
-                </a>
+                </button>
               </div>
             </div>
           </div>
