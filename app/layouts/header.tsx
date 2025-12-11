@@ -20,16 +20,16 @@ export default function Example() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Drawer open={open} onClose={() => setOpen(false)}>
+      <Drawer open={open} onClose={() => setOpen(false)} className="!w-2/3">
         <div className="space-y-6 px-4 py-6">
           <div className="flow-root">
-            <a href="#" className="-m-2 flex items-center gap-1 p-2 font-medium text-gray-900">
+            <a href="#" className="-m-2 flex items-center gap-1 p-2 text-sm font-medium text-gray-900">
               Sign in
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
           <div className="flow-root">
-            <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+            <a href="#" className="-m-2 block p-2 text-sm font-medium text-gray-900">
               Create account
             </a>
           </div>
@@ -42,7 +42,7 @@ export default function Example() {
               src="https://tailwindcss.com/plus-assets/img/flags/flag-canada.svg"
               className="block h-auto w-5 shrink-0"
             />
-            <span className="ml-3 block text-base font-medium text-gray-900">
+            <span className="ml-3 block text-sm font-medium text-gray-900">
               CAD
             </span>
             <span className="sr-only">, change currency</span>
