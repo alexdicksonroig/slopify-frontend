@@ -96,7 +96,9 @@ function CartItemComponent({
         </button>
 
         <div className="space-y-3">
-          <h3 className="text-base font-medium text-gray-900 pr-6">{item.name}</h3>
+          <h3 className="text-base font-medium text-gray-900 pr-6">
+            {item.name}
+          </h3>
           <p className="text-sm text-gray-500">
             {item.color}
             {item.size && (
@@ -262,7 +264,7 @@ export default function Cart() {
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900">
           Shopping Cart
         </h1>

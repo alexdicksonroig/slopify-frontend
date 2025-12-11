@@ -116,7 +116,7 @@ export default function Filters() {
         </div>
       </Drawer>
 
-      <div className="flex items-center justify-between border-b border-gray-200 pt-12 pb-6 mb-6">
+      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-6 mb-6">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900">
           New Arrivals
         </h1>
