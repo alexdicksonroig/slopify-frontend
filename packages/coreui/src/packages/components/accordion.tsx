@@ -5,6 +5,7 @@ import { useState } from "react";
 type AccordionContext = {
   openItem: string | undefined;
   setOpenItem: React.Dispatch<React.SetStateAction<string | undefined>>;
+  closeOnContentClick?: boolean;
 };
 
 const [useAccordionContext, AccordionProvider] =
@@ -14,6 +15,7 @@ type AccordionProps = {
   children: React.ReactNode;
   className?: string;
   defaultOpenItem?: string;
+  closeOnContentClick?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type AccordionItemProps = {
@@ -35,12 +37,13 @@ const Accordion: React.FC<AccordionProps> = ({
   children,
   className,
   defaultOpenItem,
+  closeOnContentClick = true,
   ...props
 }) => {
   const [openItem, setOpenItem] = useState<string | undefined>(defaultOpenItem);
 
   return (
-    <AccordionProvider value={{ openItem, setOpenItem }}>
+    <AccordionProvider value={{ openItem, setOpenItem, closeOnContentClick }}>
       <div className={clsx("flex flex-col", className)} {...props}>
         {children}
       </div>
@@ -55,22 +58,32 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   headerText,
   ...props
 }) => {
-  const { openItem, setOpenItem } = useAccordionContext();
+  const { openItem, setOpenItem, closeOnContentClick } = useAccordionContext();
   const isOpen = openItem === itemId;
 
-  const handleClick = () => {
+  const handleToggle = () => {
     setOpenItem(isOpen ? undefined : itemId);
   };
 
+  const handleContentClick = (e: React.MouseEvent) => {
+    if (!closeOnContentClick) {
+      e.stopPropagation();
+    }
+  };
+
   return (
-    <button
-      className={clsx("border-b", className)}
-      onClick={handleClick}
-      {...props}
-    >
-      <AccordionTrigger isOpen={isOpen}>{headerText}</AccordionTrigger>
-      <AccordionContent isOpen={isOpen}>{children}</AccordionContent>
-    </button>
+    <div className={clsx("border-b", className)} {...props}>
+      <button
+        className="w-full"
+        onClick={handleToggle}
+        type="button"
+      >
+        <AccordionTrigger isOpen={isOpen}>{headerText}</AccordionTrigger>
+      </button>
+      <div onClick={handleContentClick}>
+        <AccordionContent isOpen={isOpen}>{children}</AccordionContent>
+      </div>
+    </div>
   );
 };
 

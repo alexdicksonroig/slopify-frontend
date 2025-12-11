@@ -38,7 +38,7 @@ const FilterContent = () => (
 
     {/* Filter Accordions */}
     <div className="space-y-6">
-      <Accordion>
+      <Accordion closeOnContentClick={false}>
         <Accordion.Item itemId="color" headerText="Color">
           <div className="space-y-4">
             {COLORS.map((color) => (

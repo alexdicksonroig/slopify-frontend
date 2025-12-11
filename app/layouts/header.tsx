@@ -1,4 +1,4 @@
-import { Menu, ShoppingBag } from "lucide-react";
+import { ArrowRight, Menu, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import { Drawer } from "@library";
@@ -23,8 +23,9 @@ export default function Example() {
       <Drawer open={open} onClose={() => setOpen(false)}>
         <div className="space-y-6 px-4 py-6">
           <div className="flow-root">
-            <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+            <a href="#" className="-m-2 flex items-center gap-1 p-2 font-medium text-gray-900">
               Sign in
+              <ArrowRight className="h-4 w-4" />
             </a>
           </div>
           <div className="flow-root">
@@ -92,13 +93,14 @@ export default function Example() {
                   href="#"
                   className="text-sm font-medium text-gray-700 hover:text-gray-800"
                 >
-                  Sign in
+                  Create account
                 </a>
                 <a
                   href="#"
-                  className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                  className="text-sm font-medium text-gray-700 hover:text-gray-800 flex items-center gap-1"
                 >
-                  Create account
+                  Sign in
+                  <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
 
