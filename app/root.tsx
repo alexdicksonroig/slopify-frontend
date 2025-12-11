@@ -42,7 +42,33 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 export function HydrateFallback() {
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <img
+        src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+        alt="Loading"
+        style={{
+          width: "4rem",
+          height: "4rem",
+          animation: "spin 1s linear infinite",
+        }}
+      />
+      <style>{`
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
     </div>
   );
 }
