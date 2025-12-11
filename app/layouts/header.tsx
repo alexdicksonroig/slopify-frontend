@@ -1,11 +1,27 @@
 import { ArrowRight, Menu, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
-import { Drawer } from "@library";
+import { Drawer, Label, Select } from "@library";
 import Footer from "./footer";
+
+const LANGUAGE_OPTIONS = [
+  { label: "English", value: "en" },
+  { label: "Español", value: "es" },
+  { label: "Français", value: "fr" },
+  { label: "Deutsch", value: "de" },
+];
+
+const CURRENCY_OPTIONS = [
+  { label: "CAD", value: "cad" },
+  { label: "USD", value: "usd" },
+  { label: "EUR", value: "eur" },
+  { label: "GBP", value: "gbp" },
+];
 
 export default function Example() {
   const [open, setOpen] = useState(false);
+  const [language, setLanguage] = useState("en");
+  const [currency, setCurrency] = useState("cad");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,32 +37,51 @@ export default function Example() {
   return (
     <div className="flex min-h-screen flex-col">
       <Drawer open={open} onClose={() => setOpen(false)} className="!w-2/3">
-        <div className="space-y-6 px-4 py-6">
-          <div className="flow-root">
-            <a href="#" className="-m-2 flex items-center gap-1 p-2 text-sm font-medium text-gray-900">
+        <div className="px-4 py-6 space-y-6">
+          <div className="-m-2 p-2">
+            <a href="#" className="flex items-center gap-1 text-sm font-medium text-gray-900">
               Sign in
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
-          <div className="flow-root">
-            <a href="#" className="-m-2 block p-2 text-sm font-medium text-gray-900">
+          <div className="-m-2 p-2">
+            <a href="#" className="text-sm font-medium text-gray-900">
               Create account
             </a>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-4 py-6">
-          <a href="#" className="-m-2 flex items-center p-2">
-            <img
-              alt=""
-              src="https://tailwindcss.com/plus-assets/img/flags/flag-canada.svg"
-              className="block h-auto w-5 shrink-0"
+        <div className="border-t border-gray-200 px-4 py-6 space-y-6">
+          <div className="-m-2 p-2">
+            <Label htmlFor="currency" className="mb-2 text-sm font-medium text-gray-500">
+              Currency
+            </Label>
+            <Select
+              id="currency"
+              value={currency}
+              onChange={setCurrency}
+              options={CURRENCY_OPTIONS}
+              placeholder="Select currency"
+              variant="outline"
+              size="sm"
+              className="w-full"
             />
-            <span className="ml-3 block text-sm font-medium text-gray-900">
-              CAD
-            </span>
-            <span className="sr-only">, change currency</span>
-          </a>
+          </div>
+          <div className="-m-2 p-2">
+            <Label htmlFor="language" className="mb-2 text-sm font-medium text-gray-500">
+              Language
+            </Label>
+            <Select
+              id="language"
+              value={language}
+              onChange={setLanguage}
+              options={LANGUAGE_OPTIONS}
+              placeholder="Select language"
+              variant="outline"
+              size="sm"
+              className="w-full"
+            />
+          </div>
         </div>
       </Drawer>
       <header className="relative bg-white">
