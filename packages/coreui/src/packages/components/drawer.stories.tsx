@@ -39,9 +39,13 @@ const meta = {
   component: Component,
   args: {
     open: true,
+    fromRight: false,
   },
   argTypes: {
     open: {
+      control: { type: "boolean" },
+    },
+    fromRight: {
       control: { type: "boolean" },
     },
   },
