@@ -1,14 +1,14 @@
 export default function Footer() {
   return (
     <footer className="bg-gray-900 mt-auto">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Contact */}
           <div>
-            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
+            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
               Contact
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-2">
               <p className="text-sm text-gray-300">Email: info@slopify.com</p>
               <p className="text-sm text-gray-300">Phone: +34 91 123 4567</p>
               <p className="text-sm text-gray-300">
@@ -19,10 +19,10 @@ export default function Footer() {
 
           {/* Social */}
           <div>
-            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
+            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
               Follow Us
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-2">
               <a
                 href="#"
                 className="block text-sm text-gray-300 hover:text-white transition-colors"
@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-800 pt-8">
+        <div className="mt-8 border-t border-gray-800 pt-6">
           <p className="text-xs text-gray-400 text-center">
             &copy; {new Date().getFullYear()} Slopify. All rights reserved.
           </p>
