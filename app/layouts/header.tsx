@@ -1,7 +1,7 @@
 import { ArrowRight, Menu, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
-import { Drawer, Label, Select } from "@library";
+import { Button, Drawer, Label, Select } from "@library";
 import Footer from "./footer";
 
 const LANGUAGE_OPTIONS = [
@@ -39,7 +39,10 @@ export default function Example() {
       <Drawer open={open} onClose={() => setOpen(false)} className="!w-2/3">
         <div className="px-4 py-6 space-y-6">
           <div className="-m-2 p-2">
-            <a href="#" className="flex items-center gap-1 text-sm font-medium text-gray-900">
+            <a
+              href="#"
+              className="flex items-center gap-1 text-sm font-medium text-gray-900"
+            >
               Sign in
               <ArrowRight className="h-4 w-4" />
             </a>
@@ -53,7 +56,10 @@ export default function Example() {
 
         <div className="border-t border-gray-200 px-4 py-6 space-y-6">
           <div className="-m-2 p-2">
-            <Label htmlFor="currency" className="mb-2 text-sm font-medium text-gray-500">
+            <Label
+              htmlFor="currency"
+              className="mb-2 text-sm font-medium text-gray-500"
+            >
               Currency
             </Label>
             <Select
@@ -68,7 +74,10 @@ export default function Example() {
             />
           </div>
           <div className="-m-2 p-2">
-            <Label htmlFor="language" className="mb-2 text-sm font-medium text-gray-500">
+            <Label
+              htmlFor="language"
+              className="mb-2 text-sm font-medium text-gray-500"
+            >
               Language
             </Label>
             <Select
@@ -156,13 +165,10 @@ export default function Example() {
 
               {/* Cart */}
               <div className="ml-4 flow-root lg:ml-6">
-                <button
-                  onClick={handleCartClick}
-                  className="group -m-2 flex items-center p-2"
-                >
+                <Button onClick={handleCartClick} variant="ghost" size="icon">
                   <ShoppingBag className="h-5 w-5 text-gray-700 hover:text-gray-800" />
                   <span className="sr-only">items in cart, view bag</span>
-                </button>
+                </Button>
               </div>
             </div>
           </div>
