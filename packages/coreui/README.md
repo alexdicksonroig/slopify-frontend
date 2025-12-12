@@ -1,21 +1,14 @@
 TODO:
 -Themes/dark mode
 -Box component with skeleton when pending
--Correct accordion
--Datepicker
 -Checkbox
--Dialog/Modal
--Drawer
--DropdownMenu
--Navbar
 -Pagination
 -Switch
 -Textarea
 -Radio group
--Select
 -Stepper
-
 -Badge?
+
 -Combobox?
 -Progress?
 -Sheet?

@@ -1,20 +1,20 @@
-# Welcome to React Router!
+# Welcome to Slopify Frontend!
 
-(Alex) I am using framework mode just FYI
+A modern, production-ready template for building React e-commerce applications with my own opinionated technologies and practices.
+This project is a template with no business logic, designed to help you kickstart your own clone of a Shopify-like store.
 
-A modern, production-ready template for building full-stack React applications using React Router.
+( 🚧 Work in progress 🚧 )
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## Stack
 
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
+- 🚀 React router ([Using framework mode](https://reactrouter.com/start/framework/installation))
 - 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- 🔒 Stripe setup for payments and subscriptions [Stripe docs](https://stripe.com/docs)
+- 📖 Biomejs for linting and formatting
+
+## Backend
+
+You can use any backend you wish, or you can also use the provided Slopify Backend template [here](https://github.com/alexdicksonroig/slopify-backend)
 
 ## Getting Started
 
@@ -23,7 +23,7 @@ A modern, production-ready template for building full-stack React applications u
 Install the dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### Development
@@ -31,7 +31,7 @@ npm install
 Start the development server with HMR:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Your application will be available at `http://localhost:5173`.
@@ -43,44 +43,3 @@ Create a production build:
 ```bash
 npm run build
 ```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-./docker-build.sh
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
