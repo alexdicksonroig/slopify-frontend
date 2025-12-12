@@ -11,6 +11,8 @@ This project is a template with no business logic, designed to help you kickstar
 - 🎉 TailwindCSS for styling
 - 🔒 Stripe setup for payments and subscriptions [Stripe docs](https://stripe.com/docs)
 - 📖 Biomejs for linting and formatting
+- (Upcoming) Sentry for error tracking
+- (Upcoming) Posthog for analytics
 
 ## Backend
 
