@@ -36,7 +36,7 @@ export default function Example() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Drawer open={open} onClose={() => setOpen(false)} className="!w-2/3">
+      <Drawer open={open} onClose={() => setOpen(false)}>
         <div className="px-4 py-6 space-y-6">
           <div className="-m-2 p-2">
             <a

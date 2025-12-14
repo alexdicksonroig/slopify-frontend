@@ -105,10 +105,8 @@ const FilterContent = () => (
 
 export default function Filters() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      {/* Mobile Filter Drawer */}
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} fromRight>
         <div className="px-4 py-6">
           <h2 className="text-lg font-medium text-gray-900 mb-6">Filters</h2>

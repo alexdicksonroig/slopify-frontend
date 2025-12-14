@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { X } from "lucide-react";
-import { Overlay } from "./overlay";
 
 export type DrawerProps = {
   open?: boolean;
@@ -17,27 +16,14 @@ export const Drawer: React.FC<DrawerProps> = ({
   className = "",
   fromRight = false,
 }) => {
-  const positionClasses = fromRight
-    ? "right-0 rounded-tl-lg rounded-bl-lg"
-    : "left-0 rounded-tr-lg rounded-br-lg";
-
-  const translateClasses = fromRight
-    ? open
-      ? "translate-x-0"
-      : "translate-x-full"
-    : open
-      ? "translate-x-0"
-      : "-translate-x-full";
 
   return (
-    <>
-      <Overlay active={open} onClick={onClose} />
       <div
         className={clsx(
-          `z-5 fixed top-0 h-screen w-4/5 overflow-y-auto
+          `z-5 fixed inset-0 h-screen w-full overflow-y-auto
         transition duration-200 ease-in-out lg:hidden`,
-          positionClasses,
-          translateClasses,
+        fromRight && !open ? "translate-x-full" : "-translate-x-full",
+        {"translate-x-0": open},
           className,
         )}
       >
@@ -57,6 +43,5 @@ export const Drawer: React.FC<DrawerProps> = ({
           {children}
         </div>
       </div>
-    </>
   );
 };
