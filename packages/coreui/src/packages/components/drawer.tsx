@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { X } from "lucide-react";
+import { Button } from "./button";
 
 export type DrawerProps = {
   open?: boolean;
@@ -28,18 +29,14 @@ export const Drawer: React.FC<DrawerProps> = ({
         )}
       >
         <div className="bg-white p-4 shadow-xl h-full">
-          <div className="flex px-4 pb-2 pt-5">
-            <button
-              type="button"
-              onClick={onClose}
-              className="relative -m-2 inline-flex items-center justify-center rounded-md p-2
-            text-gray-400"
-            >
-              <span className="absolute -inset-0.5" />
-              <span className="sr-only">Close menu</span>
-              <X className="text-gray-400" />
-            </button>
-          </div>
+          <Button
+            onClick={onClose}
+            variant="ghost"
+            size="icon"
+            className="py-3"
+          >
+            <X className="text-gray-400 h-6 w-6" />
+          </Button>
           {children}
         </div>
       </div>
