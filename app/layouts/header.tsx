@@ -56,39 +56,27 @@ export default function Example() {
 
         <div className="border-t border-gray-200 px-4 py-6 space-y-6">
           <div className="-m-2 p-2">
-            <Label
-              htmlFor="currency"
-              className="mb-2 text-sm font-medium text-gray-500"
-            >
-              Currency
-            </Label>
             <Select
               id="currency"
               value={currency}
               onChange={setCurrency}
               options={CURRENCY_OPTIONS}
               placeholder="Select currency"
-              variant="outline"
+              variant="link"
               size="sm"
-              className="w-full"
+              className="w-24"
             />
           </div>
           <div className="-m-2 p-2">
-            <Label
-              htmlFor="language"
-              className="mb-2 text-sm font-medium text-gray-500"
-            >
-              Language
-            </Label>
             <Select
               id="language"
               value={language}
               onChange={setLanguage}
               options={LANGUAGE_OPTIONS}
               placeholder="Select language"
-              variant="outline"
+              variant="link"
               size="sm"
-              className="w-full"
+              className="w-24"
             />
           </div>
         </div>

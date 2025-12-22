@@ -119,7 +119,7 @@ export default function Filters() {
           New Arrivals
         </h1>
 
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <Select
             options={SORT_OPTIONS}
             placeholder="Sort"

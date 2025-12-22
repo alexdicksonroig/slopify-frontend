@@ -13,7 +13,7 @@ const buttonStyles = tv({
       secondary:
         "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
       ghost: "hover:bg-accent hover:text-accent-foreground",
-      link: "text-primary underline-offset-4 hover:underline",
+      link: "text-primary underline-offset-4 hover:underline p-0!",
     },
     size: {
       default: "h-9 px-4 py-2",
@@ -30,7 +30,7 @@ const buttonStyles = tv({
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonStyles> {
+  VariantProps<typeof buttonStyles> {
   asChild?: boolean;
 }
 
