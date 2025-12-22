@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Select } from "@library";
+import { Button, Select } from "@library";
 import { Check } from "lucide-react";
 
 type CartItem = {
@@ -226,12 +226,11 @@ function OrderSummary({
         </div>
       </div>
 
-      <button
+      <Button
         onClick={onCheckout}
-        className="mt-6 w-full rounded-md bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
         Checkout
-      </button>
+      </Button>
     </div>
   );
 }

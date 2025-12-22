@@ -46,7 +46,7 @@ const FilterContent = () => (
                 <input
                   id={`color-${color}`}
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  className="h-4 w-4 rounded border-gray-300 text-primary"
                 />
                 <label
                   htmlFor={`color-${color}`}
@@ -66,7 +66,7 @@ const FilterContent = () => (
                 <input
                   id={`filter-${category}`}
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  className="h-4 w-4 rounded border-gray-300 text-primary"
                 />
                 <label
                   htmlFor={`filter-${category}`}
@@ -86,7 +86,7 @@ const FilterContent = () => (
                 <input
                   id={`size-${size}`}
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  className="h-4 w-4 rounded border-gray-300 text-primary"
                 />
                 <label
                   htmlFor={`size-${size}`}

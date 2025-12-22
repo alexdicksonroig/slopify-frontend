@@ -52,7 +52,7 @@ export function HydrateFallback() {
       }}
     >
       <img
-        src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+        src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=black&shade=600"
         alt="Loading"
         style={{
           width: "4rem",

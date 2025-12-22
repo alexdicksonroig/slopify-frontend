@@ -86,7 +86,7 @@ export default function Product({ params }) {
 
             <Button
               type="submit"
-              className="mt-10 flex w-full h-12 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3  text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden uppercase"
+              className="mt-10 flex w-full h-12 items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3  text-primary-foreground  focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-hiblack uppercase"
             >
               Add to bag
             </Button>

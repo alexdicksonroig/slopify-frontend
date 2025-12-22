@@ -26,7 +26,7 @@ export function SizeSelector({
             e.preventDefault();
             onSizeGuideClick?.();
           }}
-          className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+          className="text-sm font-medium text-primary hover:text-primary-100"
         >
           Size guide
         </a>
@@ -38,7 +38,7 @@ export function SizeSelector({
             <label
               key={size.value}
               aria-label={size.label}
-              className="group relative flex items-center justify-center rounded-md border border-gray-300 bg-white p-3 has-checked:border-indigo-600 has-checked:bg-indigo-600 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-indigo-600 has-disabled:border-gray-400 has-disabled:bg-gray-200 has-disabled:opacity-25"
+              className="group relative flex items-center justify-center rounded-md border border-gray-300 bg-white p-3 has-checked:border-primary has-checked:bg-primary has-focus-visible:outline-2 has-focus-visible:outline-primary has-disabled:border-gray-400 has-disabled:bg-gray-200 has-disabled:opacity-25"
             >
               <input
                 type="radio"
