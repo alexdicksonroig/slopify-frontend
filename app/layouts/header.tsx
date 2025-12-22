@@ -84,7 +84,7 @@ export default function Example() {
       <header className="relative bg-white">
         <title>Slopify</title>
         <div
-          className="flex h-10 items-center justify-between bg-[#70e000] px-4 text-sm
+          className="flex h-10 items-center justify-between bg-primary px-4 text-sm
             font-medium text-white sm:px-6 lg:px-8"
         >
           {/* Logo */}
