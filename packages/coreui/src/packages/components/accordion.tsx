@@ -95,7 +95,7 @@ const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
     <div className="flex">
       <div
         className={clsx(
-          "flex flex-1 items-center justify-between py-4 text-sm font-medium text-left",
+          "flex flex-1 items-center justify-between py-4 text-sm font-medium text-left cursor-pointer",
         )}
       >
         {children}
