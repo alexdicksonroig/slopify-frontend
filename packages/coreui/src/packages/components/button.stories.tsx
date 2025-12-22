@@ -3,7 +3,7 @@ import { hideArgs } from "../../lib/helpers";
 import type { Meta } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { buttonStyles } from "./button";
+import { variants, sizes } from "./button";
 
 export function Component({ ...props }) {
   return (
@@ -18,11 +18,11 @@ const meta = {
   argTypes: {
     variant: {
       control: { type: "select" },
-      options: Object.keys(buttonStyles.variants.variant),
+      options: Object.keys(variants),
     },
     size: {
       control: { type: "select" },
-      options: Object.keys(buttonStyles.variants.size),
+      options: Object.keys(sizes),
     },
     ...hideArgs(["onClick"]),
   },
