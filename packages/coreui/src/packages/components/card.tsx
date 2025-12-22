@@ -1,11 +1,11 @@
-import clsx from "clsx";
+import { cn } from "src/lib/cn";
 
 const Card = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={clsx(
+    className={cn(
       "bg-card text-card-foreground flex flex-col  rounded-xl border  shadow-sm",
       className,
     )}
@@ -18,7 +18,7 @@ const CardHeader = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={clsx("flex flex-col space-y-1.5 p-6", className)}
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
     {...props}
   />
 );
@@ -28,7 +28,7 @@ const CardTitle = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={clsx("font-semibold leading-none tracking-tight", className)}
+    className={cn("font-semibold leading-none tracking-tight", className)}
     {...props}
   />
 );
@@ -38,7 +38,7 @@ const CardDescription = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={clsx("text-sm text-muted-foreground", className)}
+    className={cn("text-sm text-muted-foreground", className)}
     {...props}
   />
 );
@@ -47,14 +47,14 @@ const CardContent = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={clsx("p-6 pt-0", className)} {...props} />
+  <div className={cn("p-6 pt-0", className)} {...props} />
 );
 
 const CardFooter = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={clsx("flex items-center p-6 pt-0", className)} {...props} />
+  <div className={cn("flex items-center p-6 pt-0", className)} {...props} />
 );
 
 export {

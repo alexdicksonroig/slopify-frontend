@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "src/lib/cn";
 import { Overlay, Card } from "../components";
 
 export type DialogProps = {
@@ -25,7 +25,7 @@ export const Dialog: React.FC<DialogProps> = ({
       />
       <Card
         {...rest}
-        className={clsx(
+        className={cn(
           "fixed left-1/2 top-auto sm:top-1/2 bottom-0 sm:bottom-auto -translate-x-1/2 sm:-translate-y-1/2 z-4 w-full sm:w-[350px] h-fit",
           `${open ? "flex" : "hidden"}`,
           className,

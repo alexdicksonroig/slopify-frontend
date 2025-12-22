@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "src/lib/cn";
 import { Overlay } from "../components";
 
 export type PopoverProps = {
@@ -36,10 +36,10 @@ export const Popover: React.FC<PopoverProps> = ({
 
   return (
     <>
-      <Overlay active={open} onClick={() => onOpenChange(false)}  />
+      <Overlay active={open} onClick={() => onOpenChange(false)} />
       <div
         {...rest}
-        className={clsx(
+        className={cn(
           "z-4",
           classes.mobile.base,
           classes.desktop.base,

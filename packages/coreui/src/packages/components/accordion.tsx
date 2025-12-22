@@ -1,6 +1,6 @@
 import { createStrictContext } from "../../lib/createStrictContext";
-import clsx from "clsx";
 import { useState } from "react";
+import { cn } from "src/lib/cn";
 
 type AccordionContext = {
   openItem: string | undefined;
@@ -44,7 +44,7 @@ const Accordion: React.FC<AccordionProps> = ({
 
   return (
     <AccordionProvider value={{ openItem, setOpenItem, closeOnContentClick }}>
-      <div className={clsx("flex flex-col", className)} {...props}>
+      <div className={cn("flex flex-col", className)} {...props}>
         {children}
       </div>
     </AccordionProvider>
@@ -72,7 +72,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   };
 
   return (
-    <div className={clsx("border-b", className)} {...props}>
+    <div className={cn("border-b", className)} {...props}>
       <button
         className="w-full"
         onClick={handleToggle}
@@ -94,7 +94,7 @@ const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
   return (
     <div className="flex">
       <div
-        className={clsx(
+        className={cn(
           "flex flex-1 items-center justify-between py-4 text-sm font-medium text-left cursor-pointer",
         )}
       >
@@ -111,7 +111,7 @@ const AccordionContent: React.FC<AccordionContentProps> = ({
 }) => {
   return (
     <div
-      className={clsx(
+      className={cn(
         "grid text-sm text-left",
         isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
       )}

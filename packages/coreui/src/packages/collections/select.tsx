@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import { useState } from "react";
+import { cn } from "src/lib/cn";
 import { Popover } from "./index";
 import { Button, type ButtonProps } from "../components";
 
@@ -55,7 +55,7 @@ export const Select: React.FC<SelectProps> = ({
         disabled={disabled}
         variant={variant}
         size={size}
-        className={clsx(
+        className={cn(
           "justify-between w-full hover:no-underline",
           !selectedOption && "text-muted-foreground",
           className,
@@ -63,7 +63,7 @@ export const Select: React.FC<SelectProps> = ({
       >
         <span>{selectedOption?.label || placeholder}</span>
         <svg
-          className={clsx(
+          className={cn(
             "h-4 w-4",
             isOpen && "rotate-180",
           )}
@@ -92,7 +92,7 @@ export const Select: React.FC<SelectProps> = ({
               key={option.value}
               type="button"
               onClick={() => handleSelect(option.value)}
-              className={clsx(
+              className={cn(
                 "relative flex w-full cursor-pointer select-none items-center rounded-sm p-2 text-sm outline-none transition-colors whitespace-nowrap",
                 "hover:bg-accent hover:text-accent-foreground",
                 "focus:bg-accent focus:text-accent-foreground",

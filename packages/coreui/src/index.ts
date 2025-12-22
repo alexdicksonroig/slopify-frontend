@@ -12,8 +12,10 @@ import {
   Skeleton,
 } from "./packages/components";
 import { createStrictContext } from "./lib/createStrictContext";
+import { cn } from "./lib/cn";
 
 export {
+  cn,
   Drawer,
   Popover,
   Overlay,

@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "src/lib/cn";
 
 interface SeparatorProps extends React.HTMLAttributes<HTMLHRElement> {
   orientation?: "horizontal" | "vertical";
@@ -14,7 +14,7 @@ const Separator: React.FC<SeparatorProps> = ({
   return (
     <div
       aria-hidden={decorative}
-      className={clsx(
+      className={cn(
         "shrink-0 bg-border",
         orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
         className,

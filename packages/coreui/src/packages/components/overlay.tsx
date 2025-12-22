@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "src/lib/cn";
 
 export type OverlayProps = {
   onClick?: () => void;
@@ -18,7 +18,7 @@ export const Overlay: React.FC<OverlayProps> = ({
 
   return (
     <div
-      className={clsx(
+      className={cn(
         "fixed inset-0 z-3",
         "bg-black/15 md:bg-transparent",
         className,

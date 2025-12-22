@@ -1,6 +1,6 @@
-import clsx from "clsx";
 import { X } from "lucide-react";
 import { Button } from "./button";
+import { cn } from "src/lib/cn";
 
 export type DrawerProps = {
   open?: boolean;
@@ -20,7 +20,7 @@ export const Drawer: React.FC<DrawerProps> = ({
 
   return (
       <div
-        className={clsx(
+        className={cn(
           `z-5 fixed inset-0 h-screen w-full overflow-y-auto
         transition duration-200 ease-in-out lg:hidden`,
         fromRight && !open ? "translate-x-full" : "-translate-x-full",

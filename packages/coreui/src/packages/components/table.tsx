@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "src/lib/cn";
 
 const Table = ({
   className,
@@ -6,7 +6,7 @@ const Table = ({
 }: React.HTMLAttributes<HTMLTableElement>) => (
   <div className="relative w-full overflow-auto">
     <table
-      className={clsx("w-full caption-bottom text-sm", className)}
+      className={cn("w-full caption-bottom text-sm", className)}
       {...props}
     />
   </div>
@@ -16,14 +16,14 @@ const TableHeader = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLTableSectionElement>) => (
-  <thead className={clsx("[&_tr]:border-b", className)} {...props} />
+  <thead className={cn("[&_tr]:border-b", className)} {...props} />
 );
 
 const TableBody = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLTableSectionElement>) => (
-  <tbody className={clsx("[&_tr:last-child]:border-0", className)} {...props} />
+  <tbody className={cn("[&_tr:last-child]:border-0", className)} {...props} />
 );
 
 const TableFooter = ({
@@ -31,7 +31,7 @@ const TableFooter = ({
   ...props
 }: React.HTMLAttributes<HTMLTableSectionElement>) => (
   <tfoot
-    className={clsx(
+    className={cn(
       "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
       className,
     )}
@@ -44,7 +44,7 @@ const TableRow = ({
   ...props
 }: React.HTMLAttributes<HTMLTableRowElement>) => (
   <tr
-    className={clsx(
+    className={cn(
       "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
       className,
     )}
@@ -57,7 +57,7 @@ const TableHead = ({
   ...props
 }: React.ThHTMLAttributes<HTMLTableCellElement>) => (
   <th
-    className={clsx(
+    className={cn(
       `h-10 px-2 text-left align-middle font-medium text-muted-foreground
       [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]`,
       className,
@@ -71,7 +71,7 @@ const TableCell = ({
   ...props
 }: React.TdHTMLAttributes<HTMLTableCellElement>) => (
   <td
-    className={clsx(
+    className={cn(
       `p-2 align-middle [&:has([role=checkbox])]:pr-0
       [&>[role=checkbox]]:translate-y-[2px]`,
       className,
@@ -85,7 +85,7 @@ const TableCaption = ({
   ...props
 }: React.HTMLAttributes<HTMLTableCaptionElement>) => (
   <caption
-    className={clsx("mt-4 text-sm text-muted-foreground", className)}
+    className={cn("mt-4 text-sm text-muted-foreground", className)}
     {...props}
   />
 );

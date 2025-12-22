@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@library";
 import { Link, useViewTransitionState } from "react-router";
 
 export const products = [
@@ -139,7 +139,7 @@ function ProductCard({ id, name, imageSrc, imageAlt, price }: ProductCard) {
         <img
           alt={imageAlt}
           src={imageSrc}
-          className={clsx(
+          className={cn(
             "aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:[view-transition-name:none]",
             { "[view-transition-name:product-image]": isTransitioning },
           )}
