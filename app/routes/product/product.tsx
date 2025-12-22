@@ -86,7 +86,7 @@ export default function Product({ params }) {
 
             <Button
               type="submit"
-              className="mt-10 w-full"
+              className="mt-10 h-12 w-full uppercase"
             >
               Add to bag
             </Button>

@@ -228,7 +228,7 @@ function OrderSummary({
 
       <Button
         onClick={onCheckout}
-        className="mt-6 w-full"
+        className="mt-6 h-12 w-full"
       >
         Checkout
       </Button>
