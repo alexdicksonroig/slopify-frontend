@@ -112,7 +112,7 @@ const AccordionContent: React.FC<AccordionContentProps> = ({
   return (
     <div
       className={clsx(
-        "grid text-sm text-left transition-[grid-template-rows] duration-300",
+        "grid text-sm text-left",
         isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
       )}
     >

@@ -64,7 +64,7 @@ export const Select: React.FC<SelectProps> = ({
         <span>{selectedOption?.label || placeholder}</span>
         <svg
           className={clsx(
-            "h-4 w-4 transition-transform",
+            "h-4 w-4",
             isOpen && "rotate-180",
           )}
           fill="none"
