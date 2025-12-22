@@ -6,5 +6,4 @@ export default function Home({ loaderData }) {
   useEffect(() => {
     navigate("/products");
   }, [navigate]);
-  return <div>Hola</div>;
 }
