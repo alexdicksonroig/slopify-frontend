@@ -83,18 +83,29 @@ export default function Example() {
       </Drawer>
       <header className="relative bg-white">
         <title>Slopify</title>
-        <p
-          className="flex h-10 items-center justify-center bg-primary px-4 text-sm
+        <div
+          className="flex h-10 items-center justify-between bg-primary px-4 text-sm
             font-medium text-white sm:px-6 lg:px-8"
         >
+          {/* Logo */}
+          <div className="ml-4 flex lg:ml-0">
+            <a href="/">
+              <span className="sr-only">Your Company</span>
+              <img
+                alt=""
+                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=white"
+                className="h-4 w-auto"
+              />
+            </a>
+          </div>
           Get free delivery on orders over 30€
-        </p>
-
+          <div />
+        </div>
         <nav
           aria-label="Top"
           className="border-b border-gray-200 px-4 sm:px-6 lg:px-8"
         >
-          <div className="flex h-16 items-center">
+          <div className="flex h-12 items-center">
             <button
               type="button"
               onClick={() => setOpen(true)}
@@ -105,17 +116,6 @@ export default function Example() {
               <span className="sr-only">Menu</span>
             </button>
 
-            {/* Logo */}
-            <div className="ml-4 flex lg:ml-0">
-              <a href="/">
-                <span className="sr-only">Your Company</span>
-                <img
-                  alt=""
-                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=black&shade=600"
-                  className="h-8 w-auto"
-                />
-              </a>
-            </div>
             <div className="ml-auto flex items-center">
               <div
                 className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end
