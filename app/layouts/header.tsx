@@ -1,4 +1,4 @@
-import { ArrowRight, Menu, ShoppingBag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Menu, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import { Button, Drawer, Label, Select } from "@library";
@@ -106,6 +106,18 @@ export default function Example() {
           className="border-b border-gray-200 px-4 sm:px-6 lg:px-8"
         >
           <div className="flex h-12 items-center">
+            {location.pathname !== "/" && location.pathname !== "/products" && (
+              <button
+                type="button"
+                onClick={() => navigate(-1)}
+                className="relative rounded-md bg-white p-2 text-gray-500 flex items-center gap-2"
+              >
+                <span className="absolute -inset-0.5" />
+                <ArrowLeft className="h-5 w-5" stroke="currentColor" />
+                <span className="sr-only">Back</span>
+              </button>
+            )}
+
             <button
               type="button"
               onClick={() => setOpen(true)}
