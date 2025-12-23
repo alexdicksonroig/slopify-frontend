@@ -130,11 +130,11 @@ type ProductCard = Pick<
 
 function ProductCard({ id, name, imageSrc, imageAlt, price }: ProductCard) {
   const href = `/product/${id}`;
-  const isTransitioning = false;
-  //const isTransitioning = useViewTransitionState(href);
+  const isTransitioning = useViewTransitionState(href);
+  if (isTransitioning) console.log("isTransitioning", isTransitioning, href);
 
   return (
-    <Link to={`/product/${id}`}>
+    <Link to={`/product/${id}`} viewTransition>
       <div key={id} className="group relative">
         <img
           alt={imageAlt}
