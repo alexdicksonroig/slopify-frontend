@@ -88,7 +88,7 @@ export default function Example() {
             font-medium text-white sm:px-6 lg:px-8"
         >
           {/* Logo */}
-          <div className="ml-4 flex lg:ml-0">
+          <div className="flex lg:ml-0">
             <a href="/">
               <span className="sr-only">Your Company</span>
               <img
@@ -121,7 +121,7 @@ export default function Example() {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="relative rounded-md bg-white p-2 text-gray-500 lg:hidden flex items-center gap-2"
+              className="relative rounded-md bg-white  text-gray-500 lg:hidden flex items-center gap-2"
             >
               <span className="absolute -inset-0.5" />
               <Menu className="h-5 w-5" stroke="currentColor" />
