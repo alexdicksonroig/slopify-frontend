@@ -110,7 +110,7 @@ export default function Example() {
               <button
                 type="button"
                 onClick={() => navigate(-1)}
-                className="relative rounded-md bg-white p-2 text-gray-500 flex items-center gap-2"
+                className="relative rounded-md bg-white pr-2 text-gray-500 flex items-center gap-2"
               >
                 <span className="absolute -inset-0.5" />
                 <ArrowLeft className="h-5 w-5" stroke="currentColor" />
