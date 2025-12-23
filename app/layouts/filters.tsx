@@ -106,7 +106,7 @@ const FilterContent = () => (
 export default function Filters() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
-    <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col h-screen">
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} fromRight>
         <div className="px-4 py-6">
           <h2 className="text-lg font-medium text-gray-900 mb-6">Filters</h2>
@@ -114,7 +114,7 @@ export default function Filters() {
         </div>
       </Drawer>
 
-      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-6 mb-6">
+      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-6 mb-6 flex-shrink-0">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900">
           New Arrivals
         </h1>
@@ -137,14 +137,14 @@ export default function Filters() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 flex-1 overflow-hidden">
         {/* Filters sidebar - Desktop */}
-        <aside className="hidden lg:block">
+        <aside className="hidden lg:block overflow-y-auto">
           <FilterContent />
         </aside>
 
         {/* Main content */}
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-3 overflow-y-auto">
           <Outlet />
         </div>
       </div>
