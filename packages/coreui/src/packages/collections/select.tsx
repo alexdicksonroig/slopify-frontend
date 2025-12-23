@@ -93,7 +93,7 @@ export const Select: React.FC<SelectProps> = ({
               type="button"
               onClick={() => handleSelect(option.value)}
               className={cn(
-                "relative flex w-full cursor-pointer select-none items-center rounded-sm p-2 text-sm outline-none transition-colors whitespace-nowrap",
+                "relative flex w-full cursor-pointer select-none items-center rounded-sm p-2.5 text-sm outline-none transition-colors whitespace-nowrap",
                 "hover:bg-accent hover:text-accent-foreground",
                 "focus:bg-accent focus:text-accent-foreground",
               )}
