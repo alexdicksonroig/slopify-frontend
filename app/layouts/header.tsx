@@ -89,14 +89,14 @@ export default function Example() {
         >
           {/* Logo */}
           <div className="flex lg:ml-0">
-            <a href="/">
+            <Button onClick={() => navigate("/")} size="icon" variant="ghost">
               <span className="sr-only">Your Company</span>
               <img
                 alt=""
                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=white"
                 className="h-4 w-auto"
               />
-            </a>
+            </Button>
           </div>
           Get free delivery on orders over 30€
           <div />
@@ -107,26 +107,24 @@ export default function Example() {
         >
           <div className="flex h-12 items-center">
             {location.pathname !== "/" && location.pathname !== "/products" && (
-              <button
-                type="button"
+              <Button
                 onClick={() => navigate(-1)}
-                className="relative rounded-md bg-white pr-2 text-gray-500 flex items-center gap-2"
+                size="icon"
+                variant="ghost"
               >
-                <span className="absolute -inset-0.5" />
                 <ArrowLeft className="h-5 w-5" stroke="currentColor" />
                 <span className="sr-only">Back</span>
-              </button>
+              </Button>
             )}
 
-            <button
-              type="button"
+            <Button
               onClick={() => setOpen(true)}
-              className="relative rounded-md bg-white  text-gray-500 lg:hidden flex items-center gap-2"
+              size="icon"
+              variant="ghost"
             >
-              <span className="absolute -inset-0.5" />
               <Menu className="h-5 w-5" stroke="currentColor" />
               <span className="sr-only">Menu</span>
-            </button>
+            </Button>
 
             <div className="ml-auto flex items-center">
               <div
@@ -164,7 +162,7 @@ export default function Example() {
               </div>
 
               {/* Cart */}
-              <div className="ml-4 flow-root lg:ml-6">
+              <div className="flow-root lg:ml-6">
                 <Button onClick={handleCartClick} variant="ghost" size="icon">
                   <ShoppingBag className="h-5 w-5 text-gray-700 hover:text-gray-800" />
                   <span className="sr-only">items in cart, view bag</span>
