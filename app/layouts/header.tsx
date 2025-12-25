@@ -91,7 +91,7 @@ export default function Example() {
           </div>
         </div>
       </Drawer>
-      <header className="bg-white sticky top-0 z-4">
+      <header className="bg-white ">
         <title>Slopify</title>
         <div
           className="relative flex h-10 items-center justify-between bg-primary text-sm
