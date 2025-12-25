@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight, Menu, ShoppingBag } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
-import { Button, Drawer, Label, Select } from "@library";
+import { Button, cn, Drawer, Label, Select } from "@library";
 import Footer from "./footer";
 
 const LANGUAGE_OPTIONS = [
@@ -24,6 +24,7 @@ export default function Example() {
   const [currency, setCurrency] = useState("cad");
   const location = useLocation();
   const navigate = useNavigate();
+  const [showFirstText, setShowFirstText] = useState(true);
 
   const handleCartClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -33,6 +34,15 @@ export default function Example() {
       navigate("/cart");
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log("Toggling text");
+      setShowFirstText((prev) => !prev);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -84,21 +94,27 @@ export default function Example() {
       <header className="bg-white sticky top-0 z-4">
         <title>Slopify</title>
         <div
-          className="flex h-10 items-center justify-between bg-primary px-4 text-sm
-            font-medium text-white sm:px-6 lg:px-8"
+          className="relative flex h-10 items-center justify-between bg-primary text-sm
+            font-medium text-white"
         >
           {/* Logo */}
-          <div className="flex lg:ml-0">
-            <Button onClick={() => navigate("/")} size="icon" variant="ghost">
-              <span className="sr-only">Your Company</span>
-              <img
-                alt=""
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=white"
-                className="h-4 w-auto"
-              />
-            </Button>
+          <Button onClick={() => navigate("/")} size="icon" variant="ghost" className="z-4 ml-4 hidden lg:flex hover:bg-transparent">
+            <img
+              alt=""
+              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=white"
+              className="h-4 w-auto"
+            />
+          </Button>
+          <div className={cn("absolute flex w-full items-center justify-center duration-400 ease-linear lg:justify-center transition-all visible opacity-100", { "invisible opacity-0": !showFirstText })}>
+            <p className="normal-case body-3">
+              Get free delivery on orders over 30€
+            </p>
           </div>
-          Get free delivery on orders over 30€
+          <div className={cn("absolute flex w-full items-center justify-center duration-400 ease-linear lg:justify-center transition-all visible opacity-100", { "invisible opacity-0": showFirstText })}>
+            <p className="normal-case body-3">
+              All prices include IVA where applicable
+            </p>
+          </div>
           <div />
         </div>
         <nav
@@ -121,10 +137,23 @@ export default function Example() {
               onClick={() => setOpen(true)}
               size="icon"
               variant="ghost"
+              className="lg:hidden"
             >
               <Menu className="h-5 w-5" stroke="currentColor" />
               <span className="sr-only">Menu</span>
             </Button>
+
+            {/* Logo */}
+            <div className="flex lg:hidden">
+              <Button onClick={() => navigate("/")} size="icon" variant="ghost">
+                <span className="sr-only">Your Company</span>
+                <img
+                  alt=""
+                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=black"
+                  className="h-5 w-auto"
+                />
+              </Button>
+            </div>
 
             <div className="ml-auto flex items-center">
               <div
@@ -171,9 +200,9 @@ export default function Example() {
             </div>
           </div>
         </nav>
-      </header>
+      </header >
       <Outlet />
       <Footer />
-    </div>
+    </div >
   );
 }
