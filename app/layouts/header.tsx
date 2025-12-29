@@ -104,12 +104,12 @@ export default function Example() {
               className="h-4 w-auto"
             />
           </Button>
-          <div className={cn("absolute flex w-full items-center justify-center duration-400 ease-linear lg:justify-center transition-all visible opacity-100", { "invisible opacity-0": !showFirstText })}>
+          <div className={cn("absolute flex w-full items-center justify-center duration-300 ease-linear lg:justify-center transition-all visible opacity-100", { "invisible opacity-0": !showFirstText })}>
             <p className="normal-case body-3">
               Get free delivery on orders over 30€
             </p>
           </div>
-          <div className={cn("absolute flex w-full items-center justify-center duration-400 ease-linear lg:justify-center transition-all visible opacity-100", { "invisible opacity-0": showFirstText })}>
+          <div className={cn("absolute flex w-full items-center justify-center duration-300 ease-linear lg:justify-center transition-all visible opacity-100", { "invisible opacity-0": showFirstText })}>
             <p className="normal-case body-3">
               All prices include IVA where applicable
             </p>
