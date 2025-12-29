@@ -9,6 +9,8 @@ interface ProductImageGalleryProps {
 }
 
 export function ProductImageGallery({ images }: ProductImageGalleryProps) {
+  const styles = undefined
+  //const styles = index === 0 ? { viewTransitionName: "product-image" } : undefined
   return (
     <div className="mx-auto max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
       {images.map((image, index) => (
@@ -18,7 +20,7 @@ export function ProductImageGallery({ images }: ProductImageGalleryProps) {
           alt={image.alt}
           className={image.className}
           style={
-            index === 0 ? { viewTransitionName: "product-image" } : undefined
+            styles
           }
         />
       ))}
