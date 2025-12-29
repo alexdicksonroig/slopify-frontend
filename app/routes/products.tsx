@@ -1,3 +1,4 @@
+import * as Api from "@app/lib/api";
 import { cn } from "@library";
 import { Link, useViewTransitionState } from "react-router";
 
@@ -153,6 +154,12 @@ function ProductCard({ id, name, imageSrc, imageAlt, price }: ProductCard) {
       </div>
     </Link>
   );
+}
+
+export async function clientLoader() {
+  const products = await Api.get("products/");
+  console.log(products)
+  return { products };
 }
 
 export default function Products() {

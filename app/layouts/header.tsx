@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight, Menu, ShoppingBag } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router";
-import { Button, cn, Drawer, Label, Select } from "@library";
+import { useEffect, useState } from "react";
+import {  Outlet, useLocation, useNavigate } from "react-router";
+import { Button, cn, Drawer,  Select } from "@library";
 import Footer from "./footer";
 
 const LANGUAGE_OPTIONS = [
@@ -37,7 +37,6 @@ export default function Example() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log("Toggling text");
       setShowFirstText((prev) => !prev);
     }, 4000);
 

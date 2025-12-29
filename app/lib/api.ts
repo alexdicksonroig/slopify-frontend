@@ -1,4 +1,4 @@
-const baseOrigin = "http://localhost:8000";
+const baseOrigin = "https://slopify-backend-763213450884.us-east1.run.app/";
 
 export const get = async (
   path: string,
@@ -16,8 +16,7 @@ export const get = async (
     .then((result) => {
       if (!result.ok) {
         throw new Error(
-          `${result.status} GET request failed: ${
-            result.statusText
+          `${result.status} GET request failed: ${result.statusText
           }. URL: ${url.toString()}`,
           { cause: result },
         );
@@ -45,8 +44,7 @@ export const post = async (
     .then((result) => {
       if (!result.ok) {
         throw new Error(
-          `${result.status} POST request failed: ${
-            result.statusText
+          `${result.status} POST request failed: ${result.statusText
           }. URL: ${url.toString()}`,
           { cause: result },
         );
