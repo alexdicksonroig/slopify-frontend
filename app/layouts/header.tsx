@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight, Menu, ShoppingBag } from "lucide-react";
 import { useEffect, useState } from "react";
-import {  Outlet, useLocation, useNavigate } from "react-router";
-import { Button, cn, Drawer,  Select } from "@library";
+import { Outlet, useLocation, useNavigate } from "react-router";
+import { Button, cn, Drawer, Select } from "@library";
 import Footer from "./footer";
 
 const LANGUAGE_OPTIONS = [
@@ -93,7 +93,7 @@ export default function Example() {
       <header className="bg-white ">
         <title>Slopify</title>
         <div
-          className="relative flex h-10 items-center justify-between bg-primary text-sm
+          className="relative flex h-10 items-center justify-between bg-indigo-700 text-sm
             font-medium text-white"
         >
           {/* Logo */}
