@@ -114,11 +114,10 @@ export default function Filters() {
         </div>
       </Drawer>
 
-      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-6 mb-6">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-3 mb-6">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
           New Arrivals
         </h1>
-
         <div className="flex items-center gap-4">
           <Select
             options={SORT_OPTIONS}
