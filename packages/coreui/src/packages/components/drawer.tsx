@@ -29,14 +29,15 @@ export const Drawer: React.FC<DrawerProps> = ({
       )}
     >
       <div className="bg-white p-4 shadow-xl h-full">
-        <Button
-          onClick={onClose}
-          variant="ghost"
-          size="icon"
-          className={cn("w-full flex justify-start", { "justify-end": fromRight })}
-        >
-          <X className="text-gray-400 h-6 w-6 mx-3" />
-        </Button>
+        <div className={cn("w-full flex justify-start", { "justify-end": fromRight })}>
+          <Button
+            onClick={onClose}
+            variant="ghost"
+            size="icon"
+          >
+            <X className="text-gray-400 h-6 w-6 mx-3" />
+          </Button>
+        </div>
         {children}
       </div>
     </div >

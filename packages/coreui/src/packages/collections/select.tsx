@@ -2,6 +2,7 @@ import { useState } from "react";
 import { cn } from "src/lib/cn";
 import { Popover } from "./index";
 import { Button, type ButtonProps } from "../components";
+import { X } from "lucide-react";
 
 export type SelectOption = {
   label: string;
@@ -84,9 +85,12 @@ export const Select: React.FC<SelectProps> = ({
         open={isOpen}
         onOpenChange={setIsOpen}
         placement="bottom"
-        className="right-0 z-50 mt-1 min-w-fit w-full rounded-xl md:rounded-lg border border-input bg-popover text-popover-foreground shadow-md"
+        className="right-0 z-50 mt-1 min-w-fit w-full rounded-xl md:rounded-lg border border-input bg-popover text-popover-foreground shadow-md p-2"
       >
-        <div className="max-h-60 overflow-auto p-1">
+        <div className="max-h-60 overflow-auto">
+          <div className="w-full flex justify-end">
+            <X className="text-gray-400 size-5 m-2" onClick={() => setIsOpen(false)} />
+          </div>
           {options.map((option) => (
             <button
               key={option.value}
