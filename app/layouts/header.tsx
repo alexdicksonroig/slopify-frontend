@@ -38,7 +38,7 @@ export default function Example() {
   useEffect(() => {
     const interval = setInterval(() => {
       setShowFirstText((prev) => !prev);
-    }, 6000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);

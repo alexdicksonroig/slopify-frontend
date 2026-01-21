@@ -19,26 +19,26 @@ export const Drawer: React.FC<DrawerProps> = ({
 }) => {
 
   return (
-      <div
-        className={cn(
-          `z-5 fixed inset-0 h-screen w-full overflow-y-auto
-        transition duration-200 ease-in-out lg:hidden`,
-        fromRight && !open ? "translate-x-full" : "-translate-x-full",
-        {"translate-x-0": open},
-          className,
-        )}
-      >
-        <div className="bg-white p-4 shadow-xl h-full">
-          <Button
-            onClick={onClose}
-            variant="ghost"
-            size="icon"
-            className="py-3"
-          >
-            <X className="text-gray-400 h-6 w-6" />
-          </Button>
-          {children}
-        </div>
+    <div
+      className={cn(
+        `z-5 fixed inset-0 h-screen w-full overflow-y-auto
+        transition duration-200 ease-in-out lg:hidden -translate-x-full`,
+        { "translate-x-full": fromRight },
+        { "translate-x-0": open },
+        className,
+      )}
+    >
+      <div className="bg-white p-4 shadow-xl h-full">
+        <Button
+          onClick={onClose}
+          variant="ghost"
+          size="icon"
+          className={cn("w-full flex justify-start", { "justify-end": fromRight })}
+        >
+          <X className="text-gray-400 h-6 w-6 mx-3" />
+        </Button>
+        {children}
       </div>
+    </div >
   );
 };
