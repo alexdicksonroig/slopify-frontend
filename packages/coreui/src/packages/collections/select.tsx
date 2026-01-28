@@ -88,7 +88,7 @@ export const Select: React.FC<SelectProps> = ({
         className="right-0 z-50 mt-1 min-w-fit w-full rounded-xl md:rounded-lg border border-input bg-popover text-popover-foreground shadow-md p-2"
       >
         <div className="max-h-60 overflow-auto">
-          <div className="w-full flex justify-end">
+          <div className="w-full flex md:hidden justify-end">
             <X className="text-gray-400 size-5 m-2" onClick={() => setIsOpen(false)} />
           </div>
           {options.map((option) => (
