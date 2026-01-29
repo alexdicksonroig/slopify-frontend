@@ -1,0 +1,205 @@
+{
+  "products/": [
+    {
+      "id": 1,
+      "name": "Basic Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      "imageAlt": "Front of men's Basic Tee in black.",
+      "price": "$35",
+      "color": "Black"
+    },
+    {
+      "id": 2,
+      "name": "Basic Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-02.jpg",
+      "imageAlt": "Front of men's Basic Tee in white.",
+      "price": "$35",
+      "color": "Aspen White"
+    },
+    {
+      "id": 3,
+      "name": "Basic Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-03.jpg",
+      "imageAlt": "Front of men's Basic Tee in dark gray.",
+      "price": "$35",
+      "color": "Charcoal"
+    },
+    {
+      "id": 4,
+      "name": "Artwork Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg",
+      "imageAlt": "Front of men's Artwork Tee in peach with white and brown dots forming an isometric cube.",
+      "price": "$35",
+      "color": "Iso Dots"
+    },
+    {
+      "id": 5,
+      "name": "Basic Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      "imageAlt": "Front of men's Basic Tee in black.",
+      "price": "$35",
+      "color": "Black"
+    },
+    {
+      "id": 6,
+      "name": "Basic Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-02.jpg",
+      "imageAlt": "Front of men's Basic Tee in white.",
+      "price": "$35",
+      "color": "Aspen White"
+    },
+    {
+      "id": 7,
+      "name": "Basic Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-03.jpg",
+      "imageAlt": "Front of men's Basic Tee in dark gray.",
+      "price": "$35",
+      "color": "Charcoal"
+    },
+    {
+      "id": 8,
+      "name": "Artwork Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg",
+      "imageAlt": "Front of men's Artwork Tee in peach with white and brown dots forming an isometric cube.",
+      "price": "$35",
+      "color": "Iso Dots"
+    },
+    {
+      "id": 9,
+      "name": "Basic Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      "imageAlt": "Front of men's Basic Tee in black.",
+      "price": "$35",
+      "color": "Black"
+    },
+    {
+      "id": 10,
+      "name": "Basic Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-02.jpg",
+      "imageAlt": "Front of men's Basic Tee in white.",
+      "price": "$35",
+      "color": "Aspen White"
+    },
+    {
+      "id": 11,
+      "name": "Basic Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-03.jpg",
+      "imageAlt": "Front of men's Basic Tee in dark gray.",
+      "price": "$35",
+      "color": "Charcoal"
+    },
+    {
+      "id": 12,
+      "name": "Artwork Tee",
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg",
+      "imageAlt": "Front of men's Artwork Tee in peach with white and brown dots forming an isometric cube.",
+      "price": "$35",
+      "color": "Iso Dots"
+    }
+  ],
+  "cart": [
+    {
+      "id": 1,
+      "name": "Basic Tee",
+      "color": "Sienna",
+      "size": "Large",
+      "price": 32.0,
+      "quantity": 1,
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      "imageAlt": "Basic Tee in Sienna",
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "name": "Basic Tee",
+      "color": "Black",
+      "size": "Large",
+      "price": 32.0,
+      "quantity": 1,
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      "imageAlt": "Basic Tee in Black",
+      "inStock": false,
+      "shippingTime": "Ships in 3-4 weeks"
+    },
+    {
+      "id": 3,
+      "name": "Nomad Tumbler",
+      "color": "White",
+      "price": 35.0,
+      "quantity": 1,
+      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      "imageAlt": "Nomad Tumbler in White",
+      "inStock": true
+    }
+  ],
+  "product-detail": {
+    "images": [
+      {
+        "src": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
+        "alt": "Two each of gray, white, and black shirts laying flat.",
+        "className": "col-span-2 row-span-2 aspect-1/1 size-full rounded-lg max-h-full lg:max-h-[700px] object-cover"
+      },
+      {
+        "src": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
+        "alt": "Model wearing plain black basic tee.",
+        "className": "col-start-3 aspect-3/2 size-full rounded-lg object-cover max-lg:hidden"
+      },
+      {
+        "src": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
+        "alt": "Model wearing plain gray basic tee.",
+        "className": "col-start-3 row-start-1 aspect-3/2 size-full rounded-lg object-cover max-lg:hidden"
+      }
+    ],
+    "colorOptions": [
+      { "value": "white", "label": "White", "bgClass": "bg-white", "outlineClass": "checked:outline-gray-400", "checked": true },
+      { "value": "gray", "label": "Gray", "bgClass": "bg-gray-200", "outlineClass": "checked:outline-gray-400" },
+      { "value": "black", "label": "Black", "bgClass": "bg-gray-900", "outlineClass": "checked:outline-gray-900" }
+    ],
+    "sizeOptions": [
+      { "value": "xxs", "label": "XXS", "disabled": true },
+      { "value": "xs", "label": "XS" },
+      { "value": "s", "label": "S", "checked": true },
+      { "value": "m", "label": "M" },
+      { "value": "l", "label": "L" },
+      { "value": "xl", "label": "XL" },
+      { "value": "2xl", "label": "2XL" },
+      { "value": "3xl", "label": "3XL" }
+    ],
+    "highlights": [
+      "Hand cut and sewn locally",
+      "Dyed with our proprietary colors",
+      "Pre-washed & pre-shrunk",
+      "Ultra-soft 100% cotton"
+    ]
+  },
+  "filters": {
+    "sortOptions": [
+      { "label": "Most Popular", "value": "popular" },
+      { "label": "Best Rating", "value": "rating" },
+      { "label": "Newest", "value": "newest" },
+      { "label": "Price: Low to High", "value": "price-asc" },
+      { "label": "Price: High to Low", "value": "price-desc" }
+    ],
+    "categories": ["Totes", "Backpacks", "Travel Bags", "Hip Bags", "Laptop Sleeves"],
+    "colors": ["White", "Beige", "Blue", "Brown", "Green", "Purple"],
+    "sizes": ["XS", "S", "M", "L", "XL", "2XL"]
+  },
+  "settings": {
+    "languageOptions": [
+      { "label": "English", "value": "en" },
+      { "label": "Español", "value": "es" },
+      { "label": "Français", "value": "fr" },
+      { "label": "Deutsch", "value": "de" }
+    ],
+    "currencyOptions": [
+      { "label": "CAD", "value": "cad" },
+      { "label": "USD", "value": "usd" },
+      { "label": "EUR", "value": "eur" },
+      { "label": "GBP", "value": "gbp" }
+    ]
+  },
+  "session-status": {
+    "status": "complete",
+    "customer_email": "test@example.com"
+  }
+}

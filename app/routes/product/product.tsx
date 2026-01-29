@@ -1,71 +1,34 @@
+import { useEffect, useState } from "react";
 import { Button } from "@library";
 import { ColorSelector } from "./components/ColorSelector";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
 import { ProductInfo } from "./components/ProductInfo";
 import { SizeSelector } from "./components/SizeSelector";
+import { get } from "@app/lib/api";
 
-export default function Product({ params }) {
-  const productImages = [
-    {
-      src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
-      alt: "Two each of gray, white, and black shirts laying flat.",
-      className:
-        "col-span-2 row-span-2 aspect-1/1 size-full rounded-lg max-h-full lg:max-h-[700px] object-cover",
-    },
-    {
-      src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
-      alt: "Model wearing plain black basic tee.",
-      className:
-        "col-start-3 aspect-3/2 size-full rounded-lg object-cover max-lg:hidden",
-    },
-    {
-      src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
-      alt: "Model wearing plain gray basic tee.",
-      className:
-        "col-start-3 row-start-1 aspect-3/2 size-full rounded-lg object-cover max-lg:hidden",
-    },
-  ];
+type ProductData = {
+  id: number;
+  name: string;
+  price: string;
+  images: { src: string; alt: string; className: string }[];
+  colorOptions: { value: string; label: string; bgClass: string; outlineClass: string; checked?: boolean }[];
+  sizeOptions: { value: string; label: string; disabled?: boolean; checked?: boolean }[];
+  highlights: string[];
+};
 
-  const colorOptions = [
-    {
-      value: "white",
-      label: "White",
-      bgClass: "bg-white",
-      outlineClass: "checked:outline-gray-400",
-      checked: true,
-    },
-    {
-      value: "gray",
-      label: "Gray",
-      bgClass: "bg-gray-200",
-      outlineClass: "checked:outline-gray-400",
-    },
-    {
-      value: "black",
-      label: "Black",
-      bgClass: "bg-gray-900",
-      outlineClass: "checked:outline-gray-900",
-    },
-  ];
+export default function Product({ params }: { params: { id: string } }) {
+  const [product, setProduct] = useState<ProductData | null>(null);
 
-  const sizeOptions = [
-    { value: "xxs", label: "XXS", disabled: true },
-    { value: "xs", label: "XS" },
-    { value: "s", label: "S", checked: true },
-    { value: "m", label: "M" },
-    { value: "l", label: "L" },
-    { value: "xl", label: "XL" },
-    { value: "2xl", label: "2XL" },
-    { value: "3xl", label: "3XL" },
-  ];
+  useEffect(() => {
+    get(`products/${params.id}`).then((data) => {
+      if (data) setProduct(data as ProductData);
+    });
+  }, [params.id]);
 
-  const productHighlights = [
-    "Hand cut and sewn locally",
-    "Dyed with our proprietary colors",
-    "Pre-washed & pre-shrunk",
-    "Ultra-soft 100% cotton",
-  ];
+  if (!product) return null;
+
+  const { images: productImages, colorOptions, sizeOptions, highlights: productHighlights } = product;
 
   return (
     <div className="md:pt-6">

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Button, Select } from "@library";
 import { Check } from "lucide-react";
+import { get } from "@app/lib/api";
 
 type CartItem = {
   id: number;
@@ -15,45 +16,6 @@ type CartItem = {
   inStock: boolean;
   shippingTime?: string;
 };
-
-const mockCartItems: CartItem[] = [
-  {
-    id: 1,
-    name: "Basic Tee",
-    color: "Sienna",
-    size: "Large",
-    price: 32.0,
-    quantity: 1,
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Basic Tee in Sienna",
-    inStock: true,
-  },
-  {
-    id: 2,
-    name: "Basic Tee",
-    color: "Black",
-    size: "Large",
-    price: 32.0,
-    quantity: 1,
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Basic Tee in Black",
-    inStock: false,
-    shippingTime: "Ships in 3-4 weeks",
-  },
-  {
-    id: 3,
-    name: "Nomad Tumbler",
-    color: "White",
-    price: 35.0,
-    quantity: 1,
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Nomad Tumbler in White",
-    inStock: true,
-  },
-];
 
 function CartItemComponent({
   item,
@@ -238,7 +200,13 @@ function OrderSummary({
 
 export default function Cart() {
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState<CartItem[]>(mockCartItems);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  useEffect(() => {
+    get("cart").then((data) => {
+      if (data) setCartItems(data as CartItem[]);
+    });
+  }, []);
 
   const handleQuantityChange = (id: number, quantity: number) => {
     setCartItems((items) =>

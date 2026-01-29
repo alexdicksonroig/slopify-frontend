@@ -1,32 +1,20 @@
 import { Accordion, Button, Drawer, Select } from "@library";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
+import { get } from "@app/lib/api";
 
-const SORT_OPTIONS = [
-  { label: "Most Popular", value: "popular" },
-  { label: "Best Rating", value: "rating" },
-  { label: "Newest", value: "newest" },
-  { label: "Price: Low to High", value: "price-asc" },
-  { label: "Price: High to Low", value: "price-desc" },
-];
+type FiltersData = {
+  sortOptions: { label: string; value: string }[];
+  categories: string[];
+  colors: string[];
+  sizes: string[];
+};
 
-const CATEGORIES = [
-  "Totes",
-  "Backpacks",
-  "Travel Bags",
-  "Hip Bags",
-  "Laptop Sleeves",
-];
-
-const COLORS = ["White", "Beige", "Blue", "Brown", "Green", "Purple"];
-
-const SIZES = ["XS", "S", "M", "L", "XL", "2XL"];
-
-const FilterContent = () => (
+const FilterContent = ({ categories, colors, sizes }: { categories: string[]; colors: string[]; sizes: string[] }) => (
   <>
     {/* Categories */}
     <div className="space-y-4 pb-6 border-b border-gray-200">
-      {CATEGORIES.map((category) => (
+      {categories.map((category) => (
         <button
           key={category}
           className="block text-sm text-gray-900 hover:text-gray-700"
@@ -41,7 +29,7 @@ const FilterContent = () => (
       <Accordion closeOnContentClick={false}>
         <Accordion.Item itemId="color" headerText="Color">
           <div className="space-y-4">
-            {COLORS.map((color) => (
+            {colors.map((color) => (
               <div key={color} className="flex items-center">
                 <input
                   id={`color-${color}`}
@@ -61,7 +49,7 @@ const FilterContent = () => (
 
         <Accordion.Item itemId="category" headerText="Category">
           <div className="space-y-4">
-            {CATEGORIES.map((category) => (
+            {categories.map((category) => (
               <div key={category} className="flex items-center">
                 <input
                   id={`filter-${category}`}
@@ -81,7 +69,7 @@ const FilterContent = () => (
 
         <Accordion.Item itemId="size" headerText="Size">
           <div className="space-y-4">
-            {SIZES.map((size) => (
+            {sizes.map((size) => (
               <div key={size} className="flex items-center">
                 <input
                   id={`size-${size}`}
@@ -105,12 +93,22 @@ const FilterContent = () => (
 
 export default function Filters() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [filters, setFilters] = useState<FiltersData | null>(null);
+
+  useEffect(() => {
+    get("filters").then(setFilters);
+  }, []);
+
+  if (!filters) return null;
+
+  const { sortOptions, categories, colors, sizes } = filters;
+
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} fromRight>
         <div className="px-4 py-6">
           <h2 className="text-lg font-medium text-gray-900 mb-6">Filters</h2>
-          <FilterContent />
+          <FilterContent categories={categories} colors={colors} sizes={sizes} />
         </div>
       </Drawer>
 
@@ -120,7 +118,7 @@ export default function Filters() {
         </h1>
         <div className="flex items-center gap-4">
           <Select
-            options={SORT_OPTIONS}
+            options={sortOptions}
             placeholder="Sort"
             variant="link"
             className="px-2"
@@ -131,7 +129,7 @@ export default function Filters() {
             onClick={() => setDrawerOpen(true)}
           >
             <span>Filter</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-filter-icon lucide-list-filter"><path d="M2 5h20" /><path d="M6 12h12" /><path d="M9 19h6" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-list-filter-icon lucide-list-filter"><path d="M2 5h20" /><path d="M6 12h12" /><path d="M9 19h6" /></svg>
           </Button>
         </div>
       </div>
@@ -139,7 +137,7 @@ export default function Filters() {
       <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
         {/* Filters sidebar - Desktop */}
         <aside className="hidden lg:block">
-          <FilterContent />
+          <FilterContent categories={categories} colors={colors} sizes={sizes} />
         </aside>
 
         {/* Main content */}

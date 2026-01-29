@@ -3,28 +3,25 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import { Button, cn, Drawer, Select } from "@library";
 import Footer from "./footer";
+import { get } from "@app/lib/api";
 
-const LANGUAGE_OPTIONS = [
-  { label: "English", value: "en" },
-  { label: "Español", value: "es" },
-  { label: "Français", value: "fr" },
-  { label: "Deutsch", value: "de" },
-];
-
-const CURRENCY_OPTIONS = [
-  { label: "CAD", value: "cad" },
-  { label: "USD", value: "usd" },
-  { label: "EUR", value: "eur" },
-  { label: "GBP", value: "gbp" },
-];
+type SettingsData = {
+  languageOptions: { label: string; value: string }[];
+  currencyOptions: { label: string; value: string }[];
+};
 
 export default function Example() {
   const [open, setOpen] = useState(false);
   const [language, setLanguage] = useState("en");
   const [currency, setCurrency] = useState("cad");
+  const [settings, setSettings] = useState<SettingsData | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const [showFirstText, setShowFirstText] = useState(true);
+
+  useEffect(() => {
+    get("settings").then(setSettings);
+  }, []);
 
   const handleCartClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -42,6 +39,9 @@ export default function Example() {
 
     return () => clearInterval(interval);
   }, []);
+
+  const languageOptions = settings?.languageOptions ?? [];
+  const currencyOptions = settings?.currencyOptions ?? [];
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -69,7 +69,7 @@ export default function Example() {
               id="currency"
               value={currency}
               onChange={setCurrency}
-              options={CURRENCY_OPTIONS}
+              options={currencyOptions}
               placeholder="Select currency"
               variant="link"
               size="sm"
@@ -81,7 +81,7 @@ export default function Example() {
               id="language"
               value={language}
               onChange={setLanguage}
-              options={LANGUAGE_OPTIONS}
+              options={languageOptions}
               placeholder="Select language"
               variant="link"
               size="sm"
