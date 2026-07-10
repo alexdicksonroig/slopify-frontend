@@ -1,5 +1,5 @@
-import { Button, Card, Input } from "./index";
 import type { Meta } from "@storybook/react";
+import { Button, Card, Input } from "./index";
 
 export function Component({ ...props }) {
   return (
@@ -14,7 +14,7 @@ export function Component({ ...props }) {
         <form>
           <div className="grid w-full items-center">
             <div className="flex flex-col space-y-1.5">
-              <Input id="name" placeholder="Name of your project" />
+              <Input placeholder="Name of your project" />
             </div>
             <div className="flex flex-col space-y-1.5"></div>
           </div>

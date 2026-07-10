@@ -1,9 +1,8 @@
-import { Button } from "./index";
-import { hideArgs } from "../../lib/helpers";
 import type { Meta } from "@storybook/react";
 import { fn } from "@storybook/test";
-
-import { variants, sizes } from "./button";
+import { hideArgs } from "../../lib/helpers";
+import { sizes, variants } from "./button";
+import { Button } from "./index";
 
 export function Component({ ...props }) {
   return (

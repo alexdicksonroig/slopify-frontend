@@ -1,11 +1,11 @@
-import { cn } from "src/lib/cn";
+import { cn } from "../../lib/cn";
 
 export type OverlayProps = {
   onClick?: () => void;
   className?: string;
   transparent?: boolean;
   active?: boolean;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Overlay: React.FC<OverlayProps> = ({
   onClick,
@@ -17,7 +17,9 @@ export const Overlay: React.FC<OverlayProps> = ({
   if (!active) return null;
 
   return (
-    <div
+    <button
+      type="button"
+      aria-label="Close overlay"
       className={cn(
         "fixed inset-0 z-3",
         "bg-black/15 md:bg-transparent",

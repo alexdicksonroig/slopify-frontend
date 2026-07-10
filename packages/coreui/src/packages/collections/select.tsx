@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { cn } from "src/lib/cn";
-import { Popover } from "./index";
-import { Button, type ButtonProps } from "../components";
-import { X } from "lucide-react";
+import { cn } from "../../lib/cn";
+import { Button, type ButtonProps, Icon } from "../components";
+import { Popover } from "./popover";
 
 export type SelectOption = {
   label: string;
@@ -27,7 +26,7 @@ export const Select: React.FC<SelectProps> = ({
   onChange,
   options,
   placeholder = "Select an option",
-  className = "",
+  className,
   disabled = false,
   variant = "outline",
   size = "default",
@@ -63,23 +62,7 @@ export const Select: React.FC<SelectProps> = ({
         )}
       >
         <span>{selectedOption?.label || placeholder}</span>
-        <svg
-          className={cn(
-            "h-4 w-4",
-            isOpen && "rotate-180",
-          )}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
+        <Icon icon="chevron-down" size="sm" rotate={isOpen ? 180 : 0} />
       </Button>
       <Popover
         open={isOpen}
@@ -89,7 +72,14 @@ export const Select: React.FC<SelectProps> = ({
       >
         <div className="max-h-60 overflow-auto">
           <div className="w-full flex md:hidden justify-end">
-            <X className="text-gray-400 size-5 m-2" onClick={() => setIsOpen(false)} />
+            <button
+              type="button"
+              aria-label="Close options"
+              className="m-2"
+              onClick={() => setIsOpen(false)}
+            >
+              <Icon icon="x" size="lg" />
+            </button>
           </div>
           {options.map((option) => (
             <button
@@ -104,20 +94,7 @@ export const Select: React.FC<SelectProps> = ({
             >
               {option.label}
               {option.value === value && (
-                <svg
-                  className="ml-auto h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
+                <Icon icon="check" size="sm" className="ml-auto" />
               )}
             </button>
           ))}

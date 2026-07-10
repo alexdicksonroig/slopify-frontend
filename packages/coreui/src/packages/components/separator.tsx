@@ -1,4 +1,4 @@
-import { cn } from "src/lib/cn";
+import { cn } from "../../lib/cn";
 
 interface SeparatorProps extends React.HTMLAttributes<HTMLHRElement> {
   orientation?: "horizontal" | "vertical";

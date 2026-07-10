@@ -1,5 +1,10 @@
 {
-  "include": ["packages/**/*", "app/**/*"],
+  "include": ["packages/**/*", "app/**/*", ".react-router/types/**/*"],
+  "exclude": [
+    "packages/coreui/src/main.tsx",
+    "packages/coreui/vite.config.ts",
+    "packages/coreui/src/**/*.stories.tsx"
+  ],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -12,9 +17,11 @@
     "inlineSources": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "module": "CommonJS",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "moduleDetection": "force",
     "noFallthroughCasesInSwitch": false,
+    "noEmit": true,
     "noImplicitAny": true,
     "noUncheckedIndexedAccess": true,
     "removeComments": true,
@@ -26,8 +33,9 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": false,
     "target": "ESNext",
-    "types": ["node"],
+    "types": ["node", "vite/client"],
     "baseUrl": ".",
+    "rootDirs": [".", "./.react-router/types"],
     "paths": {
       "@library": ["packages/coreui/src"],
       "@app/*": ["app/*"]

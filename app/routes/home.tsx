@@ -1,9 +1,9 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { redirect } from "react-router";
 
-export default function Home({ loaderData }) {
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate("/products");
-  }, [navigate]);
+export function clientLoader() {
+  return redirect("/products");
+}
+
+export default function Home() {
+  return null;
 }

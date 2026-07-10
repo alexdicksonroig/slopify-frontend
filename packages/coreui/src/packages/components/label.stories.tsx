@@ -1,11 +1,11 @@
-import { Input, Label } from "./index";
 import type { Meta } from "@storybook/react";
+import { Input, Label } from "./index";
 
 export function Component() {
   return (
     <div>
-      <Label htmlFor="terms">Label for this input</Label>
-      <Input id="terms" />
+      <Label>Label for this input</Label>
+      <Input />
     </div>
   );
 }

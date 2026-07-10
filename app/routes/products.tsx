@@ -17,20 +17,14 @@ type ProductCard = Pick<
 >;
 
 function ProductCard({ id, name, imageSrc, imageAlt, price }: ProductCard) {
-  const href = `/product/${id}`;
-  const isTransitioning = false;
-  //const isTransitioning = useViewTransitionState(href);
-  if (isTransitioning) console.log("isTransitioning", isTransitioning, href);
-
   return (
     <Link to={`/product/${id}`}>
-      <div key={id} className="group relative">
+      <div className="group relative">
         <img
           alt={imageAlt}
           src={imageSrc}
           className={cn(
             "aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:[view-transition-name:none]",
-            { "[view-transition-name:product-image]": isTransitioning },
           )}
         />
         <div className="mt-4 flex justify-between">

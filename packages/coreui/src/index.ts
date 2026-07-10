@@ -1,26 +1,26 @@
-import { Carousel, Dialog, Select, Popover } from "./packages/collections";
+import { cn } from "./lib/cn";
+import { Dialog, Popover, Select } from "./packages/collections";
 import {
-  Drawer,
-  Overlay,
-  Table,
   Accordion,
   Button,
   Card,
+  Drawer,
+  Icon,
   Input,
   Label,
+  Overlay,
   Separator,
   Skeleton,
+  Table,
 } from "./packages/components";
-import { createStrictContext } from "./lib/createStrictContext";
-import { cn } from "./lib/cn";
 
 export {
   cn,
   Drawer,
+  Icon,
   Popover,
   Overlay,
   Table,
-  Carousel,
   Accordion,
   Button,
   Card,
@@ -30,5 +30,11 @@ export {
   Separator,
   Skeleton,
   Select,
-  createStrictContext,
 };
+
+export type {
+  IconName,
+  IconProps,
+  IconRotation,
+  IconSize,
+} from "./packages/components";

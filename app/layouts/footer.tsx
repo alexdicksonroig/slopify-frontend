@@ -25,19 +25,19 @@ export default function Footer() {
               </h3>
               <div className="space-y-2">
                 <a
-                  href="#"
+                  href="https://www.facebook.com"
                   className="block text-xs text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Facebook
                 </a>
                 <a
-                  href="#"
+                  href="https://x.com"
                   className="block text-xs text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Twitter
                 </a>
                 <a
-                  href="#"
+                  href="https://www.instagram.com"
                   className="block text-xs text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Instagram

@@ -1,5 +1,5 @@
-import { Skeleton } from "./index";
 import type { Meta } from "@storybook/react";
+import { Skeleton } from "./index";
 
 export function Component() {
   return (

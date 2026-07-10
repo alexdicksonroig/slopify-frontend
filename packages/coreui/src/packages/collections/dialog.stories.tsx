@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react";
 import { useState } from "react";
+import { Button, Card } from "../components";
 import { Dialog } from "./index";
-import { Card, Button } from "../components";
 
 export function Component() {
   const [open, setOpen] = useState(false);

@@ -6,6 +6,9 @@ import {
   AccordionTrigger,
 } from "./accordion";
 import { Button } from "./button";
+
+export type { ButtonProps } from "./button";
+
 import {
   Card,
   CardContent,
@@ -15,6 +18,7 @@ import {
   CardTitle,
 } from "./card";
 import { Drawer } from "./drawer";
+import { Icon } from "./icon";
 import { Input } from "./input";
 import { Label } from "./label";
 import { Overlay } from "./overlay";
@@ -62,8 +66,16 @@ export {
   Drawer,
   TableHOC as Table,
   Input,
+  Icon,
   Label,
   Overlay,
   Separator,
   Skeleton,
 };
+
+export type {
+  IconName,
+  IconProps,
+  IconRotation,
+  IconSize,
+} from "./icon.types";

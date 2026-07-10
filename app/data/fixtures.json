@@ -151,9 +151,25 @@
       }
     ],
     "colorOptions": [
-      { "value": "white", "label": "White", "bgClass": "bg-white", "outlineClass": "checked:outline-gray-400", "checked": true },
-      { "value": "gray", "label": "Gray", "bgClass": "bg-gray-200", "outlineClass": "checked:outline-gray-400" },
-      { "value": "black", "label": "Black", "bgClass": "bg-gray-900", "outlineClass": "checked:outline-gray-900" }
+      {
+        "value": "white",
+        "label": "White",
+        "bgClass": "bg-white",
+        "outlineClass": "checked:outline-gray-400",
+        "checked": true
+      },
+      {
+        "value": "gray",
+        "label": "Gray",
+        "bgClass": "bg-gray-200",
+        "outlineClass": "checked:outline-gray-400"
+      },
+      {
+        "value": "black",
+        "label": "Black",
+        "bgClass": "bg-gray-900",
+        "outlineClass": "checked:outline-gray-900"
+      }
     ],
     "sizeOptions": [
       { "value": "xxs", "label": "XXS", "disabled": true },
@@ -180,7 +196,13 @@
       { "label": "Price: Low to High", "value": "price-asc" },
       { "label": "Price: High to Low", "value": "price-desc" }
     ],
-    "categories": ["Totes", "Backpacks", "Travel Bags", "Hip Bags", "Laptop Sleeves"],
+    "categories": [
+      "Totes",
+      "Backpacks",
+      "Travel Bags",
+      "Hip Bags",
+      "Laptop Sleeves"
+    ],
     "colors": ["White", "Beige", "Blue", "Brown", "Green", "Purple"],
     "sizes": ["XS", "S", "M", "L", "XL", "2XL"]
   },

@@ -1,7 +1,7 @@
-import { Separator, Button } from "../components";
-import { Popover } from "./index";
 import type { Meta } from "@storybook/react";
 import React from "react";
+import { Button, type Separator } from "../components";
+import { Popover } from "./index";
 
 export function Component() {
   const [open, setOpen] = React.useState(false);

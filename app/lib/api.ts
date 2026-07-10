@@ -4,7 +4,9 @@ const baseOrigin = "https://slopify-backend-763213450884.us-east1.run.app/";
 
 // Use environment variable to toggle mock data (saves GCP credits)
 // Set VITE_USE_MOCK_DATA=true in .env to enable mock mode
-const USE_MOCK_DATA = (import.meta as unknown as { env: Record<string, string> }).env.VITE_USE_MOCK_DATA === "true";
+const USE_MOCK_DATA =
+  (import.meta as unknown as { env: Record<string, string> }).env
+    .VITE_USE_MOCK_DATA === "true";
 
 // Endpoints that have real backend implementations
 const REAL_ENDPOINTS = ["products/"];
@@ -14,7 +16,9 @@ export const get = async (
   params?: Record<string, string>,
   onError = console.error,
 ) => {
-  const isRealEndpoint = REAL_ENDPOINTS.some(ep => path === ep || path.startsWith(ep));
+  const isRealEndpoint = REAL_ENDPOINTS.some(
+    (ep) => path === ep || path.startsWith(ep),
+  );
 
   if (USE_MOCK_DATA || !isRealEndpoint) {
     return handleMockGet(path);
@@ -31,7 +35,8 @@ export const get = async (
     .then((result) => {
       if (!result.ok) {
         throw new Error(
-          `${result.status} GET request failed: ${result.statusText
+          `${result.status} GET request failed: ${
+            result.statusText
           }. URL: ${url.toString()}`,
           { cause: result },
         );
@@ -63,7 +68,8 @@ export const post = async (
     .then((result) => {
       if (!result.ok) {
         throw new Error(
-          `${result.status} POST request failed: ${result.statusText
+          `${result.status} POST request failed: ${
+            result.statusText
           }. URL: ${url.toString()}`,
           { cause: result },
         );
@@ -84,7 +90,7 @@ function handleMockGet(path: string) {
   if (path.startsWith("products/") && path !== "products/") {
     const id = parseInt(path.split("/")[1] ?? "0", 10);
     const products = fixtures["products/"] as { id: number }[];
-    const product = products.find(p => p.id === id);
+    const product = products.find((p) => p.id === id);
     return product ? { ...product, ...fixtures["product-detail"] } : null;
   }
 

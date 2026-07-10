@@ -1,8 +1,7 @@
+import { get } from "@app/lib/api";
+import { Button, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Button, Select } from "@library";
-import { Check } from "lucide-react";
-import { get } from "@app/lib/api";
 
 type CartItem = {
   id: number;
@@ -40,21 +39,10 @@ function CartItemComponent({
         <button
           type="button"
           onClick={() => onRemove(item.id)}
+          aria-label={`Remove ${item.name} from cart`}
           className="absolute -top-1 right-0 font-medium text-gray-400 hover:text-gray-500"
         >
-          <svg
-            className="h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <Icon icon="x" size="lg" />
         </button>
 
         <div className="space-y-3">
@@ -88,23 +76,12 @@ function CartItemComponent({
 
             {item.inStock ? (
               <p className="flex items-center gap-1 text-sm text-gray-600">
-                <Check className="h-4 w-4 text-green-500" />
+                <Icon icon="check" size="sm" />
                 In stock
               </p>
             ) : (
               <p className="flex items-center text-sm text-gray-500">
-                <svg
-                  className="mr-1.5 h-4 w-4 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <circle cx="10" cy="10" r="8" opacity="0.3" />
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 9a1 1 0 012 0v4a1 1 0 11-2 0V9zm1-5a1 1 0 100 2 1 1 0 000-2z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <Icon icon="info" size="sm" className="mr-1.5" />
                 {item.shippingTime}
               </p>
             )}
@@ -147,13 +124,7 @@ function OrderSummary({
               type="button"
               className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-gray-200 text-gray-400 hover:bg-gray-300"
             >
-              <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <Icon icon="info" size="xxs" />
             </button>
           </div>
           <p className="text-sm font-medium text-gray-900">
@@ -168,13 +139,7 @@ function OrderSummary({
               type="button"
               className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-gray-200 text-gray-400 hover:bg-gray-300"
             >
-              <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <Icon icon="info" size="xxs" />
             </button>
           </div>
           <p className="text-sm font-medium text-gray-900">${tax.toFixed(2)}</p>
@@ -188,10 +153,7 @@ function OrderSummary({
         </div>
       </div>
 
-      <Button
-        onClick={onCheckout}
-        className="mt-6 h-12 w-full"
-      >
+      <Button onClick={onCheckout} className="mt-6 h-12 w-full">
         Checkout
       </Button>
     </div>

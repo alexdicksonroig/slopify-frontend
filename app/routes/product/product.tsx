@@ -1,19 +1,30 @@
-import { useEffect, useState } from "react";
+import { get } from "@app/lib/api";
 import { Button } from "@library";
+import { useEffect, useState } from "react";
 import { ColorSelector } from "./components/ColorSelector";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
 import { ProductInfo } from "./components/ProductInfo";
 import { SizeSelector } from "./components/SizeSelector";
-import { get } from "@app/lib/api";
 
 type ProductData = {
   id: number;
   name: string;
   price: string;
   images: { src: string; alt: string; className: string }[];
-  colorOptions: { value: string; label: string; bgClass: string; outlineClass: string; checked?: boolean }[];
-  sizeOptions: { value: string; label: string; disabled?: boolean; checked?: boolean }[];
+  colorOptions: {
+    value: string;
+    label: string;
+    bgClass: string;
+    outlineClass: string;
+    checked?: boolean;
+  }[];
+  sizeOptions: {
+    value: string;
+    label: string;
+    disabled?: boolean;
+    checked?: boolean;
+  }[];
   highlights: string[];
 };
 
@@ -22,13 +33,18 @@ export default function Product({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     get(`products/${params.id}`).then((data) => {
-      if (data) setProduct(data as ProductData);
+      setProduct(data);
     });
   }, [params.id]);
 
   if (!product) return null;
 
-  const { images: productImages, colorOptions, sizeOptions, highlights: productHighlights } = product;
+  const {
+    images: productImages,
+    colorOptions,
+    sizeOptions,
+    highlights: productHighlights,
+  } = product;
 
   return (
     <div className="md:pt-6">
@@ -42,15 +58,12 @@ export default function Product({ params }: { params: { id: string } }) {
         </div>
 
         <div className="mt-4 lg:row-span-3 lg:mt-0">
-          <ProductInfo title="Basic Tee 6-Pack" price="$192" />
+          <ProductInfo price="$192" />
           <form className="mt-10">
             <ColorSelector colors={colorOptions} />
             <SizeSelector sizes={sizeOptions} />
 
-            <Button
-              type="submit"
-              className="mt-10 h-12 w-full uppercase"
-            >
+            <Button type="submit" className="mt-10 h-12 w-full uppercase">
               Add to bag
             </Button>
           </form>

@@ -1,4 +1,4 @@
-import { cn } from "src/lib/cn";
+import { cn } from "../../lib/cn";
 import { Overlay } from "../components";
 
 export type PopoverProps = {

@@ -8,8 +8,6 @@ export function hideArgs(properties: string[]) {
   );
 }
 
-export function StoryConfig() {}
-
 export const createNameSpacedComponent = <
   T extends React.ElementType,
   U extends Record<
@@ -20,8 +18,6 @@ export const createNameSpacedComponent = <
   mainComponent: T,
   composedComponents: U,
 ) => {
-  Object.keys(composedComponents).forEach((key) => {
-    (mainComponent as any)[key] = composedComponents[key];
-  });
+  Object.assign(mainComponent, composedComponents);
   return mainComponent as T & U;
 };

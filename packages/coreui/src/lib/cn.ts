@@ -1,30 +1,38 @@
-import { twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge";
 
-type ClassValue = ClassArray | ClassDictionary | string | number | bigint | null | boolean | undefined;
-type ClassDictionary = Record<string, any>;
+type ClassValue =
+  | ClassArray
+  | ClassDictionary
+  | string
+  | number
+  | bigint
+  | null
+  | boolean
+  | undefined;
+type ClassDictionary = Record<string, unknown>;
 type ClassArray = ClassValue[];
 
-function toVal(mix: ClassValue) {
-  var k, y, str = '';
+function toVal(mix: ClassValue): string {
+  let str = "";
 
-  if (typeof mix === 'string' || typeof mix === 'number') {
+  if (typeof mix === "string" || typeof mix === "number") {
     str += mix;
-  } else if (typeof mix === 'object') {
+  } else if (mix && typeof mix === "object") {
     if (Array.isArray(mix)) {
-      var len = mix.length;
-      for (k = 0; k < len; k++) {
-        if (mix[k]) {
-          if (y = toVal(mix[k])) {
-            str && (str += ' ');
-            str += y;
+      for (const item of mix) {
+        if (item) {
+          const value = toVal(item);
+          if (value) {
+            if (str) str += " ";
+            str += value;
           }
         }
       }
     } else {
-      for (y in mix) {
-        if (mix[y]) {
-          str && (str += ' ');
-          str += y;
+      for (const key in mix) {
+        if (mix[key]) {
+          if (str) str += " ";
+          str += key;
         }
       }
     }
@@ -34,12 +42,13 @@ function toVal(mix: ClassValue) {
 }
 
 function clsx(...inputs: ClassValue[]): string {
-  var i = 0, tmp, x, str = '', len = inputs.length;
-  for (; i < len; i++) {
-    if (tmp = inputs[i]) {
-      if (x = toVal(tmp)) {
-        str && (str += ' ');
-        str += x
+  let str = "";
+  for (const input of inputs) {
+    if (input) {
+      const value = toVal(input);
+      if (value) {
+        if (str) str += " ";
+        str += value;
       }
     }
   }
@@ -47,5 +56,5 @@ function clsx(...inputs: ClassValue[]): string {
 }
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(...inputs));
 }

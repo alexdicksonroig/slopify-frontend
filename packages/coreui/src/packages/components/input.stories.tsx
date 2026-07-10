@@ -1,5 +1,5 @@
-import { Input } from "./index";
 import type { Meta } from "@storybook/react";
+import { Input } from "./index";
 
 export function Component({ ...props }) {
   return <Input type="date" placeholder="Write something..." {...props} />;

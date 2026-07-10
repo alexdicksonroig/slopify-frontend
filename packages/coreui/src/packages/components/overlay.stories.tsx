@@ -1,5 +1,5 @@
-import { Overlay } from "./index";
 import type { Meta } from "@storybook/react";
+import { Overlay } from "./index";
 
 export function Component({ ...props }) {
   return <Overlay {...props} />;

@@ -1,9 +1,8 @@
-import { ArrowLeft, ArrowRight, Menu, ShoppingBag } from "lucide-react";
+import { get } from "@app/lib/api";
+import { Button, cn, Drawer, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
-import { Button, cn, Drawer, Select } from "@library";
 import Footer from "./footer";
-import { get } from "@app/lib/api";
 
 type SettingsData = {
   languageOptions: { label: string; value: string }[];
@@ -49,15 +48,15 @@ export default function Example() {
         <div className="px-4 py-6 space-y-6">
           <div className="-m-2 p-2">
             <a
-              href="#"
+              href="/"
               className="flex items-center gap-1 text-sm font-medium text-gray-900"
             >
               Sign in
-              <ArrowRight className="h-4 w-4" />
+              <Icon icon="arrow-right" size="sm" />
             </a>
           </div>
           <div className="-m-2 p-2">
-            <a href="#" className="text-sm font-medium text-gray-900">
+            <a href="/" className="text-sm font-medium text-gray-900">
               Create account
             </a>
           </div>
@@ -66,7 +65,6 @@ export default function Example() {
         <div className="border-t border-gray-200 px-4 py-6 space-y-6">
           <div className="-m-2 p-2">
             <Select
-              id="currency"
               value={currency}
               onChange={setCurrency}
               options={currencyOptions}
@@ -78,7 +76,6 @@ export default function Example() {
           </div>
           <div className="-m-2 p-2">
             <Select
-              id="language"
               value={language}
               onChange={setLanguage}
               options={languageOptions}
@@ -97,19 +94,34 @@ export default function Example() {
             font-medium text-white"
         >
           {/* Logo */}
-          <Button onClick={() => navigate("/")} size="icon" variant="ghost" className="z-4 ml-4 hidden lg:flex hover:bg-transparent">
+          <Button
+            onClick={() => navigate("/")}
+            size="icon"
+            variant="ghost"
+            className="z-4 ml-4 hidden lg:flex hover:bg-transparent"
+          >
             <img
               alt=""
               src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=white"
               className="h-4 w-auto"
             />
           </Button>
-          <div className={cn("absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100", { "invisible opacity-0": !showFirstText })}>
+          <div
+            className={cn(
+              "absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
+              { "invisible opacity-0": !showFirstText },
+            )}
+          >
             <p className="normal-case body-3">
               Get free delivery on orders over 30€
             </p>
           </div>
-          <div className={cn("absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100", { "invisible opacity-0": showFirstText })}>
+          <div
+            className={cn(
+              "absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
+              { "invisible opacity-0": showFirstText },
+            )}
+          >
             <p className="normal-case body-3">
               All prices include IVA where applicable
             </p>
@@ -122,12 +134,8 @@ export default function Example() {
         >
           <div className="flex h-12 items-center">
             {location.pathname !== "/" && location.pathname !== "/products" && (
-              <Button
-                onClick={() => navigate(-1)}
-                size="icon"
-                variant="ghost"
-              >
-                <ArrowLeft className="h-5 w-5" stroke="currentColor" />
+              <Button onClick={() => navigate(-1)} size="icon" variant="ghost">
+                <Icon icon="arrow-left" size="lg" />
                 <span className="sr-only">Back</span>
               </Button>
             )}
@@ -138,7 +146,7 @@ export default function Example() {
               variant="ghost"
               className="lg:hidden"
             >
-              <Menu className="h-5 w-5" stroke="currentColor" />
+              <Icon icon="menu" size="lg" />
               <span className="sr-only">Menu</span>
             </Button>
 
@@ -160,23 +168,23 @@ export default function Example() {
                   lg:space-x-6"
               >
                 <a
-                  href="#"
+                  href="/"
                   className="text-sm font-medium text-gray-700 hover:text-gray-800"
                 >
                   Create account
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="text-sm font-medium text-gray-700 hover:text-gray-800 flex items-center gap-1"
                 >
                   Sign in
-                  <ArrowRight className="h-4 w-4" />
+                  <Icon icon="arrow-right" size="sm" />
                 </a>
               </div>
 
               <div className="hidden lg:ml-8 lg:flex">
                 <a
-                  href="#"
+                  href="/"
                   className="flex items-center text-gray-700 hover:text-gray-800"
                 >
                   <img
@@ -192,16 +200,16 @@ export default function Example() {
               {/* Cart */}
               <div className="flow-root lg:ml-6">
                 <Button onClick={handleCartClick} variant="ghost" size="icon">
-                  <ShoppingBag className="h-5 w-5 text-gray-700 hover:text-gray-800" />
+                  <Icon icon="shopping-bag" size="lg" />
                   <span className="sr-only">items in cart, view bag</span>
                 </Button>
               </div>
             </div>
           </div>
         </nav>
-      </header >
+      </header>
       <Outlet />
       <Footer />
-    </div >
+    </div>
   );
 }

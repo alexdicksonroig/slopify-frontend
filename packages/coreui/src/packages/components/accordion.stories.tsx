@@ -1,5 +1,5 @@
-import { Accordion } from "./index";
 import type { Meta } from "@storybook/react";
+import { Accordion } from "./index";
 
 export function Component() {
   return (

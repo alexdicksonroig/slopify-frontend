@@ -1,5 +1,5 @@
-import { cn } from "src/lib/cn";
-import { Overlay, Card } from "../components";
+import { cn } from "../../lib/cn";
+import { Card, Overlay } from "../components";
 
 export type DialogProps = {
   open: boolean;

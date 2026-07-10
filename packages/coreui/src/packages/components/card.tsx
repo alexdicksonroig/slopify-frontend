@@ -1,4 +1,4 @@
-import { cn } from "src/lib/cn";
+import { cn } from "../../lib/cn";
 
 const Card = ({
   className,
@@ -17,10 +17,7 @@ const CardHeader = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
-    {...props}
-  />
+  <div className={cn("flex flex-col space-y-1.5 p-6", className)} {...props} />
 );
 
 const CardTitle = ({
@@ -37,10 +34,7 @@ const CardDescription = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn("text-sm text-muted-foreground", className)}
-    {...props}
-  />
+  <div className={cn("text-sm text-muted-foreground", className)} {...props} />
 );
 
 const CardContent = ({

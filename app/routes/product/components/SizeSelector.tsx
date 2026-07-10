@@ -20,16 +20,13 @@ export function SizeSelector({
     <div className="mt-10">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-medium text-gray-900">Size</h3>
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            onSizeGuideClick?.();
-          }}
+        <button
+          type="button"
+          onClick={onSizeGuideClick}
           className="text-sm font-medium text-primary hover:text-primary-100"
         >
           Size guide
-        </a>
+        </button>
       </div>
 
       <fieldset aria-label="Choose a size" className="mt-4">

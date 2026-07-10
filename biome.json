@@ -1,5 +1,12 @@
 {
   "formatter": {
     "indentStyle": "space"
+  },
+  "linter": {
+    "rules": {
+      "suspicious": {
+        "noUnknownAtRules": "off"
+      }
+    }
   }
 }

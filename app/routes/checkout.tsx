@@ -1,22 +1,35 @@
-import { Button, Input, Label } from "@library";
-
 import * as Api from "@app/lib/api";
+import { Button, Input, Label } from "@library";
 import {
+  type CheckoutContextValue,
   CheckoutProvider,
   PaymentElement,
   useCheckout,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useState } from "react";
+import {
+  type ChangeEvent,
+  type Dispatch,
+  type FormEvent,
+  type SetStateAction,
+  useState,
+} from "react";
 
-const validateEmail = async (email, checkout) => {
+const validateEmail = async (email: string, checkout: CheckoutContextValue) => {
   const updateResult = await checkout.updateEmail(email);
   const isValid = updateResult.type !== "error";
 
   return { isValid, message: !isValid ? updateResult.error.message : null };
 };
 
-const EmailInput = ({ email, setEmail, error, setError }) => {
+type EmailInputProps = {
+  email: string;
+  setEmail: Dispatch<SetStateAction<string>>;
+  error: string | null;
+  setError: Dispatch<SetStateAction<string | null>>;
+};
+
+const EmailInput = ({ email, setEmail, error, setError }: EmailInputProps) => {
   const checkout = useCheckout();
 
   const handleBlur = async () => {
@@ -30,9 +43,9 @@ const EmailInput = ({ email, setEmail, error, setError }) => {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setError(null);
-    setEmail(e.target.value);
+    setEmail(event.target.value);
   };
 
   return (
@@ -40,7 +53,6 @@ const EmailInput = ({ email, setEmail, error, setError }) => {
       <Label className="mb-2">
         Email
         <Input
-          id="email"
           type="text"
           value={email}
           onChange={handleChange}
@@ -48,7 +60,7 @@ const EmailInput = ({ email, setEmail, error, setError }) => {
           className={error ? "error" : ""}
         />
       </Label>
-      {error && <div id="email-errors">{error}</div>}
+      {error && <div>{error}</div>}
     </>
   );
 };
@@ -57,12 +69,12 @@ const CheckoutForm = () => {
   const checkout = useCheckout();
 
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState(null);
-  const [message, setMessage] = useState(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     setIsLoading(true);
 
@@ -97,8 +109,8 @@ const CheckoutForm = () => {
         setError={setEmailError}
       />
       <Label>Payment</Label>
-      <PaymentElement id="payment-element" />
-      <Button disabled={isLoading} id="submit" className="mt-2">
+      <PaymentElement />
+      <Button disabled={isLoading} className="mt-2">
         {isLoading ? (
           <div className="spinner"></div>
         ) : (
@@ -106,7 +118,7 @@ const CheckoutForm = () => {
         )}
       </Button>
       {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      {message && <div>{message}</div>}
     </form>
   );
 };
@@ -115,12 +127,7 @@ const stripePromise = loadStripe(
   "pk_test_51RxoPKBewlYHY4Wou29sXv0IuWRPFeZmdYqW9087Uf48B4znnG21vJF8mWMaLGUo6YQQs8HG6K7ZIq6ysvyoQps800xC6Q8nXc",
 );
 
-export async function clientLoader({ params }) {
-  const products = await Api.get("products/");
-  return { products };
-}
-
-export default function Payment({ loaderData }) {
+export default function Payment() {
   return (
     <CheckoutProvider
       stripe={stripePromise}

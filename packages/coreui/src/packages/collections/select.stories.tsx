@@ -1,6 +1,6 @@
-import { Select } from "./index";
 import type { Meta } from "@storybook/react";
 import { useState } from "react";
+import { Select } from "./index";
 
 export function Component({ ...props }) {
   const [value, setValue] = useState<string>("");

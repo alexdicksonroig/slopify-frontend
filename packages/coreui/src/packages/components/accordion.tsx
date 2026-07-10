@@ -1,21 +1,20 @@
-import { createStrictContext } from "../../lib/createStrictContext";
-import { useState } from "react";
-import { cn } from "src/lib/cn";
+import { createContext, useContext, useState } from "react";
+import { cn } from "../../lib/cn";
 
 type AccordionContext = {
   openItem: string | undefined;
   setOpenItem: React.Dispatch<React.SetStateAction<string | undefined>>;
-  closeOnContentClick?: boolean;
 };
 
-const [useAccordionContext, AccordionProvider] =
-  createStrictContext<AccordionContext>();
+const AccordionContext = createContext<AccordionContext>({
+  openItem: undefined,
+  setOpenItem: () => {},
+});
 
 type AccordionProps = {
   children: React.ReactNode;
   className?: string;
   defaultOpenItem?: string;
-  closeOnContentClick?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type AccordionItemProps = {
@@ -23,7 +22,7 @@ type AccordionItemProps = {
   className?: string;
   itemId: string;
   headerText: string;
-} & React.HTMLAttributes<HTMLButtonElement>;
+} & React.HTMLAttributes<HTMLDivElement>;
 
 type AccordionTriggerProps = {
   isOpen: boolean;
@@ -37,17 +36,16 @@ const Accordion: React.FC<AccordionProps> = ({
   children,
   className,
   defaultOpenItem,
-  closeOnContentClick = true,
   ...props
 }) => {
   const [openItem, setOpenItem] = useState<string | undefined>(defaultOpenItem);
 
   return (
-    <AccordionProvider value={{ openItem, setOpenItem, closeOnContentClick }}>
+    <AccordionContext value={{ openItem, setOpenItem }}>
       <div className={cn("flex flex-col", className)} {...props}>
         {children}
       </div>
-    </AccordionProvider>
+    </AccordionContext>
   );
 };
 
@@ -58,29 +56,19 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   headerText,
   ...props
 }) => {
-  const { openItem, setOpenItem, closeOnContentClick } = useAccordionContext();
+  const { openItem, setOpenItem } = useContext(AccordionContext);
   const isOpen = openItem === itemId;
 
   const handleToggle = () => {
     setOpenItem(isOpen ? undefined : itemId);
   };
 
-  const handleContentClick = (e: React.MouseEvent) => {
-    if (!closeOnContentClick) {
-      e.stopPropagation();
-    }
-  };
-
   return (
     <div className={cn("border-b", className)} {...props}>
-      <button
-        className="w-full"
-        onClick={handleToggle}
-        type="button"
-      >
+      <button className="w-full" onClick={handleToggle} type="button">
         <AccordionTrigger isOpen={isOpen}>{headerText}</AccordionTrigger>
       </button>
-      <div onClick={handleContentClick}>
+      <div>
         <AccordionContent isOpen={isOpen}>{children}</AccordionContent>
       </div>
     </div>
