@@ -1,8 +1,10 @@
+import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 
 export default function Return() {
+  const t = useTranslate();
   const [searchParams] = useSearchParams();
   const [status, setStatus] = useState<string>("");
   const sessionId = searchParams.get("session_id");
@@ -20,13 +22,9 @@ export default function Return() {
 
   return (
     <div className="mx-5 mt-5">
-      {status === "" && <p>Checking payment status...</p>}
-      {status === "complete" && (
-        <p>Your payment was successful! You can now close this window.</p>
-      )}
-      {status === "error" && (
-        <p>Something went wrong while checking your payment.</p>
-      )}
+      {status === "" && <p>{t("return.checking")}</p>}
+      {status === "complete" && <p>{t("return.success")}</p>}
+      {status === "error" && <p>{t("return.error")}</p>}
     </div>
   );
 }

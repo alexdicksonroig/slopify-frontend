@@ -1,3 +1,5 @@
+import { useTranslate } from "@app/i18n";
+
 interface SizeOption {
   value: string;
   label: string;
@@ -16,20 +18,24 @@ export function SizeSelector({
   onSizeGuideClick,
   onChange,
 }: SizeSelectorProps) {
+  const t = useTranslate();
+
   return (
     <div className="mt-10">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-gray-900">Size</h3>
+        <h3 className="text-sm font-medium text-gray-900">
+          {t("product.size")}
+        </h3>
         <button
           type="button"
           onClick={onSizeGuideClick}
           className="text-sm font-medium text-primary hover:text-primary-100"
         >
-          Size guide
+          {t("product.size-guide")}
         </button>
       </div>
 
-      <fieldset aria-label="Choose a size" className="mt-4">
+      <fieldset aria-label={t("product.choose-size")} className="mt-4">
         <div className="grid grid-cols-4 gap-3">
           {sizes.map((size) => (
             <label

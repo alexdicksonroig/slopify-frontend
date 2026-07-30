@@ -1,3 +1,4 @@
+import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
 import { cn } from "@library";
 import { Link, useLoaderData } from "react-router";
@@ -33,6 +34,8 @@ function ProductCard({
   thumbnailAlt,
   price,
 }: ProductCardProps) {
+  const t = useTranslate();
+
   return (
     <Link to={`/product/${id}`}>
       <div className="group relative">
@@ -46,7 +49,7 @@ function ProductCard({
           />
         ) : (
           <div className="flex aspect-square w-full items-center justify-center rounded-md bg-gray-200 text-sm text-gray-500">
-            No thumbnail
+            {t("product.no-thumbnail")}
           </div>
         )}
         <div className="mt-4 flex justify-between">
@@ -69,7 +72,8 @@ export async function clientLoader() {
       thumbnailUrl: product.thumbnailUrl ?? product.imageSrc ?? null,
       thumbnailAlt: product.imageAlt ?? product.name,
       price:
-        product.price ?? priceFormatter.format((product.priceInCents ?? 0) / 100),
+        product.price ??
+        priceFormatter.format((product.priceInCents ?? 0) / 100),
     }),
   );
 

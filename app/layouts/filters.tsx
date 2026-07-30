@@ -1,3 +1,4 @@
+import { useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { Accordion, Button, Drawer, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
@@ -18,89 +19,94 @@ const FilterContent = ({
   categories: string[];
   colors: string[];
   sizes: string[];
-}) => (
-  <>
-    {/* Categories */}
-    <div className="space-y-4 pb-6 border-b border-gray-200">
-      {categories.map((category) => (
-        <button
-          key={category}
-          type="button"
-          className="block text-sm text-gray-900 hover:text-gray-700"
-        >
-          {category}
-        </button>
-      ))}
-    </div>
+}) => {
+  const t = useTranslate();
 
-    {/* Filter Accordions */}
-    <div className="space-y-6">
-      <Accordion>
-        <Accordion.Item itemId="color" headerText="Color">
-          <div className="space-y-4">
-            {colors.map((color) => (
-              <div key={color} className="flex items-center">
-                <input
-                  id={`color-${color}`}
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-primary"
-                />
-                <label
-                  htmlFor={`color-${color}`}
-                  className="ml-3 text-sm text-gray-600"
-                >
-                  {color}
-                </label>
-              </div>
-            ))}
-          </div>
-        </Accordion.Item>
+  return (
+    <>
+      {/* Categories */}
+      <div className="space-y-4 pb-6 border-b border-gray-200">
+        {categories.map((category) => (
+          <button
+            key={category}
+            type="button"
+            className="block text-sm text-gray-900 hover:text-gray-700"
+          >
+            {category}
+          </button>
+        ))}
+      </div>
 
-        <Accordion.Item itemId="category" headerText="Category">
-          <div className="space-y-4">
-            {categories.map((category) => (
-              <div key={category} className="flex items-center">
-                <input
-                  id={`filter-${category}`}
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-primary"
-                />
-                <label
-                  htmlFor={`filter-${category}`}
-                  className="ml-3 text-sm text-gray-600"
-                >
-                  {category}
-                </label>
-              </div>
-            ))}
-          </div>
-        </Accordion.Item>
+      {/* Filter Accordions */}
+      <div className="space-y-6">
+        <Accordion>
+          <Accordion.Item itemId="color" headerText={t("filters.color")}>
+            <div className="space-y-4">
+              {colors.map((color) => (
+                <div key={color} className="flex items-center">
+                  <input
+                    id={`color-${color}`}
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-primary"
+                  />
+                  <label
+                    htmlFor={`color-${color}`}
+                    className="ml-3 text-sm text-gray-600"
+                  >
+                    {color}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </Accordion.Item>
 
-        <Accordion.Item itemId="size" headerText="Size">
-          <div className="space-y-4">
-            {sizes.map((size) => (
-              <div key={size} className="flex items-center">
-                <input
-                  id={`size-${size}`}
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-primary"
-                />
-                <label
-                  htmlFor={`size-${size}`}
-                  className="ml-3 text-sm text-gray-600"
-                >
-                  {size}
-                </label>
-              </div>
-            ))}
-          </div>
-        </Accordion.Item>
-      </Accordion>
-    </div>
-  </>
-);
+          <Accordion.Item itemId="category" headerText={t("filters.category")}>
+            <div className="space-y-4">
+              {categories.map((category) => (
+                <div key={category} className="flex items-center">
+                  <input
+                    id={`filter-${category}`}
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-primary"
+                  />
+                  <label
+                    htmlFor={`filter-${category}`}
+                    className="ml-3 text-sm text-gray-600"
+                  >
+                    {category}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </Accordion.Item>
+
+          <Accordion.Item itemId="size" headerText={t("filters.size")}>
+            <div className="space-y-4">
+              {sizes.map((size) => (
+                <div key={size} className="flex items-center">
+                  <input
+                    id={`size-${size}`}
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-primary"
+                  />
+                  <label
+                    htmlFor={`size-${size}`}
+                    className="ml-3 text-sm text-gray-600"
+                  >
+                    {size}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </Accordion.Item>
+        </Accordion>
+      </div>
+    </>
+  );
+};
 
 export default function Filters() {
+  const t = useTranslate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [filters, setFilters] = useState<FiltersData | null>(null);
 
@@ -116,7 +122,9 @@ export default function Filters() {
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} fromRight>
         <div className="px-4 py-6">
-          <h2 className="text-lg font-medium text-gray-900 mb-6">Filters</h2>
+          <h2 className="text-lg font-medium text-gray-900 mb-6">
+            {t("filters.title")}
+          </h2>
           <FilterContent
             categories={categories}
             colors={colors}
@@ -127,12 +135,12 @@ export default function Filters() {
 
       <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-3 mb-6">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
-          New Arrivals
+          {t("filters.new-arrivals")}
         </h1>
         <div className="flex items-center gap-4">
           <Select
             options={sortOptions}
-            placeholder="Sort"
+            placeholder={t("filters.sort")}
             variant="link"
             className="px-2"
           />
@@ -141,7 +149,7 @@ export default function Filters() {
             className="text-muted-foreground px-2 lg:hidden"
             onClick={() => setDrawerOpen(true)}
           >
-            <span>Filter</span>
+            <span>{t("filters.filter")}</span>
             <Icon icon="list-filter" />
           </Button>
         </div>

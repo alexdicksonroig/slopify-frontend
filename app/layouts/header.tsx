@@ -1,3 +1,4 @@
+import { type Language, useLanguage, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { Button, cn, Drawer, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
@@ -11,8 +12,8 @@ type SettingsData = {
 
 export default function Example() {
   const [open, setOpen] = useState(false);
-  const [language, setLanguage] = useState("en");
-  const [currency, setCurrency] = useState("cad");
+  const { language, setLanguage } = useLanguage();
+  const t = useTranslate();
   const [settings, setSettings] = useState<SettingsData | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,7 +41,6 @@ export default function Example() {
   }, []);
 
   const languageOptions = settings?.languageOptions ?? [];
-  const currencyOptions = settings?.currencyOptions ?? [];
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -77,9 +77,9 @@ export default function Example() {
           <div className="-m-2 p-2">
             <Select
               value={language}
-              onChange={setLanguage}
+              onChange={(value) => setLanguage(value as Language)}
               options={languageOptions}
-              placeholder="Select language"
+              placeholder={t("header.language")}
               variant="link"
               size="sm"
               className="w-24"
@@ -88,7 +88,7 @@ export default function Example() {
         </div>
       </Drawer>
       <header className="bg-white ">
-        <title>Slopify</title>
+        <title>Store</title>
         <div
           className="relative flex h-10 items-center justify-between bg-indigo-700 text-sm
             font-medium text-white"
@@ -99,9 +99,7 @@ export default function Example() {
               { "invisible opacity-0": !showFirstText },
             )}
           >
-            <p className="normal-case body-3">
-              Get free delivery on orders over 30€
-            </p>
+            <p className="normal-case body-3">{t("header.delivery")}</p>
           </div>
           <div
             className={cn(
@@ -109,21 +107,19 @@ export default function Example() {
               { "invisible opacity-0": showFirstText },
             )}
           >
-            <p className="normal-case body-3">
-              All prices include IVA where applicable
-            </p>
+            <p className="normal-case body-3">{t("header.tax")}</p>
           </div>
           <div />
         </div>
         <nav
-          aria-label="Top"
+          aria-label={t("header.top")}
           className="border-b border-gray-200 px-4 sm:px-6 lg:px-8"
         >
           <div className="flex h-12 items-center">
             {location.pathname !== "/" && location.pathname !== "/products" && (
               <Button onClick={() => navigate(-1)} size="icon" variant="ghost">
                 <Icon icon="arrow-left" size="lg" />
-                <span className="sr-only">Back</span>
+                <span className="sr-only">{t("header.back")}</span>
               </Button>
             )}
 
@@ -134,13 +130,13 @@ export default function Example() {
               className="md:hidden"
             >
               <Icon icon="menu" size="lg" />
-              <span className="sr-only">Menu</span>
+              <span className="sr-only">{t("header.menu")}</span>
             </Button>
 
             {/* Logo */}
             <div className="flex">
               <Button onClick={() => navigate("/")} size="icon" variant="ghost">
-                <span className="sr-only">Your Company</span>
+                <span className="sr-only">{t("header.company")}</span>
                 <img
                   alt=""
                   src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=black"
@@ -187,9 +183,9 @@ export default function Example() {
               */}
               <Select
                 value={language}
-                onChange={setLanguage}
+                onChange={(value) => setLanguage(value as Language)}
                 options={languageOptions}
-                placeholder="Select language"
+                placeholder={t("header.language")}
                 variant="link"
                 size="sm"
                 className="w-24 mr-2 hidden md:flex"
@@ -198,7 +194,7 @@ export default function Example() {
               <div className="flow-root lg:ml-6">
                 <Button onClick={handleCartClick} variant="ghost" size="icon">
                   <Icon icon="shopping-bag" size="lg" />
-                  <span className="sr-only">items in cart, view bag</span>
+                  <span className="sr-only">{t("header.cart")}</span>
                 </Button>
               </div>
             </div>

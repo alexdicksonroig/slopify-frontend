@@ -1,3 +1,4 @@
+import { useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { Button, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
@@ -25,6 +26,8 @@ function CartItemComponent({
   onQuantityChange: (id: number, quantity: number) => void;
   onRemove: (id: number) => void;
 }) {
+  const t = useTranslate();
+
   return (
     <li className="flex border-b border-gray-200 py-6">
       <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -39,7 +42,7 @@ function CartItemComponent({
         <button
           type="button"
           onClick={() => onRemove(item.id)}
-          aria-label={`Remove ${item.name} from cart`}
+          aria-label={t("cart.remove", { item: item.name })}
           className="absolute -top-1 right-0 font-medium text-gray-400 hover:text-gray-500"
         >
           <Icon icon="x" size="lg" />
@@ -77,7 +80,7 @@ function CartItemComponent({
             {item.inStock ? (
               <p className="flex items-center gap-1 text-sm text-gray-600">
                 <Icon icon="check" size="sm" />
-                In stock
+                {t("cart.in-stock")}
               </p>
             ) : (
               <p className="flex items-center text-sm text-gray-500">
@@ -105,13 +108,17 @@ function OrderSummary({
   total: number;
   onCheckout: () => void;
 }) {
+  const t = useTranslate();
+
   return (
     <div className="rounded-lg border border-gray-200 bg-white px-6 py-6">
-      <h2 className="text-lg font-medium text-gray-900">Order summary</h2>
+      <h2 className="text-lg font-medium text-gray-900">
+        {t("cart.order-summary")}
+      </h2>
 
       <div className="mt-6 space-y-4">
         <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-600">Subtotal</p>
+          <p className="text-sm text-gray-600">{t("cart.subtotal")}</p>
           <p className="text-sm font-medium text-gray-900">
             ${subtotal.toFixed(2)}
           </p>
@@ -119,7 +126,7 @@ function OrderSummary({
 
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
           <div className="flex items-center text-sm text-gray-600">
-            <span>Shipping estimate</span>
+            <span>{t("cart.shipping-estimate")}</span>
             <button
               type="button"
               className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-gray-200 text-gray-400 hover:bg-gray-300"
@@ -134,7 +141,7 @@ function OrderSummary({
 
         <div className="flex items-center justify-between">
           <div className="flex items-center text-sm text-gray-600">
-            <span>Tax estimate</span>
+            <span>{t("cart.tax-estimate")}</span>
             <button
               type="button"
               className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-gray-200 text-gray-400 hover:bg-gray-300"
@@ -146,7 +153,9 @@ function OrderSummary({
         </div>
 
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <p className="text-base font-medium text-gray-900">Order total</p>
+          <p className="text-base font-medium text-gray-900">
+            {t("cart.order-total")}
+          </p>
           <p className="text-base font-medium text-gray-900">
             ${total.toFixed(2)}
           </p>
@@ -154,13 +163,14 @@ function OrderSummary({
       </div>
 
       <Button onClick={onCheckout} className="mt-6 h-12 w-full">
-        Checkout
+        {t("cart.checkout")}
       </Button>
     </div>
   );
 }
 
 export default function Cart() {
+  const t = useTranslate();
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
@@ -196,7 +206,7 @@ export default function Cart() {
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-          Shopping Cart
+          {t("cart.shopping-cart")}
         </h1>
 
         <div className="mt-12 lg:grid lg:grid-cols-12 lg:gap-x-12">

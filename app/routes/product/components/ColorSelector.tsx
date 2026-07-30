@@ -1,3 +1,5 @@
+import { useTranslate } from "@app/i18n";
+
 interface ColorOption {
   value: string;
   label: string;
@@ -12,10 +14,14 @@ interface ColorSelectorProps {
 }
 
 export function ColorSelector({ colors, onChange }: ColorSelectorProps) {
+  const t = useTranslate();
+
   return (
     <div>
-      <h3 className="text-sm font-medium text-gray-900">Color</h3>
-      <fieldset aria-label="Choose a color" className="mt-4">
+      <h3 className="text-sm font-medium text-gray-900">
+        {t("product.color")}
+      </h3>
+      <fieldset aria-label={t("product.choose-color")} className="mt-4">
         <div className="flex items-center gap-x-3">
           {colors.map((color) => (
             <div

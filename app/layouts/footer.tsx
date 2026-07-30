@@ -1,4 +1,8 @@
+import { useTranslate } from "@app/i18n";
+
 export default function Footer() {
+  const t = useTranslate();
+
   return (
     <footer className="bg-white mt-auto border-t border-gray-200">
       <div className="mx-auto max-w-7xl px-4 py-12 xs:px-6 lg:px-8">
@@ -7,13 +11,19 @@ export default function Footer() {
             {/* Contact */}
             <div>
               <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
-                Contact
+                {t("footer.contact")}
               </h3>
               <div className="space-y-2">
-                <p className="text-xs text-gray-600">Email: info@slopify.com</p>
-                <p className="text-xs text-gray-600">Phone: +34 91 123 4567</p>
                 <p className="text-xs text-gray-600">
-                  Address: Calle Gran Vía 28, 28013 Madrid, Spain
+                  {t("footer.email", { email: "info@example.com" })}
+                </p>
+                <p className="text-xs text-gray-600">
+                  {t("footer.phone", { phone: "+34 91 123 4567" })}
+                </p>
+                <p className="text-xs text-gray-600">
+                  {t("footer.address", {
+                    address: "Calle Gran Vía 28, 28013 Madrid, Spain",
+                  })}
                 </p>
               </div>
             </div>
@@ -21,7 +31,7 @@ export default function Footer() {
             {/* Social */}
             <div>
               <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
-                Follow Us
+                {t("footer.follow")}
               </h3>
               <div className="space-y-2">
                 <a
@@ -49,7 +59,7 @@ export default function Footer() {
 
         <div className="mt-8 border-t border-gray-200 pt-6">
           <p className="text-xs text-gray-600 text-center">
-            &copy; {new Date().getFullYear()} Slopify. All rights reserved.
+            {t("footer.rights", { year: new Date().getFullYear() })}
           </p>
         </div>
       </div>

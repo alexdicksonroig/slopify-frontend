@@ -1,3 +1,4 @@
+import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
 import { Button, Input, Label } from "@library";
 import {
@@ -31,6 +32,7 @@ type EmailInputProps = {
 
 const EmailInput = ({ email, setEmail, error, setError }: EmailInputProps) => {
   const checkout = useCheckout();
+  const t = useTranslate();
 
   const handleBlur = async () => {
     if (!email) {
@@ -51,7 +53,7 @@ const EmailInput = ({ email, setEmail, error, setError }: EmailInputProps) => {
   return (
     <>
       <Label className="mb-2">
-        Email
+        {t("checkout.email")}
         <Input
           type="text"
           value={email}
@@ -67,6 +69,7 @@ const EmailInput = ({ email, setEmail, error, setError }: EmailInputProps) => {
 
 const CheckoutForm = () => {
   const checkout = useCheckout();
+  const t = useTranslate();
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState<string | null>(null);
@@ -108,13 +111,13 @@ const CheckoutForm = () => {
         error={emailError}
         setError={setEmailError}
       />
-      <Label>Payment</Label>
+      <Label>{t("checkout.payment")}</Label>
       <PaymentElement />
       <Button disabled={isLoading} className="mt-2">
         {isLoading ? (
           <div className="spinner"></div>
         ) : (
-          `Pay ${checkout.total.total.amount} now`
+          t("checkout.pay-now", { amount: checkout.total.total.amount })
         )}
       </Button>
       {/* Show any error or success messages */}

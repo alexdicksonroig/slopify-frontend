@@ -1,3 +1,4 @@
+import { LanguageProvider, useTranslate } from "@app/i18n";
 import { Icon } from "@library";
 import {
   isRouteErrorResponse,
@@ -21,7 +22,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -29,9 +30,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 export function HydrateFallback() {
+  const t = useTranslate();
+
   return (
     <output
-      aria-label="Loading"
+      aria-label={t("app.loading")}
       style={{
         display: "flex",
         minHeight: "100vh",
@@ -68,16 +71,15 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
+  const t = useTranslate();
+  let message = t("error.oops");
+  let details = t("error.unexpected");
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
+    message = error.status === 404 ? "404" : t("error.generic");
     details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
+      error.status === 404 ? t("error.not-found") : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
