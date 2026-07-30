@@ -1,4 +1,4 @@
-import { useTranslate } from "@app/i18n";
+import { type TranslationKey, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { Accordion, Button, Drawer, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
@@ -9,6 +9,14 @@ type FiltersData = {
   categories: string[];
   colors: string[];
   sizes: string[];
+};
+
+const SORT_OPTION_KEYS: Partial<Record<string, TranslationKey>> = {
+  popular: "filters.sort-most-popular",
+  rating: "filters.sort-best-rating",
+  newest: "filters.sort-newest",
+  "price-asc": "filters.sort-price-ascending",
+  "price-desc": "filters.sort-price-descending",
 };
 
 const FilterContent = ({
@@ -117,10 +125,22 @@ export default function Filters() {
   if (!filters) return null;
 
   const { sortOptions, categories, colors, sizes } = filters;
+  const translatedSortOptions = sortOptions.map((option) => {
+    const translationKey = SORT_OPTION_KEYS[option.value];
+    return {
+      ...option,
+      label: translationKey ? t(translationKey) : option.label,
+    };
+  });
 
   return (
-    <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} fromRight>
+    <main className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <Drawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        fromRight
+        hiddenFrom="lg"
+      >
         <div className="px-4 py-6">
           <h2 className="text-lg font-medium text-gray-900 mb-6">
             {t("filters.title")}
@@ -139,7 +159,7 @@ export default function Filters() {
         </h1>
         <div className="flex items-center gap-4">
           <Select
-            options={sortOptions}
+            options={translatedSortOptions}
             placeholder={t("filters.sort")}
             variant="link"
             className="px-2"
@@ -149,8 +169,8 @@ export default function Filters() {
             className="text-muted-foreground px-2 lg:hidden"
             onClick={() => setDrawerOpen(true)}
           >
-            <span>{t("filters.filter")}</span>
-            <Icon icon="list-filter" />
+            <span>{t("filters.add-filter")}</span>
+            <Icon icon="plus" size="sm" />
           </Button>
         </div>
       </div>

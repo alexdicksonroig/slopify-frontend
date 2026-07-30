@@ -2,12 +2,23 @@ import { cn } from "../../lib/cn";
 import { Button } from "./button";
 import { Icon } from "./icon";
 
+export type DrawerBreakpoint = "sm" | "md" | "lg" | "xl" | "2xl";
+
 export type DrawerProps = {
   open?: boolean;
   onClose?: () => void;
   children: React.ReactNode;
   className?: string;
   fromRight?: boolean;
+  hiddenFrom?: DrawerBreakpoint;
+};
+
+const HIDDEN_FROM: Record<DrawerBreakpoint, string> = {
+  sm: "sm:hidden",
+  md: "md:hidden",
+  lg: "lg:hidden",
+  xl: "xl:hidden",
+  "2xl": "2xl:hidden",
 };
 
 export const Drawer: React.FC<DrawerProps> = ({
@@ -16,12 +27,14 @@ export const Drawer: React.FC<DrawerProps> = ({
   children,
   className = "",
   fromRight = false,
+  hiddenFrom = "md",
 }) => {
   return (
     <div
       className={cn(
         `z-5 fixed inset-0 h-screen w-full overflow-y-auto
-        transition duration-200 ease-in-out md:hidden -translate-x-full`,
+        transition duration-200 ease-in-out -translate-x-full`,
+        HIDDEN_FROM[hiddenFrom],
         { "translate-x-full": fromRight },
         { "translate-x-0": open },
         className,

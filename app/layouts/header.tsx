@@ -44,7 +44,7 @@ export default function Example() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Drawer open={open} onClose={() => setOpen(false)}>
+      <Drawer open={open} onClose={() => setOpen(false)} hiddenFrom="md">
         {/* <div className="px-4 py-6 space-y-6"> */}
         {/*   <div className="-m-2 p-2"> */}
         {/*     <a */}
@@ -187,8 +187,8 @@ export default function Example() {
                 options={languageOptions}
                 placeholder={t("header.language")}
                 variant="link"
-                size="sm"
-                className="w-24 mr-2 hidden md:flex"
+                size="default"
+                className="min-w-32 mr-2 hidden md:flex"
               />
               {/* Cart */}
               <div className="flow-root lg:ml-6">

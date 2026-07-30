@@ -39,6 +39,7 @@ const meta = {
   args: {
     open: true,
     fromRight: false,
+    hiddenFrom: "md",
   },
   argTypes: {
     open: {
@@ -46,6 +47,10 @@ const meta = {
     },
     fromRight: {
       control: { type: "boolean" },
+    },
+    hiddenFrom: {
+      control: { type: "select" },
+      options: ["sm", "md", "lg", "xl", "2xl"],
     },
   },
 } satisfies Meta<typeof Drawer>;

@@ -33,6 +33,8 @@ export {
 };
 
 export type {
+  DrawerBreakpoint,
+  DrawerProps,
   IconName,
   IconProps,
   IconRotation,

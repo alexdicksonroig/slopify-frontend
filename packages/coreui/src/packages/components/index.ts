@@ -73,6 +73,7 @@ export {
   Skeleton,
 };
 
+export type { DrawerBreakpoint, DrawerProps } from "./drawer";
 export type {
   IconName,
   IconProps,
