@@ -1,6 +1,6 @@
 import fixtures from "@app/data/fixtures.json";
 
-const baseOrigin = "https://slopify-backend-763213450884.us-east1.run.app/";
+const baseOrigin = "http://localhost:3000";
 
 // Use environment variable to toggle mock data (saves GCP credits)
 // Set VITE_USE_MOCK_DATA=true in .env to enable mock mode

@@ -45,34 +45,34 @@ export default function Example() {
   return (
     <div className="flex min-h-screen flex-col">
       <Drawer open={open} onClose={() => setOpen(false)}>
+        {/* <div className="px-4 py-6 space-y-6"> */}
+        {/*   <div className="-m-2 p-2"> */}
+        {/*     <a */}
+        {/*       href="/" */}
+        {/*       className="flex items-center gap-1 text-sm font-medium text-gray-900" */}
+        {/*     > */}
+        {/*       Sign in */}
+        {/*       <Icon icon="arrow-right" size="sm" /> */}
+        {/*     </a> */}
+        {/*   </div> */}
+        {/*   <div className="-m-2 p-2"> */}
+        {/*     <a href="/" className="text-sm font-medium text-gray-900"> */}
+        {/*       Create account */}
+        {/*     </a> */}
+        {/*   </div> */}
+        {/* </div> */}
+
         <div className="px-4 py-6 space-y-6">
           <div className="-m-2 p-2">
-            <a
-              href="/"
-              className="flex items-center gap-1 text-sm font-medium text-gray-900"
-            >
-              Sign in
-              <Icon icon="arrow-right" size="sm" />
-            </a>
-          </div>
-          <div className="-m-2 p-2">
-            <a href="/" className="text-sm font-medium text-gray-900">
-              Create account
-            </a>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-200 px-4 py-6 space-y-6">
-          <div className="-m-2 p-2">
-            <Select
-              value={currency}
-              onChange={setCurrency}
-              options={currencyOptions}
-              placeholder="Select currency"
-              variant="link"
-              size="sm"
-              className="w-24"
-            />
+            {/* <Select */}
+            {/*   value={currency} */}
+            {/*   onChange={setCurrency} */}
+            {/*   options={currencyOptions} */}
+            {/*   placeholder="Select currency" */}
+            {/*   variant="link" */}
+            {/*   size="sm" */}
+            {/*   className="w-24" */}
+            {/* /> */}
           </div>
           <div className="-m-2 p-2">
             <Select
@@ -93,19 +93,6 @@ export default function Example() {
           className="relative flex h-10 items-center justify-between bg-indigo-700 text-sm
             font-medium text-white"
         >
-          {/* Logo */}
-          <Button
-            onClick={() => navigate("/")}
-            size="icon"
-            variant="ghost"
-            className="z-4 ml-4 hidden lg:flex hover:bg-transparent"
-          >
-            <img
-              alt=""
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=white"
-              className="h-4 w-auto"
-            />
-          </Button>
           <div
             className={cn(
               "absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
@@ -144,14 +131,14 @@ export default function Example() {
               onClick={() => setOpen(true)}
               size="icon"
               variant="ghost"
-              className="lg:hidden"
+              className="md:hidden"
             >
               <Icon icon="menu" size="lg" />
               <span className="sr-only">Menu</span>
             </Button>
 
             {/* Logo */}
-            <div className="flex lg:hidden">
+            <div className="flex">
               <Button onClick={() => navigate("/")} size="icon" variant="ghost">
                 <span className="sr-only">Your Company</span>
                 <img
@@ -163,6 +150,7 @@ export default function Example() {
             </div>
 
             <div className="ml-auto flex items-center">
+              {/* Disabled for now
               <div
                 className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end
                   lg:space-x-6"
@@ -196,7 +184,16 @@ export default function Example() {
                   <span className="sr-only">, change currency</span>
                 </a>
               </div>
-
+              */}
+              <Select
+                value={language}
+                onChange={setLanguage}
+                options={languageOptions}
+                placeholder="Select language"
+                variant="link"
+                size="sm"
+                className="w-24 mr-2 hidden md:flex"
+              />
               {/* Cart */}
               <div className="flow-root lg:ml-6">
                 <Button onClick={handleCartClick} variant="ghost" size="icon">

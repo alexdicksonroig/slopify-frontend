@@ -2,31 +2,53 @@ import * as Api from "@app/lib/api";
 import { cn } from "@library";
 import { Link, useLoaderData } from "react-router";
 
-type Product = {
+type ProductResponse = {
   id: number;
   name: string;
-  imageSrc: string;
-  imageAlt: string;
-  price: string;
-  color?: string;
+  thumbnailUrl?: string | null;
+  priceInCents?: number;
+  // Mock fixture compatibility
+  imageSrc?: string;
+  imageAlt?: string;
+  price?: string;
 };
 
-type ProductCard = Pick<
-  Product,
-  "id" | "name" | "imageSrc" | "imageAlt" | "price"
->;
+type ProductCardProps = {
+  id: number;
+  name: string;
+  thumbnailUrl: string | null;
+  thumbnailAlt: string;
+  price: string;
+};
 
-function ProductCard({ id, name, imageSrc, imageAlt, price }: ProductCard) {
+const priceFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+function ProductCard({
+  id,
+  name,
+  thumbnailUrl,
+  thumbnailAlt,
+  price,
+}: ProductCardProps) {
   return (
     <Link to={`/product/${id}`}>
       <div className="group relative">
-        <img
-          alt={imageAlt}
-          src={imageSrc}
-          className={cn(
-            "aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:[view-transition-name:none]",
-          )}
-        />
+        {thumbnailUrl ? (
+          <img
+            alt={thumbnailAlt}
+            src={thumbnailUrl}
+            className={cn(
+              "aspect-square w-full rounded-md bg-gray-200 object-contain group-hover:opacity-75 lg:[view-transition-name:none]",
+            )}
+          />
+        ) : (
+          <div className="flex aspect-square w-full items-center justify-center rounded-md bg-gray-200 text-sm text-gray-500">
+            No thumbnail
+          </div>
+        )}
         <div className="mt-4 flex justify-between">
           <div>
             <h3 className="text-sm text-gray-700">{name}</h3>
@@ -39,7 +61,18 @@ function ProductCard({ id, name, imageSrc, imageAlt, price }: ProductCard) {
 }
 
 export async function clientLoader() {
-  const products = await Api.get("products/");
+  const response = await Api.get("products/");
+  const products = (Array.isArray(response) ? response : []).map(
+    (product: ProductResponse): ProductCardProps => ({
+      id: product.id,
+      name: product.name,
+      thumbnailUrl: product.thumbnailUrl ?? product.imageSrc ?? null,
+      thumbnailAlt: product.imageAlt ?? product.name,
+      price:
+        product.price ?? priceFormatter.format((product.priceInCents ?? 0) / 100),
+    }),
+  );
+
   return { products };
 }
 
@@ -51,8 +84,8 @@ export default function Products() {
       className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4
             xl:gap-x-8 pb-32"
     >
-      {products.map(({ id, name, imageSrc, imageAlt, price }: Product) => (
-        <ProductCard key={id} {...{ id, name, imageSrc, imageAlt, price }} />
+      {products.map((product) => (
+        <ProductCard key={product.id} {...product} />
       ))}
     </div>
   );

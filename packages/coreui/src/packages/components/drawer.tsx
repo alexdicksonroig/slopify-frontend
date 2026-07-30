@@ -21,7 +21,7 @@ export const Drawer: React.FC<DrawerProps> = ({
     <div
       className={cn(
         `z-5 fixed inset-0 h-screen w-full overflow-y-auto
-        transition duration-200 ease-in-out lg:hidden -translate-x-full`,
+        transition duration-200 ease-in-out md:hidden -translate-x-full`,
         { "translate-x-full": fromRight },
         { "translate-x-0": open },
         className,
