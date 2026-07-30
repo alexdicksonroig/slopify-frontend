@@ -24,7 +24,7 @@ type ProductCardProps = {
 
 const priceFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
-  currency: "USD",
+  currency: "EUR",
 });
 
 function ProductCard({

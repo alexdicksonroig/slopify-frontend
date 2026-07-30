@@ -56,6 +56,7 @@ export const es = {
   "product.information": "Información del producto",
   "product.name": "Pack de 6 camisetas básicas",
   "product.no-thumbnail": "Sin miniatura",
+  "product.quantity": "Cantidad",
   "product.description-text":
     "El pack de 6 camisetas básicas te permite expresar tu personalidad con tres tonos de gris. Prueba la camiseta gris jaspeado, nuestro exclusivo negro o añade un toque luminoso con la camiseta blanca.",
   "product.size": "Talla",

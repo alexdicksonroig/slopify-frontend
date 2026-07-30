@@ -56,6 +56,7 @@ export const ca = {
   "product.information": "Informació del producte",
   "product.name": "Paquet de 6 samarretes bàsiques",
   "product.no-thumbnail": "Sense miniatura",
+  "product.quantity": "Quantitat",
   "product.description-text":
     "El paquet de 6 samarretes bàsiques et permet expressar plenament la teva personalitat amb tres opcions en escala de grisos. Prova el gris jaspiat, el nostre negre exclusiu o afegeix un toc lluminós al teu conjunt amb la samarreta blanca.",
   "product.size": "Talla",

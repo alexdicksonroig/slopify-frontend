@@ -4,6 +4,11 @@ import { Button, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
+const priceFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "EUR",
+});
+
 type CartItem = {
   id: number;
   name: string;
@@ -62,7 +67,7 @@ function CartItemComponent({
             )}
           </p>
           <p className="text-sm font-medium text-gray-900">
-            ${item.price.toFixed(2)}
+            {priceFormatter.format(item.price)}
           </p>
         </div>
         <div className="flex flex-1 items-end text-sm mt-4">
@@ -120,7 +125,7 @@ function OrderSummary({
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-600">{t("cart.subtotal")}</p>
           <p className="text-sm font-medium text-gray-900">
-            ${subtotal.toFixed(2)}
+            {priceFormatter.format(subtotal)}
           </p>
         </div>
 
@@ -135,7 +140,7 @@ function OrderSummary({
             </button>
           </div>
           <p className="text-sm font-medium text-gray-900">
-            ${shipping.toFixed(2)}
+            {priceFormatter.format(shipping)}
           </p>
         </div>
 
@@ -149,7 +154,9 @@ function OrderSummary({
               <Icon icon="info" size="xxs" />
             </button>
           </div>
-          <p className="text-sm font-medium text-gray-900">${tax.toFixed(2)}</p>
+          <p className="text-sm font-medium text-gray-900">
+            {priceFormatter.format(tax)}
+          </p>
         </div>
 
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
@@ -157,7 +164,7 @@ function OrderSummary({
             {t("cart.order-total")}
           </p>
           <p className="text-base font-medium text-gray-900">
-            ${total.toFixed(2)}
+            {priceFormatter.format(total)}
           </p>
         </div>
       </div>
