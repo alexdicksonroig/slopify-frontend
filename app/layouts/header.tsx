@@ -1,3 +1,7 @@
+import {
+  type CartItem,
+  CartProductList,
+} from "@app/components/cart-product-list";
 import { type Language, useLanguage, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { Button, cn, Drawer, Icon, Select } from "@library";
@@ -15,12 +19,16 @@ export default function Example() {
   const { language, setLanguage } = useLanguage();
   const t = useTranslate();
   const [settings, setSettings] = useState<SettingsData | null>(null);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
   const [showFirstText, setShowFirstText] = useState(true);
 
   useEffect(() => {
     get("settings").then(setSettings);
+    get("cart").then((data) => {
+      if (data) setCartItems(data as CartItem[]);
+    });
   }, []);
 
   const handleCartClick = (e: React.MouseEvent) => {
@@ -42,6 +50,21 @@ export default function Example() {
 
   const languageOptions = settings?.languageOptions ?? [];
 
+  const handleQuantityChange = (id: number, quantity: number) => {
+    setCartItems((items) =>
+      items.map((item) => (item.id === id ? { ...item, quantity } : item)),
+    );
+  };
+
+  const handleRemove = (id: number) => {
+    setCartItems((items) => items.filter((item) => item.id !== id));
+  };
+
+  const handleCheckout = () => {
+    setOpen(false);
+    navigate("/checkout");
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       <Drawer open={open} onClose={() => setOpen(false)} hiddenFrom="md">
@@ -62,7 +85,7 @@ export default function Example() {
         {/*   </div> */}
         {/* </div> */}
 
-        <div className="px-4 py-6 space-y-6">
+        <div className="flex h-[calc(100%-3rem)] flex-col px-4 py-6">
           <div className="-m-2 p-2">
             {/* <Select */}
             {/*   value={currency} */}
@@ -85,6 +108,20 @@ export default function Example() {
               className="w-24"
             />
           </div>
+
+          <section className="mt-auto pt-6">
+            <h2 className="mb-4 text-lg font-medium text-gray-900">
+              {t("cart.order-summary")}
+            </h2>
+            <CartProductList
+              items={cartItems}
+              onQuantityChange={handleQuantityChange}
+              onRemove={handleRemove}
+            />
+            <Button onClick={handleCheckout} className="mt-6 h-12 w-full">
+              {t("cart.checkout")}
+            </Button>
+          </section>
         </div>
       </Drawer>
       <header className="bg-white ">
@@ -188,10 +225,10 @@ export default function Example() {
                 placeholder={t("header.language")}
                 variant="link"
                 size="default"
-                className="min-w-32 mr-2 hidden md:flex"
+                className="min-w-32 hidden md:flex"
               />
               {/* Cart */}
-              <div className="flow-root lg:ml-6">
+              <div className="flow-root md:ml-4">
                 <Button onClick={handleCartClick} variant="ghost" size="icon">
                   <Icon icon="shopping-bag" size="lg" />
                   <span className="sr-only">{t("header.cart")}</span>
