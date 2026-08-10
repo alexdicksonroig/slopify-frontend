@@ -1,7 +1,11 @@
 import { useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
+import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-to-cart.use-case";
+import { createCartUseCase } from "@app/lib/cart/application/create-cart.use-case";
+import { getCartUseCase } from "@app/lib/cart/application/get-cart.use-case";
 import { Button } from "@library";
-import { useEffect, useState } from "react";
+import { type FormEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { ColorSelector } from "./components/ColorSelector";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
@@ -35,6 +39,7 @@ type ProductResponse = Partial<ProductData> & {
   id: number;
   name: string;
   priceInCents?: number;
+  thumbnailUrl?: string | null;
 };
 
 const priceFormatter = new Intl.NumberFormat("en-US", {
@@ -44,6 +49,7 @@ const priceFormatter = new Intl.NumberFormat("en-US", {
 
 export default function Product({ params }: { params: { id: string } }) {
   const t = useTranslate();
+  const navigate = useNavigate();
   const [product, setProduct] = useState<ProductResponse | null>(null);
   const [quantity, setQuantity] = useState(1);
 
@@ -63,8 +69,28 @@ export default function Product({ params }: { params: { id: string } }) {
     sizeOptions = [],
     highlights: productHighlights = [],
   } = product;
+  const resolvedPriceInCents =
+    priceInCents ?? parsePriceInCents(productPrice ?? "0");
   const price =
-    productPrice ?? priceFormatter.format((priceInCents ?? 0) / 100);
+    productPrice ?? priceFormatter.format(resolvedPriceInCents / 100);
+
+  const handleAddToCart = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const existingCart = await getCartUseCase.execute();
+    if (!existingCart) await createCartUseCase.execute(500);
+
+    await addProductToCartUseCase.execute(
+      {
+        productId: product.id,
+        name: product.name,
+        unitPriceInCents: resolvedPriceInCents,
+        thumbnailUrl: product.thumbnailUrl ?? productImages[0]?.src ?? null,
+      },
+      quantity,
+    );
+    navigate("/cart");
+  };
 
   return (
     <div className="md:pt-6">
@@ -79,7 +105,7 @@ export default function Product({ params }: { params: { id: string } }) {
 
         <div className="mt-4 lg:row-span-3 lg:mt-0">
           <ProductInfo price={price} />
-          <form className="mt-10">
+          <form className="mt-10" onSubmit={handleAddToCart}>
             <ColorSelector colors={colorOptions} />
             <SizeSelector sizes={sizeOptions} />
             <QuantitySelector value={quantity} onChange={setQuantity} />
@@ -98,4 +124,9 @@ export default function Product({ params }: { params: { id: string } }) {
       </div>
     </div>
   );
+}
+
+function parsePriceInCents(price: string): number {
+  const amount = Number(price.replace(/[^0-9.,-]/g, "").replace(",", "."));
+  return Number.isFinite(amount) ? Math.round(amount * 100) : 0;
 }

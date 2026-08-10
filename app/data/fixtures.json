@@ -97,41 +97,6 @@
       "color": "Iso Dots"
     }
   ],
-  "cart": [
-    {
-      "id": 1,
-      "name": "Basic Tee",
-      "color": "Sienna",
-      "size": "Large",
-      "price": 32.0,
-      "quantity": 1,
-      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
-      "imageAlt": "Basic Tee in Sienna",
-      "inStock": true
-    },
-    {
-      "id": 2,
-      "name": "Basic Tee",
-      "color": "Black",
-      "size": "Large",
-      "price": 32.0,
-      "quantity": 1,
-      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
-      "imageAlt": "Basic Tee in Black",
-      "inStock": false,
-      "shippingTime": "Ships in 3-4 weeks"
-    },
-    {
-      "id": 3,
-      "name": "Nomad Tumbler",
-      "color": "White",
-      "price": 35.0,
-      "quantity": 1,
-      "imageSrc": "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
-      "imageAlt": "Nomad Tumbler in White",
-      "inStock": true
-    }
-  ],
   "product-detail": {
     "images": [
       {

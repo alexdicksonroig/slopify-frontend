@@ -9,7 +9,7 @@ const priceFormatter = new Intl.NumberFormat("en-US", {
 export type OrderSummaryProps = {
   subtotal: number;
   shipping: number;
-  tax: number;
+  tax?: number;
   total: number;
   onCheckout: () => void;
 };
@@ -17,7 +17,7 @@ export type OrderSummaryProps = {
 export function OrderSummary({
   subtotal,
   shipping,
-  tax,
+  tax = 0,
   total,
   onCheckout,
 }: OrderSummaryProps) {

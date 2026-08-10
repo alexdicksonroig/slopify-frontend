@@ -3,6 +3,7 @@ import type { TranslationDictionary } from ".";
 export const de = {
   "app.loading": "Wird geladen",
   "cart.checkout": "Zur Kasse",
+  "cart.empty": "Noch keine Artikel hinzugefügt.",
   "cart.in-stock": "Auf Lager",
   "cart.order-summary": "Bestellübersicht",
   "cart.order-total": "Gesamtsumme",

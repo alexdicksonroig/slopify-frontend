@@ -1,9 +1,10 @@
-import {
-  type CartItem,
-  CartProductList,
-} from "@app/components/cart-product-list";
+import { CartProductList } from "@app/components/cart-product-list";
 import { type Language, useLanguage, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
+import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
+import { getCartUseCase } from "@app/lib/cart/application/get-cart.use-case";
+import { updateCartItemQuantityUseCase } from "@app/lib/cart/application/update-cart-item-quantity.use-case";
+import type { CartItem } from "@app/lib/cart/domain/cart.entity";
 import { Button, cn, Drawer, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
@@ -26,9 +27,6 @@ export default function Example() {
 
   useEffect(() => {
     get("settings").then(setSettings);
-    get("cart").then((data) => {
-      if (data) setCartItems(data as CartItem[]);
-    });
   }, []);
 
   const handleCartClick = (e: React.MouseEvent) => {
@@ -50,14 +48,23 @@ export default function Example() {
 
   const languageOptions = settings?.languageOptions ?? [];
 
-  const handleQuantityChange = (id: number, quantity: number) => {
-    setCartItems((items) =>
-      items.map((item) => (item.id === id ? { ...item, quantity } : item)),
+  const handleQuantityChange = async (productId: number, quantity: number) => {
+    const cart = await updateCartItemQuantityUseCase.execute(
+      productId,
+      quantity,
     );
+    if (cart) setCartItems([...cart.items]);
   };
 
-  const handleRemove = (id: number) => {
-    setCartItems((items) => items.filter((item) => item.id !== id));
+  const handleRemove = async (productId: number) => {
+    const cart = await deleteProductFromCartUseCase.execute(productId);
+    if (cart) setCartItems([...cart.items]);
+  };
+
+  const handleMenuOpen = async () => {
+    const cart = await getCartUseCase.execute();
+    setCartItems(cart ? [...cart.items] : []);
+    setOpen(true);
   };
 
   const handleCheckout = () => {
@@ -113,14 +120,20 @@ export default function Example() {
             <h2 className="mb-4 text-lg font-medium text-gray-900">
               {t("cart.order-summary")}
             </h2>
-            <CartProductList
-              items={cartItems}
-              onQuantityChange={handleQuantityChange}
-              onRemove={handleRemove}
-            />
-            <Button onClick={handleCheckout} className="mt-6 h-12 w-full">
-              {t("cart.checkout")}
-            </Button>
+            {cartItems.length > 0 ? (
+              <>
+                <CartProductList
+                  items={cartItems}
+                  onQuantityChange={handleQuantityChange}
+                  onRemove={handleRemove}
+                />
+                <Button onClick={handleCheckout} className="mt-6 h-12 w-full">
+                  {t("cart.checkout")}
+                </Button>
+              </>
+            ) : (
+              <p className="text-sm text-gray-500">{t("cart.empty")}</p>
+            )}
           </section>
         </div>
       </Drawer>
@@ -161,7 +174,7 @@ export default function Example() {
             )}
 
             <Button
-              onClick={() => setOpen(true)}
+              onClick={handleMenuOpen}
               size="icon"
               variant="ghost"
               className="md:hidden"

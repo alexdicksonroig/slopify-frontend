@@ -1,6 +1,7 @@
 export const en = {
   "app.loading": "Loading",
   "cart.checkout": "Checkout",
+  "cart.empty": "No items added yet.",
   "cart.in-stock": "In stock",
   "cart.order-summary": "Order summary",
   "cart.order-total": "Order total",
