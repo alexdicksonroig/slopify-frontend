@@ -57,6 +57,15 @@ export default function Product({ params }: { params: { id: string } }) {
     get(`products/${params.id}`).then(setProduct);
   }, [params.id]);
 
+  useEffect(() => {
+    getCartUseCase.execute().then((cart) => {
+      const cartItem = cart?.items.find(
+        (item) => item.productId === Number(params.id),
+      );
+      setQuantity(cartItem?.quantity ?? 1);
+    });
+  }, [params.id]);
+
   if (!product) return null;
 
   const {

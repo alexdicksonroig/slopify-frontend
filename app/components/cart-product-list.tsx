@@ -1,6 +1,7 @@
 import { useTranslate } from "@app/i18n";
 import type { CartItem } from "@app/lib/cart/domain/cart.entity";
 import { Icon, Select } from "@library";
+import { Link } from "react-router";
 
 const priceFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -24,17 +25,19 @@ export function CartProductList({
     <ul className="divide-y divide-gray-200 border-b border-t border-gray-200">
       {items.map((item) => (
         <li key={item.productId} className="flex items-stretch gap-6 py-6">
-          {item.thumbnailUrl ? (
-            <img
-              src={item.thumbnailUrl}
-              alt={item.name}
-              className="w-36 shrink-0 self-stretch rounded-md object-cover sm:w-40"
-            />
-          ) : (
-            <div className="flex w-36 shrink-0 self-stretch items-center justify-center rounded-md bg-gray-50 px-2 text-center text-xs text-gray-400 sm:w-40">
-              {t("product.no-thumbnail")}
-            </div>
-          )}
+          <Link to={`/product/${item.productId}`} className="flex shrink-0">
+            {item.thumbnailUrl ? (
+              <img
+                src={item.thumbnailUrl}
+                alt={item.name}
+                className="w-36 rounded-md object-cover sm:w-40"
+              />
+            ) : (
+              <div className="flex w-36 items-center justify-center rounded-md bg-gray-50 px-2 text-center text-xs text-gray-400 sm:w-40">
+                {t("product.no-thumbnail")}
+              </div>
+            )}
+          </Link>
 
           <div className="relative flex flex-1 flex-col">
             <button
@@ -48,7 +51,7 @@ export function CartProductList({
 
             <div className="space-y-3">
               <h3 className="pr-6 text-base font-medium text-gray-900">
-                {item.name}
+                <Link to={`/product/${item.productId}`}>{item.name}</Link>
               </h3>
               <p className="text-sm font-medium text-gray-900">
                 {priceFormatter.format(item.unitPriceInCents / 100)}
