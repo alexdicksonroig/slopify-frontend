@@ -1,12 +1,15 @@
 import fixtures from "@app/data/fixtures.json";
 
-const baseOrigin = "http://localhost:3000";
+const env = (
+  import.meta as unknown as {
+    env: { VITE_API_URL: string; VITE_USE_MOCK_DATA?: string };
+  }
+).env;
+const baseOrigin = env.VITE_API_URL;
 
 // Use environment variable to toggle mock data (saves GCP credits)
 // Set VITE_USE_MOCK_DATA=true in .env to enable mock mode
-const USE_MOCK_DATA =
-  (import.meta as unknown as { env: Record<string, string> }).env
-    .VITE_USE_MOCK_DATA === "true";
+const USE_MOCK_DATA = env.VITE_USE_MOCK_DATA === "true";
 
 // Endpoints that have real backend implementations
 const REAL_ENDPOINTS = ["products/"];
