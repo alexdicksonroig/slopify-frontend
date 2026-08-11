@@ -4,12 +4,19 @@ import { Accordion, Button, Drawer, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
 
-type FiltersData = {
-  sortOptions: { label: string; value: string }[];
-  categories: string[];
-  colors: string[];
-  sizes: string[];
+type ProductOption = {
+  id: number;
+  label: string;
+  possibleValues: string[];
 };
+
+const SORT_OPTIONS = [
+  { label: "Most Popular", value: "popular" },
+  { label: "Best Rating", value: "rating" },
+  { label: "Newest", value: "newest" },
+  { label: "Price: Low to High", value: "price-asc" },
+  { label: "Price: High to Low", value: "price-desc" },
+];
 
 const SORT_OPTION_KEYS: Partial<Record<string, TranslationKey>> = {
   popular: "filters.sort-most-popular",
@@ -19,113 +26,68 @@ const SORT_OPTION_KEYS: Partial<Record<string, TranslationKey>> = {
   "price-desc": "filters.sort-price-descending",
 };
 
-const FilterContent = ({
-  categories,
-  colors,
-  sizes,
-}: {
-  categories: string[];
-  colors: string[];
-  sizes: string[];
-}) => {
+const OPTION_LABEL_KEYS: Partial<Record<string, TranslationKey>> = {
+  color: "filters.color",
+  size: "filters.size",
+};
+
+const FilterContent = ({ options }: { options: ProductOption[] }) => {
   const t = useTranslate();
 
   return (
-    <>
-      {/* Categories */}
-      <div className="space-y-4 pb-6 border-b border-gray-200">
-        {categories.map((category) => (
-          <button
-            key={category}
-            type="button"
-            className="block text-sm text-gray-900 hover:text-gray-700"
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+    <div className="space-y-6">
+      <Accordion>
+        {options.map((option) => {
+          const translationKey = OPTION_LABEL_KEYS[option.label.toLowerCase()];
+          const headerText = translationKey ? t(translationKey) : option.label;
 
-      {/* Filter Accordions */}
-      <div className="space-y-6">
-        <Accordion>
-          <Accordion.Item itemId="color" headerText={t("filters.color")}>
-            <div className="space-y-4">
-              {colors.map((color) => (
-                <div key={color} className="flex items-center">
-                  <input
-                    id={`color-${color}`}
-                    type="checkbox"
-                    className="h-4 w-4 rounded border-gray-300 text-primary"
-                  />
-                  <label
-                    htmlFor={`color-${color}`}
-                    className="ml-3 text-sm text-gray-600"
-                  >
-                    {color}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </Accordion.Item>
+          return (
+            <Accordion.Item
+              key={option.id}
+              itemId={`option-${option.id}`}
+              headerText={headerText}
+            >
+              <div className="space-y-4">
+                {option.possibleValues.map((value, index) => {
+                  const inputId = `option-${option.id}-value-${index}`;
 
-          <Accordion.Item itemId="category" headerText={t("filters.category")}>
-            <div className="space-y-4">
-              {categories.map((category) => (
-                <div key={category} className="flex items-center">
-                  <input
-                    id={`filter-${category}`}
-                    type="checkbox"
-                    className="h-4 w-4 rounded border-gray-300 text-primary"
-                  />
-                  <label
-                    htmlFor={`filter-${category}`}
-                    className="ml-3 text-sm text-gray-600"
-                  >
-                    {category}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </Accordion.Item>
-
-          <Accordion.Item itemId="size" headerText={t("filters.size")}>
-            <div className="space-y-4">
-              {sizes.map((size) => (
-                <div key={size} className="flex items-center">
-                  <input
-                    id={`size-${size}`}
-                    type="checkbox"
-                    className="h-4 w-4 rounded border-gray-300 text-primary"
-                  />
-                  <label
-                    htmlFor={`size-${size}`}
-                    className="ml-3 text-sm text-gray-600"
-                  >
-                    {size}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </Accordion.Item>
-        </Accordion>
-      </div>
-    </>
+                  return (
+                    <div key={value} className="flex items-center">
+                      <input
+                        id={inputId}
+                        type="checkbox"
+                        className="h-4 w-4 rounded border-gray-300 text-primary"
+                      />
+                      <label
+                        htmlFor={inputId}
+                        className="ml-3 text-sm text-gray-600"
+                      >
+                        {value}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+            </Accordion.Item>
+          );
+        })}
+      </Accordion>
+    </div>
   );
 };
 
 export default function Filters() {
   const t = useTranslate();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [filters, setFilters] = useState<FiltersData | null>(null);
+  const [options, setOptions] = useState<ProductOption[] | null>(null);
 
   useEffect(() => {
-    get("filters").then(setFilters);
+    get("product-options").then(setOptions);
   }, []);
 
-  if (!filters) return null;
+  if (!options) return null;
 
-  const { sortOptions, categories, colors, sizes } = filters;
-  const translatedSortOptions = sortOptions.map((option) => {
+  const translatedSortOptions = SORT_OPTIONS.map((option) => {
     const translationKey = SORT_OPTION_KEYS[option.value];
     return {
       ...option,
@@ -145,11 +107,7 @@ export default function Filters() {
           <h2 className="text-lg font-medium text-gray-900 mb-6">
             {t("filters.title")}
           </h2>
-          <FilterContent
-            categories={categories}
-            colors={colors}
-            sizes={sizes}
-          />
+          <FilterContent options={options} />
         </div>
       </Drawer>
 
@@ -178,11 +136,7 @@ export default function Filters() {
       <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
         {/* Filters sidebar - Desktop */}
         <aside className="hidden lg:block">
-          <FilterContent
-            categories={categories}
-            colors={colors}
-            sizes={sizes}
-          />
+          <FilterContent options={options} />
         </aside>
 
         {/* Main content */}

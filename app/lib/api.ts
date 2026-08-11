@@ -12,7 +12,7 @@ const baseOrigin = env.VITE_API_URL;
 const USE_MOCK_DATA = env.VITE_USE_MOCK_DATA === "true";
 
 // Endpoints that have real backend implementations
-const REAL_ENDPOINTS = ["products/"];
+const REAL_ENDPOINTS = ["products/", "product-options"];
 
 export const get = async (
   path: string,
