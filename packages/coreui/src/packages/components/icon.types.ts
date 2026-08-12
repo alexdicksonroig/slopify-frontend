@@ -7,6 +7,7 @@ export const ICON_NAMES = [
   "list-filter",
   "loader",
   "menu",
+  "minus",
   "plus",
   "shopping-bag",
   "x",

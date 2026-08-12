@@ -1,10 +1,8 @@
 import { useTranslate } from "@app/i18n";
-import { Select } from "@library";
+import { Button, Icon } from "@library";
 
-const QUANTITY_OPTIONS = Array.from({ length: 8 }, (_, index) => {
-  const quantity = String(index + 1);
-  return { label: quantity, value: quantity };
-});
+const MIN_QUANTITY = 1;
+const MAX_QUANTITY = 8;
 
 type QuantitySelectorProps = {
   value: number;
@@ -19,12 +17,33 @@ export function QuantitySelector({ value, onChange }: QuantitySelectorProps) {
       <legend className="text-sm font-medium text-gray-900">
         {t("product.quantity")}
       </legend>
-      <Select
-        value={String(value)}
-        onChange={(nextValue) => onChange(Number(nextValue))}
-        options={QUANTITY_OPTIONS}
-        className="mt-4 w-24"
-      />
+      <div className="mt-4 flex h-12 w-full items-center justify-between rounded-full border border-gray-300 px-1">
+        <Button
+          type="button"
+          variant="ghost"
+          aria-label="Decrease quantity"
+          disabled={value <= MIN_QUANTITY}
+          onClick={() => onChange(value - 1)}
+          className="size-10 rounded-full p-0! disabled:opacity-30"
+        >
+          <Icon icon="minus" size="lg" />
+        </Button>
+
+        <output className="min-w-8 text-center text-sm font-medium text-gray-900">
+          {value}
+        </output>
+
+        <Button
+          type="button"
+          variant="ghost"
+          aria-label="Increase quantity"
+          disabled={value >= MAX_QUANTITY}
+          onClick={() => onChange(value + 1)}
+          className="size-10 rounded-full p-0! disabled:opacity-30"
+        >
+          <Icon icon="plus" size="lg" />
+        </Button>
+      </div>
     </fieldset>
   );
 }
