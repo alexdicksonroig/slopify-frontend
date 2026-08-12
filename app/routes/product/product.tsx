@@ -71,6 +71,9 @@ export default function Product({ params }: { params: { id: string } }) {
     priceInCents ?? parsePriceInCents(productPrice ?? "0");
   const price =
     productPrice ?? priceFormatter.format(resolvedPriceInCents / 100);
+  const totalPrice = priceFormatter.format(
+    (resolvedPriceInCents * quantity) / 100,
+  );
 
   const handleAddToCart = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -108,7 +111,9 @@ export default function Product({ params }: { params: { id: string } }) {
             <QuantitySelector value={quantity} onChange={setQuantity} />
 
             <Button type="submit" className="mt-10 h-12 w-full uppercase">
-              {t("product.add-to-bag")}
+              <span>{t("product.add-to-bag")}</span>
+              <span aria-hidden="true">·</span>
+              <span>{totalPrice}</span>
             </Button>
           </form>
         </div>
