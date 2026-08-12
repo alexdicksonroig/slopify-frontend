@@ -2,7 +2,7 @@ import { type TranslationKey, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { Accordion, Button, Drawer, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useSearchParams } from "react-router";
 
 type ProductOption = {
   id: number;
@@ -11,16 +11,12 @@ type ProductOption = {
 };
 
 const SORT_OPTIONS = [
-  { label: "Most Popular", value: "popular" },
-  { label: "Best Rating", value: "rating" },
   { label: "Newest", value: "newest" },
   { label: "Price: Low to High", value: "price-asc" },
   { label: "Price: High to Low", value: "price-desc" },
 ];
 
 const SORT_OPTION_KEYS: Partial<Record<string, TranslationKey>> = {
-  popular: "filters.sort-most-popular",
-  rating: "filters.sort-best-rating",
   newest: "filters.sort-newest",
   "price-asc": "filters.sort-price-ascending",
   "price-desc": "filters.sort-price-descending",
@@ -80,6 +76,15 @@ export default function Filters() {
   const t = useTranslate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [options, setOptions] = useState<ProductOption[] | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleSortChange = (sort: string) => {
+    setSearchParams((currentParams) => {
+      const nextParams = new URLSearchParams(currentParams);
+      nextParams.set("sort", sort);
+      return nextParams;
+    });
+  };
 
   useEffect(() => {
     get("product-options").then(setOptions);
@@ -117,6 +122,8 @@ export default function Filters() {
         </h1>
         <div className="flex items-center gap-4">
           <Select
+            value={searchParams.get("sort") ?? undefined}
+            onChange={handleSortChange}
             options={translatedSortOptions}
             placeholder={t("filters.sort")}
             variant="link"

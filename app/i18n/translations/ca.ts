@@ -25,8 +25,6 @@ export const ca = {
   "filters.new-arrivals": "Novetats",
   "filters.size": "Talla",
   "filters.sort": "Ordena",
-  "filters.sort-best-rating": "Millor valoració",
-  "filters.sort-most-popular": "Més populars",
   "filters.sort-newest": "Més recents",
   "filters.sort-price-ascending": "Preu: de menor a major",
   "filters.sort-price-descending": "Preu: de major a menor",

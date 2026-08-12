@@ -25,8 +25,6 @@ export const es = {
   "filters.new-arrivals": "Novedades",
   "filters.size": "Talla",
   "filters.sort": "Ordenar",
-  "filters.sort-best-rating": "Mejor valorados",
-  "filters.sort-most-popular": "Más populares",
   "filters.sort-newest": "Más recientes",
   "filters.sort-price-ascending": "Precio: de menor a mayor",
   "filters.sort-price-descending": "Precio: de mayor a menor",

@@ -23,8 +23,6 @@ export const en = {
   "filters.new-arrivals": "New Arrivals",
   "filters.size": "Size",
   "filters.sort": "Sort",
-  "filters.sort-best-rating": "Best Rating",
-  "filters.sort-most-popular": "Most Popular",
   "filters.sort-newest": "Newest",
   "filters.sort-price-ascending": "Price: Low to High",
   "filters.sort-price-descending": "Price: High to Low",

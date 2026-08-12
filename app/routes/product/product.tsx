@@ -109,15 +109,13 @@ export default function Product({ params }: { params: { id: string } }) {
           <form className="mt-10" onSubmit={handleAddToCart}>
             <ProductOptions options={productOptions} />
             <QuantitySelector value={quantity} onChange={setQuantity} />
-
-            <Button type="submit" className="mt-10 h-12 w-full uppercase">
+            <Button type="submit" className="mt-4 h-12 w-full uppercase">
               <span>{t("product.add-to-bag")}</span>
               <span aria-hidden="true">·</span>
               <span>{totalPrice}</span>
             </Button>
           </form>
         </div>
-
         <ProductDetails
           description={description ?? t("product.description-text")}
           highlights={productHighlights}

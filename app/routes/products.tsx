@@ -63,8 +63,9 @@ function ProductCard({
   );
 }
 
-export async function clientLoader() {
-  const response = await Api.get("products/");
+export async function clientLoader({ request }: { request: Request }) {
+  const sort = new URL(request.url).searchParams.get("sort");
+  const response = await Api.get("products/", sort ? { sort } : undefined);
   const products = (Array.isArray(response) ? response : []).map(
     (product: ProductResponse): ProductCardProps => ({
       id: product.id,
