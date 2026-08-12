@@ -6,12 +6,14 @@ import { getCartUseCase } from "@app/lib/cart/application/get-cart.use-case";
 import { Button } from "@library";
 import { type FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { ColorSelector } from "./components/ColorSelector";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
 import { ProductInfo } from "./components/ProductInfo";
+import {
+  type ProductOption,
+  ProductOptions,
+} from "./components/ProductOptions";
 import { QuantitySelector } from "./components/QuantitySelector";
-import { SizeSelector } from "./components/SizeSelector";
 
 type ProductData = {
   id: number;
@@ -19,19 +21,6 @@ type ProductData = {
   description?: string;
   price: string;
   images: { src: string; alt: string; className?: string }[];
-  colorOptions: {
-    value: string;
-    label: string;
-    bgClass: string;
-    outlineClass: string;
-    checked?: boolean;
-  }[];
-  sizeOptions: {
-    value: string;
-    label: string;
-    disabled?: boolean;
-    checked?: boolean;
-  }[];
   highlights: string[];
 };
 
@@ -51,10 +40,12 @@ export default function Product({ params }: { params: { id: string } }) {
   const t = useTranslate();
   const navigate = useNavigate();
   const [product, setProduct] = useState<ProductResponse | null>(null);
+  const [productOptions, setProductOptions] = useState<ProductOption[]>([]);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     get(`products/${params.id}`).then(setProduct);
+    get("product-options").then(setProductOptions);
   }, [params.id]);
 
   useEffect(() => {
@@ -74,8 +65,6 @@ export default function Product({ params }: { params: { id: string } }) {
     price: productPrice,
     priceInCents,
     images: productImages = [],
-    colorOptions = [],
-    sizeOptions = [],
     highlights: productHighlights = [],
   } = product;
   const resolvedPriceInCents =
@@ -115,8 +104,7 @@ export default function Product({ params }: { params: { id: string } }) {
         <div className="mt-4 lg:row-span-3 lg:mt-0">
           <ProductInfo price={price} />
           <form className="mt-10" onSubmit={handleAddToCart}>
-            <ColorSelector colors={colorOptions} />
-            <SizeSelector sizes={sizeOptions} />
+            <ProductOptions options={productOptions} />
             <QuantitySelector value={quantity} onChange={setQuantity} />
 
             <Button type="submit" className="mt-10 h-12 w-full uppercase">
