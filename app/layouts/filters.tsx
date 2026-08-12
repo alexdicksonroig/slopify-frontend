@@ -126,6 +126,7 @@ export default function Filters() {
             onChange={handleSortChange}
             options={translatedSortOptions}
             placeholder={t("filters.sort")}
+            showSelectedValue={false}
             variant="link"
             className="px-2"
           />
