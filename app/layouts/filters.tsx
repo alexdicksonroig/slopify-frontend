@@ -4,10 +4,15 @@ import { Accordion, Button, Drawer, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
 import { Outlet, useSearchParams } from "react-router";
 
+type ProductOptionValue = {
+  id: number;
+  label: string;
+};
+
 type ProductOption = {
   id: number;
   label: string;
-  possibleValues: string[];
+  possibleValues: ProductOptionValue[];
 };
 
 const SORT_OPTIONS = [
@@ -27,7 +32,17 @@ const OPTION_LABEL_KEYS: Partial<Record<string, TranslationKey>> = {
   size: "filters.size",
 };
 
-const FilterContent = ({ options }: { options: ProductOption[] }) => {
+type FilterContentProps = {
+  options: ProductOption[];
+  searchParams: URLSearchParams;
+  onFilterChange: (optionId: number, valueId: number, checked: boolean) => void;
+};
+
+const FilterContent = ({
+  options,
+  searchParams,
+  onFilterChange,
+}: FilterContentProps) => {
   const t = useTranslate();
 
   return (
@@ -44,21 +59,32 @@ const FilterContent = ({ options }: { options: ProductOption[] }) => {
               headerText={headerText}
             >
               <div className="space-y-4">
-                {option.possibleValues.map((value, index) => {
-                  const inputId = `option-${option.id}-value-${index}`;
+                {option.possibleValues.map((value) => {
+                  const inputId = `option-${option.id}-value-${value.id}`;
 
                   return (
-                    <div key={value} className="flex items-center">
+                    <div key={value.id} className="flex items-center">
                       <input
                         id={inputId}
                         type="checkbox"
+                        checked={
+                          searchParams.get(String(option.id)) ===
+                          String(value.id)
+                        }
+                        onChange={(event) =>
+                          onFilterChange(
+                            option.id,
+                            value.id,
+                            event.currentTarget.checked,
+                          )
+                        }
                         className="h-4 w-4 rounded border-gray-300 text-primary"
                       />
                       <label
                         htmlFor={inputId}
                         className="ml-3 text-sm text-gray-600"
                       >
-                        {value}
+                        {value.label}
                       </label>
                     </div>
                   );
@@ -82,6 +108,25 @@ export default function Filters() {
     setSearchParams((currentParams) => {
       const nextParams = new URLSearchParams(currentParams);
       nextParams.set("sort", sort);
+      return nextParams;
+    });
+  };
+
+  const handleFilterChange = (
+    optionId: number,
+    valueId: number,
+    checked: boolean,
+  ) => {
+    setSearchParams((currentParams) => {
+      const nextParams = new URLSearchParams(currentParams);
+      const optionKey = String(optionId);
+
+      if (checked) {
+        nextParams.set(optionKey, String(valueId));
+      } else if (nextParams.get(optionKey) === String(valueId)) {
+        nextParams.delete(optionKey);
+      }
+
       return nextParams;
     });
   };
@@ -112,7 +157,11 @@ export default function Filters() {
           <h2 className="text-lg font-medium text-gray-900 mb-6">
             {t("filters.title")}
           </h2>
-          <FilterContent options={options} />
+          <FilterContent
+            options={options}
+            searchParams={searchParams}
+            onFilterChange={handleFilterChange}
+          />
         </div>
       </Drawer>
 
@@ -144,7 +193,11 @@ export default function Filters() {
       <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
         {/* Filters sidebar - Desktop */}
         <aside className="hidden lg:block">
-          <FilterContent options={options} />
+          <FilterContent
+            options={options}
+            searchParams={searchParams}
+            onFilterChange={handleFilterChange}
+          />
         </aside>
 
         {/* Main content */}
