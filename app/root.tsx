@@ -1,5 +1,5 @@
 import { LanguageProvider, useTranslate } from "@app/i18n";
-import { Icon } from "@library";
+import { LoadingCircle } from "@library";
 import {
   isRouteErrorResponse,
   Links,
@@ -43,16 +43,8 @@ export function HydrateFallback() {
         animation: "fadeIn 1s ease-in-out",
       }}
     >
-      <Icon icon="loader" size="xxxxl" className="animate-spin" />
+      <LoadingCircle size="lg" className="text-gray-900 dark:text-white" />
       <style>{`
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
         @keyframes fadeIn {
           from {
             opacity: 0;

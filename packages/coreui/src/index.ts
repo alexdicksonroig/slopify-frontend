@@ -8,6 +8,7 @@ import {
   Icon,
   Input,
   Label,
+  LoadingCircle,
   Overlay,
   Separator,
   Skeleton,
@@ -18,6 +19,7 @@ export {
   cn,
   Drawer,
   Icon,
+  LoadingCircle,
   Popover,
   Overlay,
   Table,
@@ -39,4 +41,5 @@ export type {
   IconProps,
   IconRotation,
   IconSize,
+  LoadingCircleProps,
 } from "./packages/components";

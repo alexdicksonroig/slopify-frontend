@@ -1,6 +1,6 @@
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
-import { Button, Input, Label } from "@library";
+import { Button, Input, Label, LoadingCircle } from "@library";
 import {
   type CheckoutContextValue,
   CheckoutProvider,
@@ -115,7 +115,7 @@ const CheckoutForm = () => {
       <PaymentElement />
       <Button disabled={isLoading} className="mt-2">
         {isLoading ? (
-          <div className="spinner"></div>
+          <LoadingCircle size="sm" label={t("app.loading")} />
         ) : (
           t("checkout.pay-now", { amount: checkout.total.total.amount })
         )}

@@ -21,6 +21,7 @@ import { Drawer } from "./drawer";
 import { Icon } from "./icon";
 import { Input } from "./input";
 import { Label } from "./label";
+import { LoadingCircle } from "./loading-circle";
 import { Overlay } from "./overlay";
 import { Separator } from "./separator";
 import { Skeleton } from "./skeleton";
@@ -68,6 +69,7 @@ export {
   Input,
   Icon,
   Label,
+  LoadingCircle,
   Overlay,
   Separator,
   Skeleton,
@@ -80,3 +82,4 @@ export type {
   IconRotation,
   IconSize,
 } from "./icon.types";
+export type { LoadingCircleProps } from "./loading-circle";
