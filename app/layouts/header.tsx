@@ -111,7 +111,7 @@ export default function Example() {
               options={languageOptions}
               placeholder={t("header.language")}
               variant="link"
-              size="sm"
+              size="lg"
               className="w-24"
             />
           </div>
