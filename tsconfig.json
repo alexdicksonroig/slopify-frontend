@@ -1,10 +1,6 @@
 {
   "include": ["packages/**/*", "app/**/*", ".react-router/types/**/*"],
-  "exclude": [
-    "packages/coreui/src/main.tsx",
-    "packages/coreui/vite.config.ts",
-    "packages/coreui/src/**/*.stories.tsx"
-  ],
+  "exclude": ["packages/coreui/src/main.tsx", "packages/coreui/vite.config.ts"],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
