@@ -21,6 +21,7 @@ export const en = {
   "filters.color": "Color",
   "filters.add-filter": "Add filter",
   "filters.new-arrivals": "New Arrivals",
+  "filters.reset": "Reset filters",
   "filters.size": "Size",
   "filters.sort": "Sort",
   "filters.sort-newest": "Newest",

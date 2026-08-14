@@ -23,6 +23,7 @@ export const ca = {
   "filters.color": "Color",
   "filters.add-filter": "Afegeix filtre",
   "filters.new-arrivals": "Novetats",
+  "filters.reset": "Restableix els filtres",
   "filters.size": "Talla",
   "filters.sort": "Ordena",
   "filters.sort-newest": "Més recents",

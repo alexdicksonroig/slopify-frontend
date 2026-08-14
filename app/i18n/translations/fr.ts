@@ -23,6 +23,7 @@ export const fr = {
   "filters.color": "Couleur",
   "filters.add-filter": "Ajouter filtre",
   "filters.new-arrivals": "Nouveautés",
+  "filters.reset": "Réinitialiser les filtres",
   "filters.size": "Taille",
   "filters.sort": "Trier",
   "filters.sort-newest": "Plus récents",

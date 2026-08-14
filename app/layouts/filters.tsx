@@ -36,17 +36,22 @@ type FilterContentProps = {
   options: ProductOption[];
   searchParams: URLSearchParams;
   onFilterChange: (optionId: number, valueId: number, checked: boolean) => void;
+  onResetFilters: () => void;
 };
 
 const FilterContent = ({
   options,
   searchParams,
   onFilterChange,
+  onResetFilters,
 }: FilterContentProps) => {
   const t = useTranslate();
+  const hasActiveFilters = options.some((option) =>
+    searchParams.has(String(option.id)),
+  );
 
   return (
-    <div className="space-y-6">
+    <div>
       <Accordion>
         {options.map((option) => {
           const translationKey = OPTION_LABEL_KEYS[option.label.toLowerCase()];
@@ -94,6 +99,17 @@ const FilterContent = ({
           );
         })}
       </Accordion>
+      <div className="mt-4 flex justify-start">
+        <Button
+          type="button"
+          variant="link"
+          className="text-sm font-normal text-muted-foreground"
+          disabled={!hasActiveFilters}
+          onClick={onResetFilters}
+        >
+          {t("filters.reset")}
+        </Button>
+      </div>
     </div>
   );
 };
@@ -131,6 +147,16 @@ export default function Filters() {
     });
   };
 
+  const handleResetFilters = () => {
+    setSearchParams((currentParams) => {
+      const nextParams = new URLSearchParams(currentParams);
+      options?.forEach((option) => {
+        nextParams.delete(String(option.id));
+      });
+      return nextParams;
+    });
+  };
+
   useEffect(() => {
     get("product-options").then(setOptions);
   }, []);
@@ -161,6 +187,7 @@ export default function Filters() {
             options={options}
             searchParams={searchParams}
             onFilterChange={handleFilterChange}
+            onResetFilters={handleResetFilters}
           />
         </div>
       </Drawer>
@@ -197,6 +224,7 @@ export default function Filters() {
             options={options}
             searchParams={searchParams}
             onFilterChange={handleFilterChange}
+            onResetFilters={handleResetFilters}
           />
         </aside>
 

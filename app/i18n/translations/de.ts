@@ -23,6 +23,7 @@ export const de = {
   "filters.color": "Farbe",
   "filters.add-filter": "Filter hinzufügen",
   "filters.new-arrivals": "Neuheiten",
+  "filters.reset": "Filter zurücksetzen",
   "filters.size": "Größe",
   "filters.sort": "Sortieren",
   "filters.sort-newest": "Neueste",
