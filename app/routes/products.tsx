@@ -1,9 +1,11 @@
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
+import { decrementProductQuantityInCartUseCase } from "@app/lib/cart/application/decrement-product-quantity-in-cart.use-case";
 import { incrementProductQuantityInCartUseCase } from "@app/lib/cart/application/increment-product-quantity-in-cart.use-case";
+import type { Cart } from "@app/lib/cart/domain/cart.entity";
 import { useCart } from "@app/lib/context/cart.context";
 import { Button, cn, Icon } from "@library";
-import { useState } from "react";
+import { useTransition } from "react";
 import { Link, useLoaderData } from "react-router";
 
 type ProductResponse = {
@@ -37,24 +39,15 @@ function ProductCard({
 }: ProductCardProps) {
   const t = useTranslate();
   const { cart, setCart } = useCart();
-  const [isAdding, setIsAdding] = useState(false);
+  const [isUpdating, startCartUpdate] = useTransition();
   const quantityInCart =
     cart?.items.find((item) => item.productId === id)?.quantity ?? 0;
 
-  const handleQuickAdd = async () => {
-    setIsAdding(true);
-
-    try {
-      const updatedCart = await incrementProductQuantityInCartUseCase.execute({
-        productId: id,
-        name,
-        unitPriceInCents,
-        thumbnailUrl,
-      });
+  const updateCart = (operation: () => Promise<Cart | null>) => {
+    startCartUpdate(async () => {
+      const updatedCart = await operation();
       if (updatedCart) setCart(updatedCart);
-    } finally {
-      setIsAdding(false);
-    }
+    });
   };
 
   return (
@@ -80,14 +73,43 @@ function ProductCard({
             <h3 className="text-sm leading-5 text-gray-700">{name}</h3>
           </Link>
           <div className="flex shrink-0 items-center gap-2">
-            <span className="text-sm text-gray-600">{quantityInCart}</span>
+            {quantityInCart > 0 && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                aria-label={t("cart.remove", { item: name })}
+                disabled={isUpdating || !cart}
+                onClick={() =>
+                  updateCart(() =>
+                    decrementProductQuantityInCartUseCase.execute(id),
+                  )
+                }
+                className="shrink-0 bg-gray-200 p-0! hover:bg-gray-300 disabled:opacity-40"
+                style={{ width: 20, height: 20, borderRadius: "50%" }}
+              >
+                <Icon icon="minus" size="sm" />
+              </Button>
+            )}
+            {quantityInCart > 0 && (
+              <span className="text-sm text-gray-600">{quantityInCart}</span>
+            )}
             <Button
               type="button"
               variant="ghost"
               size="icon"
               aria-label={`${t("product.add-to-bag")}: ${name}`}
-              disabled={isAdding || !cart}
-              onClick={handleQuickAdd}
+              disabled={isUpdating || !cart}
+              onClick={() =>
+                updateCart(() =>
+                  incrementProductQuantityInCartUseCase.execute({
+                    productId: id,
+                    name,
+                    unitPriceInCents,
+                    thumbnailUrl,
+                  }),
+                )
+              }
               className="shrink-0 bg-gray-200 p-0! hover:bg-gray-300 disabled:opacity-40"
               style={{ width: 20, height: 20, borderRadius: "50%" }}
             >
@@ -127,7 +149,7 @@ export default function Products() {
 
   return (
     <div
-      className="grid grid-cols-2 gap-x-4 gap-y-8 pb-32 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3
+      className="grid grid-cols-2 gap-x-4 gap-y-8 pb-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3
             xl:gap-x-8"
     >
       {products.map((product) => (
