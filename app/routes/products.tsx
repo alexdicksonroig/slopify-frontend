@@ -1,17 +1,15 @@
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
-import { cn } from "@library";
+import { incrementProductQuantityInCartUseCase } from "@app/lib/cart/application/increment-product-quantity-in-cart.use-case";
+import { Button, cn, Icon } from "@library";
+import { useState } from "react";
 import { Link, useLoaderData } from "react-router";
 
 type ProductResponse = {
   id: number;
   name: string;
   thumbnailUrl?: string | null;
-  priceInCents?: number;
-  // Mock fixture compatibility
-  imageSrc?: string;
-  imageAlt?: string;
-  price?: string;
+  priceInCents: number;
 };
 
 type ProductCardProps = {
@@ -20,6 +18,7 @@ type ProductCardProps = {
   thumbnailUrl: string | null;
   thumbnailAlt: string;
   price: string;
+  unitPriceInCents: number;
 };
 
 const priceFormatter = new Intl.NumberFormat("en-US", {
@@ -33,12 +32,29 @@ function ProductCard({
   thumbnailUrl,
   thumbnailAlt,
   price,
+  unitPriceInCents,
 }: ProductCardProps) {
   const t = useTranslate();
+  const [isAdding, setIsAdding] = useState(false);
+
+  const handleQuickAdd = async () => {
+    setIsAdding(true);
+
+    try {
+      await incrementProductQuantityInCartUseCase.execute({
+        productId: id,
+        name,
+        unitPriceInCents,
+        thumbnailUrl,
+      });
+    } finally {
+      setIsAdding(false);
+    }
+  };
 
   return (
-    <Link to={`/product/${id}`}>
-      <div className="group relative">
+    <div className="group relative">
+      <Link to={`/product/${id}`}>
         {thumbnailUrl ? (
           <img
             alt={thumbnailAlt}
@@ -52,14 +68,28 @@ function ProductCard({
             {t("product.no-thumbnail")}
           </div>
         )}
-        <div className="mt-4 flex justify-between">
-          <div>
-            <h3 className="text-sm text-gray-700">{name}</h3>
-          </div>
-          <p className="text-sm font-medium text-gray-900">{price}</p>
+      </Link>
+      <div className="mt-4">
+        <div className="flex items-center justify-between gap-2">
+          <Link className="min-w-0" to={`/product/${id}`}>
+            <h3 className="text-sm leading-5 text-gray-700">{name}</h3>
+          </Link>
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            aria-label={`${t("product.add-to-bag")}: ${name}`}
+            disabled={isAdding}
+            onClick={handleQuickAdd}
+            className="shrink-0 bg-gray-200 p-0! hover:bg-gray-300 disabled:opacity-40"
+            style={{ width: 20, height: 20, borderRadius: "50%" }}
+          >
+            <Icon icon="plus" size="sm" />
+          </Button>
         </div>
+        <p className="mt-1 text-sm font-medium text-gray-900">{price}</p>
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -74,11 +104,10 @@ export async function clientLoader({ request }: { request: Request }) {
     (product: ProductResponse): ProductCardProps => ({
       id: product.id,
       name: product.name,
-      thumbnailUrl: product.thumbnailUrl ?? product.imageSrc ?? null,
-      thumbnailAlt: product.imageAlt ?? product.name,
-      price:
-        product.price ??
-        priceFormatter.format((product.priceInCents ?? 0) / 100),
+      thumbnailUrl: product.thumbnailUrl ?? null,
+      thumbnailAlt: product.name,
+      price: priceFormatter.format(product.priceInCents / 100),
+      unitPriceInCents: product.priceInCents,
     }),
   );
 
@@ -90,7 +119,7 @@ export default function Products() {
 
   return (
     <div
-      className="grid grid-cols-2 gap-x-4 gap-y-8 pb-32 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4
+      className="grid grid-cols-2 gap-x-4 gap-y-8 pb-32 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3
             xl:gap-x-8"
     >
       {products.map((product) => (
