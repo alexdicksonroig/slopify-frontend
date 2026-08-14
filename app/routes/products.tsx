@@ -68,7 +68,7 @@ function ProductCard({
         )}
       </Link>
       <div className="mt-4">
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex items-start justify-between gap-2">
           <Link className="min-w-0" to={`/product/${id}`}>
             <h3 className="text-sm leading-5 text-gray-700">{name}</h3>
           </Link>
