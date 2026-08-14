@@ -22,7 +22,7 @@ export class Cart {
     return this.cartItems.map((item) => ({ ...item }));
   }
 
-  get invoicePriceInCents(): number {
+  get cartTotalInCents(): number {
     return this.cartItems.reduce(
       (price, item) => price + item.unitPriceInCents * item.quantity,
       0,
@@ -33,8 +33,8 @@ export class Cart {
     return this.shippingPrice;
   }
 
-  get totalPriceInCents(): number {
-    return this.invoicePriceInCents + this.shippingPriceInCents;
+  get orderTotalInCents(): number {
+    return this.cartTotalInCents + this.shippingPriceInCents;
   }
 
   get itemCount(): number {

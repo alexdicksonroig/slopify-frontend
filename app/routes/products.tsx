@@ -1,9 +1,9 @@
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
-import { getProductQuantityInCartUseCase } from "@app/lib/cart/application/get-product-quantity-in-cart.use-case";
 import { incrementProductQuantityInCartUseCase } from "@app/lib/cart/application/increment-product-quantity-in-cart.use-case";
+import { useCart } from "@app/lib/context/cart.context";
 import { Button, cn, Icon } from "@library";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useLoaderData } from "react-router";
 
 type ProductResponse = {
@@ -36,27 +36,22 @@ function ProductCard({
   unitPriceInCents,
 }: ProductCardProps) {
   const t = useTranslate();
+  const { cart, setCart } = useCart();
   const [isAdding, setIsAdding] = useState(false);
-  const [quantityInCart, setQuantityInCart] = useState(0);
-
-  useEffect(() => {
-    getProductQuantityInCartUseCase.execute(id).then(setQuantityInCart);
-  }, [id]);
+  const quantityInCart =
+    cart?.items.find((item) => item.productId === id)?.quantity ?? 0;
 
   const handleQuickAdd = async () => {
     setIsAdding(true);
 
     try {
-      const cart = await incrementProductQuantityInCartUseCase.execute({
+      const updatedCart = await incrementProductQuantityInCartUseCase.execute({
         productId: id,
         name,
         unitPriceInCents,
         thumbnailUrl,
       });
-      const quantity = cart?.items.find(
-        (item) => item.productId === id,
-      )?.quantity;
-      setQuantityInCart(quantity ?? 0);
+      if (updatedCart) setCart(updatedCart);
     } finally {
       setIsAdding(false);
     }
@@ -91,7 +86,7 @@ function ProductCard({
               variant="ghost"
               size="icon"
               aria-label={`${t("product.add-to-bag")}: ${name}`}
-              disabled={isAdding}
+              disabled={isAdding || !cart}
               onClick={handleQuickAdd}
               className="shrink-0 bg-gray-200 p-0! hover:bg-gray-300 disabled:opacity-40"
               style={{ width: 20, height: 20, borderRadius: "50%" }}

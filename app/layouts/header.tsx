@@ -2,9 +2,8 @@ import { CartProductList } from "@app/components/cart-product-list";
 import { type Language, useLanguage, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
-import { getCartUseCase } from "@app/lib/cart/application/get-cart.use-case";
 import { updateCartItemQuantityUseCase } from "@app/lib/cart/application/update-cart-item-quantity.use-case";
-import type { CartItem } from "@app/lib/cart/domain/cart.entity";
+import { useCart } from "@app/lib/context/cart.context";
 import { Button, cn, Drawer, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
@@ -15,12 +14,20 @@ type SettingsData = {
   currencyOptions: { label: string; value: string }[];
 };
 
+const priceFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "EUR",
+});
+
 export default function Example() {
   const [open, setOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
   const t = useTranslate();
-  const [settings, setSettings] = useState<SettingsData | null>(null);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const { cart, setCart } = useCart();
+  const [settings, setSettings] = useState<SettingsData>({
+    languageOptions: [],
+    currencyOptions: [],
+  });
   const location = useLocation();
   const navigate = useNavigate();
   const [showFirstText, setShowFirstText] = useState(true);
@@ -46,24 +53,23 @@ export default function Example() {
     return () => clearInterval(interval);
   }, []);
 
-  const languageOptions = settings?.languageOptions ?? [];
+  const cartItems = cart?.items ?? [];
+  const cartTotalInCents = cart?.cartTotalInCents ?? 0;
 
   const handleQuantityChange = async (productId: number, quantity: number) => {
-    const cart = await updateCartItemQuantityUseCase.execute(
+    const updatedCart = await updateCartItemQuantityUseCase.execute(
       productId,
       quantity,
     );
-    if (cart) setCartItems([...cart.items]);
+    if (updatedCart) setCart(updatedCart);
   };
 
   const handleRemove = async (productId: number) => {
-    const cart = await deleteProductFromCartUseCase.execute(productId);
-    if (cart) setCartItems([...cart.items]);
+    const updatedCart = await deleteProductFromCartUseCase.execute(productId);
+    if (updatedCart) setCart(updatedCart);
   };
 
-  const handleMenuOpen = async () => {
-    const cart = await getCartUseCase.execute();
-    setCartItems(cart ? [...cart.items] : []);
+  const handleMenuOpen = () => {
     setOpen(true);
   };
 
@@ -108,7 +114,7 @@ export default function Example() {
             <Select
               value={language}
               onChange={(value) => setLanguage(value as Language)}
-              options={languageOptions}
+              options={settings.languageOptions}
               placeholder={t("header.language")}
               variant="link"
               size="lg"
@@ -234,14 +240,17 @@ export default function Example() {
               <Select
                 value={language}
                 onChange={(value) => setLanguage(value as Language)}
-                options={languageOptions}
+                options={settings.languageOptions}
                 placeholder={t("header.language")}
                 variant="link"
                 size="default"
                 className="min-w-32 hidden md:flex"
               />
               {/* Cart */}
-              <div className="flow-root md:ml-4">
+              <div className="flex items-center md:ml-4">
+                <span className="flex h-6 min-w-12 items-center justify-center bg-gray-200 px-1.5 text-xs font-medium text-black">
+                  {priceFormatter.format(cartTotalInCents / 100)}
+                </span>
                 <Button onClick={handleCartClick} variant="ghost" size="icon">
                   <Icon icon="shopping-bag" size="lg" />
                   <span className="sr-only">{t("header.cart")}</span>

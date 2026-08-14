@@ -1,33 +1,15 @@
 import { CartProductList } from "@app/components/cart-product-list";
 import { OrderSummary } from "@app/components/order-summary";
 import { useTranslate } from "@app/i18n";
-import { createCartUseCase } from "@app/lib/cart/application/create-cart.use-case";
 import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
-import { getCartUseCase } from "@app/lib/cart/application/get-cart.use-case";
 import { updateCartItemQuantityUseCase } from "@app/lib/cart/application/update-cart-item-quantity.use-case";
-import type { Cart as CartEntity } from "@app/lib/cart/domain/cart.entity";
-import { useEffect, useState } from "react";
+import { useCart } from "@app/lib/context/cart.context";
 import { useNavigate } from "react-router";
-
-const DEFAULT_SHIPPING_PRICE_IN_CENTS = 500;
 
 export default function Cart() {
   const t = useTranslate();
   const navigate = useNavigate();
-  const [cart, setCart] = useState<CartEntity | null>(null);
-
-  useEffect(() => {
-    async function loadCart() {
-      const storedCart = await getCartUseCase.execute();
-      const nextCart =
-        storedCart ??
-        (await createCartUseCase.execute(DEFAULT_SHIPPING_PRICE_IN_CENTS));
-
-      setCart(nextCart);
-    }
-
-    void loadCart();
-  }, []);
+  const { cart, setCart } = useCart();
 
   const handleQuantityChange = async (productId: number, quantity: number) => {
     const updatedCart = await updateCartItemQuantityUseCase.execute(
@@ -65,10 +47,10 @@ export default function Cart() {
 
             <div className="mt-10 lg:col-span-5 lg:mt-0">
               <OrderSummary
-                subtotal={cart.invoicePriceInCents / 100}
+                subtotal={cart.cartTotalInCents / 100}
                 shipping={cart.shippingPriceInCents / 100}
                 tax={0}
-                total={cart.totalPriceInCents / 100}
+                total={cart.orderTotalInCents / 100}
                 onCheckout={() => navigate("/checkout")}
               />
             </div>

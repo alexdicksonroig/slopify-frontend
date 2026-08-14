@@ -1,4 +1,5 @@
 import { LanguageProvider, useTranslate } from "@app/i18n";
+import { CartProvider } from "@app/lib/context/cart.context";
 import { LoadingCircle } from "@library";
 import {
   isRouteErrorResponse,
@@ -25,7 +26,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <CartProvider>{children}</CartProvider>
+        </LanguageProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

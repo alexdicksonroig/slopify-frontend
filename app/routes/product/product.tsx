@@ -1,8 +1,7 @@
 import { useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-to-cart.use-case";
-import { createCartUseCase } from "@app/lib/cart/application/create-cart.use-case";
-import { getCartUseCase } from "@app/lib/cart/application/get-cart.use-case";
+import { useCart } from "@app/lib/context/cart.context";
 import { Button } from "@library";
 import { type FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -39,6 +38,7 @@ const priceFormatter = new Intl.NumberFormat("en-US", {
 export default function Product({ params }: { params: { id: string } }) {
   const t = useTranslate();
   const navigate = useNavigate();
+  const { cart, setCart } = useCart();
   const [product, setProduct] = useState<ProductResponse | null>(null);
   const [productOptions, setProductOptions] = useState<ProductOption[]>([]);
   const [quantity, setQuantity] = useState(1);
@@ -49,13 +49,11 @@ export default function Product({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   useEffect(() => {
-    getCartUseCase.execute().then((cart) => {
-      const cartItem = cart?.items.find(
-        (item) => item.productId === Number(params.id),
-      );
-      setQuantity(cartItem?.quantity ?? 1);
-    });
-  }, [params.id]);
+    const cartItem = cart?.items.find(
+      (item) => item.productId === Number(params.id),
+    );
+    setQuantity(cartItem?.quantity ?? 1);
+  }, [cart, params.id]);
 
   if (!product) return null;
 
@@ -78,10 +76,7 @@ export default function Product({ params }: { params: { id: string } }) {
   const handleAddToCart = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const existingCart = await getCartUseCase.execute();
-    if (!existingCart) await createCartUseCase.execute(500);
-
-    await addProductToCartUseCase.execute(
+    const updatedCart = await addProductToCartUseCase.execute(
       {
         productId: product.id,
         name: product.name,
@@ -90,6 +85,7 @@ export default function Product({ params }: { params: { id: string } }) {
       },
       quantity,
     );
+    if (updatedCart) setCart(updatedCart);
     navigate("/cart");
   };
 
@@ -109,7 +105,11 @@ export default function Product({ params }: { params: { id: string } }) {
           <form className="mt-10" onSubmit={handleAddToCart}>
             <ProductOptions options={productOptions} />
             <QuantitySelector value={quantity} onChange={setQuantity} />
-            <Button type="submit" className="mt-4 h-12 w-full uppercase">
+            <Button
+              type="submit"
+              disabled={!cart}
+              className="mt-4 h-12 w-full uppercase"
+            >
               <span>{t("product.add-to-bag")}</span>
               <span aria-hidden="true">·</span>
               <span>{totalPrice}</span>

@@ -1,12 +1,11 @@
 import type { Cart, CartProduct } from "../domain/cart.entity";
 import { addProductToCartUseCase } from "./add-product-to-cart.use-case";
-import { createCartUseCase } from "./create-cart.use-case";
 import { getCartUseCase } from "./get-cart.use-case";
 
 export class IncrementProductQuantityInCartUseCase {
   async execute(product: CartProduct): Promise<Cart | null> {
-    let cart = await getCartUseCase.execute();
-    if (!cart) cart = await createCartUseCase.execute(500);
+    const cart = await getCartUseCase.execute();
+    if (!cart) return null;
 
     const currentQuantity =
       cart.items.find((item) => item.productId === product.productId)
