@@ -1,8 +1,9 @@
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
+import { getProductQuantityInCartUseCase } from "@app/lib/cart/application/get-product-quantity-in-cart.use-case";
 import { incrementProductQuantityInCartUseCase } from "@app/lib/cart/application/increment-product-quantity-in-cart.use-case";
 import { Button, cn, Icon } from "@library";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router";
 
 type ProductResponse = {
@@ -36,17 +37,26 @@ function ProductCard({
 }: ProductCardProps) {
   const t = useTranslate();
   const [isAdding, setIsAdding] = useState(false);
+  const [quantityInCart, setQuantityInCart] = useState(0);
+
+  useEffect(() => {
+    getProductQuantityInCartUseCase.execute(id).then(setQuantityInCart);
+  }, [id]);
 
   const handleQuickAdd = async () => {
     setIsAdding(true);
 
     try {
-      await incrementProductQuantityInCartUseCase.execute({
+      const cart = await incrementProductQuantityInCartUseCase.execute({
         productId: id,
         name,
         unitPriceInCents,
         thumbnailUrl,
       });
+      const quantity = cart?.items.find(
+        (item) => item.productId === id,
+      )?.quantity;
+      setQuantityInCart(quantity ?? 0);
     } finally {
       setIsAdding(false);
     }
@@ -74,18 +84,21 @@ function ProductCard({
           <Link className="min-w-0" to={`/product/${id}`}>
             <h3 className="text-sm leading-5 text-gray-700">{name}</h3>
           </Link>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            aria-label={`${t("product.add-to-bag")}: ${name}`}
-            disabled={isAdding}
-            onClick={handleQuickAdd}
-            className="shrink-0 bg-gray-200 p-0! hover:bg-gray-300 disabled:opacity-40"
-            style={{ width: 20, height: 20, borderRadius: "50%" }}
-          >
-            <Icon icon="plus" size="sm" />
-          </Button>
+          <div className="flex shrink-0 items-center gap-2">
+            <span className="text-sm text-gray-600">{quantityInCart}</span>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              aria-label={`${t("product.add-to-bag")}: ${name}`}
+              disabled={isAdding}
+              onClick={handleQuickAdd}
+              className="shrink-0 bg-gray-200 p-0! hover:bg-gray-300 disabled:opacity-40"
+              style={{ width: 20, height: 20, borderRadius: "50%" }}
+            >
+              <Icon icon="plus" size="sm" />
+            </Button>
+          </div>
         </div>
         <p className="mt-1 text-sm font-medium text-gray-900">{price}</p>
       </div>
