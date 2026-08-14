@@ -70,7 +70,7 @@ export const Select: React.FC<SelectProps> = ({
         open={isOpen}
         onOpenChange={setIsOpen}
         placement="bottom"
-        className="right-0 z-50 mt-1 min-w-fit w-full rounded-xl md:min-w-64 md:rounded-lg border border-input bg-popover text-popover-foreground shadow-md p-1"
+        className="right-0 z-50 mt-1 min-w-fit w-full rounded-xl md:min-w-64 md:rounded-lg md:border md:border-input bg-popover text-popover-foreground md:shadow-md p-1"
       >
         <div className="max-h-60 overflow-auto">
           <div className="w-full flex md:hidden justify-end">

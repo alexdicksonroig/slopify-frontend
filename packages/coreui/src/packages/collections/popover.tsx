@@ -17,7 +17,7 @@ const classes = {
     placementBottom: "md:top-full md:translate-y-0",
   },
   mobile: {
-    base: "fixed top-auto bottom-[calc(env(safe-area-inset-bottom)+1rem)]",
+    base: "fixed bottom-0",
   },
 };
 
