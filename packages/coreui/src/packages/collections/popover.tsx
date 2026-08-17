@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { cn } from "../../lib/cn";
 import { Overlay } from "../components";
 
@@ -33,6 +34,17 @@ export const Popover: React.FC<PopoverProps> = ({
     placement === "bottom"
       ? classes.desktop.placementBottom
       : classes.desktop.placementTop;
+
+  useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
 
   return (
     <>
