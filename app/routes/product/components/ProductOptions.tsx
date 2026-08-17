@@ -22,11 +22,11 @@ export function ProductOptions({ options, onChange }: ProductOptionsProps) {
           <legend className="text-sm font-medium text-gray-900">
             {option.label}
           </legend>
-          <div className="mt-4 grid grid-cols-4 gap-3">
+          <div className="mt-3 flex flex-wrap gap-2">
             {option.possibleValues.map((value) => (
               <label
                 key={value.id}
-                className="group relative flex min-h-12 cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white px-3 has-checked:border-primary has-checked:bg-primary has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-primary"
+                className="group relative flex min-h-10 min-w-20 cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white px-3 has-checked:border-primary has-checked:bg-primary has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-primary"
               >
                 <input
                   type="radio"
