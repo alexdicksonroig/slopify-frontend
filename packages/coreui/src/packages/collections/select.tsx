@@ -70,16 +70,16 @@ export const Select: React.FC<SelectProps> = ({
         open={isOpen}
         onOpenChange={setIsOpen}
         placement="bottom"
-        className="right-0 z-50 mt-1 min-w-fit w-full rounded-xl md:min-w-64 md:rounded-lg md:border md:border-input bg-popover text-popover-foreground md:shadow-md px-3 pt-2 pb-6 md:p-1"
+        className="right-0 z-50 mt-1 min-w-fit w-full rounded-xl md:min-w-64 md:rounded-lg md:border md:border-input bg-popover text-popover-foreground md:shadow-md px-4 pt-2 pb-6 md:p-1"
       >
-        <div className="max-h-60 overflow-auto">
+        <div className="max-h-60 overflow-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex h-8 w-full items-center justify-end md:hidden">
             <button
               type="button"
               aria-label="Close options"
               onClick={() => setIsOpen(false)}
             >
-              <Icon icon="x" size="lg" />
+              <Icon icon="x" size="lg" className="brightness-50" />
             </button>
           </div>
           {options.map((option) => (
@@ -88,14 +88,15 @@ export const Select: React.FC<SelectProps> = ({
               type="button"
               onClick={() => handleSelect(option.value)}
               className={cn(
-                "relative flex w-full cursor-pointer select-none items-center rounded-sm p-2.5 text-sm outline-none transition-colors whitespace-nowrap",
+                "relative flex w-full cursor-pointer select-none items-center rounded-sm border-b border-input/60 px-0 py-4 text-sm md:py-2.5 outline-none transition-colors whitespace-nowrap last:border-b-0 md:border-b-0",
                 "hover:bg-accent hover:text-accent-foreground",
                 "focus:bg-accent focus:text-accent-foreground",
+                option.value === value && "font-semibold",
               )}
             >
               {option.label}
               {option.value === value && (
-                <Icon icon="check" size="sm" className="ml-auto" />
+                <Icon icon="check" size="lg" className="ml-auto" />
               )}
             </button>
           ))}
