@@ -260,7 +260,9 @@ export default function Example() {
           </div>
         </nav>
       </header>
-      <Outlet />
+      <div className="min-h-screen flex-1">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
