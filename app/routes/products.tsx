@@ -52,14 +52,13 @@ function ProductCard({
 
   return (
     <div className="group relative">
-      <Link to={`/product/${id}`} viewTransition>
+      <Link to={`/product/${id}`}>
         {thumbnailUrl ? (
           <img
             alt={thumbnailAlt}
             src={thumbnailUrl}
-            style={{ viewTransitionName: `product-${id}-thumbnail` }}
             className={cn(
-              "aspect-square w-full rounded-md bg-gray-200 object-contain group-hover:opacity-75 lg:[view-transition-name:none]",
+              "aspect-square w-full rounded-md bg-gray-200 object-contain group-hover:opacity-75",
             )}
           />
         ) : (

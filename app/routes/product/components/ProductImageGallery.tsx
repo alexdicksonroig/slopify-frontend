@@ -6,26 +6,17 @@ interface ProductImage {
 
 interface ProductImageGalleryProps {
   images: ProductImage[];
-  thumbnailTransitionName: string;
 }
 
-export function ProductImageGallery({
-  images,
-  thumbnailTransitionName,
-}: ProductImageGalleryProps) {
+export function ProductImageGallery({ images }: ProductImageGalleryProps) {
   return (
     <div className="mx-auto max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
-      {images.map((image, index) => (
+      {images.map((image) => (
         <img
           key={image.src}
           src={image.src}
           alt={image.alt}
-          style={
-            index === 0
-              ? { viewTransitionName: thumbnailTransitionName }
-              : undefined
-          }
-          className={`${image.className ?? ""} lg:[view-transition-name:none]`}
+          className={image.className ?? ""}
         />
       ))}
     </div>
