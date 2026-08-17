@@ -70,14 +70,13 @@ export const Select: React.FC<SelectProps> = ({
         open={isOpen}
         onOpenChange={setIsOpen}
         placement="bottom"
-        className="right-0 z-50 mt-1 min-w-fit w-full rounded-xl md:min-w-64 md:rounded-lg md:border md:border-input bg-popover text-popover-foreground md:shadow-md p-1 pb-4 md:pb-1"
+        className="right-0 z-50 mt-1 min-w-fit w-full rounded-xl md:min-w-64 md:rounded-lg md:border md:border-input bg-popover text-popover-foreground md:shadow-md px-3 pt-2 pb-6 md:p-1"
       >
         <div className="max-h-60 overflow-auto">
-          <div className="w-full flex md:hidden justify-end">
+          <div className="flex h-8 w-full items-center justify-end md:hidden">
             <button
               type="button"
               aria-label="Close options"
-              className="m-2"
               onClick={() => setIsOpen(false)}
             >
               <Icon icon="x" size="lg" />
