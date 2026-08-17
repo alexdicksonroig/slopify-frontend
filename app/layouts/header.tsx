@@ -111,6 +111,9 @@ export default function Example() {
             {/* /> */}
           </div>
           <div className="-m-2 p-2">
+            <h2 className="mb-1 text-[10px] font-normal uppercase text-gray-400">
+              {t("header.language")}
+            </h2>
             <Select
               value={language}
               onChange={(value) => setLanguage(value as Language)}
