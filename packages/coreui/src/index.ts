@@ -1,4 +1,5 @@
 import { cn } from "./lib/cn";
+import Throttle from "./lib/throttle";
 import { Dialog, Popover, Select } from "./packages/collections";
 import {
   Accordion,
@@ -32,6 +33,7 @@ export {
   Separator,
   Skeleton,
   Select,
+  Throttle,
 };
 
 export type {

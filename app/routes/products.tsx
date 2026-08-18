@@ -4,8 +4,8 @@ import { decrementProductQuantityInCartUseCase } from "@app/lib/cart/application
 import { incrementProductQuantityInCartUseCase } from "@app/lib/cart/application/increment-product-quantity-in-cart.use-case";
 import type { Cart } from "@app/lib/cart/domain/cart.entity";
 import { useCart } from "@app/lib/context/cart.context";
-import { Button, cn, Icon } from "@library";
-import { useTransition } from "react";
+import { Button, cn, Icon, Throttle } from "@library";
+import { useMemo } from "react";
 import { Link, useLoaderData } from "react-router";
 
 type ProductResponse = {
@@ -39,16 +39,17 @@ function ProductCard({
 }: ProductCardProps) {
   const t = useTranslate();
   const { cart, setCart } = useCart();
-  const [isUpdating, startCartUpdate] = useTransition();
   const quantityInCart =
     cart?.items.find((item) => item.productId === id)?.quantity ?? 0;
 
-  const updateCart = (operation: () => Promise<Cart | null>) => {
-    startCartUpdate(async () => {
-      const updatedCart = await operation();
-      if (updatedCart) setCart(updatedCart);
-    });
-  };
+  const updateCart = useMemo(
+    () =>
+      Throttle(async (operation: () => Promise<Cart | null>) => {
+        const updatedCart = await operation();
+        if (updatedCart) setCart(updatedCart);
+      }),
+    [setCart],
+  );
 
   return (
     <div className="group relative">
@@ -79,13 +80,13 @@ function ProductCard({
                 variant="ghost"
                 size="icon"
                 aria-label={t("cart.remove", { item: name })}
-                disabled={isUpdating || !cart}
+                disabled={!cart}
                 onClick={() =>
                   updateCart(() =>
                     decrementProductQuantityInCartUseCase.execute(id),
                   )
                 }
-                className="shrink-0 bg-gray-200 p-0! hover:bg-gray-300 disabled:opacity-40"
+                className="shrink-0 bg-gray-300 p-0! hover:bg-gray-400 disabled:opacity-40"
                 style={{ width: 20, height: 20, borderRadius: "50%" }}
               >
                 <Icon icon="minus" size="sm" />
@@ -99,7 +100,7 @@ function ProductCard({
               variant="ghost"
               size="icon"
               aria-label={`${t("product.add-to-bag")}: ${name}`}
-              disabled={isUpdating || !cart}
+              disabled={!cart}
               onClick={() =>
                 updateCart(() =>
                   incrementProductQuantityInCartUseCase.execute({
@@ -110,7 +111,7 @@ function ProductCard({
                   }),
                 )
               }
-              className="shrink-0 bg-gray-200 p-0! hover:bg-gray-300 disabled:opacity-40"
+              className="shrink-0 bg-gray-300 p-0! hover:bg-gray-400 disabled:opacity-40"
               style={{ width: 20, height: 20, borderRadius: "50%" }}
             >
               <Icon icon="plus" size="sm" />

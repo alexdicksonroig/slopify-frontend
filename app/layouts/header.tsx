@@ -254,7 +254,12 @@ export default function Example() {
                 <span className="flex h-6 min-w-12 items-center justify-center bg-gray-200 px-1.5 text-xs font-medium text-black">
                   {priceFormatter.format(cartTotalInCents / 100)}
                 </span>
-                <Button onClick={handleCartClick} variant="ghost" size="icon">
+                <Button
+                  onClick={handleCartClick}
+                  variant="ghost"
+                  size="icon"
+                  className="ml-1"
+                >
                   <Icon icon="shopping-bag" size="lg" />
                   <span className="sr-only">{t("header.cart")}</span>
                 </Button>
