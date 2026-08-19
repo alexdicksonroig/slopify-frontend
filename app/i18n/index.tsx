@@ -15,7 +15,7 @@ import {
 } from "./translations";
 
 export type { Language, TranslationKey } from "./translations";
-export { languages } from "./translations";
+export { languageOptions, languages } from "./translations";
 
 type Replacements = Record<string, string | number>;
 type Translate = (key: TranslationKey, replacements?: Replacements) => string;

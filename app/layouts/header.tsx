@@ -1,6 +1,10 @@
 import { CartProductList } from "@app/components/cart-product-list";
-import { type Language, useLanguage, useTranslate } from "@app/i18n";
-import { get } from "@app/lib/api";
+import {
+  type Language,
+  languageOptions,
+  useLanguage,
+  useTranslate,
+} from "@app/i18n";
 import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
 import { updateCartItemQuantityUseCase } from "@app/lib/cart/application/update-cart-item-quantity.use-case";
 import { useCart } from "@app/lib/context/cart.context";
@@ -8,11 +12,6 @@ import { Button, cn, Drawer, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import Footer from "./footer";
-
-type SettingsData = {
-  languageOptions: { label: string; value: string }[];
-  currencyOptions: { label: string; value: string }[];
-};
 
 const priceFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -24,17 +23,9 @@ export default function Example() {
   const { language, setLanguage } = useLanguage();
   const t = useTranslate();
   const { cart, setCart } = useCart();
-  const [settings, setSettings] = useState<SettingsData>({
-    languageOptions: [],
-    currencyOptions: [],
-  });
   const location = useLocation();
   const navigate = useNavigate();
   const [showFirstText, setShowFirstText] = useState(true);
-
-  useEffect(() => {
-    get("settings").then(setSettings);
-  }, []);
 
   const handleCartClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -117,7 +108,7 @@ export default function Example() {
             <Select
               value={language}
               onChange={(value) => setLanguage(value as Language)}
-              options={settings.languageOptions}
+              options={languageOptions}
               placeholder={t("header.language")}
               variant="link"
               size="lg"
@@ -243,7 +234,7 @@ export default function Example() {
               <Select
                 value={language}
                 onChange={(value) => setLanguage(value as Language)}
-                options={settings.languageOptions}
+                options={languageOptions}
                 placeholder={t("header.language")}
                 variant="link"
                 size="default"

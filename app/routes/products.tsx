@@ -124,7 +124,7 @@ function ProductCard({
   );
 }
 
-export async function clientLoader({ request }: { request: Request }) {
+async function loadProducts(request: Request) {
   const searchParams = new URL(request.url).searchParams;
   const params = Object.fromEntries(searchParams);
   const response = await Api.get(
@@ -143,6 +143,16 @@ export async function clientLoader({ request }: { request: Request }) {
   );
 
   return { products };
+}
+
+// The server loader supplies the prerendered page and its static `.data` file.
+export async function loader({ request }: { request: Request }) {
+  return loadProducts(request);
+}
+
+// Filters still work during client-side navigations without a runtime server.
+export async function clientLoader({ request }: { request: Request }) {
+  return loadProducts(request);
 }
 
 export default function Products() {

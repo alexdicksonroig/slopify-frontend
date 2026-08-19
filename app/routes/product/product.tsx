@@ -4,7 +4,7 @@ import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-t
 import { useCart } from "@app/lib/context/cart.context";
 import { Button } from "@library";
 import { type FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
 import { ProductInfo } from "./components/ProductInfo";
@@ -35,18 +35,25 @@ const priceFormatter = new Intl.NumberFormat("en-US", {
   currency: "EUR",
 });
 
+export async function loader({ params }: { params: { id?: string } }) {
+  const [product, productOptions] = await Promise.all([
+    get(`products/${params.id}`) as Promise<ProductResponse | null>,
+    get("product-options") as Promise<ProductOption[]>,
+  ]);
+
+  if (!product) {
+    throw new Response("Product not found", { status: 404 });
+  }
+
+  return { product, productOptions };
+}
+
 export default function Product({ params }: { params: { id: string } }) {
   const t = useTranslate();
   const navigate = useNavigate();
   const { cart, setCart } = useCart();
-  const [product, setProduct] = useState<ProductResponse | null>(null);
-  const [productOptions, setProductOptions] = useState<ProductOption[]>([]);
+  const { product, productOptions } = useLoaderData<typeof loader>();
   const [quantity, setQuantity] = useState(1);
-
-  useEffect(() => {
-    get(`products/${params.id}`).then(setProduct);
-    get("product-options").then(setProductOptions);
-  }, [params.id]);
 
   useEffect(() => {
     const cartItem = cart?.items.find(
@@ -54,8 +61,6 @@ export default function Product({ params }: { params: { id: string } }) {
     );
     setQuantity(cartItem?.quantity ?? 1);
   }, [cart, params.id]);
-
-  if (!product) return null;
 
   const {
     name,

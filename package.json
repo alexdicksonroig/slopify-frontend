@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "react-router build",
     "dev": "react-router dev --open",
-    "start": "react-router-serve ./build/server/index.js",
+    "build": "react-router build",
+    "start": "vite preview --outDir build/client",
     "typecheck": "react-router typegen && tsc",
     "lint-format": "biome check --write"
   },

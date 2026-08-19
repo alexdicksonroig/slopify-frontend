@@ -45,3 +45,15 @@ Create a production build:
 ```bash
 pnpm run build
 ```
+
+The site is statically generated into `build/client`. The build fetches the
+product catalog from `VITE_API_URL` and generates a page for every product.
+
+Preview an existing production build locally:
+
+```bash
+pnpm start
+```
+
+Vercel's React Router framework preset can deploy the generated application
+without a custom server or Docker configuration.

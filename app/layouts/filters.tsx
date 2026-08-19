@@ -1,8 +1,8 @@
 import { type TranslationKey, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { Accordion, Button, Drawer, Icon, Select } from "@library";
-import { useEffect, useState } from "react";
-import { Outlet, useSearchParams } from "react-router";
+import { useState } from "react";
+import { Outlet, useLoaderData, useSearchParams } from "react-router";
 
 type ProductOptionValue = {
   id: number;
@@ -114,10 +114,15 @@ const FilterContent = ({
   );
 };
 
+export async function loader() {
+  const options = (await get("product-options")) as ProductOption[];
+  return { options };
+}
+
 export default function Filters() {
   const t = useTranslate();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [options, setOptions] = useState<ProductOption[] | null>(null);
+  const { options } = useLoaderData<typeof loader>();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSortChange = (sort: string) => {
@@ -150,18 +155,12 @@ export default function Filters() {
   const handleResetFilters = () => {
     setSearchParams((currentParams) => {
       const nextParams = new URLSearchParams(currentParams);
-      options?.forEach((option) => {
+      options.forEach((option) => {
         nextParams.delete(String(option.id));
       });
       return nextParams;
     });
   };
-
-  useEffect(() => {
-    get("product-options").then(setOptions);
-  }, []);
-
-  if (!options) return null;
 
   const translatedSortOptions = SORT_OPTIONS.map((option) => {
     const translationKey = SORT_OPTION_KEYS[option.value];
