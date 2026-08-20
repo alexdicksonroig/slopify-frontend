@@ -15,7 +15,7 @@ type CartContextValue = {
   setCart: (cart: Cart | null) => void;
 };
 
-const DEFAULT_SHIPPING_PRICE_IN_CENTS = 500;
+const DEFAULT_SHIPPING_PRICE_IN_CENTS = 0;
 const CartContext = createContext<CartContextValue | null>(null);
 
 export function CartProvider({ children }: PropsWithChildren) {

@@ -1,5 +1,6 @@
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
+import { useCart } from "@app/lib/context/cart.context";
 import { Button, Input, Label, LoadingCircle } from "@library";
 import {
   type CheckoutContextValue,
@@ -126,16 +127,37 @@ const CheckoutForm = () => {
   );
 };
 
-const stripePromise = loadStripe(
-  "pk_test_51RxoPKBewlYHY4Wou29sXv0IuWRPFeZmdYqW9087Uf48B4znnG21vJF8mWMaLGUo6YQQs8HG6K7ZIq6ysvyoQps800xC6Q8nXc",
-);
+const stripePublishableKey = (
+  import.meta as unknown as {
+    env: { VITE_STRIPE_PUBLISHABLE_KEY?: string };
+  }
+).env.VITE_STRIPE_PUBLISHABLE_KEY;
+const stripePromise = stripePublishableKey
+  ? loadStripe(stripePublishableKey)
+  : null;
 
 export default function Payment() {
+  const t = useTranslate();
+  const { cart } = useCart();
+
+  if (!cart || cart.isEmpty) {
+    return <p className="mx-5 mt-5">{t("cart.empty")}</p>;
+  }
+  if (!stripePromise) {
+    return <p className="mx-5 mt-5">{t("checkout.unavailable")}</p>;
+  }
+
+  const items = cart.items.map(({ productVariantId, quantity }) => ({
+    variantId: productVariantId,
+    quantity,
+  }));
+
   return (
     <CheckoutProvider
       stripe={stripePromise}
       options={{
-        fetchClientSecret: () => Api.post("/create-checkout-session"),
+        fetchClientSecret: () =>
+          Api.post<string>("create-checkout-session", { items }),
       }}
     >
       <div className="mx-5 mt-5">

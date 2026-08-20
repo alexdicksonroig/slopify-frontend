@@ -1,24 +1,22 @@
 import { useTranslate } from "@app/i18n";
+import { formatMoney } from "@app/lib/currency";
 import { Button, Icon } from "@library";
 
-const priceFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "EUR",
-});
-
 export type OrderSummaryProps = {
-  subtotal: number;
-  shipping: number;
-  tax?: number;
-  total: number;
+  subtotalInCents: number;
+  shippingInCents: number;
+  taxInCents?: number;
+  totalInCents: number;
+  currency: string;
   onCheckout: () => void;
 };
 
 export function OrderSummary({
-  subtotal,
-  shipping,
-  tax = 0,
-  total,
+  subtotalInCents,
+  shippingInCents,
+  taxInCents = 0,
+  totalInCents,
+  currency,
   onCheckout,
 }: OrderSummaryProps) {
   const t = useTranslate();
@@ -33,7 +31,7 @@ export function OrderSummary({
         <div className="flex items-center justify-between">
           <dt className="text-sm text-gray-600">{t("cart.subtotal")}</dt>
           <dd className="text-sm font-medium text-gray-900">
-            {priceFormatter.format(subtotal)}
+            {formatMoney(subtotalInCents, currency)}
           </dd>
         </div>
 
@@ -48,7 +46,7 @@ export function OrderSummary({
             </button>
           </dt>
           <dd className="text-sm font-medium text-gray-900">
-            {priceFormatter.format(shipping)}
+            {formatMoney(shippingInCents, currency)}
           </dd>
         </div>
 
@@ -63,7 +61,7 @@ export function OrderSummary({
             </button>
           </dt>
           <dd className="text-sm font-medium text-gray-900">
-            {priceFormatter.format(tax)}
+            {formatMoney(taxInCents, currency)}
           </dd>
         </div>
 
@@ -72,7 +70,7 @@ export function OrderSummary({
             {t("cart.order-total")}
           </dt>
           <dd className="text-base font-medium text-gray-900">
-            {priceFormatter.format(total)}
+            {formatMoney(totalInCents, currency)}
           </dd>
         </div>
       </dl>

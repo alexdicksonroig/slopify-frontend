@@ -13,6 +13,7 @@ export const en = {
   "checkout.email": "Email",
   "checkout.pay-now": "Pay ${amount} now",
   "checkout.payment": "Payment",
+  "checkout.unavailable": "Checkout is currently unavailable.",
   "error.generic": "Error",
   "error.not-found": "The requested page could not be found.",
   "error.oops": "Oops!",
@@ -59,6 +60,7 @@ export const en = {
     "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: “Black”. Need to add an extra pop of color to your outfit? Our white tee has you covered.",
   "product.size": "Size",
   "product.size-guide": "Size guide",
+  "product.unavailable": "Unavailable",
   "return.checking": "Checking payment status...",
   "return.error": "Something went wrong while checking your payment.",
   "return.success":

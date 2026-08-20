@@ -38,6 +38,16 @@ pnpm run dev
 
 Your application will be available at `http://localhost:5173`.
 
+Configure the backend and Stripe Checkout in `.env`:
+
+```dotenv
+VITE_API_URL=http://localhost:3000/
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
+```
+
+The publishable key must belong to the same Stripe account as the backend's
+`STRIPE_SECRET_KEY`.
+
 ## Building for Production
 
 Create a production build:

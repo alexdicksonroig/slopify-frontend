@@ -11,16 +11,20 @@ export default function Cart() {
   const navigate = useNavigate();
   const { cart, setCart } = useCart();
 
-  const handleQuantityChange = async (productId: number, quantity: number) => {
+  const handleQuantityChange = async (
+    productVariantId: number,
+    quantity: number,
+  ) => {
     const updatedCart = await updateCartItemQuantityUseCase.execute(
-      productId,
+      productVariantId,
       quantity,
     );
     if (updatedCart) setCart(updatedCart);
   };
 
-  const handleRemove = async (productId: number) => {
-    const updatedCart = await deleteProductFromCartUseCase.execute(productId);
+  const handleRemove = async (productVariantId: number) => {
+    const updatedCart =
+      await deleteProductFromCartUseCase.execute(productVariantId);
     if (updatedCart) setCart(updatedCart);
   };
 
@@ -47,10 +51,11 @@ export default function Cart() {
 
             <div className="mt-10 lg:col-span-5 lg:mt-0">
               <OrderSummary
-                subtotal={cart.cartTotalInCents / 100}
-                shipping={cart.shippingPriceInCents / 100}
-                tax={0}
-                total={cart.orderTotalInCents / 100}
+                subtotalInCents={cart.cartTotalInCents}
+                shippingInCents={cart.shippingPriceInCents}
+                taxInCents={0}
+                totalInCents={cart.orderTotalInCents}
+                currency={cart.currency}
                 onCheckout={() => navigate("/checkout")}
               />
             </div>

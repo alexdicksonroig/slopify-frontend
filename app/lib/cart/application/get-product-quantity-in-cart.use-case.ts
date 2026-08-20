@@ -1,11 +1,12 @@
 import { getCartUseCase } from "./get-cart.use-case";
 
 export class GetProductQuantityInCartUseCase {
-  async execute(productId: number): Promise<number> {
+  async execute(productVariantId: number): Promise<number> {
     const cart = await getCartUseCase.execute();
 
     return (
-      cart?.items.find((item) => item.productId === productId)?.quantity ?? 0
+      cart?.items.find((item) => item.productVariantId === productVariantId)
+        ?.quantity ?? 0
     );
   }
 }

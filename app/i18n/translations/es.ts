@@ -15,6 +15,7 @@ export const es = {
   "checkout.email": "Correo electrónico",
   "checkout.pay-now": "Pagar ${amount} ahora",
   "checkout.payment": "Pago",
+  "checkout.unavailable": "El pago no está disponible actualmente.",
   "error.generic": "Error",
   "error.not-found": "No se pudo encontrar la página solicitada.",
   "error.oops": "¡Vaya!",
@@ -61,6 +62,7 @@ export const es = {
     "El pack de 6 camisetas básicas te permite expresar tu personalidad con tres tonos de gris. Prueba la camiseta gris jaspeado, nuestro exclusivo negro o añade un toque luminoso con la camiseta blanca.",
   "product.size": "Talla",
   "product.size-guide": "Guía de tallas",
+  "product.unavailable": "No disponible",
   "return.checking": "Comprobando el estado del pago...",
   "return.error": "Se produjo un error al comprobar el pago.",
   "return.success":

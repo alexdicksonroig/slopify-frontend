@@ -1,3 +1,4 @@
+// Last commit not reviewed
 const env = (
   import.meta as unknown as {
     env: { VITE_API_URL: string };
@@ -5,61 +6,39 @@ const env = (
 ).env;
 const baseOrigin = env.VITE_API_URL;
 
-export const get = async (
+async function request<T>(
+  method: "GET" | "POST",
   path: string,
   params?: Record<string, string>,
-  onError = console.error,
-) => {
-  const url = new URL(baseOrigin);
-  url.pathname = path;
+  body?: unknown,
+): Promise<T> {
+  const url = new URL(path, baseOrigin);
+  if (params) url.search = new URLSearchParams(params).toString();
 
-  if (params) {
-    url.search = new URLSearchParams(params).toString();
+  const response = await fetch(url, {
+    method,
+    headers:
+      body === undefined ? undefined : { "Content-Type": "application/json" },
+    body: body === undefined ? undefined : JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    const payload = (await response.json().catch(() => null)) as {
+      error?: string;
+    } | null;
+    throw new Error(
+      payload?.error ??
+        `${response.status} ${method} request failed: ${response.statusText}. URL: ${url.toString()}`,
+    );
   }
 
-  return fetch(url, { method: "GET" })
-    .then((result) => {
-      if (!result.ok) {
-        throw new Error(
-          `${result.status} GET request failed: ${
-            result.statusText
-          }. URL: ${url.toString()}`,
-          { cause: result },
-        );
-      }
-      return result.json();
-    })
-    .catch(onError);
-};
+  return (await response.json()) as T;
+}
 
-export const post = async (
+export const get = <T = unknown>(
   path: string,
-  body?: Record<string, unknown>,
-  onError = console.error,
-) => {
-  const url = new URL(baseOrigin);
-  url.pathname = path;
+  params?: Record<string, string>,
+) => request<T>("GET", path, params);
 
-  return fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  })
-    .then((result) => {
-      if (!result.ok) {
-        throw new Error(
-          `${result.status} POST request failed: ${
-            result.statusText
-          }. URL: ${url.toString()}`,
-          { cause: result },
-        );
-      }
-      return result.json();
-    })
-    .catch((error) => {
-      onError(error);
-      return null;
-    });
-};
+export const post = <T = unknown>(path: string, body?: unknown) =>
+  request<T>("POST", path, undefined, body);

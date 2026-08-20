@@ -8,15 +8,11 @@ import {
 import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
 import { updateCartItemQuantityUseCase } from "@app/lib/cart/application/update-cart-item-quantity.use-case";
 import { useCart } from "@app/lib/context/cart.context";
+import { formatMoney } from "@app/lib/currency";
 import { Button, cn, Drawer, Icon, Select } from "@library";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import Footer from "./footer";
-
-const priceFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "EUR",
-});
 
 export default function Example() {
   const [open, setOpen] = useState(false);
@@ -47,16 +43,20 @@ export default function Example() {
   const cartItems = cart?.items ?? [];
   const cartTotalInCents = cart?.cartTotalInCents ?? 0;
 
-  const handleQuantityChange = async (productId: number, quantity: number) => {
+  const handleQuantityChange = async (
+    productVariantId: number,
+    quantity: number,
+  ) => {
     const updatedCart = await updateCartItemQuantityUseCase.execute(
-      productId,
+      productVariantId,
       quantity,
     );
     if (updatedCart) setCart(updatedCart);
   };
 
-  const handleRemove = async (productId: number) => {
-    const updatedCart = await deleteProductFromCartUseCase.execute(productId);
+  const handleRemove = async (productVariantId: number) => {
+    const updatedCart =
+      await deleteProductFromCartUseCase.execute(productVariantId);
     if (updatedCart) setCart(updatedCart);
   };
 
@@ -243,7 +243,7 @@ export default function Example() {
               {/* Cart */}
               <div className="flex items-center md:ml-4">
                 <span className="flex h-6 min-w-12 items-center justify-center bg-gray-200 px-1.5 text-xs font-medium text-black">
-                  {priceFormatter.format(cartTotalInCents / 100)}
+                  {formatMoney(cartTotalInCents, cart?.currency ?? "EUR")}
                 </span>
                 <Button
                   onClick={handleCartClick}

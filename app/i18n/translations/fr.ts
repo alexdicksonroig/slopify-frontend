@@ -15,6 +15,7 @@ export const fr = {
   "checkout.email": "E-mail",
   "checkout.pay-now": "Payer ${amount} maintenant",
   "checkout.payment": "Paiement",
+  "checkout.unavailable": "Le paiement est actuellement indisponible.",
   "error.generic": "Erreur",
   "error.not-found": "La page demandée est introuvable.",
   "error.oops": "Oups !",
@@ -61,6 +62,7 @@ export const fr = {
     "Le lot de 6 t-shirts basiques vous permet d’exprimer votre personnalité avec trois nuances de gris. Essayez le gris chiné, notre noir exclusif ou ajoutez une touche lumineuse avec le t-shirt blanc.",
   "product.size": "Taille",
   "product.size-guide": "Guide des tailles",
+  "product.unavailable": "Indisponible",
   "return.checking": "Vérification du paiement...",
   "return.error":
     "Une erreur est survenue lors de la vérification du paiement.",

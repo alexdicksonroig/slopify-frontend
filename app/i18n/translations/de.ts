@@ -15,6 +15,7 @@ export const de = {
   "checkout.email": "E-Mail",
   "checkout.pay-now": "Jetzt ${amount} bezahlen",
   "checkout.payment": "Zahlung",
+  "checkout.unavailable": "Die Kasse ist derzeit nicht verfügbar.",
   "error.generic": "Fehler",
   "error.not-found": "Die angeforderte Seite wurde nicht gefunden.",
   "error.oops": "Hoppla!",
@@ -61,6 +62,7 @@ export const de = {
     "Mit dem 6er-Pack Basic-T-Shirts können Sie Ihre Persönlichkeit in drei Grautönen ausdrücken. Probieren Sie meliertes Grau, unser exklusives Schwarz oder setzen Sie mit dem weißen T-Shirt einen hellen Akzent.",
   "product.size": "Größe",
   "product.size-guide": "Größenratgeber",
+  "product.unavailable": "Nicht verfügbar",
   "return.checking": "Zahlungsstatus wird geprüft...",
   "return.error": "Beim Prüfen der Zahlung ist ein Fehler aufgetreten.",
   "return.success":

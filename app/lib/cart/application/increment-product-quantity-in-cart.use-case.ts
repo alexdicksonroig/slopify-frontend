@@ -8,8 +8,9 @@ export class IncrementProductQuantityInCartUseCase {
     if (!cart) return null;
 
     const currentQuantity =
-      cart.items.find((item) => item.productId === product.productId)
-        ?.quantity ?? 0;
+      cart.items.find(
+        (item) => item.productVariantId === product.productVariantId,
+      )?.quantity ?? 0;
 
     return await addProductToCartUseCase.execute(product, currentQuantity + 1);
   }

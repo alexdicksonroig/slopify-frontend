@@ -15,6 +15,7 @@ export const ca = {
   "checkout.email": "Correu electrònic",
   "checkout.pay-now": "Paga ${amount} ara",
   "checkout.payment": "Pagament",
+  "checkout.unavailable": "El pagament no està disponible actualment.",
   "error.generic": "Error",
   "error.not-found": "No s'ha pogut trobar la pàgina sol·licitada.",
   "error.oops": "Vaja!",
@@ -61,6 +62,7 @@ export const ca = {
     "El paquet de 6 samarretes bàsiques et permet expressar plenament la teva personalitat amb tres opcions en escala de grisos. Prova el gris jaspiat, el nostre negre exclusiu o afegeix un toc lluminós al teu conjunt amb la samarreta blanca.",
   "product.size": "Talla",
   "product.size-guide": "Guia de talles",
+  "product.unavailable": "No disponible",
   "return.checking": "S'està comprovant l'estat del pagament...",
   "return.error": "S'ha produït un error en comprovar el pagament.",
   "return.success":

@@ -1,7 +1,9 @@
 export type CartProduct = {
+  productVariantId: number;
   productId: number;
   name: string;
   unitPriceInCents: number;
+  currency: string;
   thumbnailUrl: string | null;
 };
 
@@ -20,6 +22,10 @@ export class Cart {
 
   get items(): readonly CartItem[] {
     return this.cartItems.map((item) => ({ ...item }));
+  }
+
+  get currency(): string {
+    return this.cartItems[0]?.currency ?? "EUR";
   }
 
   get cartTotalInCents(): number {
@@ -45,8 +51,14 @@ export class Cart {
     return this.cartItems.length === 0;
   }
 
-  addItem(productId: number, quantity: number, product?: CartProduct): void {
-    const item = this.cartItems.find((item) => item.productId === productId);
+  addItem(
+    productVariantId: number,
+    quantity: number,
+    product?: CartProduct,
+  ): void {
+    const item = this.cartItems.find(
+      (item) => item.productVariantId === productVariantId,
+    );
     if (item) {
       item.quantity = quantity;
     } else if (product) {
@@ -54,9 +66,9 @@ export class Cart {
     }
   }
 
-  deleteProduct(productId: number): void {
+  deleteProduct(productVariantId: number): void {
     this.cartItems = this.cartItems.filter(
-      (item) => item.productId !== productId,
+      (item) => item.productVariantId !== productVariantId,
     );
   }
 }
