@@ -23,11 +23,8 @@ export default function Example() {
   const navigate = useNavigate();
   const [showFirstText, setShowFirstText] = useState(true);
 
-  const handleCartClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (location.pathname === "/cart") {
-      navigate(-1);
-    } else {
+  const handleCartClick = () => {
+    if (location.pathname !== "/cart") {
       navigate("/cart");
     }
   };
@@ -62,7 +59,7 @@ export default function Example() {
 
   const handleCheckout = () => {
     setOpen(false);
-    navigate("/checkout");
+    navigate("/cart");
   };
 
   return (

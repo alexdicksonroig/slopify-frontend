@@ -13,7 +13,6 @@ export default [
 
     route("product/:id", "routes/product/product.tsx"),
     route("cart", "routes/cart.tsx"),
-    route("checkout", "routes/checkout.tsx"),
     route("return", "routes/return.tsx"),
   ]),
 ] satisfies RouteConfig;
