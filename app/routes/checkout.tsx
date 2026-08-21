@@ -147,8 +147,8 @@ export default function Payment() {
     return <p className="mx-5 mt-5">{t("checkout.unavailable")}</p>;
   }
 
-  const items = cart.items.map(({ productVariantId, quantity }) => ({
-    variantId: productVariantId,
+  const items = cart.items.map(({ variantId, quantity }) => ({
+    variantId,
     quantity,
   }));
 

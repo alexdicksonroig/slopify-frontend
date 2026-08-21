@@ -11,20 +11,16 @@ export default function Cart() {
   const navigate = useNavigate();
   const { cart, setCart } = useCart();
 
-  const handleQuantityChange = async (
-    productVariantId: number,
-    quantity: number,
-  ) => {
+  const handleQuantityChange = async (variantId: number, quantity: number) => {
     const updatedCart = await updateCartItemQuantityUseCase.execute(
-      productVariantId,
+      variantId,
       quantity,
     );
     if (updatedCart) setCart(updatedCart);
   };
 
-  const handleRemove = async (productVariantId: number) => {
-    const updatedCart =
-      await deleteProductFromCartUseCase.execute(productVariantId);
+  const handleRemove = async (variantId: number) => {
+    const updatedCart = await deleteProductFromCartUseCase.execute(variantId);
     if (updatedCart) setCart(updatedCart);
   };
 

@@ -5,36 +5,24 @@ import { incrementProductQuantityInCartUseCase } from "@app/lib/cart/application
 import type { Cart } from "@app/lib/cart/domain/cart.entity";
 import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
-import type { ProductVariant } from "@app/lib/product";
+import type { Product } from "@app/lib/product";
+import type { VariantListItem } from "@app/lib/variant";
 import { Button, cn, Icon, Throttle } from "@library";
 import { useMemo } from "react";
 import { Link, useLoaderData } from "react-router";
 
-type ProductResponse = {
-  id: number;
-  name: string;
-  thumbnailUrl?: string | null;
+type VariantCardProps = {
+  product: Product;
+  variant: VariantListItem;
 };
 
-type ProductCardProps = {
-  id: number;
-  name: string;
-  thumbnailUrl: string | null;
-  productVariant: ProductVariant | null;
-};
-
-function ProductCard({
-  id,
-  name,
-  thumbnailUrl,
-  productVariant,
-}: ProductCardProps) {
+function VariantCard({ product, variant }: VariantCardProps) {
   const t = useTranslate();
   const { cart, setCart } = useCart();
-  const quantityInCart = productVariant
-    ? (cart?.items.find((item) => item.productVariantId === productVariant.id)
-        ?.quantity ?? 0)
-    : 0;
+  const { unitAmount, currency } = variant;
+  const isAvailable = unitAmount !== null && currency !== null;
+  const quantityInCart =
+    cart?.items.find((item) => item.variantId === variant.id)?.quantity ?? 0;
 
   const updateCart = useMemo(
     () =>
@@ -47,11 +35,11 @@ function ProductCard({
 
   return (
     <div className="group relative">
-      <Link to={`/product/${id}`}>
-        {thumbnailUrl ? (
+      <Link to={`/product/${product.id}?variant=${variant.id}`}>
+        {variant.thumbnailUrl ? (
           <img
-            alt={name}
-            src={thumbnailUrl}
+            alt={product.name}
+            src={variant.thumbnailUrl}
             className={cn(
               "aspect-square w-full rounded-md bg-gray-200 object-contain group-hover:opacity-75",
             )}
@@ -64,23 +52,24 @@ function ProductCard({
       </Link>
       <div className="mt-4">
         <div className="flex items-start justify-between gap-2">
-          <Link className="min-w-0" to={`/product/${id}`}>
-            <h3 className="text-sm leading-5 text-gray-700">{name}</h3>
+          <Link
+            className="min-w-0"
+            to={`/product/${product.id}?variant=${variant.id}`}
+          >
+            <h3 className="text-sm leading-5 text-gray-700">{product.name}</h3>
           </Link>
-          {productVariant && (
+          {isAvailable && (
             <div className="flex shrink-0 items-center gap-2">
               {quantityInCart > 0 && (
                 <Button
                   type="button"
                   variant="ghost"
                   size="icon"
-                  aria-label={t("cart.remove", { item: name })}
+                  aria-label={t("cart.remove", { item: product.name })}
                   disabled={!cart}
                   onClick={() =>
                     updateCart(() =>
-                      decrementProductQuantityInCartUseCase.execute(
-                        productVariant.id,
-                      ),
+                      decrementProductQuantityInCartUseCase.execute(variant.id),
                     )
                   }
                   className="shrink-0 bg-gray-300 p-0! hover:bg-gray-400 disabled:opacity-40"
@@ -96,17 +85,17 @@ function ProductCard({
                 type="button"
                 variant="ghost"
                 size="icon"
-                aria-label={`${t("product.add-to-bag")}: ${name}`}
+                aria-label={`${t("product.add-to-bag")}: ${product.name}`}
                 disabled={!cart}
                 onClick={() =>
                   updateCart(() =>
                     incrementProductQuantityInCartUseCase.execute({
-                      productVariantId: productVariant.id,
-                      productId: id,
-                      name,
-                      unitPriceInCents: productVariant.unitAmount,
-                      currency: productVariant.currency,
-                      thumbnailUrl,
+                      variantId: variant.id,
+                      productId: product.id,
+                      name: product.name,
+                      unitPriceInCents: unitAmount,
+                      currency,
+                      thumbnailUrl: variant.thumbnailUrl,
                     }),
                   )
                 }
@@ -119,8 +108,8 @@ function ProductCard({
           )}
         </div>
         <p className="mt-1 text-sm font-medium text-gray-900">
-          {productVariant
-            ? formatMoney(productVariant.unitAmount, productVariant.currency)
+          {isAvailable
+            ? formatMoney(unitAmount, currency)
             : t("product.unavailable")}
         </p>
       </div>
@@ -128,46 +117,56 @@ function ProductCard({
   );
 }
 
-async function loadProducts(request: Request) {
+async function loadVariants(request: Request) {
   const searchParams = new URL(request.url).searchParams;
-  const params = Object.fromEntries(searchParams);
-  const response = await Api.get<ProductResponse[]>(
-    "products/",
-    searchParams.size > 0 ? params : undefined,
+  const params = Object.fromEntries(
+    [...searchParams].filter(([key]) => /^\d+$/.test(key)),
   );
+  const [variants, products] = await Promise.all([
+    Api.get<VariantListItem[]>(
+      "variants",
+      Object.keys(params).length > 0 ? params : undefined,
+    ),
+    Api.get<Product[]>("products"),
+  ]);
 
-  const products = await Promise.all(
-    response.map(async (product): Promise<ProductCardProps> => {
-      const productVariants = await Api.get<ProductVariant[]>(
-        `products/${product.id}/variants`,
-      );
-      return {
-        id: product.id,
-        name: product.name,
-        thumbnailUrl: product.thumbnailUrl ?? null,
-        productVariant: productVariants[0] ?? null,
-      };
-    }),
+  const sort = searchParams.get("sort") ?? "newest";
+  variants.sort((left, right) => {
+    if (sort === "price-asc") {
+      return (left.unitAmount ?? Infinity) - (right.unitAmount ?? Infinity);
+    }
+    if (sort === "price-desc") {
+      return (right.unitAmount ?? -Infinity) - (left.unitAmount ?? -Infinity);
+    }
+    return right.id - left.id;
+  });
+
+  const productsById = new Map(
+    products.map((product) => [product.id, product]),
   );
+  const cards = variants.flatMap((variant) => {
+    const product = productsById.get(variant.productId);
+    return product ? [{ product, variant }] : [];
+  });
 
-  return { products };
+  return { cards };
 }
 
 export async function loader({ request }: { request: Request }) {
-  return loadProducts(request);
+  return loadVariants(request);
 }
 
 export async function clientLoader({ request }: { request: Request }) {
-  return loadProducts(request);
+  return loadVariants(request);
 }
 
-export default function Products() {
-  const { products } = useLoaderData<typeof clientLoader>();
+export default function Variants() {
+  const { cards } = useLoaderData<typeof clientLoader>();
 
   return (
     <div className="grid grid-cols-2 gap-x-4 gap-y-8 pb-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 xl:gap-x-8">
-      {products.map((product) => (
-        <ProductCard key={product.id} {...product} />
+      {cards.map(({ product, variant }) => (
+        <VariantCard key={variant.id} product={product} variant={variant} />
       ))}
     </div>
   );

@@ -12,7 +12,7 @@ export default {
       throw new Error("VITE_API_URL is required to generate product pages");
     }
 
-    const response = await fetch(new URL("products/", apiUrl));
+    const response = await fetch(new URL("products", apiUrl));
     if (!response.ok) {
       throw new Error(
         `Unable to load products for SSG: ${response.status} ${response.statusText}`,

@@ -1,5 +1,5 @@
 export type CartProduct = {
-  productVariantId: number;
+  variantId: number;
   productId: number;
   name: string;
   unitPriceInCents: number;
@@ -51,14 +51,8 @@ export class Cart {
     return this.cartItems.length === 0;
   }
 
-  addItem(
-    productVariantId: number,
-    quantity: number,
-    product?: CartProduct,
-  ): void {
-    const item = this.cartItems.find(
-      (item) => item.productVariantId === productVariantId,
-    );
+  addItem(variantId: number, quantity: number, product?: CartProduct): void {
+    const item = this.cartItems.find((item) => item.variantId === variantId);
     if (item) {
       item.quantity = quantity;
     } else if (product) {
@@ -66,9 +60,9 @@ export class Cart {
     }
   }
 
-  deleteProduct(productVariantId: number): void {
+  deleteProduct(variantId: number): void {
     this.cartItems = this.cartItems.filter(
-      (item) => item.productVariantId !== productVariantId,
+      (item) => item.variantId !== variantId,
     );
   }
 }

@@ -43,20 +43,16 @@ export default function Example() {
   const cartItems = cart?.items ?? [];
   const cartTotalInCents = cart?.cartTotalInCents ?? 0;
 
-  const handleQuantityChange = async (
-    productVariantId: number,
-    quantity: number,
-  ) => {
+  const handleQuantityChange = async (variantId: number, quantity: number) => {
     const updatedCart = await updateCartItemQuantityUseCase.execute(
-      productVariantId,
+      variantId,
       quantity,
     );
     if (updatedCart) setCart(updatedCart);
   };
 
-  const handleRemove = async (productVariantId: number) => {
-    const updatedCart =
-      await deleteProductFromCartUseCase.execute(productVariantId);
+  const handleRemove = async (variantId: number) => {
+    const updatedCart = await deleteProductFromCartUseCase.execute(variantId);
     if (updatedCart) setCart(updatedCart);
   };
 
@@ -166,7 +162,7 @@ export default function Example() {
           className="border-b border-gray-200 px-4 sm:px-6 lg:px-8"
         >
           <div className="flex h-12 items-center">
-            {location.pathname !== "/" && location.pathname !== "/products" && (
+            {location.pathname !== "/" && location.pathname !== "/variants" && (
               <Button onClick={() => navigate(-1)} size="icon" variant="ghost">
                 <Icon icon="arrow-left" size="lg" />
                 <span className="sr-only">{t("header.back")}</span>

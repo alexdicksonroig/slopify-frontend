@@ -1,6 +1,6 @@
-import type { ProductOption } from "@app/lib/product";
+import type { ProductOption } from "@app/lib/variant";
 
-export type { ProductOption } from "@app/lib/product";
+export type { ProductOption } from "@app/lib/variant";
 
 interface ProductOptionsProps {
   options: ProductOption[];

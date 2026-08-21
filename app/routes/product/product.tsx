@@ -3,7 +3,8 @@ import { get } from "@app/lib/api";
 import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-to-cart.use-case";
 import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
-import type { ProductOption, ProductVariant } from "@app/lib/product";
+import type { Product } from "@app/lib/product";
+import type { ProductOption, Variant } from "@app/lib/variant";
 import { Button } from "@library";
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
@@ -13,36 +14,36 @@ import { ProductInfo } from "./components/ProductInfo";
 import { ProductOptions } from "./components/ProductOptions";
 import { QuantitySelector } from "./components/QuantitySelector";
 
-type ProductResponse = {
-  id: number;
-  name: string;
-  description?: string | null;
-  thumbnailUrl: string | null;
-  images?: { src: string; alt: string; className?: string }[];
-  highlights?: string[];
-};
+export async function clientLoader({
+  params,
+  request,
+}: {
+  params: { id?: string };
+  request: Request;
+}) {
+  const variantId = new URL(request.url).searchParams.get("variant");
+  if (!variantId) {
+    throw new Response("A variant query parameter is required", {
+      status: 400,
+    });
+  }
 
-export async function loader({ params }: { params: { id?: string } }) {
-  const [product, productVariants] = await Promise.all([
-    get<ProductResponse>(`products/${params.id}`),
-    get<ProductVariant[]>(`products/${params.id}/variants`),
+  const [product, variant] = await Promise.all([
+    get<Product>(`products/${params.id}`),
+    get<Variant>(`variants/${variantId}`),
   ]);
 
-  return { product, productVariants };
+  return { product, variant };
 }
 
-export default function Product() {
+export default function ProductPage() {
   const t = useTranslate();
   const navigate = useNavigate();
   const { cart, setCart } = useCart();
-  const { product, productVariants } = useLoaderData<typeof loader>();
-  const initialProductVariant = productVariants[0] ?? null;
+  const { product, variant } = useLoaderData<typeof clientLoader>();
   const [selections, setSelections] = useState<Record<number, number>>(() =>
     Object.fromEntries(
-      (initialProductVariant?.selections ?? []).map(({ option, value }) => [
-        option.id,
-        value.id,
-      ]),
+      variant.selections.map(({ option, value }) => [option.id, value.id]),
     ),
   );
   const [quantity, setQuantity] = useState(1);
@@ -50,79 +51,58 @@ export default function Product() {
   useEffect(() => {
     setSelections(
       Object.fromEntries(
-        (productVariants[0]?.selections ?? []).map(({ option, value }) => [
-          option.id,
-          value.id,
-        ]),
+        variant.selections.map(({ option, value }) => [option.id, value.id]),
       ),
     );
-  }, [productVariants]);
+  }, [variant]);
 
-  const options = useMemo(() => {
-    const byId = new Map<number, ProductOption>();
-    for (const productVariant of productVariants) {
-      for (const { option, value } of productVariant.selections) {
-        const current = byId.get(option.id);
-        if (!current) {
-          byId.set(option.id, { ...option, possibleValues: [value] });
-        } else if (!current.possibleValues.some(({ id }) => id === value.id)) {
-          current.possibleValues.push(value);
-        }
-      }
-    }
-    return [...byId.values()];
-  }, [productVariants]);
+  const options = useMemo<ProductOption[]>(
+    () =>
+      variant.selections.map(({ option, value }) => ({
+        ...option,
+        possibleValues: [value],
+      })),
+    [variant],
+  );
 
-  const selectedProductVariant =
-    productVariants.find(
-      (productVariant) =>
-        productVariant.selections.length === options.length &&
-        productVariant.selections.every(
-          ({ option, value }) => selections[option.id] === value.id,
-        ),
-    ) ?? (options.length === 0 ? initialProductVariant : null);
+  const selectedVariant = variant.selections.every(
+    ({ option, value }) => selections[option.id] === value.id,
+  )
+    ? variant
+    : null;
 
   useEffect(() => {
-    const cartItem = selectedProductVariant
-      ? cart?.items.find(
-          (item) => item.productVariantId === selectedProductVariant.id,
-        )
+    const cartItem = selectedVariant
+      ? cart?.items.find((item) => item.variantId === selectedVariant.id)
       : null;
     setQuantity(cartItem?.quantity ?? 1);
-  }, [cart, selectedProductVariant]);
+  }, [cart, selectedVariant]);
 
-  const productImages = product.images ?? [];
-  const galleryImages = [
-    ...(product.thumbnailUrl
-      ? [{ src: product.thumbnailUrl, alt: product.name }]
-      : []),
-    ...productImages,
-  ];
-  const price = selectedProductVariant
-    ? formatMoney(
-        selectedProductVariant.unitAmount,
-        selectedProductVariant.currency,
-      )
+  const galleryImages = variant.thumbnailUrl
+    ? [{ src: variant.thumbnailUrl, alt: product.name }]
+    : [];
+  const { unitAmount, currency } = variant;
+  const hasPrice =
+    selectedVariant !== null && unitAmount !== null && currency !== null;
+  const price = hasPrice
+    ? formatMoney(unitAmount, currency)
     : t("product.unavailable");
-  const totalPrice = selectedProductVariant
-    ? formatMoney(
-        selectedProductVariant.unitAmount * quantity,
-        selectedProductVariant.currency,
-      )
+  const totalPrice = hasPrice
+    ? formatMoney(unitAmount * quantity, currency)
     : price;
 
   const handleAddToCart = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!selectedProductVariant) return;
+    if (!selectedVariant || unitAmount === null || currency === null) return;
 
     const updatedCart = await addProductToCartUseCase.execute(
       {
-        productVariantId: selectedProductVariant.id,
+        variantId: selectedVariant.id,
         productId: product.id,
         name: product.name,
-        unitPriceInCents: selectedProductVariant.unitAmount,
-        currency: selectedProductVariant.currency,
-        thumbnailUrl: product.thumbnailUrl ?? productImages[0]?.src ?? null,
+        unitPriceInCents: unitAmount,
+        currency,
+        thumbnailUrl: selectedVariant.thumbnailUrl,
       },
       quantity,
     );
@@ -157,7 +137,7 @@ export default function Product() {
             <QuantitySelector value={quantity} onChange={setQuantity} />
             <Button
               type="submit"
-              disabled={!cart || !selectedProductVariant}
+              disabled={!cart || !hasPrice}
               className="mt-4 h-12 w-full uppercase"
             >
               <span>{t("product.add-to-bag")}</span>
@@ -168,7 +148,7 @@ export default function Product() {
         </div>
         <ProductDetails
           description={product.description ?? t("product.description-text")}
-          highlights={product.highlights ?? []}
+          highlights={[]}
           details={t("product.details-text")}
         />
       </div>

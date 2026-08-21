@@ -1,21 +1,5 @@
-export type ProductOptionValue = {
+export type Product = {
   id: number;
-  label: string;
-};
-
-export type ProductOption = {
-  id: number;
-  label: string;
-  possibleValues: ProductOptionValue[];
-};
-
-export type ProductVariant = {
-  id: number;
-  productId: number;
-  unitAmount: number;
-  currency: string;
-  selections: Array<{
-    option: ProductOption;
-    value: ProductOptionValue;
-  }>;
+  name: string;
+  description: string | null;
 };

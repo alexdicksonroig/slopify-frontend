@@ -4,20 +4,19 @@ import { getCartUseCase } from "./get-cart.use-case";
 import { updateCartItemQuantityUseCase } from "./update-cart-item-quantity.use-case";
 
 export class DecrementProductQuantityInCartUseCase {
-  async execute(productVariantId: number): Promise<Cart | null> {
+  async execute(variantId: number): Promise<Cart | null> {
     const cart = await getCartUseCase.execute();
     if (!cart) return null;
 
     const currentQuantity =
-      cart.items.find((item) => item.productVariantId === productVariantId)
-        ?.quantity ?? 0;
+      cart.items.find((item) => item.variantId === variantId)?.quantity ?? 0;
 
     if (currentQuantity <= 1) {
-      return await deleteProductFromCartUseCase.execute(productVariantId);
+      return await deleteProductFromCartUseCase.execute(variantId);
     }
 
     return await updateCartItemQuantityUseCase.execute(
-      productVariantId,
+      variantId,
       currentQuantity - 1,
     );
   }

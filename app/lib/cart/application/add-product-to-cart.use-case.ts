@@ -6,7 +6,7 @@ export class AddProductToCartUseCase {
     const cart = await cartRepository.get();
     if (!cart) return null;
 
-    cart.addItem(product.productVariantId, quantity, product);
+    cart.addItem(product.variantId, quantity, product);
     await cartRepository.save(cart);
     return cart;
   }
