@@ -26,7 +26,11 @@ export function QuantitySelector({ value, onChange }: QuantitySelectorProps) {
           onClick={() => onChange(value - 1)}
           className="size-10 rounded-full p-0! disabled:opacity-30"
         >
-          <Icon icon="minus" size="lg" />
+          <Icon
+            icon="minus"
+            size="lg"
+            className="pointer-events-none select-none brightness-0"
+          />
         </Button>
 
         <output className="min-w-8 text-center text-sm font-medium text-gray-900">
@@ -41,7 +45,11 @@ export function QuantitySelector({ value, onChange }: QuantitySelectorProps) {
           onClick={() => onChange(value + 1)}
           className="size-10 rounded-full p-0! disabled:opacity-30"
         >
-          <Icon icon="plus" size="lg" />
+          <Icon
+            icon="plus"
+            size="lg"
+            className="pointer-events-none select-none brightness-0"
+          />
         </Button>
       </div>
     </fieldset>

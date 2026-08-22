@@ -7,8 +7,8 @@ import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
 import type { VariantListItem } from "@app/lib/variant";
-import { Button, cn, Icon, Throttle } from "@library";
-import { useMemo } from "react";
+import { Button, cn, Icon } from "@library";
+import { useRef } from "react";
 import { Link, useLoaderData } from "react-router";
 
 type VariantCardProps = {
@@ -24,14 +24,14 @@ function VariantCard({ product, variant }: VariantCardProps) {
   const quantityInCart =
     cart?.items.find((item) => item.variantId === variant.id)?.quantity ?? 0;
 
-  const updateCart = useMemo(
-    () =>
-      Throttle(async (operation: () => Promise<Cart | null>) => {
-        const updatedCart = await operation();
+  const cartUpdateQueue = useRef(Promise.resolve());
+  const updateCart = (operation: () => Promise<Cart | null>) => {
+    cartUpdateQueue.current = cartUpdateQueue.current
+      .then(operation)
+      .then((updatedCart) => {
         if (updatedCart) setCart(updatedCart);
-      }),
-    [setCart],
-  );
+      });
+  };
 
   return (
     <div className="group relative">
