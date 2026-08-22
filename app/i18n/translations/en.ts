@@ -41,6 +41,7 @@ export const en = {
   "footer.rights": "© ${year} Store. All rights reserved.",
   "header.back": "Back",
   "header.cart": "Items in cart, view bag",
+  "header.close-announcement": "Close announcement",
   "header.company": "Store home",
   "header.delivery": "Get free delivery on orders over 30€",
   "header.language": "Select language",

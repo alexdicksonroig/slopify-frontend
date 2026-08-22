@@ -43,6 +43,7 @@ export const fr = {
   "footer.rights": "© ${year} Store. Tous droits réservés.",
   "header.back": "Retour",
   "header.cart": "Articles dans le panier, voir le panier",
+  "header.close-announcement": "Fermer l’annonce",
   "header.company": "Accueil de Store",
   "header.delivery": "Livraison gratuite dès 30€ d’achat",
   "header.language": "Choisir la langue",

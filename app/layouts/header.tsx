@@ -12,6 +12,7 @@ export default function Example() {
   const location = useLocation();
   const navigate = useNavigate();
   const [showFirstText, setShowFirstText] = useState(true);
+  const [showAnnouncement, setShowAnnouncement] = useState(true);
 
   const handleCartClick = () => {
     if (location.pathname !== "/cart") {
@@ -33,28 +34,39 @@ export default function Example() {
     <div className="flex min-h-screen flex-col">
       <header className="bg-white ">
         <title>Store</title>
-        <div
-          className="relative flex h-10 items-center justify-between bg-indigo-700 text-sm
-            font-medium text-white"
-        >
+        {showAnnouncement && (
           <div
-            className={cn(
-              "absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
-              { "invisible opacity-0": !showFirstText },
-            )}
+            className="relative flex h-10 items-center justify-between bg-black text-sm
+              font-medium text-white"
           >
-            <p className="normal-case body-3">{t("header.delivery")}</p>
+            <div
+              className={cn(
+                "absolute flex w-full items-center justify-center px-12 duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
+                { "invisible opacity-0": !showFirstText },
+              )}
+            >
+              <p className="normal-case body-3">{t("header.delivery")}</p>
+            </div>
+            <div
+              className={cn(
+                "absolute flex w-full items-center justify-center px-12 duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
+                { "invisible opacity-0": showFirstText },
+              )}
+            >
+              <p className="normal-case body-3">{t("header.tax")}</p>
+            </div>
+            <Button
+              type="button"
+              onClick={() => setShowAnnouncement(false)}
+              variant="ghost"
+              size="icon"
+              className="absolute left-1 h-8 w-8 text-white hover:bg-white/10 hover:text-white"
+            >
+              <Icon icon="x" size="sm" />
+              <span className="sr-only">{t("header.close-announcement")}</span>
+            </Button>
           </div>
-          <div
-            className={cn(
-              "absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
-              { "invisible opacity-0": showFirstText },
-            )}
-          >
-            <p className="normal-case body-3">{t("header.tax")}</p>
-          </div>
-          <div />
-        </div>
+        )}
         <nav
           aria-label={t("header.top")}
           className="border-b border-gray-200 px-4 sm:px-6 lg:px-8"

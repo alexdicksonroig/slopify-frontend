@@ -43,6 +43,7 @@ export const es = {
   "footer.rights": "© ${year} Store. Todos los derechos reservados.",
   "header.back": "Volver",
   "header.cart": "Artículos en el carrito, ver bolsa",
+  "header.close-announcement": "Cerrar aviso",
   "header.company": "Inicio de Store",
   "header.delivery": "Envío gratis en pedidos superiores a 30€",
   "header.language": "Seleccionar idioma",

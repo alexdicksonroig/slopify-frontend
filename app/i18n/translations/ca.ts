@@ -43,6 +43,7 @@ export const ca = {
   "footer.rights": "© ${year} Store. Tots els drets reservats.",
   "header.back": "Enrere",
   "header.cart": "Articles a la cistella, mostra la cistella",
+  "header.close-announcement": "Tanca l’avís",
   "header.company": "Inici de Store",
   "header.delivery": "Enviament gratuït en comandes superiors a 30 €",
   "header.language": "Selecciona l'idioma",
