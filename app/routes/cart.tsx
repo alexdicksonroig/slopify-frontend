@@ -1,18 +1,12 @@
 import { CartItemList } from "@app/components/cart-item-list";
 import { CheckoutPayment } from "@app/components/checkout-payment";
 import { useTranslate } from "@app/i18n";
-import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
 import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
 
 export default function Cart() {
   const t = useTranslate();
   const { cart, setCart } = useCart();
-
-  const handleRemove = async (variantId: number) => {
-    const updatedCart = await deleteProductFromCartUseCase.execute(variantId);
-    if (updatedCart) setCart(updatedCart);
-  };
 
   if (!cart || cart.isEmpty) {
     return (
@@ -35,9 +29,7 @@ export default function Cart() {
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
               {t("cart.shopping-cart")}
             </h1>
-
-            <CartItemList items={cart.items} onRemove={handleRemove} />
-
+            <CartItemList cart={cart.items} setCart={setCart}/>
             <dl className="mt-8 space-y-4 text-sm">
               <div className="flex justify-between text-gray-600">
                 <dt>{t("cart.subtotal")}</dt>

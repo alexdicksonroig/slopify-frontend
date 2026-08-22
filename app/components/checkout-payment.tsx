@@ -201,12 +201,8 @@ const stripePromise = stripePublishableKey
 
 export function CheckoutPayment({ cart }: { cart: Cart }) {
   const t = useTranslate();
+  const items = cart.items
 
-  const items = useMemo(
-    () =>
-      cart.items.map(({ variantId, quantity }) => ({ variantId, quantity })),
-    [cart],
-  );
   const checkoutKey = useMemo(
     () =>
       items

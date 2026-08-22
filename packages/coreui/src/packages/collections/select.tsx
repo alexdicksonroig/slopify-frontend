@@ -71,7 +71,7 @@ export const Select: React.FC<SelectProps> = ({
       <Popover
         open={isOpen}
         onOpenChange={setIsOpen}
-        placement="bottom"
+        placement="top"
         className="right-0 z-50 mt-1 min-w-fit w-full rounded-xl md:min-w-64 md:rounded-lg md:border md:border-input bg-popover text-popover-foreground md:shadow-sm px-4 pt-2 pb-6 md:p-2"
       >
         <div className="max-h-60 overflow-auto">

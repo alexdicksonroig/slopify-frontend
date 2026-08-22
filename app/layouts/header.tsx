@@ -1,24 +1,14 @@
-import { CartProductList } from "@app/components/cart-product-list";
-import {
-  type Language,
-  languageOptions,
-  useLanguage,
-  useTranslate,
-} from "@app/i18n";
-import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
-import { updateCartItemQuantityUseCase } from "@app/lib/cart/application/update-cart-item-quantity.use-case";
+import { useTranslate } from "@app/i18n";
 import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
-import { Button, cn, Drawer, Icon, Select } from "@library";
+import { Button, cn, Icon } from "@library";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import Footer from "./footer";
 
 export default function Example() {
-  const [open, setOpen] = useState(false);
-  const { language, setLanguage } = useLanguage();
   const t = useTranslate();
-  const { cart, setCart } = useCart();
+  const { cart } = useCart();
   const location = useLocation();
   const navigate = useNavigate();
   const [showFirstText, setShowFirstText] = useState(true);
@@ -37,99 +27,10 @@ export default function Example() {
     return () => clearInterval(interval);
   }, []);
 
-  const cartItems = cart?.items ?? [];
   const cartTotalInCents = cart?.cartTotalInCents ?? 0;
-
-  const handleQuantityChange = async (variantId: number, quantity: number) => {
-    const updatedCart = await updateCartItemQuantityUseCase.execute(
-      variantId,
-      quantity,
-    );
-    if (updatedCart) setCart(updatedCart);
-  };
-
-  const handleRemove = async (variantId: number) => {
-    const updatedCart = await deleteProductFromCartUseCase.execute(variantId);
-    if (updatedCart) setCart(updatedCart);
-  };
-
-  const handleMenuOpen = () => {
-    setOpen(true);
-  };
-
-  const handleCheckout = () => {
-    setOpen(false);
-    navigate("/cart");
-  };
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Drawer open={open} onClose={() => setOpen(false)} hiddenFrom="md">
-        {/* <div className="px-4 py-6 space-y-6"> */}
-        {/*   <div className="-m-2 p-2"> */}
-        {/*     <a */}
-        {/*       href="/" */}
-        {/*       className="flex items-center gap-1 text-sm font-medium text-gray-900" */}
-        {/*     > */}
-        {/*       Sign in */}
-        {/*       <Icon icon="arrow-right" size="sm" /> */}
-        {/*     </a> */}
-        {/*   </div> */}
-        {/*   <div className="-m-2 p-2"> */}
-        {/*     <a href="/" className="text-sm font-medium text-gray-900"> */}
-        {/*       Create account */}
-        {/*     </a> */}
-        {/*   </div> */}
-        {/* </div> */}
-
-        <div className="flex h-[calc(100%-3rem)] flex-col px-4 py-6">
-          <div className="-m-2 p-2">
-            {/* <Select */}
-            {/*   value={currency} */}
-            {/*   onChange={setCurrency} */}
-            {/*   options={currencyOptions} */}
-            {/*   placeholder="Select currency" */}
-            {/*   variant="link" */}
-            {/*   size="sm" */}
-            {/*   className="w-24" */}
-            {/* /> */}
-          </div>
-          <div className="-m-2 p-2">
-            <h2 className="mb-1 text-[10px] font-normal uppercase text-gray-400">
-              {t("header.language")}
-            </h2>
-            <Select
-              value={language}
-              onChange={(value) => setLanguage(value as Language)}
-              options={languageOptions}
-              placeholder={t("header.language")}
-              variant="link"
-              size="lg"
-              className="w-24"
-            />
-          </div>
-
-          <section className="mt-auto pt-6">
-            <h2 className="mb-4 text-lg font-medium text-gray-900">
-              {t("cart.order-summary")}
-            </h2>
-            {cartItems.length > 0 ? (
-              <>
-                <CartProductList
-                  items={cartItems}
-                  onQuantityChange={handleQuantityChange}
-                  onRemove={handleRemove}
-                />
-                <Button onClick={handleCheckout} className="mt-6 h-12 w-full">
-                  {t("cart.checkout")}
-                </Button>
-              </>
-            ) : (
-              <p className="text-sm text-gray-500">{t("cart.empty")}</p>
-            )}
-          </section>
-        </div>
-      </Drawer>
       <header className="bg-white ">
         <title>Store</title>
         <div
@@ -165,16 +66,6 @@ export default function Example() {
                 <span className="sr-only">{t("header.back")}</span>
               </Button>
             )}
-
-            <Button
-              onClick={handleMenuOpen}
-              size="icon"
-              variant="ghost"
-              className="md:hidden"
-            >
-              <Icon icon="menu" size="lg" />
-              <span className="sr-only">{t("header.menu")}</span>
-            </Button>
 
             {/* Logo */}
             <div className="flex">
@@ -224,15 +115,6 @@ export default function Example() {
                 </a>
               </div>
               */}
-              <Select
-                value={language}
-                onChange={(value) => setLanguage(value as Language)}
-                options={languageOptions}
-                placeholder={t("header.language")}
-                variant="link"
-                size="default"
-                className="min-w-32 hidden md:flex"
-              />
               {/* Cart */}
               <div className="flex items-center md:ml-4">
                 <span className="flex h-6 min-w-12 items-center justify-center bg-gray-200 px-1.5 text-xs font-medium text-black">

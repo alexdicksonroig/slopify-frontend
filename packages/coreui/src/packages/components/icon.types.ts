@@ -3,6 +3,7 @@ export const ICON_NAMES = [
   "arrow-right",
   "check",
   "chevron-down",
+  "globe",
   "info",
   "list-filter",
   "loader",
