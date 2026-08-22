@@ -25,6 +25,7 @@ export const es = {
   "error.oops": "¡Vaya!",
   "error.unexpected": "Se produjo un error inesperado.",
   "filters.category": "Categoría",
+  "filters.clear-all": "Borrar todo",
   "filters.color": "Color",
   "filters.add-filter": "Añadir filtro",
   "filters.new-arrivals": "Novedades",

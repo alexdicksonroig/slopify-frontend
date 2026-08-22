@@ -25,6 +25,7 @@ export const de = {
   "error.oops": "Hoppla!",
   "error.unexpected": "Ein unerwarteter Fehler ist aufgetreten.",
   "filters.category": "Kategorie",
+  "filters.clear-all": "Alle löschen",
   "filters.color": "Farbe",
   "filters.add-filter": "Filter hinzufügen",
   "filters.new-arrivals": "Neuheiten",

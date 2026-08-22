@@ -136,6 +136,14 @@ export default function Filters() {
     useRouteLoaderData<VariantsLoaderData>("routes/variants");
   const [searchParams, setSearchParams] = useSearchParams();
   const resultCount = variantsData?.cards.length ?? 0;
+  const activeFilters = options.flatMap((option) => {
+    const selectedValueId = searchParams.get(String(option.id));
+    const selectedValue = option.possibleValues.find(
+      (value) => String(value.id) === selectedValueId,
+    );
+
+    return selectedValue ? [{ option, value: selectedValue }] : [];
+  });
 
   const handleSortChange = (sort: string) => {
     setSearchParams((currentParams) => {
@@ -251,6 +259,31 @@ export default function Filters() {
 
         {/* Main content */}
         <div className="lg:col-span-3">
+          {activeFilters.length > 0 && (
+            <div className="mb-6 flex flex-wrap items-center gap-2">
+              {activeFilters.map(({ option, value }) => (
+                <Button
+                  key={option.id}
+                  type="button"
+                  variant="outline"
+                  className="h-auto px-4 py-2 text-sm font-normal shadow-none"
+                  style={{ borderRadius: 9999 }}
+                  onClick={() => handleFilterChange(option.id, value.id, false)}
+                >
+                  {value.label}
+                  <Icon icon="x" size="sm" />
+                </Button>
+              ))}
+              <Button
+                type="button"
+                variant="link"
+                className="text-sm font-normal"
+                onClick={handleResetFilters}
+              >
+                {t("filters.clear-all")}
+              </Button>
+            </div>
+          )}
           <Outlet />
         </div>
       </div>

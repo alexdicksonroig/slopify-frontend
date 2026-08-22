@@ -25,6 +25,7 @@ export const fr = {
   "error.oops": "Oups !",
   "error.unexpected": "Une erreur inattendue s’est produite.",
   "filters.category": "Catégorie",
+  "filters.clear-all": "Tout effacer",
   "filters.color": "Couleur",
   "filters.add-filter": "Ajouter filtre",
   "filters.new-arrivals": "Nouveautés",

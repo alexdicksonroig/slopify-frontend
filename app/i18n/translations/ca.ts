@@ -25,6 +25,7 @@ export const ca = {
   "error.oops": "Vaja!",
   "error.unexpected": "S'ha produït un error inesperat.",
   "filters.category": "Categoria",
+  "filters.clear-all": "Esborra-ho tot",
   "filters.color": "Color",
   "filters.add-filter": "Afegeix filtre",
   "filters.new-arrivals": "Novetats",

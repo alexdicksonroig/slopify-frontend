@@ -23,6 +23,7 @@ export const en = {
   "error.oops": "Oops!",
   "error.unexpected": "An unexpected error occurred.",
   "filters.category": "Category",
+  "filters.clear-all": "Clear all",
   "filters.color": "Color",
   "filters.add-filter": "Add filter",
   "filters.new-arrivals": "New Arrivals",
