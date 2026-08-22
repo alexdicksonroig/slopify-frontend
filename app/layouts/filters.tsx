@@ -211,7 +211,7 @@ export default function Filters() {
             onClick={() => setDrawerOpen(true)}
           >
             <span>{t("filters.add-filter")}</span>
-            <Icon icon="plus" size="sm" />
+            <Icon icon="plus" size="sm" className="brightness-0" />
           </Button>
         </div>
       </div>
