@@ -35,6 +35,7 @@ export const ca = {
   "filters.sort-price-ascending": "Preu: de menor a major",
   "filters.sort-price-descending": "Preu: de major a menor",
   "filters.title": "Filtres",
+  "filters.view-results": "Mostra els resultats (${count})",
   "footer.address": "Adreça: ${address}",
   "footer.contact": "Contacte",
   "footer.email": "Correu electrònic: ${email}",

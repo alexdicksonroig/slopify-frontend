@@ -35,6 +35,7 @@ export const de = {
   "filters.sort-price-ascending": "Preis: aufsteigend",
   "filters.sort-price-descending": "Preis: absteigend",
   "filters.title": "Filter",
+  "filters.view-results": "Ergebnisse anzeigen (${count})",
   "footer.address": "Adresse: ${address}",
   "footer.contact": "Kontakt",
   "footer.email": "E-Mail: ${email}",

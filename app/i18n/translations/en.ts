@@ -33,6 +33,7 @@ export const en = {
   "filters.sort-price-ascending": "Price: Low to High",
   "filters.sort-price-descending": "Price: High to Low",
   "filters.title": "Filters",
+  "filters.view-results": "View results (${count})",
   "footer.address": "Address: ${address}",
   "footer.contact": "Contact",
   "footer.email": "Email: ${email}",

@@ -2,7 +2,12 @@ import { type TranslationKey, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { Accordion, Button, Drawer, Icon, Select } from "@library";
 import { useState } from "react";
-import { Outlet, useLoaderData, useSearchParams } from "react-router";
+import {
+  Outlet,
+  useLoaderData,
+  useRouteLoaderData,
+  useSearchParams,
+} from "react-router";
 
 type ProductOptionValue = {
   id: number;
@@ -13,6 +18,10 @@ type ProductOption = {
   id: number;
   label: string;
   possibleValues: ProductOptionValue[];
+};
+
+type VariantsLoaderData = {
+  cards: unknown[];
 };
 
 const SORT_OPTIONS = [
@@ -123,7 +132,10 @@ export default function Filters() {
   const t = useTranslate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { options } = useLoaderData<typeof loader>();
+  const variantsData =
+    useRouteLoaderData<VariantsLoaderData>("routes/variants");
   const [searchParams, setSearchParams] = useSearchParams();
+  const resultCount = variantsData?.cards.length ?? 0;
 
   const handleSortChange = (sort: string) => {
     setSearchParams((currentParams) => {
@@ -178,7 +190,7 @@ export default function Filters() {
         fromRight
         hiddenFrom="lg"
       >
-        <div className="px-4 py-6">
+        <div className="flex min-h-[calc(100svh-4.25rem)] flex-col px-4 pt-6">
           <h2 className="text-lg font-medium text-gray-900 mb-6">
             {t("filters.title")}
           </h2>
@@ -188,6 +200,16 @@ export default function Filters() {
             onFilterChange={handleFilterChange}
             onResetFilters={handleResetFilters}
           />
+          <div className="sticky bottom-0 mt-auto bg-white">
+            <Button
+              type="button"
+              size="lg"
+              className="w-full uppercase"
+              onClick={() => setDrawerOpen(false)}
+            >
+              {t("filters.view-results", { count: resultCount })}
+            </Button>
+          </div>
         </div>
       </Drawer>
 

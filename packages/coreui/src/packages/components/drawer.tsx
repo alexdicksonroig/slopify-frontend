@@ -40,7 +40,7 @@ export const Drawer: React.FC<DrawerProps> = ({
         className,
       )}
     >
-      <div className="bg-white p-4 shadow-xl h-full">
+      <div className="bg-white p-1 shadow-xl h-full">
         <div
           className={cn("w-full flex justify-start", {
             "justify-end": fromRight,
