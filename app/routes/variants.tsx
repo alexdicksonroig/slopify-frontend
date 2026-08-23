@@ -55,12 +55,12 @@ function VariantCard({ product, variant }: VariantCardProps) {
             className="min-w-0"
             to={`/product/${product.id}?variant=${variant.id}`}
           >
-            <h3 className="text-base leading-6 text-gray-950">
-              {product.name}
-            </h3>
             <p className="text-sm leading-5 text-[#828a99] italic">
               {variant.selections.map(({ value }) => value.label).join(", ")}
             </p>
+            <h3 className="text-base leading-6 text-gray-950">
+              {product.name}
+            </h3>
           </Link>
           {isAvailable && (
             <div className="flex shrink-0 items-center gap-2">
