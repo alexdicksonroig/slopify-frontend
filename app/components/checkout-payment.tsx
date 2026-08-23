@@ -2,7 +2,7 @@
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
 import type { Cart } from "@app/lib/cart/domain/cart.entity";
-import { Button, Input, Label, LoadingCircle } from "@library";
+import { Button, Input, Label, LoadingCircle, Skeleton } from "@library";
 import {
   CheckoutElementsProvider,
   PaymentElement,
@@ -181,7 +181,35 @@ const CheckoutContents = () => {
   const t = useTranslate();
 
   if (result.type === "loading") {
-    return <LoadingCircle size="lg" label={t("app.loading")} />;
+    return (
+      <output aria-label={t("app.loading")} className="block">
+        <section className="pb-10">
+          <Skeleton className="h-8 w-48" />
+          <Skeleton className="mt-7 h-4 w-16" />
+          <Skeleton className="mt-2 h-12 w-full [border-radius:0.5rem]" />
+        </section>
+
+        <section className="border-t border-gray-200 py-10">
+          <Skeleton className="h-8 w-56" />
+          <div className="mt-7 grid grid-cols-2 gap-4">
+            <Skeleton className="col-span-2 h-12 [border-radius:0.5rem]" />
+            <Skeleton className="h-12 [border-radius:0.5rem]" />
+            <Skeleton className="h-12 [border-radius:0.5rem]" />
+            <Skeleton className="col-span-2 h-12 [border-radius:0.5rem]" />
+          </div>
+        </section>
+
+        <section className="border-t border-gray-200 py-10">
+          <Skeleton className="h-8 w-32" />
+          <Skeleton className="mt-7 h-12 w-full [border-radius:0.5rem]" />
+          <Skeleton className="mt-4 h-12 w-full [border-radius:0.5rem]" />
+        </section>
+
+        <div className="border-t border-gray-200 pt-8">
+          <Skeleton className="h-14 w-full" />
+        </div>
+      </output>
+    );
   }
   if (result.type === "error") {
     return <p role="alert">{result.error.message}</p>;
@@ -201,7 +229,7 @@ const stripePromise = stripePublishableKey
 
 export function CheckoutPayment({ cart }: { cart: Cart }) {
   const t = useTranslate();
-  const items = cart.items
+  const items = cart.items;
 
   const checkoutKey = useMemo(
     () =>
