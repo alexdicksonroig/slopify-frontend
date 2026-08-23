@@ -1,19 +1,18 @@
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
-import { decrementProductQuantityInCartUseCase } from "@app/lib/cart/application/decrement-product-quantity-in-cart.use-case";
 import { incrementProductQuantityInCartUseCase } from "@app/lib/cart/application/increment-product-quantity-in-cart.use-case";
 import type { Cart } from "@app/lib/cart/domain/cart.entity";
 import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
-import type { VariantListItem } from "@app/lib/variant";
+import type { Variant, VariantListItem } from "@app/lib/variant";
 import { Button, cn, Icon } from "@library";
 import { useRef } from "react";
 import { Link, useLoaderData } from "react-router";
 
 type VariantCardProps = {
   product: Product;
-  variant: VariantListItem;
+  variant: Variant;
 };
 
 function VariantCard({ product, variant }: VariantCardProps) {
@@ -56,28 +55,15 @@ function VariantCard({ product, variant }: VariantCardProps) {
             className="min-w-0"
             to={`/product/${product.id}?variant=${variant.id}`}
           >
-            <h3 className="text-sm leading-5 text-gray-700">{product.name}</h3>
+            <h3 className="text-base leading-6 text-gray-950">
+              {product.name}
+            </h3>
+            <p className="text-sm leading-5 text-[#828a99] italic">
+              {variant.selections.map(({ value }) => value.label).join(", ")}
+            </p>
           </Link>
           {isAvailable && (
             <div className="flex shrink-0 items-center gap-2">
-              {quantityInCart > 0 && (
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  aria-label={t("cart.remove", { item: product.name })}
-                  disabled={!cart}
-                  onClick={() =>
-                    updateCart(() =>
-                      decrementProductQuantityInCartUseCase.execute(variant.id),
-                    )
-                  }
-                  className="shrink-0 bg-gray-300 p-0! hover:bg-gray-400 disabled:opacity-40"
-                  style={{ width: 20, height: 20, borderRadius: "50%" }}
-                >
-                  <Icon icon="minus" size="sm" />
-                </Button>
-              )}
               {quantityInCart > 0 && (
                 <span className="text-sm text-gray-600">{quantityInCart}</span>
               )}
@@ -102,12 +88,12 @@ function VariantCard({ product, variant }: VariantCardProps) {
                 className="shrink-0 bg-gray-300 p-0! hover:bg-gray-400 disabled:opacity-40"
                 style={{ width: 20, height: 20, borderRadius: "50%" }}
               >
-                <Icon icon="plus" size="sm" className="brightness-0" />
+                <Icon icon="plus" size="sm" />
               </Button>
             </div>
           )}
         </div>
-        <p className="mt-1 text-sm font-medium text-gray-900">
+        <p className="mt-2 text-sm font-medium text-gray-900">
           {isAvailable
             ? formatMoney(unitAmount, currency)
             : t("product.unavailable")}
@@ -122,13 +108,16 @@ async function loadVariants(request: Request) {
   const params = Object.fromEntries(
     [...searchParams].filter(([key]) => /^\d+$/.test(key)),
   );
-  const [variants, products] = await Promise.all([
+  const [variantList, products] = await Promise.all([
     Api.get<VariantListItem[]>(
       "variants",
       Object.keys(params).length > 0 ? params : undefined,
     ),
     Api.get<Product[]>("products"),
   ]);
+  const variants = await Promise.all(
+    variantList.map((variant) => Api.get<Variant>(`variants/${variant.id}`)),
+  );
 
   const sort = searchParams.get("sort") ?? "newest";
   variants.sort((left, right) => {
