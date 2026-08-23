@@ -161,13 +161,19 @@ export async function clientLoader({ request }: { request: Request }) {
 }
 
 export default function Variants() {
+  const t = useTranslate();
   const { cards } = useLoaderData<typeof clientLoader>();
 
   return (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-8 pb-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 xl:gap-x-8">
-      {cards.map(({ product, variant }) => (
-        <VariantCard key={variant.id} product={product} variant={variant} />
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 xl:gap-x-8">
+        {cards.map(({ product, variant }) => (
+          <VariantCard key={variant.id} product={product} variant={variant} />
+        ))}
+      </div>
+      <p className="mt-3 pb-8 text-sm text-gray-500">
+        {t("filters.result-count", { count: cards.length })}
+      </p>
+    </>
   );
 }

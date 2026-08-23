@@ -28,6 +28,7 @@ export const en = {
   "filters.add-filter": "Add filter",
   "filters.new-arrivals": "New Arrivals",
   "filters.reset": "Reset filters",
+  "filters.result-count": "Results: ${count} items",
   "filters.size": "Size",
   "filters.sort": "Sort",
   "filters.sort-newest": "Newest",

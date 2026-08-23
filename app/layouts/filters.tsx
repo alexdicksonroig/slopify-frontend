@@ -221,7 +221,7 @@ export default function Filters() {
         </div>
       </Drawer>
 
-      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-1 mb-6">
+      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-1 mb-3">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
           {t("filters.new-arrivals")}
         </h1>
@@ -266,7 +266,7 @@ export default function Filters() {
                   key={option.id}
                   type="button"
                   variant="outline"
-                  className="h-auto border-gray-400 px-4 py-2 text-sm font-normal shadow-none"
+                  className="h-auto gap-1 border-gray-400 px-3.5 py-1.5 text-xs font-normal shadow-none"
                   style={{ borderRadius: 9999 }}
                   onClick={() => handleFilterChange(option.id, value.id, false)}
                 >

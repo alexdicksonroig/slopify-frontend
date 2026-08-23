@@ -30,6 +30,7 @@ export const fr = {
   "filters.add-filter": "Ajouter filtre",
   "filters.new-arrivals": "Nouveautés",
   "filters.reset": "Réinitialiser les filtres",
+  "filters.result-count": "Résultats : ${count} articles",
   "filters.size": "Taille",
   "filters.sort": "Trier",
   "filters.sort-newest": "Plus récents",

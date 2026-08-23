@@ -30,6 +30,7 @@ export const ca = {
   "filters.add-filter": "Afegeix filtre",
   "filters.new-arrivals": "Novetats",
   "filters.reset": "Restableix els filtres",
+  "filters.result-count": "Resultats: ${count} articles",
   "filters.size": "Talla",
   "filters.sort": "Ordena",
   "filters.sort-newest": "Més recents",
