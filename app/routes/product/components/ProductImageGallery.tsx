@@ -10,7 +10,7 @@ interface ProductImageGalleryProps {
 
 export function ProductImageGallery({ images }: ProductImageGalleryProps) {
   return (
-    <section className="relative flex aspect-[4/3] min-h-80 items-center justify-center overflow-hidden bg-white lg:sticky lg:top-6 lg:aspect-square lg:min-h-0">
+    <section className="relative mx-auto flex aspect-[4/3] min-h-80 w-full max-w-2xl items-center justify-center overflow-hidden bg-white lg:sticky lg:top-6 lg:aspect-square lg:min-h-0">
       {images.length > 0 ? (
         images.map((image) => (
           <img
