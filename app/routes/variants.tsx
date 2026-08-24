@@ -85,7 +85,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
                     }),
                   )
                 }
-                className="shrink-0 bg-gray-300 p-0! hover:bg-gray-400 disabled:opacity-40"
+                className="shrink-0 origin-center transform-gpu bg-gray-300 p-0! shadow-none transition-transform duration-300 ease-out hover:scale-[1.07] hover:bg-gray-300! hover:shadow-none active:scale-[1.12] active:shadow-none motion-reduce:transform-none disabled:opacity-40"
                 style={{ width: 20, height: 20, borderRadius: "50%" }}
               >
                 <Icon icon="plus" size="sm" />
