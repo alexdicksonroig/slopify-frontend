@@ -269,7 +269,7 @@ export default function Filters() {
                   key={option.id}
                   type="button"
                   variant="outline"
-                  className="h-auto gap-1 border-gray-400 bg-gray-50 px-3.5 py-1 text-xs font-normal text-gray-700 shadow-none"
+                  className="h-auto gap-1 border-gray-400 bg-gray-200 px-3.5 py-1 text-xs font-normal text-gray-700 shadow-none"
                   style={{ borderRadius: 9999 }}
                   onClick={() => handleFilterChange(option.id, value.id, false)}
                 >
