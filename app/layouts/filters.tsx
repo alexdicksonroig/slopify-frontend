@@ -224,7 +224,7 @@ export default function Filters() {
       </Drawer>
 
       <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-2">
-        <h1 className="text-xl md:text-3xl font-bold tracking-tight text-gray-900">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
           {t("filters.new-arrivals")}
         </h1>
         <div className="flex items-center gap-4">
