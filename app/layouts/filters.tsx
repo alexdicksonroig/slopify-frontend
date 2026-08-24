@@ -281,7 +281,7 @@ export default function Filters() {
         {/* Main content */}
         <div className="lg:col-span-3">
           {activeFilters.length > 0 && (
-            <div className="mb-4 flex flex-wrap items-center gap-2 border-b border-gray-200 py-3 lg:mb-6 lg:border-0 lg:pt-2">
+            <div className="mb-4 flex flex-wrap items-center gap-2 py-3 lg:mb-6 lg:pt-2">
               {activeFilters.map(({ option, value }) => (
                 <Button
                   key={option.id}

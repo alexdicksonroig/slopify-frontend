@@ -35,22 +35,26 @@ export default function Example() {
       <header className="bg-white ">
         <title>Store</title>
         {showAnnouncement && (
-          <div className="relative flex h-[42px] items-center justify-between bg-black px-12 text-[13px] font-semibold text-white sm:text-sm">
+          <div className="relative flex min-h-[42px] items-center bg-black text-[13px] font-semibold text-white sm:text-sm">
             <div
               className={cn(
-                "absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
+                "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
                 { "invisible opacity-0": !showFirstText },
               )}
             >
-              <p className="normal-case">{t("header.delivery")}</p>
+              <p className="max-w-full normal-case leading-tight">
+                {t("header.delivery")}
+              </p>
             </div>
             <div
               className={cn(
-                "absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
+                "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
                 { "invisible opacity-0": showFirstText },
               )}
             >
-              <p className="normal-case">{t("header.tax")}</p>
+              <p className="max-w-full normal-case leading-tight">
+                {t("header.tax")}
+              </p>
             </div>
             <Button
               type="button"
