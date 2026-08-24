@@ -223,7 +223,7 @@ export default function Filters() {
         </div>
       </Drawer>
 
-      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-1 mb-3">
+      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-1 mb-1">
         <h1 className="text-xl md:text-3xl font-bold tracking-tight text-gray-900">
           {t("filters.new-arrivals")}
         </h1>
@@ -235,6 +235,7 @@ export default function Filters() {
             placeholder={t("filters.sort")}
             showSelectedValue={false}
             variant="link"
+            placement="bottom"
             className="px-2"
           />
           <Button
@@ -268,18 +269,18 @@ export default function Filters() {
                   key={option.id}
                   type="button"
                   variant="outline"
-                  className="h-auto gap-1 border-gray-400 px-3.5 py-1.5 text-xs font-normal shadow-none"
+                  className="h-auto gap-1 border-gray-400 bg-gray-50 px-3.5 py-1 text-xs font-normal text-gray-700 shadow-none"
                   style={{ borderRadius: 9999 }}
                   onClick={() => handleFilterChange(option.id, value.id, false)}
                 >
                   {value.label}
-                  <Icon icon="x" size="sm" />
+                  <Icon icon="x" size="xs" className="brightness-50" />
                 </Button>
               ))}
               <Button
                 type="button"
                 variant="link"
-                className="text-sm font-normal text-gray-400 hover:text-gray-600"
+                className="text-xs font-light text-gray-400 hover:text-gray-600"
                 onClick={handleResetFilters}
               >
                 {t("filters.clear-all")}

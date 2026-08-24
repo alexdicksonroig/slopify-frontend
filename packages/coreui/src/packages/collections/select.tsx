@@ -19,6 +19,7 @@ export type SelectProps = {
   disabled?: boolean;
   variant?: ButtonProps["variant"];
   size?: ButtonProps["size"];
+  placement?: "top" | "bottom";
 } & Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">;
 
 export const Select: React.FC<SelectProps> = ({
@@ -32,6 +33,7 @@ export const Select: React.FC<SelectProps> = ({
   disabled = false,
   variant = "outline",
   size = "default",
+  placement = "top",
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -71,7 +73,7 @@ export const Select: React.FC<SelectProps> = ({
       <Popover
         open={isOpen}
         onOpenChange={setIsOpen}
-        placement="top"
+        placement={placement}
         className="right-0 z-50 mt-1 min-w-fit w-full rounded-xl md:min-w-64 md:rounded-lg md:border md:border-input bg-popover text-popover-foreground md:shadow-sm px-4 pt-2 pb-6 md:p-2"
       >
         <div className="max-h-60 overflow-auto">
