@@ -41,7 +41,7 @@ export default function Example() {
           >
             <div
               className={cn(
-                "absolute flex w-full items-center justify-center px-12 duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
+                "absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
                 { "invisible opacity-0": !showFirstText },
               )}
             >
@@ -49,7 +49,7 @@ export default function Example() {
             </div>
             <div
               className={cn(
-                "absolute flex w-full items-center justify-center px-12 duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
+                "absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
                 { "invisible opacity-0": showFirstText },
               )}
             >
