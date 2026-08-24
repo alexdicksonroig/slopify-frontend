@@ -223,7 +223,7 @@ export default function Filters() {
         </div>
       </Drawer>
 
-      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-1 mb-1">
+      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-2">
         <h1 className="text-xl md:text-3xl font-bold tracking-tight text-gray-900">
           {t("filters.new-arrivals")}
         </h1>
@@ -263,7 +263,7 @@ export default function Filters() {
         {/* Main content */}
         <div className="lg:col-span-3">
           {activeFilters.length > 0 && (
-            <div className="mb-6 flex flex-wrap items-center gap-2">
+            <div className="mb-6 flex flex-wrap items-center gap-2 pt-2">
               {activeFilters.map(({ option, value }) => (
                 <Button
                   key={option.id}
