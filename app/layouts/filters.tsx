@@ -280,7 +280,7 @@ export default function Filters() {
               <Button
                 type="button"
                 variant="link"
-                className="ml-1 text-xs font-light text-gray-500 hover:text-gray-700"
+                className="ml-1 text-xs text-gray-500 font-medium hover:text-gray-700"
                 onClick={handleResetFilters}
               >
                 {t("filters.clear-all")}
