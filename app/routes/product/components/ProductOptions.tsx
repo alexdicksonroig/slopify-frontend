@@ -14,33 +14,36 @@ export function ProductOptions({
   onChange,
 }: ProductOptionsProps) {
   return (
-    <div className="space-y-6">
+    <div className="grid gap-3 sm:grid-cols-2">
       {options.map((option) => (
-        <fieldset key={option.id}>
-          <legend className="text-sm font-medium text-gray-900">
+        <label key={option.id} className="flex flex-col gap-2">
+          <span className="text-[11px] font-semibold tracking-[0.08em] text-neutral-900 uppercase">
             {option.label}
-          </legend>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {option.possibleValues.map((value) => (
-              <label
-                key={value.id}
-                className="group relative flex min-h-10 min-w-20 cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white px-3 has-checked:border-primary has-checked:bg-primary has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-primary"
-              >
-                <input
-                  type="radio"
-                  name={`product-option-${option.id}`}
-                  value={value.id}
-                  checked={selections[option.id] === value.id}
-                  onChange={() => onChange(option.id, value.id)}
-                  className="absolute inset-0 cursor-pointer appearance-none focus:outline-none"
-                />
-                <span className="text-center text-sm font-medium text-gray-900 group-has-checked:text-white">
+          </span>
+          <div className="relative">
+            <select
+              value={selections[option.id]}
+              onChange={(event) =>
+                onChange(option.id, Number(event.target.value))
+              }
+              className="h-12 w-full appearance-none border-0 border-b border-neutral-300 bg-white px-0 pr-9 text-sm font-medium text-neutral-950 outline-none transition-colors focus:border-neutral-950 focus:ring-0"
+            >
+              {option.possibleValues.map((value) => (
+                <option key={value.id} value={value.id}>
                   {value.label}
-                </span>
-              </label>
-            ))}
+                </option>
+              ))}
+            </select>
+            <svg
+              viewBox="0 0 20 20"
+              fill="none"
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1/2 right-0 size-5 -translate-y-1/2"
+            >
+              <path d="m6 8 4 4 4-4" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
           </div>
-        </fieldset>
+        </label>
       ))}
     </div>
   );

@@ -13,18 +13,16 @@ export function QuantitySelector({ value, onChange }: QuantitySelectorProps) {
   const t = useTranslate();
 
   return (
-    <fieldset className="mt-10">
-      <legend className="text-sm font-medium text-gray-900">
-        {t("product.quantity")}
-      </legend>
-      <div className="mt-4 flex h-12 w-full items-center justify-between rounded-full border border-gray-300 px-1">
+    <fieldset className="shrink-0">
+      <legend className="sr-only">{t("product.quantity")}</legend>
+      <div className="flex h-14 w-28 items-center justify-between border border-neutral-300 px-1 sm:w-32">
         <Button
           type="button"
           variant="ghost"
           aria-label="Decrease quantity"
           disabled={value <= MIN_QUANTITY}
           onClick={() => onChange(value - 1)}
-          className="size-10 rounded-full p-0! disabled:opacity-30"
+          className="size-10 rounded-none p-0! disabled:opacity-30"
         >
           <Icon
             icon="minus"
@@ -33,7 +31,7 @@ export function QuantitySelector({ value, onChange }: QuantitySelectorProps) {
           />
         </Button>
 
-        <output className="min-w-8 text-center text-sm font-medium text-gray-900">
+        <output className="min-w-5 text-center text-sm font-medium text-neutral-900">
           {value}
         </output>
 
@@ -43,7 +41,7 @@ export function QuantitySelector({ value, onChange }: QuantitySelectorProps) {
           aria-label="Increase quantity"
           disabled={value >= MAX_QUANTITY}
           onClick={() => onChange(value + 1)}
-          className="size-10 rounded-full p-0! disabled:opacity-30"
+          className="size-10 rounded-none p-0! disabled:opacity-30"
         >
           <Icon
             icon="plus"

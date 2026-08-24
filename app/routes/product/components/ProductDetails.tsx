@@ -1,50 +1,13 @@
-import { useTranslate } from "@app/i18n";
-
 interface ProductDetailsProps {
   description: string;
-  highlights: string[];
-  details: string;
 }
 
-export function ProductDetails({
-  description,
-  highlights,
-  details,
-}: ProductDetailsProps) {
-  const t = useTranslate();
-
+export function ProductDetails({ description }: ProductDetailsProps) {
   return (
-    <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pr-8 lg:pb-16">
-      <div>
-        <h3 className="sr-only">{t("product.description")}</h3>
-        <div className="space-y-6">
-          <p className="text-base text-gray-900">{description}</p>
-        </div>
-      </div>
-
-      <div className="mt-10">
-        <h3 className="text-sm font-medium text-gray-900">
-          {t("product.highlights")}
-        </h3>
-        <div className="mt-4">
-          <ul className="list-disc space-y-2 pl-4 text-sm">
-            {highlights.map((highlight) => (
-              <li key={highlight} className="text-gray-400">
-                <span className="text-gray-600">{highlight}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="mt-10">
-        <h2 className="text-sm font-medium text-gray-900">
-          {t("product.details")}
-        </h2>
-        <div className="mt-4 space-y-6">
-          <p className="text-sm text-gray-600">{details}</p>
-        </div>
-      </div>
+    <div className="pt-5">
+      <p className="max-w-xl text-[15px] leading-6 text-neutral-700">
+        {description}
+      </p>
     </div>
   );
 }

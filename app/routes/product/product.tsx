@@ -10,7 +10,6 @@ import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
-import { ProductInfo } from "./components/ProductInfo";
 import { ProductOptions } from "./components/ProductOptions";
 import { QuantitySelector } from "./components/QuantitySelector";
 
@@ -111,19 +110,37 @@ export default function ProductPage() {
   };
 
   return (
-    <div className="md:pt-6">
-      <ProductImageGallery images={galleryImages} />
+    <main className="mx-auto w-full max-w-[1440px] px-4 py-4 sm:px-6 sm:py-8 lg:px-12 lg:py-10">
+      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(25rem,1fr)] lg:gap-14">
+        <ProductImageGallery images={galleryImages} />
 
-      <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
-        <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-            {product.name}
-          </h1>
-        </div>
+        <section className="lg:pt-4">
+          <div className="border-b border-neutral-200 pb-6">
+            <p className="mb-3 flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] text-neutral-700 uppercase">
+              <span
+                className="size-2 rounded-full bg-red-600"
+                aria-hidden="true"
+              />
+              Selected bottle
+            </p>
+            <h1 className="text-[2.5rem] leading-[0.98] font-bold tracking-[-0.055em] text-neutral-950 sm:text-5xl lg:text-[3.25rem]">
+              {product.name}
+            </h1>
+            <div className="mt-5 flex items-end justify-between gap-6">
+              <p className="text-sm text-neutral-500">
+                A bottle chosen for you
+              </p>
+              <p className="shrink-0 text-3xl font-semibold tracking-[-0.04em] text-neutral-950">
+                {price}
+              </p>
+            </div>
+          </div>
 
-        <div className="mt-4 lg:row-span-3 lg:mt-0">
-          <ProductInfo price={price} />
-          <form className="mt-10" onSubmit={handleAddToCart}>
+          <ProductDetails
+            description={product.description ?? t("product.description-text")}
+          />
+
+          <form className="mt-7" onSubmit={handleAddToCart}>
             <ProductOptions
               options={options}
               selections={selections}
@@ -134,24 +151,47 @@ export default function ProductPage() {
                 }))
               }
             />
-            <QuantitySelector value={quantity} onChange={setQuantity} />
-            <Button
-              type="submit"
-              disabled={!cart || !hasPrice}
-              className="mt-4 h-12 w-full uppercase"
-            >
-              <span>{t("product.add-to-bag")}</span>
-              <span aria-hidden="true">·</span>
-              <span>{totalPrice}</span>
-            </Button>
+            <div className="mt-5 flex gap-3">
+              <QuantitySelector value={quantity} onChange={setQuantity} />
+              <Button
+                type="submit"
+                disabled={!cart || !hasPrice}
+                className="h-14 flex-1 justify-between rounded-none bg-neutral-950 px-5 uppercase hover:bg-neutral-800"
+              >
+                <span>{t("product.add-to-bag")}</span>
+                <span>{totalPrice}</span>
+              </Button>
+            </div>
           </form>
-        </div>
-        <ProductDetails
-          description={product.description ?? t("product.description-text")}
-          highlights={[]}
-          details={t("product.details-text")}
-        />
+
+          <div className="mt-7 border-t border-neutral-200">
+            {[t("product.highlights"), t("product.details"), "Shipping"].map(
+              (label) => (
+                <details
+                  key={label}
+                  className="group border-b border-neutral-200"
+                >
+                  <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between text-xs font-semibold tracking-[0.08em] uppercase [&::-webkit-details-marker]:hidden">
+                    {label}
+                    <span className="text-xl font-normal group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <p className="pb-5 text-sm leading-6 text-neutral-600">
+                    {detailsCopy(label, t("product.details-text"))}
+                  </p>
+                </details>
+              ),
+            )}
+          </div>
+        </section>
       </div>
-    </div>
+    </main>
   );
+}
+
+function detailsCopy(label: string, details: string) {
+  return label === "Shipping"
+    ? "Shipping costs and delivery estimates are calculated at checkout."
+    : details;
 }

@@ -223,22 +223,19 @@ export default function Filters() {
         </div>
       </Drawer>
 
-      <div className="pt-6 lg:flex lg:items-end lg:justify-between lg:border-b lg:border-gray-200 lg:pb-3 lg:pt-8">
+      <div className="pt-6 lg:flex lg:items-end lg:justify-between border-b border-gray-200 pb-3 pt-8">
         <div>
           <div className="flex items-end justify-between gap-4">
             <h1 className="text-[1.7rem] font-bold tracking-tight text-gray-900 md:text-3xl">
               {t("filters.new-arrivals")}
             </h1>
-            <p className="shrink-0 pb-0.5 text-sm text-gray-500 lg:hidden">
-              {t("filters.product-count", { count: resultCount })}
-            </p>
           </div>
           <p className="mt-1 text-sm text-gray-500 lg:hidden">
             {t("filters.subtitle")}
           </p>
         </div>
 
-        <div className="mt-4 flex items-center gap-2 border-b border-gray-200 pb-3 lg:mt-0 lg:gap-4 lg:border-0 lg:pb-0">
+        <div className="mt-4 flex items-center gap-2 pb-3 lg:mt-0 lg:gap-4 lg:border-0 lg:pb-0">
           <div className="min-w-0 flex-1 lg:min-w-44 lg:flex-none">
             <Select
               value={searchParams.get("sort") ?? "newest"}
@@ -279,9 +276,9 @@ export default function Filters() {
         </aside>
 
         {/* Main content */}
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-3 pt-4">
           {activeFilters.length > 0 && (
-            <div className="mb-4 flex flex-wrap items-center gap-2 py-3 lg:mb-6 lg:pt-2">
+            <div className="flex flex-wrap items-center gap-2 pb-3 lg:pt-2">
               {activeFilters.map(({ option, value }) => (
                 <Button
                   key={option.id}
@@ -305,6 +302,9 @@ export default function Filters() {
               </Button>
             </div>
           )}
+          <p className="mb-1 text-xs text-gray-500">
+            {t("filters.product-count", { count: resultCount })}
+          </p>
           <Outlet />
         </div>
       </div>
