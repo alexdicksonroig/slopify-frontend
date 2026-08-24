@@ -29,6 +29,7 @@ export const de = {
   "filters.color": "Farbe",
   "filters.add-filter": "Filter hinzufügen",
   "filters.new-arrivals": "Neuheiten",
+  "filters.product-count": "${count} Produkte",
   "filters.reset": "Filter zurücksetzen",
   "filters.result-count": "Ergebnisse: ${count} Artikel",
   "filters.size": "Größe",
@@ -36,6 +37,7 @@ export const de = {
   "filters.sort-newest": "Neueste",
   "filters.sort-price-ascending": "Preis: aufsteigend",
   "filters.sort-price-descending": "Preis: absteigend",
+  "filters.subtitle": "Frische Flaschen warten darauf, entdeckt zu werden.",
   "filters.title": "Filter",
   "filters.view-results": "Ergebnisse anzeigen (${count})",
   "footer.address": "Adresse: ${address}",
@@ -45,6 +47,7 @@ export const de = {
   "footer.phone": "Telefon: ${phone}",
   "footer.rights": "© ${year} Store. Alle Rechte vorbehalten.",
   "header.back": "Zurück",
+  "header.basket-total": "Warenkorbsumme",
   "header.cart": "Artikel im Warenkorb, Warenkorb anzeigen",
   "header.close-announcement": "Hinweis schließen",
   "header.company": "Store-Startseite",
@@ -74,10 +77,12 @@ export const de = {
   "return.back-cart": "Zurück zum Warenkorb",
   "return.checking": "Zahlung wird bestätigt...",
   "return.continue": "Weiter einkaufen",
-  "return.error": "Wir konnten die Zahlung nicht bestätigen. Ihr Warenkorb ist weiterhin verfügbar.",
+  "return.error":
+    "Wir konnten die Zahlung nicht bestätigen. Ihr Warenkorb ist weiterhin verfügbar.",
   "return.error-title": "Wir konnten Ihre Bestellung nicht bestätigen",
   "return.reference": "Bestellreferenz",
-  "return.success": "Ihre Zahlung war erfolgreich und wir haben Ihre Bestellung erhalten.",
+  "return.success":
+    "Ihre Zahlung war erfolgreich und wir haben Ihre Bestellung erhalten.",
   "return.thank-you": "Vielen Dank!",
   "return.title": "Ihre Bestellung ist bestätigt",
 } satisfies TranslationDictionary;

@@ -9,43 +9,64 @@ export type CartItemListProps = {
   cart: readonly CartItem[];
   setCart: (cart: Cart) => void;
   editable?: boolean;
-  className?: string
+  className?: string;
 };
 
-const ItemCTA = ({render, productUrl, item, setCart}: { render: boolean, productUrl: string, item: CartItem, setCart: (cart: Cart) => void}) => {
-  const t = useTranslate()
+const ItemCTA = ({
+  render,
+  productUrl,
+  item,
+  setCart,
+}: {
+  render: boolean;
+  productUrl: string;
+  item: CartItem;
+  setCart: (cart: Cart) => void;
+}) => {
+  const t = useTranslate();
   if (!render) {
-    return null
+    return null;
   }
 
   const onRemove = async (variantId: number) => {
     const updatedCart = await deleteProductFromCartUseCase.execute(variantId);
     if (updatedCart) setCart(updatedCart);
-  }
+  };
 
-  return <><div className="mt-auto flex items-center gap-4 pt-5 text-base font-medium text-indigo-700">
-    <Link to={productUrl} className="hover:text-indigo-500">
-      {t("cart.edit-action")}
-    </Link>
-    <span
-      aria-hidden="true"
-      className="h-6 border-l border-gray-300"
-    />
-    <Button
-      type="button"
-      variant="link"
-      onClick={() => onRemove(item.variantId)}
-      className="text-base text-indigo-700 hover:text-indigo-500"
-    >
-      {t("cart.remove-action")}
-    </Button>
-  </div></>
-}
+  return (
+    <>
+      <div className="mt-auto flex items-center gap-4 pt-5 text-base font-medium text-indigo-700">
+        <Link to={productUrl} className="hover:text-indigo-500">
+          {t("cart.edit-action")}
+        </Link>
+        <span aria-hidden="true" className="h-6 border-l border-gray-300" />
+        <Button
+          type="button"
+          variant="link"
+          onClick={() => onRemove(item.variantId)}
+          className="text-base text-indigo-700 hover:text-indigo-500"
+        >
+          {t("cart.remove-action")}
+        </Button>
+      </div>
+    </>
+  );
+};
 
-export function CartItemList({ cart, setCart, className, editable = false }: CartItemListProps) {
+export function CartItemList({
+  cart,
+  setCart,
+  className,
+  editable = false,
+}: CartItemListProps) {
   const t = useTranslate();
   return (
-    <ul className={cn("mt-8 divide-y divide-gray-200 border-y border-gray-200", className)}>
+    <ul
+      className={cn(
+        "mt-8 divide-y divide-gray-200 border-y border-gray-200",
+        className,
+      )}
+    >
       {cart.map((item) => {
         const productUrl = `/product/${item.productId}?variant=${item.variantId}`;
 
@@ -81,7 +102,12 @@ export function CartItemList({ cart, setCart, className, editable = false }: Car
                 </p>
               </div>
             </div>
-            <ItemCTA render={editable} productUrl={productUrl} item={item} setCart={setCart} />
+            <ItemCTA
+              render={editable}
+              productUrl={productUrl}
+              item={item}
+              setCart={setCart}
+            />
           </li>
         );
       })}

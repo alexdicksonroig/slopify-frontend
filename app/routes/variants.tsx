@@ -33,32 +33,32 @@ function VariantCard({ product, variant }: VariantCardProps) {
   };
 
   return (
-    <div className="group relative">
+    <article className="group relative min-w-0">
       <Link to={`/product/${product.id}?variant=${variant.id}`}>
         {variant.thumbnailUrl ? (
           <img
             alt={product.name}
             src={variant.thumbnailUrl}
             className={cn(
-              "aspect-square w-full rounded-md bg-gray-200 object-contain group-hover:opacity-75",
+              "aspect-square w-full bg-gray-100 object-contain group-hover:opacity-75 [border-radius:0.625rem]",
             )}
           />
         ) : (
-          <div className="flex aspect-square w-full items-center justify-center rounded-md bg-gray-200 text-sm text-gray-500">
+          <div className="flex aspect-square w-full items-center justify-center bg-gray-100 text-sm text-gray-500 [border-radius:0.625rem]">
             {t("product.no-thumbnail")}
           </div>
         )}
       </Link>
-      <div className="mt-4">
+      <div className="mt-3 px-0.5">
         <div className="flex items-start justify-between gap-2">
           <Link
             className="min-w-0"
             to={`/product/${product.id}?variant=${variant.id}`}
           >
-            <p className="text-sm leading-5 text-[#828a99] italic">
+            <p className="text-[13px] italic leading-[18px] text-gray-500 sm:text-sm">
               {variant.selections.map(({ value }) => value.label).join(", ")}
             </p>
-            <h3 className="text-base leading-6 text-gray-950">
+            <h3 className="mt-0.5 truncate text-[17px] font-semibold leading-[22px] text-gray-950 sm:text-base sm:leading-6">
               {product.name}
             </h3>
           </Link>
@@ -93,13 +93,13 @@ function VariantCard({ product, variant }: VariantCardProps) {
             </div>
           )}
         </div>
-        <p className="mt-2 text-sm font-medium text-gray-900">
+        <p className="mt-2 text-base font-semibold text-gray-900 sm:text-sm sm:font-medium">
           {isAvailable
             ? formatMoney(unitAmount, currency)
             : t("product.unavailable")}
         </p>
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -155,12 +155,12 @@ export default function Variants() {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-6 lg:grid-cols-3 mt-2">
+      <div className="mt-1 grid grid-cols-2 gap-x-3 gap-y-5 lg:mt-2 lg:grid-cols-3 lg:gap-x-6 lg:gap-y-10">
         {cards.map(({ product, variant }) => (
           <VariantCard key={variant.id} product={product} variant={variant} />
         ))}
       </div>
-      <p className="mt-3 pb-8 text-sm text-gray-500">
+      <p className="sr-only">
         {t("filters.result-count", { count: cards.length })}
       </p>
     </>

@@ -35,17 +35,14 @@ export default function Example() {
       <header className="bg-white ">
         <title>Store</title>
         {showAnnouncement && (
-          <div
-            className="relative flex h-10 items-center justify-between bg-black text-sm
-              font-medium text-white"
-          >
+          <div className="relative flex h-[42px] items-center justify-between bg-black px-12 text-[13px] font-semibold text-white sm:text-sm">
             <div
               className={cn(
                 "absolute flex w-full items-center justify-center duration-100 ease-linear lg:justify-center transition-all visible opacity-100",
                 { "invisible opacity-0": !showFirstText },
               )}
             >
-              <p className="normal-case body-3">{t("header.delivery")}</p>
+              <p className="normal-case">{t("header.delivery")}</p>
             </div>
             <div
               className={cn(
@@ -53,14 +50,14 @@ export default function Example() {
                 { "invisible opacity-0": showFirstText },
               )}
             >
-              <p className="normal-case body-3">{t("header.tax")}</p>
+              <p className="normal-case">{t("header.tax")}</p>
             </div>
             <Button
               type="button"
               onClick={() => setShowAnnouncement(false)}
               variant="ghost"
               size="icon"
-              className="absolute right-1 h-6 w-6 text-white hover:bg-white/10 hover:text-white"
+              className="absolute right-1 h-10 w-10 text-white hover:bg-white/10 hover:text-white"
             >
               <Icon icon="x" size="sm" />
               <span className="sr-only">{t("header.close-announcement")}</span>
@@ -71,7 +68,7 @@ export default function Example() {
           aria-label={t("header.top")}
           className="border-b border-gray-200 px-4 sm:px-6 lg:px-8"
         >
-          <div className="flex h-12 items-center">
+          <div className="flex h-[62px] items-center">
             {location.pathname !== "/" && location.pathname !== "/variants" && (
               <Button onClick={() => navigate(-1)} size="icon" variant="ghost">
                 <Icon icon="arrow-left" size="lg" />
@@ -128,15 +125,20 @@ export default function Example() {
               </div>
               */}
               {/* Cart */}
-              <div className="flex items-center md:ml-4">
-                <span className="flex h-6 min-w-12 items-center justify-center bg-gray-200 px-1.5 text-xs font-medium text-black">
-                  {formatMoney(cartTotalInCents, cart?.currency ?? "EUR")}
+              <div className="flex items-center gap-2 md:ml-4">
+                <span className="flex flex-col items-end leading-none">
+                  <span className="text-[11px] text-gray-500">
+                    {t("header.basket-total")}
+                  </span>
+                  <span className="mt-1 text-sm font-semibold text-gray-900">
+                    {formatMoney(cartTotalInCents, cart?.currency ?? "EUR")}
+                  </span>
                 </span>
                 <Button
                   onClick={handleCartClick}
-                  variant="ghost"
+                  variant="outline"
                   size="icon"
-                  className="ml-1"
+                  className="h-11 w-11 rounded-full border-gray-300 shadow-none"
                 >
                   <Icon icon="shopping-bag" size="lg" />
                   <span className="sr-only">{t("header.cart")}</span>

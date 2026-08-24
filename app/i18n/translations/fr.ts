@@ -29,6 +29,7 @@ export const fr = {
   "filters.color": "Couleur",
   "filters.add-filter": "Ajouter filtre",
   "filters.new-arrivals": "Nouveautés",
+  "filters.product-count": "${count} produits",
   "filters.reset": "Réinitialiser les filtres",
   "filters.result-count": "Résultats : ${count} articles",
   "filters.size": "Taille",
@@ -36,6 +37,7 @@ export const fr = {
   "filters.sort-newest": "Plus récents",
   "filters.sort-price-ascending": "Prix : croissant",
   "filters.sort-price-descending": "Prix : décroissant",
+  "filters.subtitle": "De nouvelles bouteilles à découvrir.",
   "filters.title": "Filtres",
   "filters.view-results": "Voir les résultats (${count})",
   "footer.address": "Adresse : ${address}",
@@ -45,6 +47,7 @@ export const fr = {
   "footer.phone": "Téléphone : ${phone}",
   "footer.rights": "© ${year} Store. Tous droits réservés.",
   "header.back": "Retour",
+  "header.basket-total": "Total du panier",
   "header.cart": "Articles dans le panier, voir le panier",
   "header.close-announcement": "Fermer l’annonce",
   "header.company": "Accueil de Store",
@@ -74,10 +77,12 @@ export const fr = {
   "return.back-cart": "Retourner au panier",
   "return.checking": "Confirmation du paiement...",
   "return.continue": "Continuer mes achats",
-  "return.error": "Nous n'avons pas pu confirmer le paiement. Votre panier est toujours disponible.",
+  "return.error":
+    "Nous n'avons pas pu confirmer le paiement. Votre panier est toujours disponible.",
   "return.error-title": "Nous n'avons pas pu confirmer votre commande",
   "return.reference": "Référence de la commande",
-  "return.success": "Votre paiement a réussi et nous avons reçu votre commande.",
+  "return.success":
+    "Votre paiement a réussi et nous avons reçu votre commande.",
   "return.thank-you": "Merci !",
   "return.title": "Votre commande est confirmée",
 } satisfies TranslationDictionary;

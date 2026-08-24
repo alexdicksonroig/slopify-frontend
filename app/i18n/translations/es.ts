@@ -29,6 +29,7 @@ export const es = {
   "filters.color": "Color",
   "filters.add-filter": "Añadir filtro",
   "filters.new-arrivals": "Novedades",
+  "filters.product-count": "${count} productos",
   "filters.reset": "Restablecer filtros",
   "filters.result-count": "Resultados: ${count} artículos",
   "filters.size": "Talla",
@@ -36,6 +37,7 @@ export const es = {
   "filters.sort-newest": "Más recientes",
   "filters.sort-price-ascending": "Precio: de menor a mayor",
   "filters.sort-price-descending": "Precio: de mayor a menor",
+  "filters.subtitle": "Botellas recién llegadas listas para descubrir.",
   "filters.title": "Filtros",
   "filters.view-results": "Ver resultados (${count})",
   "footer.address": "Dirección: ${address}",
@@ -45,6 +47,7 @@ export const es = {
   "footer.phone": "Teléfono: ${phone}",
   "footer.rights": "© ${year} Store. Todos los derechos reservados.",
   "header.back": "Volver",
+  "header.basket-total": "Total del carrito",
   "header.cart": "Artículos en el carrito, ver bolsa",
   "header.close-announcement": "Cerrar aviso",
   "header.company": "Inicio de Store",
@@ -74,10 +77,12 @@ export const es = {
   "return.back-cart": "Volver al carrito",
   "return.checking": "Confirmando el pago...",
   "return.continue": "Seguir comprando",
-  "return.error": "No hemos podido confirmar el pago. Tu carrito sigue disponible.",
+  "return.error":
+    "No hemos podido confirmar el pago. Tu carrito sigue disponible.",
   "return.error-title": "No hemos podido confirmar tu pedido",
   "return.reference": "Referencia del pedido",
-  "return.success": "El pago se ha realizado correctamente y hemos recibido tu pedido.",
+  "return.success":
+    "El pago se ha realizado correctamente y hemos recibido tu pedido.",
   "return.thank-you": "¡Gracias!",
   "return.title": "Tu pedido está confirmado",
 } satisfies TranslationDictionary;

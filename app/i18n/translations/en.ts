@@ -27,6 +27,7 @@ export const en = {
   "filters.color": "Color",
   "filters.add-filter": "Add filter",
   "filters.new-arrivals": "New Arrivals",
+  "filters.product-count": "${count} products",
   "filters.reset": "Reset filters",
   "filters.result-count": "Results: ${count} items",
   "filters.size": "Size",
@@ -34,6 +35,7 @@ export const en = {
   "filters.sort-newest": "Newest",
   "filters.sort-price-ascending": "Price: Low to High",
   "filters.sort-price-descending": "Price: High to Low",
+  "filters.subtitle": "Fresh bottles ready to discover.",
   "filters.title": "Filters",
   "filters.view-results": "View results (${count})",
   "footer.address": "Address: ${address}",
@@ -43,6 +45,7 @@ export const en = {
   "footer.phone": "Phone: ${phone}",
   "footer.rights": "© ${year} Store. All rights reserved.",
   "header.back": "Back",
+  "header.basket-total": "Basket total",
   "header.cart": "Items in cart, view bag",
   "header.close-announcement": "Close announcement",
   "header.company": "Store home",
@@ -72,10 +75,12 @@ export const en = {
   "return.back-cart": "Return to cart",
   "return.checking": "Confirming your payment...",
   "return.continue": "Continue shopping",
-  "return.error": "We couldn't confirm your payment. Your cart is still available.",
+  "return.error":
+    "We couldn't confirm your payment. Your cart is still available.",
   "return.error-title": "We couldn't confirm your order",
   "return.reference": "Order reference",
-  "return.success": "Your payment was successful and we've received your order.",
+  "return.success":
+    "Your payment was successful and we've received your order.",
   "return.thank-you": "Thank you!",
   "return.title": "Your order is confirmed",
 } as const;

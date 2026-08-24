@@ -29,6 +29,7 @@ export const ca = {
   "filters.color": "Color",
   "filters.add-filter": "Afegeix filtre",
   "filters.new-arrivals": "Novetats",
+  "filters.product-count": "${count} productes",
   "filters.reset": "Restableix els filtres",
   "filters.result-count": "Resultats: ${count} articles",
   "filters.size": "Talla",
@@ -36,6 +37,7 @@ export const ca = {
   "filters.sort-newest": "Més recents",
   "filters.sort-price-ascending": "Preu: de menor a major",
   "filters.sort-price-descending": "Preu: de major a menor",
+  "filters.subtitle": "Ampolles noves a punt per descobrir.",
   "filters.title": "Filtres",
   "filters.view-results": "Mostra els resultats (${count})",
   "footer.address": "Adreça: ${address}",
@@ -45,6 +47,7 @@ export const ca = {
   "footer.phone": "Telèfon: ${phone}",
   "footer.rights": "© ${year} Store. Tots els drets reservats.",
   "header.back": "Enrere",
+  "header.basket-total": "Total de la cistella",
   "header.cart": "Articles a la cistella, mostra la cistella",
   "header.close-announcement": "Tanca l’avís",
   "header.company": "Inici de Store",
@@ -74,10 +77,12 @@ export const ca = {
   "return.back-cart": "Torna a la cistella",
   "return.checking": "S'està confirmant el pagament...",
   "return.continue": "Continua comprant",
-  "return.error": "No hem pogut confirmar el pagament. La teva cistella continua disponible.",
+  "return.error":
+    "No hem pogut confirmar el pagament. La teva cistella continua disponible.",
   "return.error-title": "No hem pogut confirmar la teva comanda",
   "return.reference": "Referència de la comanda",
-  "return.success": "El pagament s'ha completat correctament i hem rebut la teva comanda.",
+  "return.success":
+    "El pagament s'ha completat correctament i hem rebut la teva comanda.",
   "return.thank-you": "Gràcies!",
   "return.title": "La teva comanda està confirmada",
 } satisfies TranslationDictionary;

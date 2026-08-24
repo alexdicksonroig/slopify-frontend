@@ -223,28 +223,46 @@ export default function Filters() {
         </div>
       </Drawer>
 
-      <div className="flex items-center justify-between border-b border-gray-200 pt-8 pb-2">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
-          {t("filters.new-arrivals")}
-        </h1>
-        <div className="flex items-center gap-4">
-          <Select
-            value={searchParams.get("sort") ?? undefined}
-            onChange={handleSortChange}
-            options={translatedSortOptions}
-            placeholder={t("filters.sort")}
-            showSelectedValue={false}
-            variant="link"
-            placement="bottom"
-            className="px-2"
-          />
+      <div className="pt-6 lg:flex lg:items-end lg:justify-between lg:border-b lg:border-gray-200 lg:pb-3 lg:pt-8">
+        <div>
+          <div className="flex items-end justify-between gap-4">
+            <h1 className="text-[1.7rem] font-bold tracking-tight text-gray-900 md:text-3xl">
+              {t("filters.new-arrivals")}
+            </h1>
+            <p className="shrink-0 pb-0.5 text-sm text-gray-500 lg:hidden">
+              {t("filters.product-count", { count: resultCount })}
+            </p>
+          </div>
+          <p className="mt-1 text-sm text-gray-500 lg:hidden">
+            {t("filters.subtitle")}
+          </p>
+        </div>
+
+        <div className="mt-4 flex items-center gap-2 border-b border-gray-200 pb-3 lg:mt-0 lg:gap-4 lg:border-0 lg:pb-0">
+          <div className="min-w-0 flex-1 lg:min-w-44 lg:flex-none">
+            <Select
+              value={searchParams.get("sort") ?? "newest"}
+              onChange={handleSortChange}
+              options={translatedSortOptions}
+              placeholder={t("filters.sort")}
+              showSelectedValue
+              variant="outline"
+              placement="bottom"
+              className="h-11 rounded-lg border-gray-300 px-3 shadow-none lg:h-9 lg:border-0 lg:px-2"
+              aria-label={t("filters.sort")}
+            />
+          </div>
           <Button
-            variant="link"
-            className="text-muted-foreground px-2 lg:hidden"
+            className="h-11 rounded-lg px-3 shadow-none lg:hidden"
             onClick={() => setDrawerOpen(true)}
           >
-            <span>{t("filters.add-filter")}</span>
-            <Icon icon="plus" size="sm" className="brightness-0" />
+            <Icon icon="list-filter" size="sm" />
+            <span>{t("filters.title")}</span>
+            {activeFilters.length > 0 && (
+              <span className="flex size-5 items-center justify-center rounded-full bg-white text-[11px] font-bold text-gray-900">
+                {activeFilters.length}
+              </span>
+            )}
           </Button>
         </div>
       </div>
@@ -263,13 +281,13 @@ export default function Filters() {
         {/* Main content */}
         <div className="lg:col-span-3">
           {activeFilters.length > 0 && (
-            <div className="mb-6 flex flex-wrap items-center gap-2 pt-2">
+            <div className="mb-4 flex flex-wrap items-center gap-2 border-b border-gray-200 py-3 lg:mb-6 lg:border-0 lg:pt-2">
               {activeFilters.map(({ option, value }) => (
                 <Button
                   key={option.id}
                   type="button"
                   variant="outline"
-                  className="h-auto gap-1 border-gray-400 bg-gray-200 px-3.5 py-1 text-xs font-normal text-gray-700 shadow-none"
+                  className="h-[34px] gap-1.5 border-gray-300 bg-gray-100 px-3 text-xs font-medium text-gray-700 shadow-none"
                   style={{ borderRadius: 9999 }}
                   onClick={() => handleFilterChange(option.id, value.id, false)}
                 >
@@ -280,7 +298,7 @@ export default function Filters() {
               <Button
                 type="button"
                 variant="link"
-                className="ml-1 text-xs text-gray-500 font-medium hover:text-gray-700"
+                className="ml-1 text-xs font-medium text-gray-500 hover:text-gray-700"
                 onClick={handleResetFilters}
               >
                 {t("filters.clear-all")}
