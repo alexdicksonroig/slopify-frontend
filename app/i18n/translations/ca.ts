@@ -34,6 +34,7 @@ export const ca = {
   "filters.result-count": "Resultats: ${count} articles",
   "filters.size": "Talla",
   "filters.sort": "Ordena",
+  "filters.sort-by": "Ordena per",
   "filters.sort-newest": "Més recents",
   "filters.sort-price-ascending": "Preu: de menor a major",
   "filters.sort-price-descending": "Preu: de major a menor",

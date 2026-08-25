@@ -34,6 +34,7 @@ export const fr = {
   "filters.result-count": "Résultats : ${count} articles",
   "filters.size": "Taille",
   "filters.sort": "Trier",
+  "filters.sort-by": "Trier par",
   "filters.sort-newest": "Plus récents",
   "filters.sort-price-ascending": "Prix : croissant",
   "filters.sort-price-descending": "Prix : décroissant",

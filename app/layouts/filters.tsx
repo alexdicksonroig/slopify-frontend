@@ -223,7 +223,7 @@ export default function Filters() {
         </div>
       </Drawer>
 
-      <div className="pt-6 lg:flex lg:items-end lg:justify-between border-b border-gray-200 pb-3 pt-8">
+      <div className="border-b border-gray-200 pt-8 lg:flex lg:items-end lg:justify-between lg:pb-3">
         <div>
           <div className="flex items-end justify-between gap-4">
             <h1 className="text-[1.7rem] font-bold tracking-tight text-gray-900 md:text-3xl">
@@ -235,32 +235,38 @@ export default function Filters() {
           </p>
         </div>
 
-        <div className="mt-4 flex items-center gap-2 pb-3 lg:mt-0 lg:gap-4 lg:border-0 lg:pb-0">
-          <div className="min-w-0 flex-1 lg:min-w-44 lg:flex-none">
-            <Select
-              value={searchParams.get("sort") ?? "newest"}
-              onChange={handleSortChange}
-              options={translatedSortOptions}
-              placeholder={t("filters.sort")}
-              showSelectedValue
-              variant="outline"
-              placement="bottom"
-              className="h-11 rounded-lg border-gray-300 px-3 shadow-none lg:h-9 lg:border-0 lg:px-2"
-              aria-label={t("filters.sort")}
-            />
+        <div className="mt-4 flex min-h-10 items-center justify-between gap-4 lg:mt-0 lg:min-h-0 lg:justify-end">
+          <p className="text-xs text-gray-600 lg:hidden">
+            {t("filters.result-count", { count: resultCount })}
+          </p>
+          <div className="ml-auto flex items-center gap-1 lg:block lg:min-w-44">
+            <div className="min-w-0">
+              <Select
+                value={searchParams.get("sort") ?? "newest"}
+                onChange={handleSortChange}
+                options={translatedSortOptions}
+                placeholder={t("filters.sort-by")}
+                showSelectedValue={false}
+                variant="ghost"
+                placement="bottom"
+                className="h-8 gap-1 rounded-md px-1.5 text-xs font-normal text-gray-700 shadow-none hover:bg-gray-50 [&_svg]:size-3.5"
+                aria-label={t("filters.sort")}
+              />
+            </div>
+            <Button
+              variant="ghost"
+              className="h-8 gap-1 rounded-md px-1.5 text-xs font-normal text-gray-700 shadow-none hover:bg-gray-50 lg:hidden [&_svg]:size-3.5"
+              onClick={() => setDrawerOpen(true)}
+            >
+              <Icon icon="list-filter" size="sm" />
+              <span>{t("filters.title")}</span>
+              {activeFilters.length > 0 && (
+                <span className="flex size-3.5 items-center justify-center rounded-full bg-gray-100 text-[9px] font-medium text-gray-700">
+                  {activeFilters.length}
+                </span>
+              )}
+            </Button>
           </div>
-          <Button
-            className="h-11 rounded-lg px-3 shadow-none lg:hidden"
-            onClick={() => setDrawerOpen(true)}
-          >
-            <Icon icon="list-filter" size="sm" />
-            <span>{t("filters.title")}</span>
-            {activeFilters.length > 0 && (
-              <span className="flex size-5 items-center justify-center rounded-full bg-white text-[11px] font-bold text-gray-900">
-                {activeFilters.length}
-              </span>
-            )}
-          </Button>
         </div>
       </div>
 
@@ -302,7 +308,7 @@ export default function Filters() {
               </Button>
             </div>
           )}
-          <p className="mb-1 text-xs text-gray-500">
+          <p className="mb-1 hidden text-xs text-gray-500 lg:block">
             {t("filters.product-count", { count: resultCount })}
           </p>
           <Outlet />
