@@ -1,8 +1,10 @@
+// NOT REVISED ENTIRE FILE
 import { useTranslate } from "@app/i18n";
+import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-to-cart.use-case";
 import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
 import type { Cart, CartItem } from "@app/lib/cart/domain/cart.entity";
 import { formatMoney } from "@app/lib/currency";
-import { Button, cn } from "@library";
+import { cn } from "@library";
 import { Link } from "react-router";
 
 export type CartItemListProps = {
@@ -12,47 +14,6 @@ export type CartItemListProps = {
   className?: string;
 };
 
-const ItemCTA = ({
-  render,
-  productUrl,
-  item,
-  setCart,
-}: {
-  render: boolean;
-  productUrl: string;
-  item: CartItem;
-  setCart: (cart: Cart) => void;
-}) => {
-  const t = useTranslate();
-  if (!render) {
-    return null;
-  }
-
-  const onRemove = async (variantId: number) => {
-    const updatedCart = await deleteProductFromCartUseCase.execute(variantId);
-    if (updatedCart) setCart(updatedCart);
-  };
-
-  return (
-    <>
-      <div className="mt-auto flex items-center gap-4 pt-5 text-base font-medium text-indigo-700">
-        <Link to={productUrl} className="hover:text-indigo-500">
-          {t("cart.edit-action")}
-        </Link>
-        <span aria-hidden="true" className="h-6 border-l border-gray-300" />
-        <Button
-          type="button"
-          variant="link"
-          onClick={() => onRemove(item.variantId)}
-          className="text-base text-indigo-700 hover:text-indigo-500"
-        >
-          {t("cart.remove-action")}
-        </Button>
-      </div>
-    </>
-  );
-};
-
 export function CartItemList({
   cart,
   setCart,
@@ -60,6 +21,18 @@ export function CartItemList({
   editable = false,
 }: CartItemListProps) {
   const t = useTranslate();
+
+  const changeQuantity = async (item: CartItem, quantity: number) => {
+    if (quantity < 1) return;
+    const updatedCart = await addProductToCartUseCase.execute(item, quantity);
+    if (updatedCart) setCart(updatedCart);
+  };
+
+  const removeItem = async (variantId: number) => {
+    const updatedCart = await deleteProductFromCartUseCase.execute(variantId);
+    if (updatedCart) setCart(updatedCart);
+  };
+
   return (
     <ul
       className={cn(
@@ -71,16 +44,19 @@ export function CartItemList({
         const productUrl = `/product/${item.productId}?variant=${item.variantId}`;
 
         return (
-          <li key={item.variantId} className="flex gap-5 py-8 sm:gap-8">
+          <li
+            key={item.variantId}
+            className="grid grid-cols-[7rem_minmax(0,1fr)] gap-x-4 py-6 sm:grid-cols-[8rem_minmax(0,1fr)] sm:gap-x-5"
+          >
             <Link
               to={productUrl}
-              className="size-32 shrink-0 overflow-hidden bg-white [border-radius:0.5rem] sm:size-44"
+              className="row-span-2 h-36 overflow-hidden bg-gray-100 sm:h-44"
             >
               {item.thumbnailUrl ? (
                 <img
                   src={item.thumbnailUrl}
                   alt={item.name}
-                  className="size-full object-contain"
+                  className="size-full object-cover"
                 />
               ) : (
                 <span className="flex size-full items-center justify-center px-3 text-center text-xs text-gray-400">
@@ -89,25 +65,80 @@ export function CartItemList({
               )}
             </Link>
 
-            <div className="flex min-w-0 flex-1 flex-col">
-              <div>
-                <h2 className="flex items-baseline gap-2 text-base font-semibold text-gray-900 sm:text-lg">
-                  <Link to={productUrl}>{item.name}</Link>
-                  <span className="shrink-0 text-sm font-normal text-gray-500">
-                    × {item.quantity}
-                  </span>
-                </h2>
-                <p className="mt-1 text-base font-medium text-gray-900">
-                  {formatMoney(item.unitPriceInCents, item.currency)}
+            <div className="relative min-w-0 pr-12">
+              <h2 className="text-sm font-medium leading-snug text-gray-950 sm:text-base">
+                <Link to={productUrl}>{item.name}</Link>
+              </h2>
+              <p className="mt-3 text-lg font-medium text-gray-950">
+                {formatMoney(item.unitPriceInCents, item.currency)}
+              </p>
+
+              {editable && (
+                <button
+                  type="button"
+                  aria-label={t("cart.save", { item: item.name })}
+                  className="absolute -right-1 top-0 flex size-8 cursor-pointer items-center justify-center text-gray-950 hover:text-indigo-700"
+                >
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    className="size-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"
+                    />
+                  </svg>
+                </button>
+              )}
+            </div>
+
+            {editable && (
+              <div className="col-start-2 mt-4">
+                <div className="flex h-11 w-32 items-center justify-between bg-gray-100 px-3 [border-radius:9999px]">
+                  <button
+                    type="button"
+                    onClick={() => changeQuantity(item, item.quantity - 1)}
+                    disabled={item.quantity === 1}
+                    aria-label={t("cart.decrease", { item: item.name })}
+                    className="flex size-7 cursor-pointer items-center justify-center text-base font-normal leading-none disabled:cursor-default disabled:text-gray-300"
+                  >
+                    −
+                  </button>
+                  <span className="text-base tabular-nums">{item.quantity}</span>
+                  <button
+                    type="button"
+                    onClick={() => changeQuantity(item, item.quantity + 1)}
+                    aria-label={t("cart.increase", { item: item.name })}
+                    className="flex size-7 cursor-pointer items-center justify-center text-xl font-normal leading-none"
+                  >
+                    +
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => removeItem(item.variantId)}
+                  className="mt-4 cursor-pointer text-sm font-medium text-indigo-700 hover:text-indigo-500"
+                >
+                  {t("cart.remove-action")}
+                </button>
+
+                <p className="mt-4 text-sm text-gray-950">
+                  {t("cart.subtotal")}:{" "}
+                  <strong>
+                    {formatMoney(
+                      item.unitPriceInCents * item.quantity,
+                      item.currency,
+                    )}
+                  </strong>
                 </p>
               </div>
-            </div>
-            <ItemCTA
-              render={editable}
-              productUrl={productUrl}
-              item={item}
-              setCart={setCart}
-            />
+            )}
           </li>
         );
       })}

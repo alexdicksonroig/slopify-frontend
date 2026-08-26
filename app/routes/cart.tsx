@@ -29,7 +29,7 @@ export default function Cart() {
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
               {t("cart.shopping-cart")}
             </h1>
-            <CartItemList cart={cart.items} setCart={setCart} />
+            <CartItemList cart={cart.items} setCart={setCart} editable />
             <dl className="mt-8 space-y-4 text-sm">
               <div className="flex justify-between text-gray-600">
                 <dt>{t("cart.subtotal")}</dt>
