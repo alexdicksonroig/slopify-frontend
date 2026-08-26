@@ -116,13 +116,6 @@ export default function ProductPage() {
 
         <section className="lg:pt-4">
           <div className="border-b border-neutral-200 pb-6">
-            <p className="mb-3 flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] text-neutral-700 uppercase">
-              <span
-                className="size-2 rounded-full bg-red-600"
-                aria-hidden="true"
-              />
-              Selected bottle
-            </p>
             <h1 className="text-[2.5rem] leading-[0.98] font-bold tracking-[-0.055em] text-neutral-950 sm:text-5xl lg:text-[3.25rem]">
               {product.name}
             </h1>

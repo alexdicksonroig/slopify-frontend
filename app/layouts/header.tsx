@@ -140,9 +140,9 @@ export default function Example() {
                 </span>
                 <Button
                   onClick={handleCartClick}
-                  variant="outline"
+                  variant="ghost"
                   size="icon"
-                  className="h-11 w-11 rounded-full border-gray-300 shadow-none"
+                  className="h-11 w-11 rounded-full shadow-none"
                 >
                   <Icon icon="shopping-bag" size="lg" />
                   <span className="sr-only">{t("header.cart")}</span>
