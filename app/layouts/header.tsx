@@ -1,6 +1,6 @@
 import { useTranslate } from "@app/i18n";
+import { getCartItemCountUseCase } from "@app/lib/cart/application/get-cart-item-count.use-case";
 import { useCart } from "@app/lib/context/cart.context";
-import { formatMoney } from "@app/lib/currency";
 import { Button, cn, Icon } from "@library";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
@@ -28,14 +28,14 @@ export default function Example() {
     return () => clearInterval(interval);
   }, []);
 
-  const cartTotalInCents = cart?.cartTotalInCents ?? 0;
+  const cartItemCount = getCartItemCountUseCase.execute(cart);
 
   return (
     <div className="flex min-h-screen flex-col">
       <header className="bg-white ">
         <title>Store</title>
         {showAnnouncement && (
-          <div className="relative flex min-h-[42px] items-center bg-black text-[13px] font-semibold text-white sm:text-sm">
+          <div className="relative flex min-h-[42px] items-center bg-indigo-600 text-[13px] font-semibold text-white sm:text-sm">
             <div
               className={cn(
                 "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
@@ -129,22 +129,17 @@ export default function Example() {
               </div>
               */}
               {/* Cart */}
-              <div className="flex items-center gap-2 md:ml-4">
-                <span className="flex flex-col items-end leading-none">
-                  <span className="text-[11px] text-gray-500">
-                    {t("header.basket-total")}
-                  </span>
-                  <span className="mt-1 text-sm font-semibold text-gray-900">
-                    {formatMoney(cartTotalInCents, cart?.currency ?? "EUR")}
-                  </span>
-                </span>
+              <div className="flex items-center md:ml-4">
                 <Button
                   onClick={handleCartClick}
                   variant="ghost"
                   size="icon"
-                  className="h-11 w-11 rounded-full shadow-none"
+                  className="relative h-11 w-11 overflow-visible rounded-full shadow-none"
                 >
                   <Icon icon="shopping-bag" size="lg" />
+                  <span className="absolute -right-0.5 -top-0.5 flex min-h-5 min-w-5 items-center justify-center rounded-full bg-indigo-600 px-1 text-xs font-semibold leading-none text-white">
+                    {cartItemCount}
+                  </span>
                   <span className="sr-only">{t("header.cart")}</span>
                 </Button>
               </div>

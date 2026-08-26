@@ -55,10 +55,10 @@ function VariantCard({ product, variant }: VariantCardProps) {
             className="min-w-0"
             to={`/product/${product.id}?variant=${variant.id}`}
           >
-            <p className="text-[13px] italic leading-[18px] text-gray-500 sm:text-sm">
+            <p className="text-xs italic leading-5 text-gray-500 sm:text-sm">
               {variant.selections.map(({ value }) => value.label).join(", ")}
             </p>
-            <h3 className="mt-0.5 truncate text-[17px] font-semibold leading-[22px] text-gray-950 sm:text-base sm:leading-6">
+            <h3 className="mt-0.5 truncate text-sm font-semibold leading-5 text-gray-950 sm:text-base sm:leading-6">
               {product.name}
             </h3>
           </Link>
@@ -93,7 +93,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
             </div>
           )}
         </div>
-        <p className="mt-2 text-base font-semibold text-gray-900 sm:text-sm sm:font-medium">
+        <p className="mt-2 text-lg font-semibold text-gray-900 sm:text-sm sm:font-medium">
           {isAvailable
             ? formatMoney(unitAmount, currency)
             : t("product.unavailable")}
