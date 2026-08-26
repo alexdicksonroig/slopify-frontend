@@ -72,7 +72,7 @@ export default function Example() {
           aria-label={t("header.top")}
           className="border-b border-gray-200 px-4 sm:px-6 lg:px-8"
         >
-          <div className="flex h-[62px] items-center">
+          <div className="flex h-14 items-center">
             {location.pathname !== "/" && location.pathname !== "/variants" && (
               <Button onClick={() => navigate(-1)} size="icon" variant="ghost">
                 <Icon icon="arrow-left" size="lg" />
