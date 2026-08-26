@@ -147,7 +147,7 @@ export default function Example() {
           </div>
         </nav>
       </header>
-      <div className="min-h-screen flex-1">
+      <div className="flex-1">
         <Outlet />
       </div>
       <Footer />
