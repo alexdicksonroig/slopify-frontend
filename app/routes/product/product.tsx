@@ -83,8 +83,8 @@ export default function ProductPage() {
     setQuantity(cartItem?.quantity ?? 1);
   }, [cart, selectedVariant]);
 
-  const galleryImages = variant.thumbnailUrl
-    ? [{ src: variant.thumbnailUrl, alt: product.name }]
+  const galleryImages = variant.coverUrl
+    ? [{ src: variant.coverUrl, alt: product.name }]
     : [];
   const { unitAmount, currency } = variant;
   const hasPrice =

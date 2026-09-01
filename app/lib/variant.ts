@@ -15,6 +15,7 @@ export type VariantListItem = {
   unitAmount: number | null;
   currency: string | null;
   thumbnailUrl: string | null;
+  coverUrl: string | null;
 };
 
 export type Variant = {
@@ -23,6 +24,7 @@ export type Variant = {
   unitAmount: number | null;
   currency: string | null;
   thumbnailUrl: string | null;
+  coverUrl: string | null;
   selections: Array<{
     option: ProductOption;
     value: ProductOptionValue;
