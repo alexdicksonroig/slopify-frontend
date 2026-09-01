@@ -24,9 +24,6 @@ export function ProductImageGallery({ images }: ProductImageGalleryProps) {
       ) : (
         <p className="text-sm text-neutral-500">Image unavailable</p>
       )}
-      <div className="pointer-events-none absolute right-4 bottom-4 text-[10px] font-semibold tracking-[0.12em] uppercase sm:right-6 sm:bottom-5">
-        <span>01 / {String(Math.max(images.length, 1)).padStart(2, "0")}</span>
-      </div>
     </section>
   );
 }
