@@ -137,9 +137,11 @@ export default function Example() {
                   className="relative h-11 w-11 overflow-visible rounded-full shadow-none"
                 >
                   <Icon icon="shopping-bag" size="lg" />
-                  <span className="absolute -right-0.5 -top-0.5 flex min-h-5 min-w-5 items-center justify-center rounded-full bg-indigo-600 px-1 text-xs font-semibold leading-none text-white">
-                    {cartItemCount}
-                  </span>
+                  {cartItemCount > 0 && (
+                    <span className="absolute -right-0.5 -top-0.5 flex aspect-square items-center justify-center bg-indigo-600 p-0.75 text-[10px] font-semibold leading-none text-white [border-radius:9999px]">
+                      {cartItemCount}
+                    </span>
+                  )}
                   <span className="sr-only">{t("header.cart")}</span>
                 </Button>
               </div>
