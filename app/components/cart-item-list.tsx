@@ -65,7 +65,7 @@ export function CartItemList({
               )}
             </Link>
 
-            <div className="relative min-w-0 pr-12">
+            <div className="relative min-w-0 pr-20">
               <h2 className="text-sm font-medium leading-snug text-gray-950 sm:text-base">
                 <Link to={productUrl}>{item.name}</Link>
               </h2>
@@ -76,30 +76,18 @@ export function CartItemList({
               {editable && (
                 <button
                   type="button"
-                  aria-label={t("cart.save", { item: item.name })}
-                  className="absolute -right-1 top-0 flex size-8 cursor-pointer items-center justify-center text-gray-950 hover:text-indigo-700"
+                  onClick={() => removeItem(item.variantId)}
+                  aria-label={t("cart.remove", { item: item.name })}
+                  className="absolute right-0 top-0 cursor-pointer text-sm font-medium text-indigo-700 hover:text-indigo-500"
                 >
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.7"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"
-                    />
-                  </svg>
+                  {t("cart.remove-action")}
                 </button>
               )}
             </div>
 
             {editable && (
               <div className="col-start-2 mt-4">
-                <div className="flex h-11 w-32 items-center justify-between bg-gray-100 px-3 [border-radius:9999px]">
+                <div className="flex h-9 w-28 items-center justify-between bg-gray-100 px-3 [border-radius:9999px]">
                   <button
                     type="button"
                     onClick={() => changeQuantity(item, item.quantity - 1)}
@@ -109,7 +97,9 @@ export function CartItemList({
                   >
                     −
                   </button>
-                  <span className="text-base tabular-nums">{item.quantity}</span>
+                  <span className="text-base tabular-nums">
+                    {item.quantity}
+                  </span>
                   <button
                     type="button"
                     onClick={() => changeQuantity(item, item.quantity + 1)}
@@ -119,14 +109,6 @@ export function CartItemList({
                     +
                   </button>
                 </div>
-
-                <button
-                  type="button"
-                  onClick={() => removeItem(item.variantId)}
-                  className="mt-4 cursor-pointer text-sm font-medium text-indigo-700 hover:text-indigo-500"
-                >
-                  {t("cart.remove-action")}
-                </button>
 
                 <p className="mt-4 text-sm text-gray-950">
                   {t("cart.subtotal")}:{" "}
