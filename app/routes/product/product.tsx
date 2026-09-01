@@ -13,16 +13,14 @@ import { ProductImageGallery } from "./components/ProductImageGallery";
 import { ProductOptions } from "./components/ProductOptions";
 import { QuantitySelector } from "./components/QuantitySelector";
 
-export async function clientLoader({
-  params,
-  request,
-}: {
-  params: { id?: string };
-  request: Request;
-}) {
-  const variantId = new URL(request.url).searchParams.get("variant");
+type ProductLoaderArgs = {
+  params: { id?: string; variantId?: string };
+};
+
+async function loadProduct({ params }: ProductLoaderArgs) {
+  const variantId = params.variantId;
   if (!variantId) {
-    throw new Response("A variant query parameter is required", {
+    throw new Response("A variant path parameter is required", {
       status: 400,
     });
   }
@@ -33,6 +31,14 @@ export async function clientLoader({
   ]);
 
   return { product, variant };
+}
+
+export async function loader(args: ProductLoaderArgs) {
+  return loadProduct(args);
+}
+
+export async function clientLoader(args: ProductLoaderArgs) {
+  return loadProduct(args);
 }
 
 export default function ProductPage() {

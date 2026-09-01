@@ -11,7 +11,7 @@ export default [
 
     layout("./layouts/filters.tsx", [route("variants", "routes/variants.tsx")]),
 
-    route("product/:id", "routes/product/product.tsx"),
+    route("product/:id/:variantId", "routes/product/product.tsx"),
     route("cart", "routes/cart.tsx"),
     route("return", "routes/return.tsx"),
   ]),

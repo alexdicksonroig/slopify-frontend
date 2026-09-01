@@ -34,7 +34,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
 
   return (
     <article className="group relative min-w-0">
-      <Link to={`/product/${product.id}?variant=${variant.id}`}>
+      <Link to={`/product/${product.id}/${variant.id}`}>
         {variant.thumbnailUrl ? (
           <img
             alt={product.name}
@@ -51,10 +51,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
       </Link>
       <div className="mt-3 px-0.5">
         <div className="flex items-start justify-between gap-2">
-          <Link
-            className="min-w-0"
-            to={`/product/${product.id}?variant=${variant.id}`}
-          >
+          <Link className="min-w-0" to={`/product/${product.id}/${variant.id}`}>
             <p className="text-xs italic leading-5 text-gray-500 sm:text-sm">
               {variant.selections.map(({ value }) => value.label).join(", ")}
             </p>

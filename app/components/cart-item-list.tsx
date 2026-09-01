@@ -41,7 +41,7 @@ export function CartItemList({
       )}
     >
       {cart.map((item) => {
-        const productUrl = `/product/${item.productId}?variant=${item.variantId}`;
+        const productUrl = `/product/${item.productId}/${item.variantId}`;
 
         return (
           <li

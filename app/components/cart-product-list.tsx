@@ -22,7 +22,7 @@ export function CartProductList({
       {items.map((item) => (
         <li key={item.variantId} className="flex items-stretch gap-6 py-6">
           <Link
-            to={`/product/${item.productId}?variant=${item.variantId}`}
+            to={`/product/${item.productId}/${item.variantId}`}
             className="flex shrink-0"
           >
             {item.thumbnailUrl ? (
@@ -50,9 +50,7 @@ export function CartProductList({
 
             <div className="space-y-3">
               <h3 className="pr-6 text-base font-medium text-gray-900">
-                <Link
-                  to={`/product/${item.productId}?variant=${item.variantId}`}
-                >
+                <Link to={`/product/${item.productId}/${item.variantId}`}>
                   {item.name}
                 </Link>
               </h3>

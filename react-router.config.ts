@@ -12,14 +12,20 @@ export default {
       throw new Error("VITE_API_URL is required to generate product pages");
     }
 
-    const response = await fetch(new URL("products", apiUrl));
+    const response = await fetch(new URL("variants", apiUrl));
     if (!response.ok) {
       throw new Error(
-        `Unable to load products for SSG: ${response.status} ${response.statusText}`,
+        `Unable to load variants for SSG: ${response.status} ${response.statusText}`,
       );
     }
-    const products = (await response.json()) as { id: number }[];
+    const variants = (await response.json()) as {
+      id: number;
+      productId: number;
+    }[];
 
-    return [...getStaticPaths(), ...products.map(({ id }) => `/product/${id}`)];
+    return [
+      ...getStaticPaths(),
+      ...variants.map(({ id, productId }) => `/product/${productId}/${id}`),
+    ];
   },
 } satisfies Config;
