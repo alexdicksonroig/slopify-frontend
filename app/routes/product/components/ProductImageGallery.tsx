@@ -17,6 +17,7 @@ export function ProductImageGallery({ images }: ProductImageGalleryProps) {
             key={image.src}
             src={image.src}
             alt={image.alt}
+            fetchPriority="high"
             className={`h-full w-full object-contain p-5 sm:p-10 lg:p-16 ${image.className ?? ""}`}
           />
         ))
