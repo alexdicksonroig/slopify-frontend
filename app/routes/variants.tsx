@@ -40,7 +40,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
             alt={product.name}
             src={variant.thumbnailUrl}
             className={cn(
-              "aspect-square w-full bg-gray-100 object-contain group-hover:opacity-75 [border-radius:0.625rem]",
+              "aspect-square w-full bg-white object-contain group-hover:opacity-75 [border-radius:0.625rem]",
             )}
           />
         ) : (
