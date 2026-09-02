@@ -11,18 +11,18 @@
   },
   "dependencies": {
     "@coreui": "workspace:*",
-    "@react-router/node": "^7.3.0",
-    "@react-router/serve": "^7.3.0",
+    "@react-router/node": "7.18.3",
+    "@react-router/serve": "7.18.3",
     "@stripe/react-stripe-js": "^6.8.2",
     "@stripe/stripe-js": "^9.14.0",
     "isbot": "^5.1.17",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.9.6"
+    "react-router": "7.18.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.5",
-    "@react-router/dev": "^7.3.0",
+    "@react-router/dev": "7.18.3",
     "@tailwindcss/vite": "^4.0.0",
     "@types/node": "^20",
     "@types/react": "^19.0.1",
