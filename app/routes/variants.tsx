@@ -37,10 +37,10 @@ function VariantCard({ product, variant }: VariantCardProps) {
             <img
               alt={product.name}
               src={variant.thumbnailUrl}
-              className="aspect-square w-full bg-gray-100 object-contain group-hover:opacity-75 rounded-xs p-3"
+              className="aspect-[4/5] w-full bg-gray-100 object-contain p-3 group-hover:opacity-75 rounded-xs"
             />
           ) : (
-            <div className="flex aspect-square w-full items-center justify-center bg-gray-100 text-sm text-gray-500 [border-radius:0.625rem]">
+            <div className="flex aspect-[4/5] w-full items-center justify-center bg-gray-100 text-sm text-gray-500 [border-radius:0.625rem]">
               {t("product.no-thumbnail")}
             </div>
           )}
