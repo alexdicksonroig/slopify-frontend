@@ -6,7 +6,7 @@ import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
 import type { Variant, VariantListItem } from "@app/lib/variant";
-import { Button, cn, Icon } from "@library";
+import { Button, Icon } from "@library";
 import { useRef } from "react";
 import { Link, useLoaderData } from "react-router";
 
@@ -20,9 +20,6 @@ function VariantCard({ product, variant }: VariantCardProps) {
   const { cart, setCart } = useCart();
   const { unitAmount, currency } = variant;
   const isAvailable = unitAmount !== null && currency !== null;
-  const quantityInCart =
-    cart?.items.find((item) => item.variantId === variant.id)?.quantity ?? 0;
-
   const cartUpdateQueue = useRef(Promise.resolve());
   const updateCart = (operation: () => Promise<Cart | null>) => {
     cartUpdateQueue.current = cartUpdateQueue.current
@@ -33,69 +30,62 @@ function VariantCard({ product, variant }: VariantCardProps) {
   };
 
   return (
-    <article className="group relative min-w-0">
-      <Link to={`/product/${product.id}/${variant.id}`}>
-        {variant.thumbnailUrl ? (
-          <img
-            alt={product.name}
-            src={variant.thumbnailUrl}
-            className={cn(
-              "aspect-square w-full bg-white object-contain group-hover:opacity-75 [border-radius:0.625rem]",
-            )}
-          />
-        ) : (
-          <div className="flex aspect-square w-full items-center justify-center bg-gray-100 text-sm text-gray-500 [border-radius:0.625rem]">
-            {t("product.no-thumbnail")}
-          </div>
-        )}
-      </Link>
-      <div className="mt-3 px-0.5">
-        <div className="flex items-start justify-between gap-2">
-          <Link className="min-w-0" to={`/product/${product.id}/${variant.id}`}>
-            <p className="text-xs italic leading-5 text-gray-500 sm:text-sm">
-              {variant.selections.map(({ value }) => value.label).join(", ")}
-            </p>
-            <h3 className="mt-0.5 truncate text-sm font-semibold leading-5 text-gray-950 sm:text-base sm:leading-6">
-              {product.name}
-            </h3>
-          </Link>
-          {isAvailable && (
-            <div className="flex shrink-0 items-center gap-2">
-              {quantityInCart > 0 && (
-                <span className="text-sm text-gray-600">{quantityInCart}</span>
-              )}
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon"
-                aria-label={`${t("product.add-to-bag")}: ${product.name}`}
-                disabled={!cart}
-                onClick={() =>
-                  updateCart(() =>
-                    incrementProductQuantityInCartUseCase.execute({
-                      variantId: variant.id,
-                      productId: product.id,
-                      name: product.name,
-                      unitPriceInCents: unitAmount,
-                      currency,
-                      thumbnailUrl: variant.thumbnailUrl,
-                    }),
-                  )
-                }
-                className="shrink-0 origin-center transform-gpu bg-gray-300 p-0! shadow-none transition-transform duration-500 ease-out hover:scale-[1.12] hover:bg-gray-300! hover:shadow-none active:scale-[1.22] active:shadow-none motion-reduce:transform-none disabled:opacity-40"
-                style={{ width: 20, height: 20, borderRadius: "50%" }}
-              >
-                <Icon icon="plus" size="sm" />
-              </Button>
+    <article className="group min-w-0">
+      <div className="relative">
+        <Link to={`/product/${product.id}/${variant.id}`}>
+          {variant.thumbnailUrl ? (
+            <img
+              alt={product.name}
+              src={variant.thumbnailUrl}
+              className="aspect-square w-full bg-gray-100 object-contain group-hover:opacity-75 [border-radius:0.625rem]"
+            />
+          ) : (
+            <div className="flex aspect-square w-full items-center justify-center bg-gray-100 text-sm text-gray-500 [border-radius:0.625rem]">
+              {t("product.no-thumbnail")}
             </div>
           )}
-        </div>
-        <p className="mt-2 text-lg font-semibold text-gray-900 sm:text-sm sm:font-medium">
-          {isAvailable
-            ? formatMoney(unitAmount, currency)
-            : t("product.unavailable")}
-        </p>
+        </Link>
+        {isAvailable && (
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            aria-label={`${t("product.add-to-bag")}: ${product.name}`}
+            disabled={!cart}
+            onClick={() =>
+              updateCart(() =>
+                incrementProductQuantityInCartUseCase.execute({
+                  variantId: variant.id,
+                  productId: product.id,
+                  name: product.name,
+                  unitPriceInCents: unitAmount,
+                  currency,
+                  thumbnailUrl: variant.thumbnailUrl,
+                }),
+              )
+            }
+            className="absolute right-3 bottom-3 h-8! w-8! origin-center transform-gpu bg-white p-0! shadow-none transition-transform duration-300 ease-out hover:scale-105 hover:bg-white! hover:shadow-none active:scale-110 active:shadow-none motion-reduce:transform-none disabled:opacity-40 [border-radius:0.25rem]"
+          >
+            <Icon icon="shopping-bag" size="sm" />
+          </Button>
+        )}
       </div>
+      <Link
+        className="mt-3 block min-w-0 px-0.5"
+        to={`/product/${product.id}/${variant.id}`}
+      >
+        <h3 className="truncate text-sm font-medium leading-5 text-black">
+          {product.name}
+        </h3>
+        <p className="truncate text-xs leading-5 text-gray-500">
+          {variant.selections.map(({ value }) => value.label).join(", ")}
+        </p>
+      </Link>
+      <p className="px-0.5 text-sm font-normal leading-5 text-gray-950">
+        {isAvailable
+          ? formatMoney(unitAmount, currency)
+          : t("product.unavailable")}
+      </p>
     </article>
   );
 }
