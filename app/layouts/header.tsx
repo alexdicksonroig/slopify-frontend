@@ -138,7 +138,7 @@ export default function Example() {
                 >
                   <Icon icon="shopping-bag" size="lg" />
                   {cartItemCount > 0 && (
-                    <span className="absolute -right-0.5 -top-0.5 flex aspect-square items-center justify-center bg-indigo-600 p-0.75 text-[10px] font-semibold leading-none text-white [border-radius:9999px]">
+                    <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center bg-indigo-600 px-1 text-[10px] font-semibold leading-none text-white [border-radius:9999px]">
                       {cartItemCount}
                     </span>
                   )}
