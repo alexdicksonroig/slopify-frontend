@@ -1,3 +1,4 @@
+import { BackButton } from "@app/components/back-button";
 import { useTranslate } from "@app/i18n";
 import { getCartItemCountUseCase } from "@app/lib/cart/application/get-cart-item-count.use-case";
 import { useCart } from "@app/lib/context/cart.context";
@@ -73,15 +74,10 @@ export default function Example() {
           className="border-b border-gray-200 px-4 sm:px-6 lg:px-8"
         >
           <div className="flex h-14 items-center">
-            {location.pathname !== "/" && location.pathname !== "/variants" && (
-              <Button onClick={() => navigate(-1)} size="icon" variant="ghost">
-                <Icon icon="arrow-left" size="lg" />
-                <span className="sr-only">{t("header.back")}</span>
-              </Button>
-            )}
+            <div className="flex items-center">
+              <BackButton />
 
-            {/* Logo */}
-            <div className="flex">
+              {/* Logo */}
               <Button onClick={() => navigate("/")} size="icon" variant="ghost">
                 <span className="sr-only">{t("header.company")}</span>
                 <img

@@ -7,9 +7,7 @@ import {
 
 export default [
   layout("./layouts/header.tsx", [
-    index("routes/home.tsx"),
-
-    layout("./layouts/filters.tsx", [route("variants", "routes/variants.tsx")]),
+    layout("./layouts/filters.tsx", [index("routes/variants.tsx")]),
 
     route("product/:id/:variantId", "routes/product/product.tsx"),
     route("cart", "routes/cart.tsx"),
