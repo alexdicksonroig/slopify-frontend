@@ -37,7 +37,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
             <img
               alt={product.name}
               src={variant.thumbnailUrl}
-              className="aspect-square w-full bg-gray-100 object-contain group-hover:opacity-75 [border-radius:0.625rem]"
+              className="aspect-square w-full bg-gray-100 object-contain group-hover:opacity-75 rounded-xs p-3"
             />
           ) : (
             <div className="flex aspect-square w-full items-center justify-center bg-gray-100 text-sm text-gray-500 [border-radius:0.625rem]">
@@ -142,7 +142,7 @@ export default function Variants() {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 lg:mt-2 lg:grid-cols-3 lg:gap-x-6 lg:gap-y-10">
+      <div className="grid grid-cols-2 gap-2 lg:mt-2 lg:grid-cols-3 lg:gap-x-6 lg:gap-y-10">
         {cards.map(({ product, variant }) => (
           <VariantCard key={variant.id} product={product} variant={variant} />
         ))}

@@ -50,7 +50,7 @@ export function CartItemList({
           >
             <Link
               to={productUrl}
-              className="row-span-2 h-36 overflow-hidden bg-gray-100 sm:h-44"
+              className="row-span-2 h-36 overflow-hidden sm:h-44"
             >
               {item.thumbnailUrl ? (
                 <img
