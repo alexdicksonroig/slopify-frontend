@@ -1,5 +1,5 @@
 import { useTranslate } from "@app/i18n";
-import { Button, cn, Icon } from "@library";
+import { Button, Icon } from "@library";
 import { useLocation, useNavigate } from "react-router";
 
 export function BackButton() {
@@ -11,12 +11,7 @@ export function BackButton() {
   return (
     <div
       aria-hidden={!isVisible}
-      className={cn(
-        "overflow-hidden transition-[width,opacity,transform] duration-300 ease-out motion-reduce:transition-none",
-        isVisible
-          ? "w-9 translate-x-0 animate-[back-button-in_300ms_ease-out] opacity-100 motion-reduce:animate-none"
-          : "w-0 -translate-x-3 opacity-0",
-      )}
+      className={`back-button ${isVisible ? "back-button--visible" : ""}`}
     >
       <Button
         onClick={() => navigate(-1)}

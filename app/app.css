@@ -2,17 +2,22 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@keyframes back-button-in {
-  from {
-    width: 0;
-    opacity: 0;
-    transform: translateX(-0.75rem);
-  }
-  to {
-    width: 2.25rem;
-    opacity: 1;
-    transform: translateX(0);
-  }
+.back-button {
+  width: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate3d(-0.75rem, 0, 0);
+  transition:
+    width 300ms ease-out,
+    opacity 300ms ease-out,
+    transform 300ms ease-out;
+}
+
+.back-button--visible {
+  width: 2.25rem;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 html,
