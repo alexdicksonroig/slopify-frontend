@@ -2,6 +2,19 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@keyframes back-button-in {
+  from {
+    width: 0;
+    opacity: 0;
+    transform: translateX(-0.75rem);
+  }
+  to {
+    width: 2.25rem;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 html,
 body {
   @apply bg-white dark:bg-gray-950;

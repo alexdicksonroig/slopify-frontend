@@ -14,7 +14,7 @@ export function BackButton() {
       className={cn(
         "overflow-hidden transition-[width,opacity,transform] duration-300 ease-out motion-reduce:transition-none",
         isVisible
-          ? "w-9 translate-x-0 opacity-100"
+          ? "w-9 translate-x-0 animate-[back-button-in_300ms_ease-out] opacity-100 motion-reduce:animate-none"
           : "w-0 -translate-x-3 opacity-0",
       )}
     >
