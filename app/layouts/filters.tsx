@@ -223,7 +223,7 @@ export default function Filters() {
         </div>
       </Drawer>
 
-      <div className="border-b border-gray-200 pt-8 lg:flex lg:items-end lg:justify-between lg:pb-3">
+      <div className="border-b border-gray-200 pt-6 lg:flex lg:items-end lg:justify-between lg:pb-3">
         <div>
           <div className="flex items-end justify-between gap-4">
             <h1 className="text-[1.7rem] font-bold tracking-tight text-gray-900 md:text-3xl">
