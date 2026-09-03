@@ -32,12 +32,15 @@ function VariantCard({ product, variant }: VariantCardProps) {
   return (
     <article className="group min-w-0">
       <div className="relative">
-        <Link to={`/product/${product.id}/${variant.id}`}>
+        <Link
+          className="block overflow-hidden rounded-xs"
+          to={`/product/${product.id}/${variant.id}`}
+        >
           {variant.thumbnailUrl ? (
             <img
               alt={product.name}
               src={variant.thumbnailUrl}
-              className="aspect-[4/5] w-full bg-gray-50 object-contain group-hover:opacity-75 rounded-xs"
+              className="aspect-[4/5] w-full bg-gray-50 object-contain transition-transform duration-500 ease-out lg:hover:scale-105 motion-reduce:transition-none"
             />
           ) : (
             <div className="flex aspect-[4/5] w-full items-center justify-center bg-gray-100 text-sm text-gray-500 [border-radius:0.625rem]">
