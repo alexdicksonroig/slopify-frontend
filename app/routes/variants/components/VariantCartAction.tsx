@@ -93,11 +93,10 @@ export function VariantCartAction({
       <Popover
         open={isOpen}
         onOpenChange={setIsOpen}
-        overlayOpacity="light"
         id={popupId}
         role="dialog"
         aria-label={`${t("product.add-to-bag")}: ${product.name}`}
-        className="inset-x-0 z-20 w-full border border-neutral-200 bg-white p-4 shadow-lg md:inset-x-auto md:top-auto md:right-3 md:bottom-12 md:w-64 md:translate-y-0 md:p-3"
+        className="inset-x-0 z-20 w-full border border-neutral-200 bg-white p-4 md:top-auto md:bottom-0 md:translate-y-0 md:p-3"
       >
         <div className="flex items-center justify-between gap-3">
           <h4 className="truncate text-sm font-semibold text-neutral-950">

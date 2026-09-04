@@ -235,11 +235,11 @@ export default function Filters() {
           </p>
         </div>
 
-        <div className="sticky top-0 z-20 mt-4 flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:static lg:mt-0 lg:min-h-0 lg:justify-end lg:border-0">
+        <div className="sticky top-0 z-2 mt-4 flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:static lg:mt-0 lg:min-h-0 lg:justify-end lg:border-0">
           <p className="text-xs text-gray-600 lg:hidden">
             {t("filters.result-count", { count: resultCount })}
           </p>
-          <div className="ml-auto flex items-center gap-1 lg:block lg:min-w-44">
+          <div className="ml-auto flex items-center gap-1 lg:block lg:min-w-56">
             <div className="min-w-0">
               <Select
                 value={searchParams.get("sort") ?? "newest"}
@@ -249,7 +249,7 @@ export default function Filters() {
                 showSelectedValue={false}
                 variant="ghost"
                 placement="bottom"
-                className="h-8 gap-1 rounded-md px-1.5 text-xs font-normal text-gray-700 shadow-none hover:bg-gray-50 [&_svg]:size-3.5"
+                className="h-8 gap-1 rounded-md px-1.5 text-xs font-normal text-gray-700 shadow-none hover:bg-gray-50 lg:h-10 lg:px-3 lg:text-sm [&_svg]:size-3.5 lg:[&_svg]:size-4"
                 aria-label={t("filters.sort")}
               />
             </div>
