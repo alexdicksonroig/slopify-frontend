@@ -151,7 +151,11 @@ export default function ProductPage() {
               }
             />
             <div className="mt-5 flex gap-3">
-              <QuantitySelector value={quantity} onChange={setQuantity} />
+              <QuantitySelector
+                value={quantity}
+                onChange={setQuantity}
+                className="h-14"
+              />
               <Button
                 type="submit"
                 disabled={!cart || !hasPrice}

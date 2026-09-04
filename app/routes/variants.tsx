@@ -1,14 +1,10 @@
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
-import { incrementProductQuantityInCartUseCase } from "@app/lib/cart/application/increment-product-quantity-in-cart.use-case";
-import type { Cart } from "@app/lib/cart/domain/cart.entity";
-import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
 import type { Variant, VariantListItem } from "@app/lib/variant";
-import { Button, Icon } from "@library";
-import { useRef } from "react";
 import { Link, useLoaderData } from "react-router";
+import { VariantCartAction } from "./variants/components/VariantCartAction";
 
 type VariantCardProps = {
   product: Product;
@@ -17,17 +13,8 @@ type VariantCardProps = {
 
 function VariantCard({ product, variant }: VariantCardProps) {
   const t = useTranslate();
-  const { cart, setCart } = useCart();
   const { unitAmount, currency } = variant;
   const isAvailable = unitAmount !== null && currency !== null;
-  const cartUpdateQueue = useRef(Promise.resolve());
-  const updateCart = (operation: () => Promise<Cart | null>) => {
-    cartUpdateQueue.current = cartUpdateQueue.current
-      .then(operation)
-      .then((updatedCart) => {
-        if (updatedCart) setCart(updatedCart);
-      });
-  };
 
   return (
     <article className="group min-w-0">
@@ -48,30 +35,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
             </div>
           )}
         </Link>
-        {isAvailable && (
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            aria-label={`${t("product.add-to-bag")}: ${product.name}`}
-            disabled={!cart}
-            onClick={() =>
-              updateCart(() =>
-                incrementProductQuantityInCartUseCase.execute({
-                  variantId: variant.id,
-                  productId: product.id,
-                  name: product.name,
-                  unitPriceInCents: unitAmount,
-                  currency,
-                  thumbnailUrl: variant.thumbnailUrl,
-                }),
-              )
-            }
-            className="absolute right-3 bottom-3 h-8! w-8! origin-center transform-gpu bg-white p-0! shadow-none transition-transform duration-300 ease-out hover:scale-105 hover:bg-white! hover:shadow-none active:scale-110 active:shadow-none motion-reduce:transform-none disabled:opacity-40 [border-radius:0.25rem]"
-          >
-            <Icon icon="shopping-bag" size="sm" />
-          </Button>
-        )}
+        <VariantCartAction product={product} variant={variant} />
       </div>
       <Link
         className="mt-3 block min-w-0 px-0.5"

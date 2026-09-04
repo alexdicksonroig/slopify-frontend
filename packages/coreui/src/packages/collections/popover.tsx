@@ -11,6 +11,12 @@ export type PopoverProps = {
   overlayOpacity?: "light" | "medium" | "dark";
 } & React.HTMLAttributes<HTMLDivElement>;
 
+const overlayClasses = {
+  light: "bg-black/15 md:bg-black/15",
+  medium: "bg-black/35 md:bg-black/35",
+  dark: "bg-black/60 md:bg-black/60",
+};
+
 const classes = {
   desktop: {
     base: "md:absolute md:transform md:bottom-auto",
@@ -28,6 +34,7 @@ export const Popover: React.FC<PopoverProps> = ({
   className = "",
   children,
   placement = "top",
+  overlayOpacity,
   ...rest
 }) => {
   const desktopPlacementClasses =
@@ -48,7 +55,11 @@ export const Popover: React.FC<PopoverProps> = ({
 
   return (
     <>
-      <Overlay active={open} onClick={() => onOpenChange(false)} />
+      <Overlay
+        active={open}
+        onClick={() => onOpenChange(false)}
+        className={overlayOpacity ? overlayClasses[overlayOpacity] : undefined}
+      />
       <div
         {...rest}
         className={cn(
