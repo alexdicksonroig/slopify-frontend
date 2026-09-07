@@ -78,12 +78,17 @@ export default function Example() {
               <BackButton />
 
               {/* Logo */}
-              <Button onClick={() => navigate("/")} size="icon" variant="ghost">
+              <Button
+                onClick={() => navigate("/")}
+                size="icon"
+                variant="ghost"
+                className="h-12 w-auto p-0"
+              >
                 <span className="sr-only">{t("header.company")}</span>
                 <img
                   alt=""
-                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=black"
-                  className="h-5 w-auto"
+                  src="/assets/roig-parals-logo-dark.png"
+                  className="h-10 w-auto"
                 />
               </Button>
             </div>
