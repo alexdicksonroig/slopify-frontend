@@ -1,6 +1,6 @@
 import { type TranslationKey, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
-import { Accordion, Button, Drawer, Icon, Select } from "@library";
+import { Accordion, Button, Drawer, Icon, Overlay, Select } from "@library";
 import { useState } from "react";
 import {
   Outlet,
@@ -194,11 +194,17 @@ export default function Filters() {
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pb-6">
+      <Overlay
+        active={drawerOpen}
+        onClick={() => setDrawerOpen(false)}
+        className="bg-black/25 md:bg-black/25 lg:hidden"
+      />
       <Drawer
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         fromRight
         hiddenFrom="lg"
+        className="left-auto w-[calc(100%-2rem)] max-w-md"
       >
         <div className="flex min-h-[calc(100svh-4.25rem)] flex-col px-4 pt-6">
           <h2 className="text-lg font-medium text-gray-900 mb-6">
