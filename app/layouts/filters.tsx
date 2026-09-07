@@ -235,7 +235,7 @@ export default function Filters() {
           </p>
         </div>
 
-        <div className="sticky top-0 z-2 mt-4 flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:static lg:mt-0 lg:min-h-0 lg:justify-end lg:border-0">
+        <div className="mt-4 flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:mt-0 lg:min-h-0 lg:justify-end lg:border-0">
           <p className="text-xs text-gray-600 lg:hidden">
             {t("filters.result-count", { count: resultCount })}
           </p>
