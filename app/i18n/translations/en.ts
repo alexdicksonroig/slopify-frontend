@@ -7,6 +7,7 @@ export const en = {
   "cart.in-stock": "In stock",
   "cart.order-summary": "Order summary",
   "cart.order-total": "Order total",
+  "product.total": "Total",
   "cart.remove": "Remove ${item} from cart",
   "cart.remove-action": "Remove",
   "cart.save": "Save ${item} for later",

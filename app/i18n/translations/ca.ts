@@ -9,6 +9,7 @@ export const ca = {
   "cart.in-stock": "En estoc",
   "cart.order-summary": "Resum de la comanda",
   "cart.order-total": "Total de la comanda",
+  "product.total": "Total",
   "cart.remove": "Elimina ${item} de la cistella",
   "cart.remove-action": "Elimina",
   "cart.save": "Desa ${item} per a més tard",

@@ -9,6 +9,7 @@ export const de = {
   "cart.in-stock": "Auf Lager",
   "cart.order-summary": "Bestellübersicht",
   "cart.order-total": "Gesamtsumme",
+  "product.total": "Gesamt",
   "cart.remove": "${item} aus dem Warenkorb entfernen",
   "cart.remove-action": "Entfernen",
   "cart.save": "${item} für später speichern",

@@ -9,6 +9,7 @@ export const es = {
   "cart.in-stock": "En stock",
   "cart.order-summary": "Resumen del pedido",
   "cart.order-total": "Total del pedido",
+  "product.total": "Total",
   "cart.remove": "Eliminar ${item} del carrito",
   "cart.remove-action": "Eliminar",
   "cart.save": "Guardar ${item} para más tarde",

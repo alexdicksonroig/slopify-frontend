@@ -1,6 +1,7 @@
 import { useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-to-cart.use-case";
+import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
 import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
@@ -11,7 +12,7 @@ import { useLoaderData } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
 import { ProductOptions } from "./components/ProductOptions";
-import { QuantitySelector } from "./components/QuantitySelector";
+import { ProductPurchaseControls } from "./components/ProductPurchaseControls";
 
 type ProductLoaderArgs = {
   params: { id?: string; variantId?: string };
@@ -51,7 +52,9 @@ export default function ProductPage() {
     ),
   );
   const [quantity, setQuantity] = useState(1);
-  const hasCartItems = (cart?.items.length ?? 0) > 0;
+  const hasCartItem = cart?.items.some(
+    (item) => item.variantId === variant.id && item.quantity > 0,
+  ) ?? false;
 
   useEffect(() => {
     setSelections(
@@ -80,7 +83,7 @@ export default function ProductPage() {
     const cartItem = selectedVariant
       ? cart?.items.find((item) => item.variantId === selectedVariant.id)
       : null;
-    setQuantity(cartItem?.quantity ?? 1);
+    setQuantity(cartItem?.quantity ?? 0);
   }, [cart, selectedVariant]);
 
   const galleryImages = variant.coverUrl
@@ -95,6 +98,12 @@ export default function ProductPage() {
 
   const addToCart = async (quantity: number) => {
     if (!selectedVariant || unitAmount === null || currency === null) return;
+
+    if (quantity === 0) {
+      const updatedCart = await deleteProductFromCartUseCase.execute(selectedVariant.id);
+      if (updatedCart) setCart(updatedCart);
+      return;
+    }
 
     const updatedCart = await addProductToCartUseCase.execute(
       {
@@ -132,30 +141,28 @@ export default function ProductPage() {
             </div>
           </div>
 
-          <div className="mt-5 flex items-center justify-between gap-3">
-            <p className="text-3xl font-semibold tracking-[-0.04em] text-neutral-950">
-              {price}
-            </p>
-            {hasCartItems && (
-              <QuantitySelector
-                value={quantity}
-                onChange={setQuantity}
-                className="h-14"
-              />
-            )}
-          </div>
+          {hasCartItem && (
+            <ProductPurchaseControls
+              productName={product.name}
+              unitPrice={price}
+              total={
+                hasPrice
+                  ? formatMoney(unitAmount * quantity, currency)
+                  : t("product.unavailable")
+              }
+              quantity={quantity}
+              onQuantityChange={(nextQuantity) => {
+                setQuantity(nextQuantity);
+                void addToCart(nextQuantity);
+              }}
+            />
+          )}
 
           <ProductDetails
             description={product.description ?? t("product.description-text")}
           />
 
-          <form
-            className="mt-7"
-            onSubmit={(event) => {
-              event.preventDefault();
-              void addToCart(quantity);
-            }}
-          >
+          <div className="mt-7">
             <ProductOptions
               options={options}
               selections={selections}
@@ -166,18 +173,7 @@ export default function ProductPage() {
                 }))
               }
             />
-            {hasCartItems && (
-              <div className="mt-5 flex gap-3">
-                <Button
-                  type="submit"
-                  disabled={!cart || !hasPrice}
-                  className="h-14 flex-1 justify-between rounded-none bg-neutral-950 px-5 uppercase hover:bg-neutral-800"
-                >
-                  <span>{t("product.add-to-bag")}</span>
-                </Button>
-              </div>
-            )}
-          </form>
+          </div>
 
           <div className="mt-7 border-t border-neutral-200">
             {[t("product.highlights"), t("product.details"), "Shipping"].map(
