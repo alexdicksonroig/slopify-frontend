@@ -119,9 +119,12 @@ export default function ProductPage() {
     if (updatedCart) setCart(updatedCart);
   };
 
-  const handleFooterAdd = () => {
+  const handleFooterAdd = async () => {
     const cartItem = cart?.items.find((item) => item.variantId === variant.id);
-    return addToCart((cartItem?.quantity ?? 0) + 1);
+    await addToCart((cartItem?.quantity ?? 0) + 1);
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   };
 
   return (
