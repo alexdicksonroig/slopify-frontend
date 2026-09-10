@@ -62,13 +62,17 @@ export const Popover: React.FC<PopoverProps> = ({
       />
       <div
         {...rest}
+        inert={!open}
+        aria-hidden={!open}
         className={cn(
-          "z-4",
+          "z-4 transition-[translate,visibility] duration-200 ease-in-out md:transition-none",
           classes.mobile.base,
           classes.desktop.base,
           desktopPlacementClasses,
           className,
-          open ? "block" : "hidden",
+          open
+            ? "visible translate-y-0"
+            : "invisible translate-y-full pointer-events-none",
         )}
       >
         {children}
