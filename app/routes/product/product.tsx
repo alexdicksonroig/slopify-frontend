@@ -6,7 +6,7 @@ import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
 import type { ProductOption, Variant } from "@app/lib/variant";
 import { Button } from "@library";
-import { type FormEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLoaderData } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
@@ -51,6 +51,7 @@ export default function ProductPage() {
     ),
   );
   const [quantity, setQuantity] = useState(1);
+  const hasCartItems = (cart?.items.length ?? 0) > 0;
 
   useEffect(() => {
     setSelections(
@@ -91,12 +92,8 @@ export default function ProductPage() {
   const price = hasPrice
     ? formatMoney(unitAmount, currency)
     : t("product.unavailable");
-  const totalPrice = hasPrice
-    ? formatMoney(unitAmount * quantity, currency)
-    : price;
 
-  const handleAddToCart = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const addToCart = async (quantity: number) => {
     if (!selectedVariant || unitAmount === null || currency === null) return;
 
     const updatedCart = await addProductToCartUseCase.execute(
@@ -113,8 +110,13 @@ export default function ProductPage() {
     if (updatedCart) setCart(updatedCart);
   };
 
+  const handleFooterAdd = () => {
+    const cartItem = cart?.items.find((item) => item.variantId === variant.id);
+    return addToCart((cartItem?.quantity ?? 0) + 1);
+  };
+
   return (
-    <main className="mx-auto w-full max-w-[1440px] px-4 py-4 sm:px-6 sm:py-8 lg:px-12 lg:py-10">
+    <main className="mx-auto w-full max-w-[1440px] px-4 pt-4 pb-[calc(9rem+env(safe-area-inset-bottom))] sm:pb-[calc(6rem+env(safe-area-inset-bottom))] sm:px-6 sm:pt-8 lg:px-12 lg:pt-10">
       <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(25rem,1fr)] lg:gap-14">
         <ProductImageGallery images={galleryImages} />
 
@@ -127,17 +129,33 @@ export default function ProductPage() {
               <p className="text-sm text-neutral-500">
                 A bottle chosen for you
               </p>
-              <p className="shrink-0 text-3xl font-semibold tracking-[-0.04em] text-neutral-950">
-                {price}
-              </p>
             </div>
+          </div>
+
+          <div className="mt-5 flex items-center justify-between gap-3">
+            <p className="text-3xl font-semibold tracking-[-0.04em] text-neutral-950">
+              {price}
+            </p>
+            {hasCartItems && (
+              <QuantitySelector
+                value={quantity}
+                onChange={setQuantity}
+                className="h-14"
+              />
+            )}
           </div>
 
           <ProductDetails
             description={product.description ?? t("product.description-text")}
           />
 
-          <form className="mt-7" onSubmit={handleAddToCart}>
+          <form
+            className="mt-7"
+            onSubmit={(event) => {
+              event.preventDefault();
+              void addToCart(quantity);
+            }}
+          >
             <ProductOptions
               options={options}
               selections={selections}
@@ -148,21 +166,17 @@ export default function ProductPage() {
                 }))
               }
             />
-            <div className="mt-5 flex gap-3">
-              <QuantitySelector
-                value={quantity}
-                onChange={setQuantity}
-                className="h-14"
-              />
-              <Button
-                type="submit"
-                disabled={!cart || !hasPrice}
-                className="h-14 flex-1 justify-between rounded-none bg-neutral-950 px-5 uppercase hover:bg-neutral-800"
-              >
-                <span>{t("product.add-to-bag")}</span>
-                <span>{totalPrice}</span>
-              </Button>
-            </div>
+            {hasCartItems && (
+              <div className="mt-5 flex gap-3">
+                <Button
+                  type="submit"
+                  disabled={!cart || !hasPrice}
+                  className="h-14 flex-1 justify-between rounded-none bg-neutral-950 px-5 uppercase hover:bg-neutral-800"
+                >
+                  <span>{t("product.add-to-bag")}</span>
+                </Button>
+              </div>
+            )}
           </form>
 
           <div className="mt-7 border-t border-neutral-200">
@@ -186,6 +200,25 @@ export default function ProductPage() {
             )}
           </div>
         </section>
+      </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-30 bg-white pb-[env(safe-area-inset-bottom)] shadow-[0_-1px_8px_rgba(0,0,0,0.04)]">
+        <div className="mx-auto flex min-h-[72px] w-full max-w-[1440px] flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-6 lg:px-12">
+          <p
+            className="text-xl font-bold tracking-tight text-neutral-900"
+            aria-live="polite"
+          >
+            {price}
+          </p>
+          <Button
+            type="button"
+            onClick={handleFooterAdd}
+            disabled={!cart || !hasPrice}
+            className="h-11 min-w-40 rounded-[10px] bg-neutral-900 px-6 text-base text-white shadow-none hover:bg-neutral-800"
+          >
+            {t("product.add-to-bag")}
+          </Button>
+        </div>
       </div>
     </main>
   );
