@@ -204,7 +204,6 @@ export default function Filters() {
         onClose={() => setDrawerOpen(false)}
         fromRight
         hiddenFrom="lg"
-        className="left-auto w-[calc(100%-2rem)] max-w-md"
       >
         <div className="flex min-h-[calc(100svh-4.25rem)] flex-col px-4 pt-6">
           <h2 className="text-lg font-medium text-gray-900 mb-6">

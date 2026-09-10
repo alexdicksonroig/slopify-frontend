@@ -29,7 +29,7 @@ export function CartDrawer({
         hiddenFrom={false}
         showCloseButton={false}
         contentClassName="p-0"
-        className="left-auto right-0 z-50 w-full text-gray-900 sm:max-w-xl"
+        className="z-50 text-gray-900 sm:max-w-xl"
       >
         <div className="flex h-full flex-col">
           <div className="flex shrink-0 items-center justify-between border-b border-gray-200 px-6 py-5">
