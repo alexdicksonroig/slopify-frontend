@@ -38,7 +38,7 @@ export default function Example() {
           <div className="relative flex min-h-[42px] items-center bg-indigo-600 text-[13px] font-semibold text-white sm:text-sm">
             <div
               className={cn(
-                "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
+                "absolute inset-0 flex items-center justify-center px-6 text-center transition-all duration-100 ease-linear visible opacity-100",
                 { "invisible opacity-0": !showFirstText },
               )}
             >
@@ -48,7 +48,7 @@ export default function Example() {
             </div>
             <div
               className={cn(
-                "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
+                "absolute inset-0 flex items-center justify-center px-6 text-center transition-all duration-100 ease-linear visible opacity-100",
                 { "invisible opacity-0": showFirstText },
               )}
             >
