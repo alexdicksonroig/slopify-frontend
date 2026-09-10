@@ -38,7 +38,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
         <VariantCartAction product={product} variant={variant} />
       </div>
       <Link
-        className="mt-3 block min-w-0 px-0.5"
+        className="mt-1 block min-w-0 px-0.5"
         to={`/product/${product.id}/${variant.id}`}
       >
         <h3 className="truncate text-sm font-medium leading-5 text-black">
@@ -109,7 +109,7 @@ export default function Variants() {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-1 md:grid-cols-3 lg:mt-2 lg:gap-x-6 lg:gap-y-10">
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:mt-2 lg:gap-x-6 lg:gap-y-10">
         {cards.map(({ product, variant }) => (
           <VariantCard key={variant.id} product={product} variant={variant} />
         ))}
