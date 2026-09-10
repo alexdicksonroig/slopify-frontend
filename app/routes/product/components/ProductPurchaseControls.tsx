@@ -21,7 +21,7 @@ export function ProductPurchaseControls({
   return (
     <div className="mt-5 flex flex-col gap-y-6 rounded-xl bg-neutral-100 p-4 text-neutral-900">
       <div className="flex items-center justify-between gap-3">
-        <p className="min-w-0 text-lg leading-tight font-semibold sm:text-xl">
+        <p className="min-w-0 text-lg leading-tight font-semibold">
           {productName}
         </p>
         <p className="shrink-0 text-lg font-semibold tabular-nums">
@@ -42,7 +42,7 @@ export function ProductPurchaseControls({
 
       <div className="relative flex items-center justify-between gap-3 before:absolute before:inset-x-0 before:-top-3 before:border-t before:border-dashed before:border-neutral-200">
         <p className="text-xl font-bold">{t("product.total")}</p>
-        <p className="text-2xl font-bold tracking-tight tabular-nums sm:text-3xl">
+        <p className="text-2xl font-bold tracking-tight tabular-nums">
           {total}
         </p>
       </div>

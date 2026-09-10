@@ -198,7 +198,7 @@ export default function ProductPage() {
         </section>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-30 bg-white pb-[env(safe-area-inset-bottom)] shadow-[0_-1px_8px_rgba(0,0,0,0.04)]">
+      <div className="fixed inset-x-0 bottom-0 z-30 bg-white pb-[env(safe-area-inset-bottom)] shadow-[0_-1px_3px_rgba(0,0,0,.05),0_-.5px_#e5e5e5]">
         <div className="mx-auto flex min-h-[72px] w-full max-w-[1440px] flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-6 lg:px-12">
           <p
             className="text-xl font-bold tracking-tight text-neutral-900"
