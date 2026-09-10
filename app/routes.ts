@@ -10,7 +10,7 @@ export default [
     layout("./layouts/filters.tsx", [index("routes/variants.tsx")]),
 
     route("product/:id/:variantId", "routes/product/product.tsx"),
-    route("cart", "routes/cart.tsx"),
+    route("checkout", "routes/checkout.tsx"),
     route("return", "routes/return.tsx"),
   ]),
 ] satisfies RouteConfig;

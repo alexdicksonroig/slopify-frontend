@@ -114,8 +114,11 @@ export default function Return() {
             {t("return.error-title")}
           </h1>
           <p className="mt-3 text-base text-gray-600">{t("return.error")}</p>
-          <Button onClick={() => navigate("/cart")} className="mt-8 h-12 px-8">
-            {t("return.back-cart")}
+          <Button
+            onClick={() => navigate("/checkout")}
+            className="mt-8 h-12 px-8"
+          >
+            {t("return.back-checkout")}
           </Button>
         </div>
       </main>

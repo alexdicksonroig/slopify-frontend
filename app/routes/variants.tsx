@@ -109,7 +109,7 @@ export default function Variants() {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:mt-2 lg:gap-x-6 lg:gap-y-10">
+      <div className="grid grid-cols-2 gap-1 md:grid-cols-3 lg:mt-2 lg:gap-x-6 lg:gap-y-10">
         {cards.map(({ product, variant }) => (
           <VariantCard key={variant.id} product={product} variant={variant} />
         ))}

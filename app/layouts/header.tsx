@@ -1,4 +1,5 @@
 import { BackButton } from "@app/components/back-button";
+import { CartDrawer } from "@app/components/cart-drawer";
 import { useTranslate } from "@app/i18n";
 import { getCartItemCountUseCase } from "@app/lib/cart/application/get-cart-item-count.use-case";
 import { useCart } from "@app/lib/context/cart.context";
@@ -14,12 +15,10 @@ export default function Example() {
   const navigate = useNavigate();
   const [showFirstText, setShowFirstText] = useState(true);
   const [showAnnouncement, setShowAnnouncement] = useState(true);
+  const [cartOpen, setCartOpen] = useState(false);
 
-  const handleCartClick = () => {
-    if (location.pathname !== "/cart") {
-      navigate("/cart");
-    }
-  };
+  const handleCartClick = () => setCartOpen(true);
+  const closeCart = () => setCartOpen(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -133,6 +132,8 @@ export default function Example() {
               <div className="flex items-center md:ml-4">
                 <Button
                   onClick={handleCartClick}
+                  aria-haspopup="dialog"
+                  aria-expanded={cartOpen}
                   variant="ghost"
                   size="icon"
                   className="relative h-11 w-11 overflow-visible rounded-full shadow-none"
@@ -154,6 +155,7 @@ export default function Example() {
         <Outlet />
       </div>
       <Footer />
+      <CartDrawer open={cartOpen} onClose={closeCart} />
     </div>
   );
 }

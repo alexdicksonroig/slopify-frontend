@@ -1,5 +1,6 @@
 export const en = {
   "app.loading": "Loading",
+  "cart.close": "Close cart",
   "cart.checkout": "Checkout",
   "cart.edit-action": "Edit",
   "cart.empty": "No items added yet.",
@@ -76,7 +77,7 @@ export const en = {
   "product.size": "Size",
   "product.size-guide": "Size guide",
   "product.unavailable": "Unavailable",
-  "return.back-cart": "Return to cart",
+  "return.back-checkout": "Return to checkout",
   "return.checking": "Confirming your payment...",
   "return.continue": "Continue shopping",
   "return.error":

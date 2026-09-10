@@ -7,7 +7,7 @@ import type { Product } from "@app/lib/product";
 import type { ProductOption, Variant } from "@app/lib/variant";
 import { Button } from "@library";
 import { type FormEvent, useEffect, useMemo, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router";
+import { useLoaderData } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
 import { ProductOptions } from "./components/ProductOptions";
@@ -43,7 +43,6 @@ export async function clientLoader(args: ProductLoaderArgs) {
 
 export default function ProductPage() {
   const t = useTranslate();
-  const navigate = useNavigate();
   const { cart, setCart } = useCart();
   const { product, variant } = useLoaderData<typeof clientLoader>();
   const [selections, setSelections] = useState<Record<number, number>>(() =>
@@ -112,7 +111,6 @@ export default function ProductPage() {
       quantity,
     );
     if (updatedCart) setCart(updatedCart);
-    navigate("/cart");
   };
 
   return (

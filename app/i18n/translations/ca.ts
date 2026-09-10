@@ -2,6 +2,7 @@ import type { TranslationDictionary } from ".";
 
 export const ca = {
   "app.loading": "S'està carregant",
+  "cart.close": "Tanca la cistella",
   "cart.checkout": "Finalitza la compra",
   "cart.edit-action": "Edita",
   "cart.empty": "Encara no s'ha afegit cap article.",
@@ -78,7 +79,7 @@ export const ca = {
   "product.size": "Talla",
   "product.size-guide": "Guia de talles",
   "product.unavailable": "No disponible",
-  "return.back-cart": "Torna a la cistella",
+  "return.back-checkout": "Torna al pagament",
   "return.checking": "S'està confirmant el pagament...",
   "return.continue": "Continua comprant",
   "return.error":
