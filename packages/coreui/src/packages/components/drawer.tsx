@@ -37,7 +37,7 @@ export const Drawer: React.FC<DrawerProps> = ({
     inert={!open}
     aria-hidden={!open}
     className={cn(
-      "z-5 fixed inset-y-0 h-svh w-[calc(100%-2rem)] overflow-y-auto transition duration-200 ease-in-out sm:max-w-md",
+      "z-5 fixed inset-y-0 h-svh w-full overflow-y-auto transition duration-200 ease-in-out",
       fromRight ? "right-0 translate-x-full" : "left-0 -translate-x-full",
       hiddenFrom && HIDDEN_FROM[hiddenFrom],
       { "drawer-open translate-x-0": open },

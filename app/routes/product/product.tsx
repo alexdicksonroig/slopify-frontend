@@ -7,7 +7,7 @@ import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
 import type { ProductOption, Variant } from "@app/lib/variant";
 import { Button } from "@library";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLoaderData } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
@@ -52,9 +52,11 @@ export default function ProductPage() {
     ),
   );
   const [quantity, setQuantity] = useState(1);
-  const hasCartItem = cart?.items.some(
-    (item) => item.variantId === variant.id && item.quantity > 0,
-  ) ?? false;
+  const purchaseControlsRef = useRef<HTMLDivElement>(null);
+  const hasCartItem =
+    cart?.items.some(
+      (item) => item.variantId === variant.id && item.quantity > 0,
+    ) ?? false;
 
   useEffect(() => {
     setSelections(
@@ -100,7 +102,9 @@ export default function ProductPage() {
     if (!selectedVariant || unitAmount === null || currency === null) return;
 
     if (quantity === 0) {
-      const updatedCart = await deleteProductFromCartUseCase.execute(selectedVariant.id);
+      const updatedCart = await deleteProductFromCartUseCase.execute(
+        selectedVariant.id,
+      );
       if (updatedCart) setCart(updatedCart);
       return;
     }
@@ -123,7 +127,10 @@ export default function ProductPage() {
     const cartItem = cart?.items.find((item) => item.variantId === variant.id);
     await addToCart((cartItem?.quantity ?? 0) + 1);
     requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      purchaseControlsRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     });
   };
 
@@ -145,20 +152,22 @@ export default function ProductPage() {
           </div>
 
           {hasCartItem && (
-            <ProductPurchaseControls
-              productName={product.name}
-              unitPrice={price}
-              total={
-                hasPrice
-                  ? formatMoney(unitAmount * quantity, currency)
-                  : t("product.unavailable")
-              }
-              quantity={quantity}
-              onQuantityChange={(nextQuantity) => {
-                setQuantity(nextQuantity);
-                void addToCart(nextQuantity);
-              }}
-            />
+            <div ref={purchaseControlsRef}>
+              <ProductPurchaseControls
+                productName={product.name}
+                unitPrice={price}
+                total={
+                  hasPrice
+                    ? formatMoney(unitAmount * quantity, currency)
+                    : t("product.unavailable")
+                }
+                quantity={quantity}
+                onQuantityChange={(nextQuantity) => {
+                  setQuantity(nextQuantity);
+                  void addToCart(nextQuantity);
+                }}
+              />
+            </div>
           )}
 
           <ProductDetails
