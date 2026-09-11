@@ -7,16 +7,16 @@ const FEATURED_CATEGORIES = [
 
 export function FeaturedCategories() {
   return (
-    <section aria-label="Featured categories" className="pt-5 sm:pt-6">
-      <ul className="flex items-start gap-4">
+    <section aria-label="Featured categories" className="pt-5 sm:pt-6 lg:pb-5">
+      <ul className="grid grid-cols-4 gap-2 sm:flex sm:items-start sm:gap-4">
         {FEATURED_CATEGORIES.map((category) => (
           <li
             key={category}
-            className="flex w-[4.5rem] shrink-0 flex-col items-center text-center sm:w-24 lg:w-28"
+            className="flex min-w-0 flex-col items-center text-center sm:w-24 lg:w-32"
           >
             <div
               aria-hidden="true"
-              className="size-[4.5rem] animate-pulse rounded-xs bg-gray-100 sm:size-24 lg:size-28"
+              className="aspect-square w-full max-w-[4.5rem] animate-pulse rounded-xs bg-gray-100 sm:h-24 sm:w-24 sm:max-w-none lg:h-32 lg:w-32"
             />
             <span className="mt-2 text-sm font-normal leading-5 text-gray-600">
               {category}

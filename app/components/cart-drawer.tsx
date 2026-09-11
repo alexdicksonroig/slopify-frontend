@@ -78,7 +78,8 @@ export function CartDrawer({
               </dl>
               <Link
                 to="/checkout"
-                className="mt-6 flex h-12 items-center justify-center bg-indigo-600 font-semibold text-white hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={onClose}
+                className="mt-6 flex h-12 items-center justify-center bg-primary font-semibold text-primary-foreground hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
               >
                 {t("cart.checkout")}
               </Link>
