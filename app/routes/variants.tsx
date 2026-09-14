@@ -46,15 +46,15 @@ function VariantCard({ product, variant }: VariantCardProps) {
         <h3 className="truncate text-sm font-medium leading-5 text-black">
           {product.name}
         </h3>
-        <p className="truncate text-xs leading-5 text-gray-500">
+        <p className="truncate text-xs leading-none text-gray-500">
           {variant.selections.map(({ value }) => value.label).join(", ")}
         </p>
+        <p className="text-xs font-semibold leading-8 text-gray-950">
+          {isAvailable
+            ? formatMoney(unitAmount, currency)
+            : t("product.unavailable")}
+        </p>
       </Link>
-      <p className="px-0.5 text-sm font-normal leading-5 text-gray-950">
-        {isAvailable
-          ? formatMoney(unitAmount, currency)
-          : t("product.unavailable")}
-      </p>
     </article>
   );
 }

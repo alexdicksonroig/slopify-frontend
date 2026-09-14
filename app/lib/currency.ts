@@ -1,7 +1,7 @@
 export function formatMoney(
   unitAmount: number,
   currency: string,
-  locale = "en-US",
+  locale = "es-ES",
 ): string {
   return new Intl.NumberFormat(locale, {
     style: "currency",
