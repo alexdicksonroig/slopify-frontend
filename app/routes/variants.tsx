@@ -4,7 +4,6 @@ import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
 import type { Variant, VariantListItem } from "@app/lib/variant";
 import { Link, useLoaderData } from "react-router";
-import { FeaturedCategories } from "./variants/components/FeaturedCategories";
 import { Filters, type ProductOption } from "./variants/components/Filters";
 import { VariantCartAction } from "./variants/components/VariantCartAction";
 import { Button } from "@library";
@@ -108,7 +107,7 @@ export async function clientLoader({ request }: { request: Request }) {
 }
 
 const Banner = () => {
-  return <div className="h-40 sm:h-60 p-3 sm:p-4 bg-gray-100 flex items-end">
+  return <div className="h-40 sm:h-60 p-3 sm:p-4 bg-gray-50 flex items-end">
     <Button
       className="bg-white font-normal"
       variant="secondary"
@@ -134,7 +133,6 @@ export default function Variants() {
           {t("filters.subtitle")}
         </p>
       </div>
-      <FeaturedCategories />
       <Filters options={options} resultCount={cards.length}>
         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:gap-x-6 lg:gap-y-10">
           {cards.map(({ product, variant }) => (
