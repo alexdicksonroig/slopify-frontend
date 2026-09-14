@@ -22,7 +22,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
     <article className="group min-w-0">
       <div className="relative">
         <Link
-          className="block overflow-hidden rounded-xs"
+          className="block overflow-hidden rounded"
           to={`/product/${product.id}/${variant.id}`}
         >
           {variant.thumbnailUrl ? (
@@ -32,7 +32,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
               className="aspect-[4/5] w-full bg-gray-50 object-contain transition-transform duration-500 ease-out lg:hover:scale-105 motion-reduce:transition-none"
             />
           ) : (
-            <div className="flex aspect-[4/5] w-full items-center justify-center bg-gray-100 text-sm text-gray-500 [border-radius:0.625rem]">
+            <div className="flex aspect-[4/5] w-full items-center justify-center rounded bg-gray-100 text-sm text-gray-500">
               {t("product.no-thumbnail")}
             </div>
           )}
@@ -107,7 +107,7 @@ export async function clientLoader({ request }: { request: Request }) {
 }
 
 const Banner = () => {
-  return <div className="h-40 sm:h-60 p-3 sm:p-4 bg-gray-50 flex items-end">
+  return <div className="h-40 rounded sm:h-60 p-3 sm:p-4 bg-gray-50 flex items-end">
     <Button
       className="bg-white font-normal"
       variant="secondary"
