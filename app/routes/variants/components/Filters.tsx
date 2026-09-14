@@ -215,87 +215,99 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
         </div>
       </Drawer>
       <div>
-
-      <div className="contents lg:block lg:border-b lg:border-gray-200 lg:pb-3">
-        <div className="flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:min-h-0 lg:justify-end lg:border-0">
-          <p className="text-xs text-gray-600 lg:hidden">
-            {t("filters.result-count", { count: resultCount })}
-          </p>
-          <div className="ml-auto flex items-center gap-1 lg:block lg:min-w-56">
-            <div className="min-w-0">
-              <Select
-                value={searchParams.get("sort") ?? "newest"}
-                onChange={handleSortChange}
-                options={translatedSortOptions}
-                placeholder={t("filters.sort-by")}
-                showSelectedValue={false}
-                variant="ghost"
-                placement="bottom"
-                className="h-8 gap-1 rounded-md px-1.5 text-xs font-normal text-gray-700 shadow-none hover:bg-gray-50 lg:h-10 lg:px-3 lg:text-sm [&_svg]:size-3.5 lg:[&_svg]:size-4"
-                aria-label={t("filters.sort")}
-              />
-            </div>
-            <Button
-              variant="ghost"
-              className="h-8 gap-1 rounded-md px-1.5 text-xs font-normal text-gray-700 shadow-none hover:bg-gray-50 lg:hidden [&_svg]:size-3.5"
-              onClick={() => setDrawerOpen(true)}
-            >
-              <Icon icon="list-filter" size="sm" />
-              <span>{t("filters.title")}</span>
-              {activeFilters.length > 0 && (
-                <span className="flex size-3.5 items-center justify-center rounded-full bg-gray-100 text-[9px] font-medium text-gray-700">
-                  {activeFilters.length}
-                </span>
-              )}
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-        {/* Filters sidebar - Desktop */}
-        <aside className="hidden lg:block">
-          <FilterContent
-            options={options}
-            searchParams={searchParams}
-            onFilterChange={handleFilterChange}
-            onResetFilters={handleResetFilters}
-          />
-        </aside>
-
-        {/* Main content */}
-        <div className="pt-3 lg:col-span-3">
-          {activeFilters.length > 0 && (
-            <div className="flex flex-wrap items-center gap-2 pb-3 lg:pt-2">
-              {activeFilters.map(({ option, value }) => (
-                <Button
-                  key={option.id}
-                  type="button"
-                  variant="outline"
-                  className="h-[34px] gap-1.5 border-gray-300 bg-gray-50 px-3 text-xs font-medium text-gray-700 shadow-none"
-                  style={{ borderRadius: 9999 }}
-                  onClick={() => handleFilterChange(option.id, value.id, false)}
-                >
-                  {value.label}
-                  <Icon icon="x" size="xs" className="brightness-50" />
-                </Button>
-              ))}
+        <div className="contents lg:block lg:border-b lg:border-gray-200">
+          <div className="flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:hidden">
+            <p className="text-xs text-gray-600 lg:hidden">
+              {t("filters.result-count", { count: resultCount })}
+            </p>
+            <div className="ml-auto flex items-center gap-1 lg:block lg:min-w-56">
+              <div className="min-w-0">
+                <Select
+                  value={searchParams.get("sort") ?? "newest"}
+                  onChange={handleSortChange}
+                  options={translatedSortOptions}
+                  placeholder={t("filters.sort-by")}
+                  showSelectedValue={false}
+                  variant="ghost"
+                  placement="bottom"
+                  className="h-8 gap-1 rounded-md px-1.5 text-xs font-normal text-gray-700 shadow-none hover:bg-gray-50 [&_svg]:size-3.5"
+                  aria-label={t("filters.sort")}
+                />
+              </div>
               <Button
-                type="button"
-                variant="link"
-                className="ml-1 text-xs font-medium text-gray-500 hover:text-gray-700"
-                onClick={handleResetFilters}
+                variant="ghost"
+                className="h-8 gap-1 rounded-md px-1.5 text-xs font-normal text-gray-700 shadow-none hover:bg-gray-50 lg:hidden [&_svg]:size-3.5"
+                onClick={() => setDrawerOpen(true)}
               >
-                {t("filters.clear-all")}
+                <Icon icon="list-filter" size="sm" />
+                <span>{t("filters.title")}</span>
+                {activeFilters.length > 0 && (
+                  <span className="flex size-3.5 items-center justify-center rounded-full bg-gray-100 text-[9px] font-medium text-gray-700">
+                    {activeFilters.length}
+                  </span>
+                )}
               </Button>
             </div>
-          )}
-          <p className="mb-1 hidden text-xs text-gray-500 lg:block">
-            {t("filters.product-count", { count: resultCount })}
-          </p>
-          {children}
+          </div>
         </div>
-      </div>
+
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+          {/* Filters sidebar - Desktop */}
+          <aside className="hidden lg:block">
+            <Select
+              value={searchParams.get("sort") ?? "newest"}
+              onChange={handleSortChange}
+              options={translatedSortOptions}
+              placeholder={t("filters.sort-by")}
+              showSelectedValue={false}
+              variant="ghost"
+              placement="bottom"
+              className="my-3 h-10 w-full justify-between px-0 text-sm font-normal text-gray-700 shadow-none hover:bg-gray-50 [&_svg]:size-4"
+              aria-label={t("filters.sort")}
+            />
+            <FilterContent
+              options={options}
+              searchParams={searchParams}
+              onFilterChange={handleFilterChange}
+              onResetFilters={handleResetFilters}
+            />
+          </aside>
+
+          {/* Main content */}
+          <div className="pt-3 lg:col-span-3">
+            {activeFilters.length > 0 && (
+              <div className="flex flex-wrap items-center gap-2 pb-3 lg:pt-2">
+                {activeFilters.map(({ option, value }) => (
+                  <Button
+                    key={option.id}
+                    type="button"
+                    variant="outline"
+                    className="h-[34px] gap-1.5 border-gray-300 bg-gray-50 px-3 text-xs font-medium text-gray-700 shadow-none"
+                    style={{ borderRadius: 9999 }}
+                    onClick={() =>
+                      handleFilterChange(option.id, value.id, false)
+                    }
+                  >
+                    {value.label}
+                    <Icon icon="x" size="xs" className="brightness-50" />
+                  </Button>
+                ))}
+                <Button
+                  type="button"
+                  variant="link"
+                  className="ml-1 text-xs font-medium text-gray-500 hover:text-gray-700"
+                  onClick={handleResetFilters}
+                >
+                  {t("filters.clear-all")}
+                </Button>
+              </div>
+            )}
+            <p className="mb-1 hidden text-xs text-gray-500 lg:block">
+              {t("filters.product-count", { count: resultCount })}
+            </p>
+            {children}
+          </div>
+        </div>
       </div>
     </>
   );
