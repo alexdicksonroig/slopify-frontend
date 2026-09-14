@@ -4,9 +4,21 @@ import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
 import type { Variant, VariantListItem } from "@app/lib/variant";
 import { Button, Icon } from "@library";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useSearchParams } from "react-router";
 import { Filters, type ProductOption } from "./variants/components/Filters";
 import { VariantCartAction } from "./variants/components/VariantCartAction";
+
+const FEATURED_CATEGORIES = [
+  {
+    slug: "fresh-and-juicy",
+    labelKey: "featured-categories.fresh-and-juicy",
+  },
+  { slug: "full-and-rich", labelKey: "featured-categories.full-and-rich" },
+  {
+    slug: "light-and-crisp",
+    labelKey: "featured-categories.light-and-crisp",
+  },
+] as const;
 
 type VariantCardProps = {
   product: Product;
@@ -119,13 +131,49 @@ const Banner = () => {
   );
 };
 
+const FeaturedCategories = () => {
+  const t = useTranslate();
+  const [searchParams] = useSearchParams();
+  const activeCategory =
+    searchParams.get("category") ?? FEATURED_CATEGORIES[0].slug;
+
+  return (
+    <nav aria-label={t("featured-categories.label")}>
+      <ul className="mx-auto grid w-fit grid-cols-3 gap-x-4">
+        {FEATURED_CATEGORIES.map(({ slug, labelKey }) => {
+          const categorySearchParams = new URLSearchParams(searchParams);
+          categorySearchParams.set("category", slug);
+          const isActive = activeCategory === slug;
+
+          return (
+            <li key={slug} className="flex justify-center">
+              <Link
+                to={`?${categorySearchParams.toString()}`}
+                aria-current={isActive ? "page" : undefined}
+                className={`relative whitespace-nowrap pb-1 text-xs text-gray-500 ${
+                  isActive
+                    ? "after:absolute after:inset-x-0 after:-bottom-px after:h-px after:bg-primary"
+                    : ""
+                }`}
+              >
+                {t(labelKey)}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+};
+
 export default function Variants() {
   const t = useTranslate();
   const { cards, options } = useLoaderData<typeof clientLoader>();
 
   return (
-    <div className="mx-auto w-full max-w-7xl p-3 sm:p-6 flex gap-5 flex-col">
+    <div className="mx-auto w-full max-w-7xl p-3 sm:p-6 flex gap-3 flex-col">
       <Banner />
+      <FeaturedCategories />
       <div>
         <h1 className="text-[1.7rem] font-bold tracking-tight text-gray-900 md:text-3xl">
           {t("filters.new-arrivals")}
