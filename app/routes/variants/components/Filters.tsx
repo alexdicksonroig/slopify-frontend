@@ -272,7 +272,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                   key={option.id}
                   type="button"
                   variant="outline"
-                  className="h-[34px] gap-1.5 border-gray-300 bg-gray-100 px-3 text-xs font-medium text-gray-700 shadow-none"
+                  className="h-[34px] gap-1.5 border-gray-300 bg-gray-50 px-3 text-xs font-medium text-gray-700 shadow-none"
                   style={{ borderRadius: 9999 }}
                   onClick={() => handleFilterChange(option.id, value.id, false)}
                 >
