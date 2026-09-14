@@ -264,7 +264,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
         </aside>
 
         {/* Main content */}
-        <div className="pt-4 lg:col-span-3">
+        <div className="pt-3 lg:col-span-3">
           {activeFilters.length > 0 && (
             <div className="flex flex-wrap items-center gap-2 pb-3 lg:pt-2">
               {activeFilters.map(({ option, value }) => (
