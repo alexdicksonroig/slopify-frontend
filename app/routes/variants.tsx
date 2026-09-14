@@ -125,7 +125,7 @@ export default function Variants() {
   const { cards, options } = useLoaderData<typeof clientLoader>();
 
   return (
-    <div className="mx-auto w-full max-w-7xl p-3 flex gap-3 flex-col">
+    <div className="mx-auto w-full max-w-7xl p-3 sm:p-6 flex gap-3 flex-col">
       <Banner />
       <div>
         <h1 className="text-[1.7rem] font-bold tracking-tight text-gray-900 md:text-3xl">
