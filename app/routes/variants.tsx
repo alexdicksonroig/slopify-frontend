@@ -112,7 +112,7 @@ const Banner = () => {
     <Button
       className="bg-white font-normal"
       variant="secondary"
-      size="default"
+      size="sm"
     >
       Explore more
     </Button>
