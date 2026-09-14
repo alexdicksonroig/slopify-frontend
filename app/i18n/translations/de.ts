@@ -2,6 +2,7 @@ import type { TranslationDictionary } from ".";
 
 export const de = {
   "app.loading": "Wird geladen",
+  "banner.shop-now": "Jetzt einkaufen",
   "cart.close": "Warenkorb schließen",
   "cart.checkout": "Zur Kasse",
   "cart.edit-action": "Bearbeiten",

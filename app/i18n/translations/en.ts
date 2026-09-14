@@ -1,5 +1,6 @@
 export const en = {
   "app.loading": "Loading",
+  "banner.shop-now": "Shop Now",
   "cart.close": "Close cart",
   "cart.checkout": "Checkout",
   "cart.edit-action": "Edit",

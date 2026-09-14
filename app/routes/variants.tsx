@@ -107,13 +107,15 @@ export async function clientLoader({ request }: { request: Request }) {
 }
 
 const Banner = () => {
+  const t = useTranslate();
+
   return <div className="h-30 rounded sm:h-60 p-3 sm:p-4 bg-gray-50 flex items-end justify-end">
     <Button
       className="bg-white font-normal"
       variant="secondary"
       size="sm"
     >
-      Explore more
+      {t("banner.shop-now")}
     </Button>
   </div>
 }
