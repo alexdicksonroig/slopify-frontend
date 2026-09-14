@@ -1,28 +1,18 @@
 import { type TranslationKey, useTranslate } from "@app/i18n";
-import { get } from "@app/lib/api";
 import { Accordion, Button, Drawer, Icon, Overlay, Select } from "@library";
-import { useState } from "react";
-import {
-  Outlet,
-  useLoaderData,
-  useRouteLoaderData,
-  useSearchParams,
-} from "react-router";
-import { FeaturedCategories } from "../routes/variants/components/FeaturedCategories";
+import { type ReactNode, useState } from "react";
+import { useSearchParams } from "react-router";
+import { FeaturedCategories } from "./FeaturedCategories";
 
-type ProductOptionValue = {
+export type ProductOptionValue = {
   id: number;
   label: string;
 };
 
-type ProductOption = {
+export type ProductOption = {
   id: number;
   label: string;
   possibleValues: ProductOptionValue[];
-};
-
-type VariantsLoaderData = {
-  cards: unknown[];
 };
 
 const SORT_OPTIONS = [
@@ -126,19 +116,16 @@ const FilterContent = ({
   );
 };
 
-export async function loader() {
-  const options = (await get("product-options")) as ProductOption[];
-  return { options };
-}
+type FiltersProps = {
+  children: ReactNode;
+  options: ProductOption[];
+  resultCount: number;
+};
 
-export default function Filters() {
+export function Filters({ children, options, resultCount }: FiltersProps) {
   const t = useTranslate();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { options } = useLoaderData<typeof loader>();
-  const variantsData =
-    useRouteLoaderData<VariantsLoaderData>("routes/variants");
   const [searchParams, setSearchParams] = useSearchParams();
-  const resultCount = variantsData?.cards.length ?? 0;
   const activeFilters = options.flatMap((option) => {
     const selectedValueId = searchParams.get(String(option.id));
     const selectedValue = option.possibleValues.find(
@@ -319,7 +306,7 @@ export default function Filters() {
           <p className="mb-1 hidden text-xs text-gray-500 lg:block">
             {t("filters.product-count", { count: resultCount })}
           </p>
-          <Outlet />
+          {children}
         </div>
       </div>
     </main>

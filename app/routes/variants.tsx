@@ -4,6 +4,7 @@ import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
 import type { Variant, VariantListItem } from "@app/lib/variant";
 import { Link, useLoaderData } from "react-router";
+import { Filters, type ProductOption } from "./variants/components/Filters";
 import { VariantCartAction } from "./variants/components/VariantCartAction";
 
 type VariantCardProps = {
@@ -62,12 +63,13 @@ async function loadVariants(request: Request) {
   const params = Object.fromEntries(
     [...searchParams].filter(([key]) => /^\d+$/.test(key)),
   );
-  const [variantList, products] = await Promise.all([
+  const [variantList, products, options] = await Promise.all([
     Api.get<VariantListItem[]>(
       "variants",
       Object.keys(params).length > 0 ? params : undefined,
     ),
     Api.get<Product[]>("products"),
+    Api.get<ProductOption[]>("product-options"),
   ]);
   const variants = await Promise.all(
     variantList.map((variant) => Api.get<Variant>(`variants/${variant.id}`)),
@@ -92,7 +94,7 @@ async function loadVariants(request: Request) {
     return product ? [{ product, variant }] : [];
   });
 
-  return { cards };
+  return { cards, options };
 }
 
 export async function loader({ request }: { request: Request }) {
@@ -105,10 +107,10 @@ export async function clientLoader({ request }: { request: Request }) {
 
 export default function Variants() {
   const t = useTranslate();
-  const { cards } = useLoaderData<typeof clientLoader>();
+  const { cards, options } = useLoaderData<typeof clientLoader>();
 
   return (
-    <>
+    <Filters options={options} resultCount={cards.length}>
       <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:mt-2 lg:gap-x-6 lg:gap-y-10">
         {cards.map(({ product, variant }) => (
           <VariantCard key={variant.id} product={product} variant={variant} />
@@ -117,6 +119,6 @@ export default function Variants() {
       <p className="sr-only">
         {t("filters.result-count", { count: cards.length })}
       </p>
-    </>
+    </Filters>
   );
 }
