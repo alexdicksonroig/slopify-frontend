@@ -2,7 +2,6 @@ import { type TranslationKey, useTranslate } from "@app/i18n";
 import { Accordion, Button, Drawer, Icon, Overlay, Select } from "@library";
 import { type ReactNode, useState } from "react";
 import { useSearchParams } from "react-router";
-import { FeaturedCategories } from "./FeaturedCategories";
 
 export type ProductOptionValue = {
   id: number;
@@ -181,7 +180,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
   });
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pb-6">
+    <>
       <Overlay
         active={drawerOpen}
         onClick={() => setDrawerOpen(false)}
@@ -216,21 +215,8 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
         </div>
       </Drawer>
 
-      <div className="contents lg:block lg:border-b lg:border-gray-200 lg:pt-6 lg:pb-3">
-        <div className="pt-6 lg:pt-0">
-          <div className="flex items-end justify-between gap-4">
-            <h1 className="text-[1.7rem] font-bold tracking-tight text-gray-900 md:text-3xl">
-              {t("filters.new-arrivals")}
-            </h1>
-          </div>
-          <p className="mt-1 text-sm text-gray-500 lg:hidden">
-            {t("filters.subtitle")}
-          </p>
-        </div>
-
-        <FeaturedCategories />
-
-        <div className="mt-4 flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:min-h-0 lg:justify-end lg:border-0">
+      <div className="contents lg:block lg:border-b lg:border-gray-200 lg:pb-3">
+        <div className="flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:min-h-0 lg:justify-end lg:border-0">
           <p className="text-xs text-gray-600 lg:hidden">
             {t("filters.result-count", { count: resultCount })}
           </p>
@@ -309,6 +295,6 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
           {children}
         </div>
       </div>
-    </main>
+    </>
   );
 }

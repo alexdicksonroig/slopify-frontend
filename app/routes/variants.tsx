@@ -4,6 +4,7 @@ import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
 import type { Variant, VariantListItem } from "@app/lib/variant";
 import { Link, useLoaderData } from "react-router";
+import { FeaturedCategories } from "./variants/components/FeaturedCategories";
 import { Filters, type ProductOption } from "./variants/components/Filters";
 import { VariantCartAction } from "./variants/components/VariantCartAction";
 
@@ -110,15 +111,28 @@ export default function Variants() {
   const { cards, options } = useLoaderData<typeof clientLoader>();
 
   return (
-    <Filters options={options} resultCount={cards.length}>
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:mt-2 lg:gap-x-6 lg:gap-y-10">
-        {cards.map(({ product, variant }) => (
-          <VariantCard key={variant.id} product={product} variant={variant} />
-        ))}
-      </div>
-      <p className="sr-only">
-        {t("filters.result-count", { count: cards.length })}
-      </p>
-    </Filters>
+    <main className="mx-auto w-full max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
+      <header className="pt-6">
+        <h1 className="text-[1.7rem] font-bold tracking-tight text-gray-900 md:text-3xl">
+          {t("filters.new-arrivals")}
+        </h1>
+        <p className="mt-1 text-sm text-gray-500 lg:hidden">
+          {t("filters.subtitle")}
+        </p>
+      </header>
+
+      <FeaturedCategories />
+
+      <Filters options={options} resultCount={cards.length}>
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:mt-2 lg:gap-x-6 lg:gap-y-10">
+          {cards.map(({ product, variant }) => (
+            <VariantCard key={variant.id} product={product} variant={variant} />
+          ))}
+        </div>
+        <p className="sr-only">
+          {t("filters.result-count", { count: cards.length })}
+        </p>
+      </Filters>
+    </main>
   );
 }
