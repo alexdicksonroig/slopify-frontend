@@ -3,10 +3,10 @@ import * as Api from "@app/lib/api";
 import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
 import type { Variant, VariantListItem } from "@app/lib/variant";
+import { Button, Icon } from "@library";
 import { Link, useLoaderData } from "react-router";
 import { Filters, type ProductOption } from "./variants/components/Filters";
 import { VariantCartAction } from "./variants/components/VariantCartAction";
-import { Button } from "@library";
 
 type VariantCardProps = {
   product: Product;
@@ -109,16 +109,15 @@ export async function clientLoader({ request }: { request: Request }) {
 const Banner = () => {
   const t = useTranslate();
 
-  return <div className="h-30 rounded sm:h-60 p-3 sm:p-4 bg-gray-50 flex items-end justify-end">
-    <Button
-      className="bg-white font-normal"
-      variant="secondary"
-      size="sm"
-    >
-      {t("banner.shop-now")}
-    </Button>
-  </div>
-}
+  return (
+    <div className="h-30 rounded sm:h-60 p-3 sm:p-4 bg-gray-50 flex items-end justify-end">
+      <Button className="bg-white font-normal" variant="secondary" size="sm">
+        {t("banner.shop-now")}
+        <Icon icon="arrow-right" size="sm" rotate={315} />
+      </Button>
+    </div>
+  );
+};
 
 export default function Variants() {
   const t = useTranslate();
