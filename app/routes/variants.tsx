@@ -107,7 +107,7 @@ export async function clientLoader({ request }: { request: Request }) {
 }
 
 const Banner = () => {
-  return <div className="h-30 rounded sm:h-60 p-3 sm:p-4 bg-gray-100 flex items-end justify-end">
+  return <div className="h-30 rounded sm:h-60 p-3 sm:p-4 bg-gray-50 flex items-end justify-end">
     <Button
       className="bg-white font-normal"
       variant="secondary"
