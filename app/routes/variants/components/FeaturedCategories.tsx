@@ -7,7 +7,7 @@ const FEATURED_CATEGORIES = [
 
 export function FeaturedCategories() {
   return (
-    <section aria-label="Featured categories" className="pt-5 sm:pt-6 lg:pb-5">
+    <section aria-label="Featured categories">
       <ul className="grid grid-cols-4 gap-3 lg:flex lg:items-start lg:gap-4">
         {FEATURED_CATEGORIES.map((category) => (
           <li

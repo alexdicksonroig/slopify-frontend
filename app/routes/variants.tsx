@@ -7,6 +7,7 @@ import { Link, useLoaderData } from "react-router";
 import { FeaturedCategories } from "./variants/components/FeaturedCategories";
 import { Filters, type ProductOption } from "./variants/components/Filters";
 import { VariantCartAction } from "./variants/components/VariantCartAction";
+import { Button } from "@library";
 
 type VariantCardProps = {
   product: Product;
@@ -106,25 +107,36 @@ export async function clientLoader({ request }: { request: Request }) {
   return loadVariants(request);
 }
 
+const Banner = () => {
+  return <div className="h-40 sm:h-60 p-3 sm:p-4 bg-gray-100 flex items-end">
+    <Button
+      className="bg-white font-normal"
+      variant="secondary"
+      size="default"
+    >
+      Explore more
+    </Button>
+  </div>
+}
+
 export default function Variants() {
   const t = useTranslate();
   const { cards, options } = useLoaderData<typeof clientLoader>();
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
-      <header className="pt-6">
+    <div className="mx-auto w-full max-w-7xl p-3 flex gap-3 flex-col">
+      <Banner />
+      <div>
         <h1 className="text-[1.7rem] font-bold tracking-tight text-gray-900 md:text-3xl">
           {t("filters.new-arrivals")}
         </h1>
         <p className="mt-1 text-sm text-gray-500 lg:hidden">
           {t("filters.subtitle")}
         </p>
-      </header>
-
+      </div>
       <FeaturedCategories />
-
       <Filters options={options} resultCount={cards.length}>
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:mt-2 lg:gap-x-6 lg:gap-y-10">
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:gap-x-6 lg:gap-y-10">
           {cards.map(({ product, variant }) => (
             <VariantCard key={variant.id} product={product} variant={variant} />
           ))}
@@ -133,6 +145,6 @@ export default function Variants() {
           {t("filters.result-count", { count: cards.length })}
         </p>
       </Filters>
-    </main>
+    </div>
   );
 }

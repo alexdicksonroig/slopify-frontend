@@ -214,6 +214,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
           </div>
         </div>
       </Drawer>
+      <div>
 
       <div className="contents lg:block lg:border-b lg:border-gray-200 lg:pb-3">
         <div className="flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:min-h-0 lg:justify-end lg:border-0">
@@ -294,6 +295,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
           </p>
           {children}
         </div>
+      </div>
       </div>
     </>
   );
