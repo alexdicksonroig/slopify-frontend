@@ -25,25 +25,25 @@ export const LoadingCircle = ({
     className={clsx("block shrink-0 animate-spin", sizes[size], className)}
     fill="none"
     role={label ? "status" : undefined}
-    viewBox="0 0 48 48"
+    viewBox="0 0 24 24"
   >
     <circle
-      className="opacity-15"
-      cx="24"
-      cy="24"
-      r="19"
+      className="opacity-10"
+      cx="12"
+      cy="12"
+      r="9"
       stroke="currentColor"
-      strokeWidth="3"
+      strokeWidth="0.75"
     />
     <circle
-      cx="24"
-      cy="24"
-      r="19"
+      cx="12"
+      cy="12"
+      r="9"
       pathLength="100"
       stroke="currentColor"
-      strokeDasharray="42 58"
+      strokeDasharray="68 32"
       strokeLinecap="round"
-      strokeWidth="3"
+      strokeWidth="0.75"
     />
   </svg>
 );

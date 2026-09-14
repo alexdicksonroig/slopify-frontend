@@ -2,6 +2,20 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+.navigation-loading-bar {
+  width: 40%;
+  animation: navigation-loading 1s ease-in-out infinite;
+}
+
+@keyframes navigation-loading {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(350%);
+  }
+}
+
 .back-button {
   width: 0;
   flex-shrink: 0;
@@ -37,6 +51,26 @@ body {
   --font-sans:
     ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
+  --text-xs: 0.625rem;
+  --text-xs--line-height: 0.875rem;
+  --text-sm: 0.75rem;
+  --text-sm--line-height: 1rem;
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.25rem;
+  --text-lg: 0.9375rem;
+  --text-lg--line-height: 1.375rem;
+  --text-xl: 1rem;
+  --text-xl--line-height: 1.5rem;
+  --text-2xl: 1.25rem;
+  --text-2xl--line-height: 1.625rem;
+  --text-3xl: 1.5rem;
+  --text-3xl--line-height: 1.875rem;
+  --text-4xl: 1.75rem;
+  --text-4xl--line-height: 2rem;
+  --text-5xl: 2.25rem;
+  --text-5xl--line-height: 1;
+  --text-6xl: 2.75rem;
+  --text-6xl--line-height: 1;
   --radius: 0.5rem;
   --radius-none: 0;
   --radius-sm: 0.5rem;

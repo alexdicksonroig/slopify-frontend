@@ -41,25 +41,9 @@ export function HydrateFallback() {
   return (
     <output
       aria-label={t("app.loading")}
-      style={{
-        display: "flex",
-        minHeight: "100vh",
-        alignItems: "center",
-        justifyContent: "center",
-        animation: "fadeIn 1s ease-in-out",
-      }}
+      className="flex min-h-screen items-center justify-center bg-white dark:bg-gray-950"
     >
       <LoadingCircle size="lg" className="text-gray-900 dark:text-white" />
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
     </output>
   );
 }

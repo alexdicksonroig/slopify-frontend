@@ -5,14 +5,14 @@ import { getCartItemCountUseCase } from "@app/lib/cart/application/get-cart-item
 import { useCart } from "@app/lib/context/cart.context";
 import { Button, cn, Icon } from "@library";
 import { useEffect, useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router";
+import { Outlet, useNavigate, useNavigation } from "react-router";
 import Footer from "./footer";
 
 export default function Example() {
   const t = useTranslate();
   const { cart } = useCart();
-  const location = useLocation();
   const navigate = useNavigate();
+  const navigation = useNavigation();
   const [showFirstText, setShowFirstText] = useState(true);
   const [showAnnouncement, setShowAnnouncement] = useState(true);
   const [cartOpen, setCartOpen] = useState(false);
@@ -32,7 +32,7 @@ export default function Example() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="bg-white ">
+      <header className="relative bg-white">
         <title>Store</title>
         {showAnnouncement && (
           <div className="relative flex min-h-[42px] items-center bg-indigo-600 text-[13px] font-semibold text-white sm:text-sm">
@@ -70,7 +70,7 @@ export default function Example() {
         )}
         <nav
           aria-label={t("header.top")}
-          className="border-b border-gray-200 px-4 sm:px-6 lg:px-8"
+          className="border-b border-gray-200 px-3 sm:px-4"
         >
           <div className="flex h-14 items-center">
             <div className="flex items-center">
@@ -150,6 +150,14 @@ export default function Example() {
             </div>
           </div>
         </nav>
+        {navigation.state !== "idle" && (
+          <output
+            aria-label={t("app.loading")}
+            className="absolute inset-x-0 bottom-0 z-50 h-0.5 translate-y-full overflow-hidden"
+          >
+            <span className="navigation-loading-bar block h-full bg-indigo-600" />
+          </output>
+        )}
       </header>
       <div className="flex-1">
         <Outlet />

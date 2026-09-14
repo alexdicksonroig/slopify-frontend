@@ -133,6 +133,7 @@ export function VariantCartAction({
           />
           <Button
             type="submit"
+            size="sm"
             disabled={isAdding}
             className="h-10 w-full min-w-0 rounded-none bg-neutral-950 px-3 text-xs uppercase hover:bg-neutral-800 sm:flex-1"
           >
