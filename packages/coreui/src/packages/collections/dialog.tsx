@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { cn } from "../../lib/cn";
 import { Card, Overlay } from "../components";
 
@@ -19,17 +20,28 @@ export const Dialog: React.FC<DialogProps> = ({
   bottomOnMobile = true,
   ...rest
 }) => {
+  useEffect(() => {
+    if (!open || !isModal) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isModal, open]);
+
   return (
     <>
       <Overlay
         active={open}
         onClick={isModal ? undefined : () => onOpenChange(false)}
-        className="md:bg-black/15"
+        className="z-40 md:bg-black/15"
       />
       <Card
         {...rest}
         className={cn(
-          "fixed z-4 h-fit w-full sm:w-[350px]",
+          "fixed z-50 h-fit w-full sm:w-[350px]",
           bottomOnMobile
             ? "inset-x-0 bottom-0 mx-auto sm:inset-x-auto sm:top-1/2 sm:left-1/2 sm:mx-0 sm:-translate-x-1/2 sm:-translate-y-1/2"
             : "inset-0 m-auto",
