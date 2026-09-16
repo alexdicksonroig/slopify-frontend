@@ -110,7 +110,13 @@ const Banner = () => {
   const t = useTranslate();
 
   return (
-    <div className="h-30 rounded sm:h-60 p-3 sm:p-4 bg-gray-50 flex items-end justify-end">
+    <div
+      className="h-30 rounded sm:h-60 p-3 sm:p-4 bg-gray-50 bg-cover bg-center flex items-end justify-end"
+      style={{
+        backgroundImage:
+          'linear-gradient(rgb(0 0 0 / 10%), rgb(0 0 0 / 10%)), url("https://story-wines.myshopify.com/cdn/shop/files/4330269.jpg?v=1680112466")',
+      }}
+    >
       <Button className="bg-white font-normal" variant="secondary" size="sm">
         {t("banner.shop-now")}
         <Icon icon="arrow-right" size="sm" rotate={315} />
