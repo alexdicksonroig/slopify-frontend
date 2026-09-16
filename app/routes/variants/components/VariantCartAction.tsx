@@ -87,7 +87,7 @@ export function VariantCartAction({
         onClick={() => setIsOpen((open) => !open)}
         className="absolute right-3 bottom-3 h-10! w-10! origin-center md:h-8! md:w-8! transform-gpu bg-white p-0! shadow-none transition-transform duration-300 ease-out hover:scale-105 hover:bg-white! hover:shadow-none active:scale-110 active:shadow-none motion-reduce:transform-none disabled:opacity-40 [border-radius:0.25rem]"
       >
-        <Icon icon="shopping-bag" size="sm" />
+        <Icon icon="shopping-bag-plus" size="md" />
       </Button>
 
       <Popover

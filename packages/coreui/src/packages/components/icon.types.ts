@@ -11,6 +11,7 @@ export const ICON_NAMES = [
   "minus",
   "plus",
   "shopping-bag",
+  "shopping-bag-plus",
   "x",
 ] as const;
 
