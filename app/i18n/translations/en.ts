@@ -1,4 +1,7 @@
 export const en = {
+  "age-verification.no": "No",
+  "age-verification.question": "Are you over 18?",
+  "age-verification.yes": "Yes",
   "app.loading": "Loading",
   "banner.shop-now": "Shop Now",
   "cart.close": "Close cart",

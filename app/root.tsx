@@ -1,3 +1,4 @@
+import { AgeVerificationDialog } from "@app/components/age-verification-dialog";
 import { LanguageProvider, useTranslate } from "@app/i18n";
 import { CartProvider } from "@app/lib/context/cart.context";
 import { LoadingCircle } from "@library";
@@ -49,7 +50,12 @@ export function HydrateFallback() {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <AgeVerificationDialog />
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

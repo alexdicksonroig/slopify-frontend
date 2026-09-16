@@ -1,6 +1,9 @@
 import type { TranslationDictionary } from ".";
 
 export const fr = {
+  "age-verification.no": "Non",
+  "age-verification.question": "Avez-vous plus de 18 ans ?",
+  "age-verification.yes": "Oui",
   "app.loading": "Chargement",
   "banner.shop-now": "Acheter maintenant",
   "cart.close": "Fermer le panier",
