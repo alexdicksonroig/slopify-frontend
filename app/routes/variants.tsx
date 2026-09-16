@@ -3,7 +3,7 @@ import * as Api from "@app/lib/api";
 import { formatMoney } from "@app/lib/currency";
 import type { Product } from "@app/lib/product";
 import type { Variant, VariantListItem } from "@app/lib/variant";
-import { Button, Icon } from "@library";
+import { Button } from "@library";
 import { Link, useLoaderData } from "react-router";
 import { Filters, type ProductOption } from "./variants/components/Filters";
 import { VariantCartAction } from "./variants/components/VariantCartAction";
@@ -117,9 +117,12 @@ const Banner = () => {
           'linear-gradient(rgb(0 0 0 / 10%), rgb(0 0 0 / 10%)), url("https://story-wines.myshopify.com/cdn/shop/files/4330269.jpg?v=1680112466")',
       }}
     >
-      <Button className="bg-white font-normal" variant="secondary" size="sm">
+      <Button
+        className="rounded-[9999px] bg-white font-normal"
+        variant="secondary"
+        size="sm"
+      >
         {t("banner.shop-now")}
-        <Icon icon="arrow-right" size="sm" rotate={315} />
       </Button>
     </div>
   );
