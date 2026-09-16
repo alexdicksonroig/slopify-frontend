@@ -8,6 +8,7 @@ export type PopoverProps = {
   className?: string;
   children: React.ReactNode;
   placement?: "top" | "bottom";
+  desktopFrom?: "md" | "lg";
   overlayOpacity?: "light" | "medium" | "dark";
 } & React.HTMLAttributes<HTMLDivElement>;
 
@@ -19,9 +20,16 @@ const overlayClasses = {
 
 const classes = {
   desktop: {
-    base: "md:absolute md:transform md:bottom-auto",
-    placementTop: "md:top-0 md:-translate-y-full",
-    placementBottom: "md:top-full md:translate-y-0",
+    md: {
+      base: "md:absolute md:transform md:bottom-auto md:transition-none",
+      placementTop: "md:top-0 md:-translate-y-full",
+      placementBottom: "md:top-full md:translate-y-0",
+    },
+    lg: {
+      base: "lg:absolute lg:transform lg:bottom-auto lg:transition-none",
+      placementTop: "lg:top-0 lg:-translate-y-full",
+      placementBottom: "lg:top-full lg:translate-y-0",
+    },
   },
   mobile: {
     base: "fixed bottom-0",
@@ -34,13 +42,15 @@ export const Popover: React.FC<PopoverProps> = ({
   className = "",
   children,
   placement = "top",
+  desktopFrom = "md",
   overlayOpacity,
   ...rest
 }) => {
+  const desktopClasses = classes.desktop[desktopFrom];
   const desktopPlacementClasses =
     placement === "bottom"
-      ? classes.desktop.placementBottom
-      : classes.desktop.placementTop;
+      ? desktopClasses.placementBottom
+      : desktopClasses.placementTop;
 
   useEffect(() => {
     if (!open) return;
@@ -65,9 +75,9 @@ export const Popover: React.FC<PopoverProps> = ({
         inert={!open}
         aria-hidden={!open}
         className={cn(
-          "z-4 transition-[translate,visibility] duration-200 ease-in-out md:transition-none",
+          "z-4 transition-[translate,visibility] duration-200 ease-in-out",
           classes.mobile.base,
-          classes.desktop.base,
+          desktopClasses.base,
           desktopPlacementClasses,
           className,
           open

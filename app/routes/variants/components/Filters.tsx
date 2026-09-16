@@ -1,5 +1,5 @@
 import { type TranslationKey, useTranslate } from "@app/i18n";
-import { Accordion, Button, Drawer, Icon, Overlay, Select } from "@library";
+import { Accordion, Button, Icon, Popover, Select } from "@library";
 import { type ReactNode, useState } from "react";
 import { useSearchParams } from "react-router";
 
@@ -123,7 +123,7 @@ type FiltersProps = {
 
 export function Filters({ children, options, resultCount }: FiltersProps) {
   const t = useTranslate();
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const activeFilters = options.flatMap((option) => {
     const selectedValueId = searchParams.get(String(option.id));
@@ -181,19 +181,26 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
 
   return (
     <>
-      <Overlay
-        active={drawerOpen}
-        onClick={() => setDrawerOpen(false)}
-        className="bg-black/25 md:bg-black/25 lg:hidden"
-      />
-      <Drawer
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-        fromRight
-        hiddenFrom="lg"
+      <Popover
+        open={filtersOpen}
+        onOpenChange={setFiltersOpen}
+        desktopFrom="lg"
+        overlayOpacity="light"
+        role="dialog"
+        aria-label={t("filters.title")}
+        className="inset-x-0 z-50 max-h-[calc(100svh-1rem)] w-full overflow-y-auto rounded-xl bg-white px-4 pt-2 pb-6 shadow-xl lg:hidden"
       >
-        <div className="flex min-h-[calc(100svh-4.25rem)] flex-col px-4 pt-6">
-          <h2 className="text-lg font-medium text-gray-900 mb-6">
+        <div className="flex h-8 w-full items-center justify-end">
+          <button
+            type="button"
+            aria-label="Close filters"
+            onClick={() => setFiltersOpen(false)}
+          >
+            <Icon icon="x" size="lg" className="brightness-[0.6]" />
+          </button>
+        </div>
+        <div>
+          <h2 className="mb-4 text-lg font-medium text-gray-900">
             {t("filters.title")}
           </h2>
           <FilterContent
@@ -202,18 +209,18 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
             onFilterChange={handleFilterChange}
             onResetFilters={handleResetFilters}
           />
-          <div className="sticky bottom-0 mt-auto bg-white">
+          <div className="mt-6">
             <Button
               type="button"
               size="lg"
               className="w-full uppercase"
-              onClick={() => setDrawerOpen(false)}
+              onClick={() => setFiltersOpen(false)}
             >
               {t("filters.view-results", { count: resultCount })}
             </Button>
           </div>
         </div>
-      </Drawer>
+      </Popover>
       <div>
         <div className="contents lg:block lg:border-b lg:border-gray-200">
           <div className="flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:hidden">
@@ -237,7 +244,9 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               <Button
                 variant="ghost"
                 className="h-8 gap-1 rounded-md px-1.5 text-xs font-normal text-gray-700 shadow-none hover:bg-gray-50 lg:hidden [&_svg]:size-3.5"
-                onClick={() => setDrawerOpen(true)}
+                aria-haspopup="dialog"
+                aria-expanded={filtersOpen}
+                onClick={() => setFiltersOpen(true)}
               >
                 <Icon icon="list-filter" size="sm" />
                 <span>{t("filters.title")}</span>
