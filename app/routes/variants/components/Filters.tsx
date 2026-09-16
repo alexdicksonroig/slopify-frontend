@@ -51,9 +51,7 @@ const FilterContent = ({
 
   return (
     <div>
-      <Accordion
-        defaultOpenItem={options[0] ? `option-${options[0].id}` : undefined}
-      >
+      <Accordion defaultOpenItems>
         {options.map((option) => {
           const translationKey = OPTION_LABEL_KEYS[option.label.toLowerCase()];
           const headerText = translationKey ? t(translationKey) : option.label;

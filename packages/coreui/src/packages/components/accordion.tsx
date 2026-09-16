@@ -1,20 +1,26 @@
-import { createContext, useContext, useState } from "react";
+import {
+  Children,
+  createContext,
+  isValidElement,
+  useContext,
+  useState,
+} from "react";
 import { cn } from "../../lib/cn";
 
 type AccordionContext = {
-  openItem: string | undefined;
-  setOpenItem: React.Dispatch<React.SetStateAction<string | undefined>>;
+  openItems: Record<string, boolean>;
+  setOpenItems: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
 };
 
 const AccordionContext = createContext<AccordionContext>({
-  openItem: undefined,
-  setOpenItem: () => {},
+  openItems: {},
+  setOpenItems: () => {},
 });
 
 type AccordionProps = {
   children: React.ReactNode;
   className?: string;
-  defaultOpenItem?: string;
+  defaultOpenItems?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type AccordionItemProps = {
@@ -35,13 +41,24 @@ type AccordionContentProps = {
 const Accordion: React.FC<AccordionProps> = ({
   children,
   className,
-  defaultOpenItem,
+  defaultOpenItems = false,
   ...props
 }) => {
-  const [openItem, setOpenItem] = useState<string | undefined>(defaultOpenItem);
+  const [openItems, setOpenItems] = useState<Record<string, boolean>>(() => {
+    const items: Record<string, boolean> = {};
+    Children.forEach(children, (child) => {
+      if (
+        isValidElement<AccordionItemProps>(child) &&
+        child.type === AccordionItem
+      ) {
+        items[child.props.itemId] = defaultOpenItems;
+      }
+    });
+    return items;
+  });
 
   return (
-    <AccordionContext value={{ openItem, setOpenItem }}>
+    <AccordionContext value={{ openItems, setOpenItems }}>
       <div className={cn("flex flex-col", className)} {...props}>
         {children}
       </div>
@@ -56,11 +73,14 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   headerText,
   ...props
 }) => {
-  const { openItem, setOpenItem } = useContext(AccordionContext);
-  const isOpen = openItem === itemId;
+  const { openItems, setOpenItems } = useContext(AccordionContext);
+  const isOpen = openItems[itemId] ?? false;
 
   const handleToggle = () => {
-    setOpenItem(isOpen ? undefined : itemId);
+    setOpenItems((current) => ({
+      ...current,
+      [itemId]: !current[itemId],
+    }));
   };
 
   return (
