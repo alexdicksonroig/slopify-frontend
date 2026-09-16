@@ -1,10 +1,18 @@
-import { useTranslate } from "@app/i18n";
-import { Button, Dialog } from "@library";
+import {
+  type Language,
+  languageOptions,
+  useLanguage,
+  useTranslate,
+} from "@app/i18n";
+import { Button, Dialog, Select } from "@library";
 import { useId, useState } from "react";
 
 export function AgeVerificationDialog() {
   const t = useTranslate();
+  const { language, setLanguage } = useLanguage();
   const titleId = useId();
+  const descriptionId = useId();
+  const languageLabelId = useId();
   const [open, setOpen] = useState(true);
 
   return (
@@ -14,12 +22,42 @@ export function AgeVerificationDialog() {
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}
+      aria-describedby={descriptionId}
       bottomOnMobile={false}
-      className="w-[calc(100%-2rem)] gap-6 p-6 shadow-none sm:w-[350px]"
+      className="w-[calc(100%-2rem)] max-w-[300px] gap-5 p-5 shadow-none sm:w-[350px] sm:max-w-none sm:gap-6 sm:p-6"
     >
-      <h2 id={titleId} className="text-center text-xl font-semibold">
-        {t("age-verification.question")}
+      <img
+        src="/assets/roig-parals-logo-dark.png"
+        alt=""
+        className="mx-auto h-10 w-auto"
+      />
+      <h2
+        id={titleId}
+        className="text-center text-xl font-semibold tracking-wide uppercase"
+      >
+        {t("age-verification.title")}
       </h2>
+      <p
+        id={descriptionId}
+        className="text-center text-sm leading-relaxed text-muted-foreground"
+      >
+        {t("age-verification.question")}
+      </p>
+      <div className="space-y-2">
+        <p id={languageLabelId} className="text-sm font-medium">
+          {t("age-verification.select-language")}
+        </p>
+        <Select
+          value={language}
+          onChange={(value) => setLanguage(value as Language)}
+          options={languageOptions}
+          placeholder={t("header.language")}
+          placement="bottom"
+          size="sm"
+          className="w-full"
+          aria-labelledby={languageLabelId}
+        />
+      </div>
       <div className="grid grid-cols-2 gap-3">
         <Button type="button" variant="outline">
           {t("age-verification.no")}

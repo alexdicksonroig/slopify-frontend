@@ -35,7 +35,7 @@ function interpolate(text: string, replacements?: Replacements): string {
 }
 
 export function LanguageProvider({ children }: PropsWithChildren) {
-  const [language, setLanguageState] = useState<Language>("en");
+  const [language, setLanguageState] = useState<Language>("ca");
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem(

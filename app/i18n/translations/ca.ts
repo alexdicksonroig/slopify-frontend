@@ -2,8 +2,11 @@ import type { TranslationDictionary } from ".";
 
 export const ca = {
   "age-verification.no": "No",
-  "age-verification.question": "Tens més de 18 anys?",
-  "age-verification.yes": "Sí",
+  "age-verification.question":
+    "Confirma que tens l’edat legal per consumir alcohol al teu país o regió.",
+  "age-verification.select-language": "Selecciona el teu idioma",
+  "age-verification.title": "Benvingut a Roig Parals",
+  "age-verification.yes": "Sí, entra",
   "app.loading": "S'està carregant",
   "banner.shop-now": "Compra ara",
   "cart.close": "Tanca la cistella",

@@ -17,7 +17,7 @@ import "./app.css";
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html
-      lang="en"
+      lang="ca"
       className="has-[.drawer-open]:h-svh has-[.drawer-open]:overflow-hidden"
     >
       <head>

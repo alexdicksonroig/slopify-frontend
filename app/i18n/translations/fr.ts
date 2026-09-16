@@ -2,8 +2,11 @@ import type { TranslationDictionary } from ".";
 
 export const fr = {
   "age-verification.no": "Non",
-  "age-verification.question": "Avez-vous plus de 18 ans ?",
-  "age-verification.yes": "Oui",
+  "age-verification.question":
+    "Veuillez confirmer que vous avez l’âge légal pour consommer de l’alcool dans votre pays ou région.",
+  "age-verification.select-language": "Sélectionnez votre langue",
+  "age-verification.title": "Bienvenue chez Roig Parals",
+  "age-verification.yes": "Oui, entrer",
   "app.loading": "Chargement",
   "banner.shop-now": "Acheter maintenant",
   "cart.close": "Fermer le panier",

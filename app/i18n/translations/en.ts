@@ -1,7 +1,10 @@
 export const en = {
   "age-verification.no": "No",
-  "age-verification.question": "Are you over 18?",
-  "age-verification.yes": "Yes",
+  "age-verification.question":
+    "Please confirm that you are of legal drinking age in your country or region.",
+  "age-verification.select-language": "Select your language",
+  "age-verification.title": "Welcome to Roig Parals",
+  "age-verification.yes": "Yes, enter",
   "app.loading": "Loading",
   "banner.shop-now": "Shop Now",
   "cart.close": "Close cart",
