@@ -5,7 +5,9 @@ import {
   useTranslate,
 } from "@app/i18n";
 import { Button, Dialog, Select } from "@library";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
+
+const AGE_VERIFICATION_SEEN_KEY = "age-verification-seen";
 
 export function AgeVerificationDialog() {
   const t = useTranslate();
@@ -13,7 +15,20 @@ export function AgeVerificationDialog() {
   const titleId = useId();
   const descriptionId = useId();
   const languageLabelId = useId();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setOpen(localStorage.getItem(AGE_VERIFICATION_SEEN_KEY) !== "true");
+  }, []);
+
+  const handleEnter = () => {
+    localStorage.setItem(AGE_VERIFICATION_SEEN_KEY, "true");
+    setOpen(false);
+  };
+
+  const handleExit = () => {
+    window.location.replace("https://www.google.com");
+  };
 
   return (
     <Dialog
@@ -59,10 +74,10 @@ export function AgeVerificationDialog() {
         />
       </div>
       <div className="grid grid-cols-2 gap-3">
-        <Button type="button" variant="outline">
+        <Button type="button" variant="outline" onClick={handleExit}>
           {t("age-verification.no")}
         </Button>
-        <Button type="button" onClick={() => setOpen(false)}>
+        <Button type="button" onClick={handleEnter}>
           {t("age-verification.yes")}
         </Button>
       </div>

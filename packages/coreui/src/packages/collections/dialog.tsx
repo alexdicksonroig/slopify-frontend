@@ -24,6 +24,7 @@ export const Dialog: React.FC<DialogProps> = ({
       <Overlay
         active={open}
         onClick={isModal ? undefined : () => onOpenChange(false)}
+        className="md:bg-black/15"
       />
       <Card
         {...rest}
