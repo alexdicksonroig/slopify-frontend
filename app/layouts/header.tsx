@@ -1,17 +1,15 @@
-import { BackButton } from "@app/components/back-button";
 import { CartDrawer } from "@app/components/cart-drawer";
 import { useTranslate } from "@app/i18n";
 import { getCartItemCountUseCase } from "@app/lib/cart/application/get-cart-item-count.use-case";
 import { useCart } from "@app/lib/context/cart.context";
 import { Button, cn, Icon } from "@library";
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate, useNavigation } from "react-router";
+import { Link, Outlet, useNavigation } from "react-router";
 import Footer from "./footer";
 
 export default function Example() {
   const t = useTranslate();
   const { cart } = useCart();
-  const navigate = useNavigate();
   const navigation = useNavigation();
   const [showFirstText, setShowFirstText] = useState(true);
   const [showAnnouncement, setShowAnnouncement] = useState(true);
@@ -74,14 +72,10 @@ export default function Example() {
         >
           <div className="flex h-14 items-center">
             <div className="flex items-center">
-              <BackButton />
-
               {/* Logo */}
-              <Button
-                onClick={() => navigate("/")}
-                size="icon"
-                variant="ghost"
-                className="h-12 w-auto p-0"
+              <Link
+                to="/"
+                className="inline-flex h-12 w-auto items-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
               >
                 <span className="sr-only">{t("header.company")}</span>
                 <img
@@ -89,7 +83,7 @@ export default function Example() {
                   src="/assets/roig-parals-logo-dark.png"
                   className="h-10 w-auto"
                 />
-              </Button>
+              </Link>
             </div>
 
             <div className="ml-auto flex items-center">
