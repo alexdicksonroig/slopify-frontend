@@ -29,10 +29,10 @@ export const Dialog: React.FC<DialogProps> = ({
       <Card
         {...rest}
         className={cn(
-          "fixed left-1/2 z-4 h-fit w-full -translate-x-1/2 sm:w-[350px]",
+          "fixed z-4 h-fit w-full sm:w-[350px]",
           bottomOnMobile
-            ? "top-auto bottom-0 sm:top-1/2 sm:bottom-auto sm:-translate-y-1/2"
-            : "top-1/2 bottom-auto -translate-y-1/2",
+            ? "inset-x-0 bottom-0 mx-auto sm:inset-x-auto sm:top-1/2 sm:left-1/2 sm:mx-0 sm:-translate-x-1/2 sm:-translate-y-1/2"
+            : "inset-0 m-auto",
           `${open ? "flex" : "hidden"}`,
           className,
         )}
