@@ -187,7 +187,7 @@ export default function ProductPage() {
             />
           </div>
 
-          <div className="mt-7 border-t border-neutral-200">
+          <div className="mt-7">
             {[t("product.highlights"), t("product.details"), "Shipping"].map(
               (label) => (
                 <details

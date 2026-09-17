@@ -144,20 +144,20 @@ export default function Example() {
             </div>
           </div>
         </nav>
-        {navigation.state !== "idle" && (
-          <output
-            aria-label={t("app.loading")}
-            className="absolute inset-x-0 bottom-0 z-50 h-0.5 translate-y-full overflow-hidden"
-          >
-            <span className="navigation-loading-bar block h-full bg-indigo-600" />
-          </output>
-        )}
       </header>
       <div className="flex-1">
         <Outlet />
       </div>
       <Footer />
       <CartDrawer open={cartOpen} onClose={closeCart} />
+      {navigation.state !== "idle" && (
+        <output
+          aria-label={t("app.loading")}
+          className="fixed inset-x-0 bottom-0 z-50 h-0.5 overflow-hidden"
+        >
+          <span className="navigation-loading-bar block h-full bg-indigo-600" />
+        </output>
+      )}
     </div>
   );
 }
