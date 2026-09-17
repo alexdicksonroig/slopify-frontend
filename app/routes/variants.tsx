@@ -110,7 +110,7 @@ const Banner = () => {
   // const t = useTranslate();
 
   return (
-    <div className="h-30 rounded sm:h-60 p-3 sm:p-4 bg-gray-100 flex items-end justify-end">
+    <div className="h-35 rounded sm:h-60 p-3 sm:p-4 bg-gray-100 flex items-end justify-end">
       {/* <Button
         className="rounded-[9999px] bg-white font-normal"
         variant="secondary"
@@ -127,7 +127,7 @@ export default function Variants() {
   const { cards, options } = useLoaderData<typeof clientLoader>();
 
   return (
-    <div className="mx-auto w-full max-w-7xl p-3 sm:p-6 flex gap-5 flex-col">
+    <div className="mx-auto w-full max-w-7xl p-3 sm:p-6 flex gap-2 flex-col">
       <Banner />
       <div>
         <h1 className="text-[1.7rem] font-bold tracking-tight text-gray-900 md:text-3xl">
