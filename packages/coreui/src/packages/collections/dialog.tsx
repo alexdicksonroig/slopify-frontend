@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { cn } from "../../lib/cn";
 import { Card, Overlay } from "../components";
 
@@ -20,17 +19,6 @@ export const Dialog: React.FC<DialogProps> = ({
   bottomOnMobile = true,
   ...rest
 }) => {
-  useEffect(() => {
-    if (!open || !isModal) return;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [isModal, open]);
-
   return (
     <>
       <Overlay
