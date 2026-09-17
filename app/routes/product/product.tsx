@@ -141,10 +141,10 @@ export default function ProductPage() {
 
         <section className="lg:pt-4">
           <div className="border-b border-neutral-200 pb-6">
-            <h1 className="text-[2.5rem] leading-[0.98] font-bold tracking-[-0.055em] text-neutral-950 sm:text-5xl lg:text-[3.25rem]">
+            <h1 className="text-4xl font-bold tracking-[-0.055em] text-neutral-950">
               {product.name}
             </h1>
-            <div className="mt-5 flex items-end justify-between gap-6">
+            <div className="mt-2 flex items-end justify-between gap-6">
               <p className="text-sm text-neutral-500">
                 A bottle chosen for you
               </p>
