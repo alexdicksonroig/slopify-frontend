@@ -161,7 +161,7 @@ export default function ProductPage() {
               <QuantitySelector
                 value={quantity}
                 onChange={setQuantity}
-                className="h-14"
+                className="h-14 w-24 [&_button]:h-8! [&_button]:w-8!"
               />
               <Button
                 type="submit"
