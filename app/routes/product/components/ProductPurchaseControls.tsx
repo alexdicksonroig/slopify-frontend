@@ -6,6 +6,7 @@ type ProductPurchaseControlsProps = {
   unitPrice: string;
   total: string;
   quantity: number;
+  stock: number;
   onQuantityChange: (quantity: number) => void;
 };
 
@@ -14,6 +15,7 @@ export function ProductPurchaseControls({
   unitPrice,
   total,
   quantity,
+  stock,
   onQuantityChange,
 }: ProductPurchaseControlsProps) {
   const t = useTranslate();
@@ -33,7 +35,7 @@ export function ProductPurchaseControls({
         <QuantitySelector
           value={quantity}
           min={0}
-          max={Number.POSITIVE_INFINITY}
+          max={stock}
           onChange={onQuantityChange}
           appearance="subtle"
           className="h-6 w-18 [&>div]:gap-0.5 [&_button]:h-5 [&_output]:min-w-6 [&_output]:bg-neutral-200/50 [&_output]:text-xs"
@@ -42,9 +44,7 @@ export function ProductPurchaseControls({
 
       <div className="relative flex items-center justify-between gap-3 before:absolute before:inset-x-0 before:-top-3 before:border-t before:border-dashed before:border-neutral-200">
         <p className="text-lg font-bold">{t("product.total")}</p>
-        <p className="text-xl font-bold tracking-tight tabular-nums">
-          {total}
-        </p>
+        <p className="text-xl font-bold tracking-tight tabular-nums">{total}</p>
       </div>
     </div>
   );

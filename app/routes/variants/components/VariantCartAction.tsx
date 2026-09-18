@@ -19,16 +19,13 @@ export function VariantCartAction({
   const t = useTranslate();
   const { cart, setCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const { stock } = variant;
   const [isAdding, setIsAdding] = useState(false);
   const cartQuantity =
     cart?.items.find((item) => item.variantId === variant.id)?.quantity ?? 1;
+  const [quantity, setQuantity] = useState(cartQuantity);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const popupId = `variant-cart-popup-${variant.id}`;
-
-  useEffect(() => {
-    setQuantity(cartQuantity);
-  }, [cartQuantity]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -47,7 +44,14 @@ export function VariantCartAction({
   const handleAddToCart = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { unitAmount, currency } = variant;
-    if (!cart || unitAmount === null || currency === null) return;
+    if (
+      !cart ||
+      unitAmount === null ||
+      currency === null ||
+      quantity < 1 ||
+      quantity > stock
+    )
+      return;
 
     setIsAdding(true);
     const updatedCart = await addProductToCartUseCase.execute(
@@ -121,6 +125,14 @@ export function VariantCartAction({
             </div>
           ))}
         </dl>
+        <p
+          className={`mt-2 text-xs ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
+          aria-live="polite"
+        >
+          {stock > 0
+            ? t("product.stock-count", { count: stock })
+            : t("product.out-of-stock")}
+        </p>
 
         <form
           className="mt-4 flex flex-col gap-3 sm:mt-3 sm:flex-row sm:gap-2"
@@ -128,16 +140,18 @@ export function VariantCartAction({
         >
           <QuantitySelector
             value={quantity}
+            min={0}
+            max={stock}
             onChange={setQuantity}
             className="w-full sm:w-28"
           />
           <Button
             type="submit"
             size="sm"
-            disabled={isAdding}
-            className="h-10 w-full min-w-0 rounded-none bg-neutral-950 px-3 text-xs uppercase hover:bg-neutral-800 sm:flex-1"
+            disabled={!cart || isAdding || quantity < 1 || quantity > stock}
+            className="h-10 w-full min-w-0 rounded-none bg-neutral-950 px-3 text-xs uppercase hover:bg-neutral-800 disabled:bg-neutral-100 disabled:text-neutral-500 disabled:opacity-100 sm:flex-1"
           >
-            {t("product.add-to-bag")}
+            {stock === 0 ? t("product.out-of-stock") : t("product.add-to-bag")}
           </Button>
         </form>
       </Popover>

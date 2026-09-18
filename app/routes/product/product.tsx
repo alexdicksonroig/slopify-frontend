@@ -53,10 +53,9 @@ export default function ProductPage() {
   );
   const [quantity, setQuantity] = useState(1);
   const purchaseControlsRef = useRef<HTMLDivElement>(null);
-  const hasCartItem =
-    cart?.items.some(
-      (item) => item.variantId === variant.id && item.quantity > 0,
-    ) ?? false;
+  const cartQuantity =
+    cart?.items.find((item) => item.variantId === variant.id)?.quantity ?? 0;
+  const hasCartItem = cartQuantity > 0;
 
   useEffect(() => {
     setSelections(
@@ -91,7 +90,7 @@ export default function ProductPage() {
   const galleryImages = variant.coverUrl
     ? [{ src: variant.coverUrl, alt: product.name }]
     : [];
-  const { unitAmount, currency } = variant;
+  const { unitAmount, currency, stock } = variant;
   const hasPrice =
     selectedVariant !== null && unitAmount !== null && currency !== null;
   const price = hasPrice
@@ -99,7 +98,14 @@ export default function ProductPage() {
     : t("product.unavailable");
 
   const addToCart = async (quantity: number) => {
-    if (!selectedVariant || unitAmount === null || currency === null) return;
+    if (
+      !selectedVariant ||
+      unitAmount === null ||
+      currency === null ||
+      quantity < 0 ||
+      quantity > stock
+    )
+      return;
 
     if (quantity === 0) {
       const updatedCart = await deleteProductFromCartUseCase.execute(
@@ -149,6 +155,14 @@ export default function ProductPage() {
                 A bottle chosen for you
               </p>
             </div>
+            <p
+              className={`mt-3 text-sm ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
+              aria-live="polite"
+            >
+              {stock > 0
+                ? t("product.stock-count", { count: stock })
+                : t("product.out-of-stock")}
+            </p>
           </div>
 
           {hasCartItem && (
@@ -162,9 +176,11 @@ export default function ProductPage() {
                     : t("product.unavailable")
                 }
                 quantity={quantity}
+                stock={stock}
                 onQuantityChange={(nextQuantity) => {
-                  setQuantity(nextQuantity);
-                  void addToCart(nextQuantity);
+                  const availableQuantity = Math.min(nextQuantity, stock);
+                  setQuantity(availableQuantity);
+                  void addToCart(availableQuantity);
                 }}
               />
             </div>
@@ -221,10 +237,10 @@ export default function ProductPage() {
           <Button
             type="button"
             onClick={handleFooterAdd}
-            disabled={!cart || !hasPrice}
-            className="h-11 bg-neutral-900 px-5 text-sm text-white shadow-none hover:bg-neutral-800"
+            disabled={!cart || !hasPrice || cartQuantity >= stock}
+            className="h-11 bg-neutral-900 px-5 text-sm text-white shadow-none hover:bg-neutral-800 disabled:bg-neutral-100 disabled:text-neutral-500 disabled:opacity-100"
           >
-            {t("product.add-to-bag")}
+            {stock === 0 ? t("product.out-of-stock") : t("product.add-to-bag")}
           </Button>
         </div>
       </div>

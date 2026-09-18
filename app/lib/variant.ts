@@ -14,6 +14,7 @@ export type VariantListItem = {
   productId: number;
   unitAmount: number | null;
   currency: string | null;
+  stock: number;
   thumbnailUrl: string | null;
   coverUrl: string | null;
 };
@@ -23,6 +24,7 @@ export type Variant = {
   productId: number;
   unitAmount: number | null;
   currency: string | null;
+  stock: number;
   thumbnailUrl: string | null;
   coverUrl: string | null;
   selections: Array<{

@@ -79,6 +79,8 @@ export const en = {
   "product.information": "Product information",
   "product.name": "Basic Tee 6-Pack",
   "product.no-thumbnail": "No thumbnail",
+  "product.stock-count": "${count} in stock",
+  "product.out-of-stock": "Out of stock",
   "product.quantity": "Quantity",
   "product.description-text":
     "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: “Black”. Need to add an extra pop of color to your outfit? Our white tee has you covered.",
