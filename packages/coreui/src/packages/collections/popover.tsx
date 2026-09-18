@@ -20,12 +20,12 @@ const overlayClasses = {
 const classes = {
   desktop: {
     md: {
-      base: "md:absolute md:transform md:bottom-auto md:transition-none",
+      base: "md:absolute md:transform md:bottom-auto",
       placementTop: "md:top-0 md:-translate-y-full",
       placementBottom: "md:top-full md:translate-y-0",
     },
     lg: {
-      base: "lg:absolute lg:transform lg:bottom-auto lg:transition-none",
+      base: "lg:absolute lg:transform lg:bottom-auto",
       placementTop: "lg:top-0 lg:-translate-y-full",
       placementBottom: "lg:top-full lg:translate-y-0",
     },
@@ -63,7 +63,7 @@ export const Popover: React.FC<PopoverProps> = ({
         inert={!open}
         aria-hidden={!open}
         className={cn(
-          "z-4 transition-[translate,visibility] duration-200 ease-in-out",
+          "z-4",
           classes.mobile.base,
           desktopClasses.base,
           desktopPlacementClasses,
