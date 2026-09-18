@@ -147,22 +147,24 @@ export default function ProductPage() {
 
         <section className="lg:pt-4">
           <div className="border-b border-neutral-200 pb-6">
-            <h1 className="text-4xl font-bold tracking-[-0.055em] text-neutral-950">
-              {product.name}
-            </h1>
+            <div className="flex items-center justify-between gap-3">
+              <h1 className="text-4xl font-bold tracking-[-0.055em] text-neutral-950">
+                {product.name}
+              </h1>
+              <p
+                className={`shrink-0 text-sm ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
+                aria-live="polite"
+              >
+                {stock > 0
+                  ? t("product.stock-count", { count: stock })
+                  : t("product.out-of-stock")}
+              </p>
+            </div>
             <div className="mt-2 flex items-end justify-between gap-6">
               <p className="text-sm text-neutral-500">
                 A bottle chosen for you
               </p>
             </div>
-            <p
-              className={`mt-3 text-sm ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
-              aria-live="polite"
-            >
-              {stock > 0
-                ? t("product.stock-count", { count: stock })
-                : t("product.out-of-stock")}
-            </p>
           </div>
 
           {hasCartItem && (

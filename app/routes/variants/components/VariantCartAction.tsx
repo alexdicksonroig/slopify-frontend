@@ -103,9 +103,19 @@ export function VariantCartAction({
         className="inset-x-0 z-20 w-full border border-neutral-200 bg-white p-4 md:top-auto md:bottom-0 md:translate-y-0 md:p-3"
       >
         <div className="flex items-center justify-between gap-3">
-          <h4 className="truncate text-sm font-semibold text-neutral-950">
-            {product.name}
-          </h4>
+          <div className="flex min-w-0 items-center gap-2">
+            <h4 className="truncate text-sm font-semibold text-neutral-950">
+              {product.name}
+            </h4>
+            <p
+              className={`shrink-0 text-xs ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
+              aria-live="polite"
+            >
+              {stock > 0
+                ? t("product.stock-count", { count: stock })
+                : t("product.out-of-stock")}
+            </p>
+          </div>
           <Button
             type="button"
             variant="ghost"
@@ -125,14 +135,6 @@ export function VariantCartAction({
             </div>
           ))}
         </dl>
-        <p
-          className={`mt-2 text-xs ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
-          aria-live="polite"
-        >
-          {stock > 0
-            ? t("product.stock-count", { count: stock })
-            : t("product.out-of-stock")}
-        </p>
 
         <form
           className="mt-4 flex flex-col gap-3 sm:mt-3 sm:flex-row sm:gap-2"
