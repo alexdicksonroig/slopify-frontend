@@ -66,6 +66,7 @@ export const en = {
   "header.menu": "Menu",
   "header.tax": "All prices include VAT where applicable",
   "header.top": "Top",
+  "product.add": "Add",
   "product.add-to-bag": "Add to bag",
   "product.choose-color": "Choose a color",
   "product.choose-size": "Choose a size",

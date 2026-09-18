@@ -68,6 +68,7 @@ export const ca = {
   "header.menu": "Menú",
   "header.tax": "Tots els preus inclouen l'IVA quan correspon",
   "header.top": "Principal",
+  "product.add": "Afegeix",
   "product.add-to-bag": "Afegeix a la cistella",
   "product.choose-color": "Tria un color",
   "product.choose-size": "Tria una talla",

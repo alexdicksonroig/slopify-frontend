@@ -168,7 +168,7 @@ export default function ProductPage() {
                 disabled={!cart || !hasPrice}
                 className="h-14 flex-1 justify-between rounded-none bg-neutral-950 px-5 uppercase hover:bg-neutral-800"
               >
-                <span>{t("product.add-to-bag")}</span>
+                <span>{t("product.add")}</span>
                 <span>{totalPrice}</span>
               </Button>
             </div>

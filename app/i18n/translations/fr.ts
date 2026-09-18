@@ -68,6 +68,7 @@ export const fr = {
   "header.menu": "Menu",
   "header.tax": "Tous les prix incluent la TVA le cas échéant",
   "header.top": "Principal",
+  "product.add": "Ajouter",
   "product.add-to-bag": "Ajouter au panier",
   "product.choose-color": "Choisir une couleur",
   "product.choose-size": "Choisir une taille",

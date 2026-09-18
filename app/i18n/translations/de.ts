@@ -68,6 +68,7 @@ export const de = {
   "header.menu": "Menü",
   "header.tax": "Alle Preise enthalten gegebenenfalls Mehrwertsteuer",
   "header.top": "Hauptnavigation",
+  "product.add": "Hinzufügen",
   "product.add-to-bag": "In den Warenkorb",
   "product.choose-color": "Farbe auswählen",
   "product.choose-size": "Größe auswählen",
