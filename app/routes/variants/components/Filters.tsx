@@ -22,7 +22,7 @@ const SORT_OPTION_KEYS: Partial<Record<string, TranslationKey>> = {
 type FilterContentProps = {
   options: ProductOption[];
   searchParams: URLSearchParams;
-  onFilterChange: (optionId: number, valueId: number, checked: boolean) => void;
+  onFilterChange: (optionId: string, valueId: number, checked: boolean) => void;
   onResetFilters: () => void;
 };
 
@@ -35,7 +35,7 @@ const FilterContent = ({
   const t = useTranslate();
   const { language } = useLanguage();
   const hasActiveFilters = options.some((option) =>
-    searchParams.has(String(option.id)),
+    searchParams.has(option.optionId),
   );
 
   return (
@@ -58,12 +58,12 @@ const FilterContent = ({
                         id={inputId}
                         type="checkbox"
                         checked={
-                          searchParams.get(String(option.id)) ===
+                          searchParams.get(option.optionId) ===
                           String(value.id)
                         }
                         onChange={(event) =>
                           onFilterChange(
-                            option.id,
+                            option.optionId,
                             value.id,
                             event.currentTarget.checked,
                           )
@@ -111,7 +111,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const activeFilters = options.flatMap((option) => {
-    const selectedValueId = searchParams.get(String(option.id));
+    const selectedValueId = searchParams.get(option.optionId);
     const selectedValue = option.possibleValues.find(
       (value) => String(value.id) === selectedValueId,
     );
@@ -128,13 +128,13 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
   };
 
   const handleFilterChange = (
-    optionId: number,
+    optionId: string,
     valueId: number,
     checked: boolean,
   ) => {
     setSearchParams((currentParams) => {
       const nextParams = new URLSearchParams(currentParams);
-      const optionKey = String(optionId);
+      const optionKey = optionId;
 
       if (checked) {
         nextParams.set(optionKey, String(valueId));
@@ -150,7 +150,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
     setSearchParams((currentParams) => {
       const nextParams = new URLSearchParams(currentParams);
       options.forEach((option) => {
-        nextParams.delete(String(option.id));
+        nextParams.delete(option.optionId);
       });
       return nextParams;
     });
@@ -279,7 +279,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                     className="h-[34px] gap-1.5 border-gray-300 bg-gray-50 px-3 text-xs lg:text-base font-medium text-gray-700 shadow-none"
                     style={{ borderRadius: 9999 }}
                     onClick={() =>
-                      handleFilterChange(option.id, value.id, false)
+                      handleFilterChange(option.optionId, value.id, false)
                     }
                   >
                     {localize(value.label, language)}

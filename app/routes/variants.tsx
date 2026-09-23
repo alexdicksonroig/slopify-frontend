@@ -65,16 +65,19 @@ function VariantCard({ product, variant }: VariantCardProps) {
 
 async function loadVariants(request: Request) {
   const searchParams = new URL(request.url).searchParams;
+  const options = await Api.get<ProductOption[]>("product-options");
   const params = Object.fromEntries(
-    [...searchParams].filter(([key]) => /^\d+$/.test(key)),
+    options.flatMap(({ optionId }) => {
+      const valueId = searchParams.get(optionId);
+      return valueId === null ? [] : [[optionId, valueId]];
+    }),
   );
-  const [variantList, products, options] = await Promise.all([
+  const [variantList, products] = await Promise.all([
     Api.get<VariantListItem[]>(
       "variants",
       Object.keys(params).length > 0 ? params : undefined,
     ),
     Api.get<Product[]>("products"),
-    Api.get<ProductOption[]>("product-options"),
   ]);
   const variants = await Promise.all(
     variantList.map((variant) => Api.get<Variant>(`variants/${variant.id}`)),

@@ -7,6 +7,7 @@ export type ProductOptionValue = {
 
 export type ProductOption = {
   id: number;
+  optionId: string;
   label: LocalizedText;
   possibleValues: ProductOptionValue[];
 };
