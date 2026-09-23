@@ -5,10 +5,10 @@ import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
 import { localize } from "@app/lib/localized-text";
 import type { Product } from "@app/lib/product";
-import type { ProductOption, Variant } from "@app/lib/variant";
+import type { Variant } from "@app/lib/variant";
 import { Button } from "@library";
-import { type FormEvent, useEffect, useMemo, useState } from "react";
-import { useLoaderData } from "react-router";
+import { type FormEvent, useEffect, useState } from "react";
+import { useLoaderData, useNavigate } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
 import { ProductOptions } from "./components/ProductOptions";
@@ -26,12 +26,13 @@ async function loadProduct({ params }: ProductLoaderArgs) {
     });
   }
 
-  const [product, variant] = await Promise.all([
+  const [product, variant, variants] = await Promise.all([
     get<Product>(`products/${params.id}`),
     get<Variant>(`variants/${variantId}`),
+    get<Variant[]>(`products/${params.id}/variants`),
   ]);
 
-  return { product, variant };
+  return { product, variant, variants };
 }
 
 export async function loader(args: ProductLoaderArgs) {
@@ -46,50 +47,20 @@ export default function ProductPage() {
   const t = useTranslate();
   const { language } = useLanguage();
   const { cart, setCart } = useCart();
-  const { product, variant } = useLoaderData<typeof clientLoader>();
-  const [selections, setSelections] = useState<Record<number, number>>(() =>
-    Object.fromEntries(
-      variant.selections.map(({ option, value }) => [option.id, value.id]),
-    ),
-  );
+  const { product, variant, variants } = useLoaderData<typeof clientLoader>();
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    setSelections(
-      Object.fromEntries(
-        variant.selections.map(({ option, value }) => [option.id, value.id]),
-      ),
-    );
-  }, [variant]);
-
-  const options = useMemo<ProductOption[]>(
-    () =>
-      variant.selections.map(({ option, value }) => ({
-        ...option,
-        possibleValues: [value],
-      })),
-    [variant],
-  );
-
-  const selectedVariant = variant.selections.every(
-    ({ option, value }) => selections[option.id] === value.id,
-  )
-    ? variant
-    : null;
-
-  useEffect(() => {
-    const cartItem = selectedVariant
-      ? cart?.items.find((item) => item.variantId === selectedVariant.id)
-      : null;
+    const cartItem = cart?.items.find((item) => item.variantId === variant.id);
     setQuantity(cartItem?.quantity ?? 1);
-  }, [cart, selectedVariant]);
+  }, [cart, variant.id]);
 
   const galleryImages = variant.coverUrl
     ? [{ src: variant.coverUrl, alt: product.name }]
     : [];
   const { unitAmount, currency, stock } = variant;
-  const hasPrice =
-    selectedVariant !== null && unitAmount !== null && currency !== null;
+  const hasPrice = unitAmount !== null && currency !== null;
   const price = hasPrice
     ? formatMoney(unitAmount, currency)
     : t("product.unavailable");
@@ -99,15 +70,15 @@ export default function ProductPage() {
 
   const handleAddToCart = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!selectedVariant || unitAmount === null || currency === null) return;
+    if (unitAmount === null || currency === null) return;
     const updatedCart = await addProductToCartUseCase.execute(
       {
-        variantId: selectedVariant.id,
+        variantId: variant.id,
         productId: product.id,
         name: product.name,
         unitPriceInCents: unitAmount,
         currency,
-        thumbnailUrl: selectedVariant.thumbnailUrl,
+        thumbnailUrl: variant.thumbnailUrl,
       },
       quantity,
     );
@@ -154,13 +125,11 @@ export default function ProductPage() {
 
           <form className="mt-7" onSubmit={handleAddToCart}>
             <ProductOptions
-              options={options}
-              selections={selections}
-              onChange={(optionId, valueId) =>
-                setSelections((current) => ({
-                  ...current,
-                  [optionId]: valueId,
-                }))
+              variants={variants}
+              variant={variant}
+              productName={product.name}
+              onChange={(variantId) =>
+                navigate(`/product/${product.id}/${variantId}`)
               }
             />
             <div className="mt-5 flex gap-3">
