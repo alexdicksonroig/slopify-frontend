@@ -70,7 +70,7 @@ export function AgeVerificationDialog() {
             icon="globe"
             variant="ghost"
             size="sm"
-            className="gap-1 px-1.5 [&_svg]:size-3.5"
+            className="gap-1 px-1.5"
             aria-label={t("header.language")}
           />
         </div>

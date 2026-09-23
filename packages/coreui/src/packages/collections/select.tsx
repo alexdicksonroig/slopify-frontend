@@ -50,7 +50,7 @@ export const Select: React.FC<SelectProps> = ({
         className,
       )}
     >
-      {icon && <Icon icon={icon} size="sm" />}
+      {icon && <Icon icon={icon} size="xs" />}
       <span className="min-w-0 truncate">
         {(showSelectedValue && selectedOption?.label) || placeholder}
       </span>
