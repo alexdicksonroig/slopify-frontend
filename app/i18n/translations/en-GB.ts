@@ -1,0 +1,26 @@
+import { en } from "./en-US";
+
+export const enGb = {
+  ...en,
+  "age-verification.no": "No",
+  "age-verification.yes": "Yes, enter",
+  "app.loading": "Loading",
+  "banner.shop-now": "Shop now",
+  "cart.checkout": "Checkout",
+  "cart.empty": "No items added yet.",
+  "cart.shopping-cart": "Shopping basket",
+  "checkout.contact": "Contact information",
+  "checkout.payment": "Payment",
+  "filters.clear-all": "Clear all",
+  "filters.title": "Filters",
+  "footer.contact": "Contact",
+  "header.back": "Back",
+  "header.language": "Select language",
+  "header.menu": "Menu",
+  "product.add-to-bag": "Add to basket",
+  "product.description": "Description",
+  "product.out-of-stock": "Out of stock",
+  "product.quantity": "Quantity",
+  "return.continue": "Continue shopping",
+  "return.thank-you": "Thank you!",
+};
