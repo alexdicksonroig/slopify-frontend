@@ -23,13 +23,13 @@ export function SizeSelector({
   return (
     <div className="mt-10">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-gray-900">
+        <h3 className="text-sm lg:text-lg font-medium text-gray-900">
           {t("product.size")}
         </h3>
         <button
           type="button"
           onClick={onSizeGuideClick}
-          className="text-sm font-medium text-primary hover:text-primary-100"
+          className="text-sm lg:text-lg font-medium text-primary hover:text-primary-100"
         >
           {t("product.size-guide")}
         </button>
@@ -52,7 +52,7 @@ export function SizeSelector({
                 onChange={() => onChange?.(size.value)}
                 className="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed"
               />
-              <span className="text-sm font-medium text-gray-900 uppercase group-has-checked:text-white">
+              <span className="text-sm lg:text-lg font-medium text-gray-900 uppercase group-has-checked:text-white">
                 {size.label}
               </span>
             </label>

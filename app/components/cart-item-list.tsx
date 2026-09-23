@@ -59,17 +59,17 @@ export function CartItemList({
                   className="size-full object-cover"
                 />
               ) : (
-                <span className="flex size-full items-center justify-center px-3 text-center text-xs text-gray-400">
+                <span className="flex size-full items-center justify-center px-3 text-center text-xs lg:text-base text-gray-400">
                   {t("product.no-thumbnail")}
                 </span>
               )}
             </Link>
 
             <div className="relative min-w-0 pr-20">
-              <h2 className="text-sm font-medium leading-snug text-gray-950 sm:text-base">
+              <h2 className="text-sm font-medium leading-snug text-gray-950 sm:text-base lg:text-xl">
                 <Link to={productUrl}>{item.name}</Link>
               </h2>
-              <p className="mt-3 text-lg font-medium text-gray-950">
+              <p className="mt-3 text-lg lg:text-2xl font-medium text-gray-950">
                 {formatMoney(item.unitPriceInCents, item.currency)}
               </p>
 
@@ -78,7 +78,7 @@ export function CartItemList({
                   type="button"
                   onClick={() => removeItem(item.variantId)}
                   aria-label={t("cart.remove", { item: item.name })}
-                  className="absolute right-0 top-0 cursor-pointer text-sm font-medium text-indigo-700 hover:text-indigo-500"
+                  className="absolute right-0 top-0 cursor-pointer text-sm lg:text-lg font-medium text-indigo-700 hover:text-indigo-500"
                 >
                   {t("cart.remove-action")}
                 </button>
@@ -93,24 +93,24 @@ export function CartItemList({
                     onClick={() => changeQuantity(item, item.quantity - 1)}
                     disabled={item.quantity === 1}
                     aria-label={t("cart.decrease", { item: item.name })}
-                    className="flex size-7 cursor-pointer items-center justify-center text-base font-normal leading-none disabled:cursor-default disabled:text-gray-300"
+                    className="flex size-7 cursor-pointer items-center justify-center text-base lg:text-xl font-normal leading-none disabled:cursor-default disabled:text-gray-300"
                   >
                     −
                   </button>
-                  <span className="text-base tabular-nums">
+                  <span className="text-base lg:text-xl tabular-nums">
                     {item.quantity}
                   </span>
                   <button
                     type="button"
                     onClick={() => changeQuantity(item, item.quantity + 1)}
                     aria-label={t("cart.increase", { item: item.name })}
-                    className="flex size-7 cursor-pointer items-center justify-center text-xl font-normal leading-none"
+                    className="flex size-7 cursor-pointer items-center justify-center text-xl lg:text-3xl font-normal leading-none"
                   >
                     +
                   </button>
                 </div>
 
-                <p className="mt-4 text-sm text-gray-950">
+                <p className="mt-4 text-sm lg:text-lg text-gray-950">
                   {t("cart.subtotal")}:{" "}
                   <strong>
                     {formatMoney(

@@ -103,7 +103,7 @@ const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
     <div className="flex">
       <div
         className={cn(
-          "flex flex-1 items-center justify-between py-4 text-sm font-medium text-left cursor-pointer",
+          "flex flex-1 items-center justify-between py-4 text-sm lg:text-lg font-medium text-left cursor-pointer",
         )}
       >
         {children}
@@ -120,7 +120,7 @@ const AccordionContent: React.FC<AccordionContentProps> = ({
   return (
     <div
       className={cn(
-        "grid text-sm text-left",
+        "grid text-sm lg:text-lg text-left",
         isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
       )}
     >

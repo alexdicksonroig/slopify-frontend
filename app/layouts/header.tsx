@@ -33,7 +33,7 @@ export default function Example() {
       <header className="relative bg-white">
         <title>Store</title>
         {showAnnouncement && (
-          <div className="relative flex min-h-[42px] items-center bg-indigo-600 text-[13px] font-semibold text-white sm:text-sm">
+          <div className="relative flex min-h-[42px] items-center bg-indigo-600 text-sm lg:text-lg font-semibold text-white">
             <div
               className={cn(
                 "absolute inset-0 flex items-center justify-center px-6 text-center transition-all duration-100 ease-linear visible opacity-100",
@@ -94,13 +94,13 @@ export default function Example() {
               >
                 <a
                   href="/"
-                  className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                  className="text-sm lg:text-lg font-medium text-gray-700 hover:text-gray-800"
                 >
                   Create account
                 </a>
                 <a
                   href="/"
-                  className="text-sm font-medium text-gray-700 hover:text-gray-800 flex items-center gap-1"
+                  className="text-sm lg:text-lg font-medium text-gray-700 hover:text-gray-800 flex items-center gap-1"
                 >
                   Sign in
                   <Icon icon="arrow-right" size="sm" />
@@ -117,7 +117,7 @@ export default function Example() {
                     src="https://tailwindcss.com/plus-assets/img/flags/flag-canada.svg"
                     className="block h-auto w-5 shrink-0"
                   />
-                  <span className="ml-3 block text-sm font-medium">CAD</span>
+                  <span className="ml-3 block text-sm lg:text-lg font-medium">CAD</span>
                   <span className="sr-only">, change currency</span>
                 </a>
               </div>
@@ -134,7 +134,7 @@ export default function Example() {
                 >
                   <Icon icon="shopping-bag" size="md" />
                   {cartItemCount > 0 && (
-                    <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center bg-indigo-600 px-1 text-[10px] font-semibold leading-none text-white [border-radius:9999px]">
+                    <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center bg-indigo-600 px-1 text-xs lg:text-base font-semibold leading-none text-white [border-radius:9999px]">
                       {cartItemCount}
                     </span>
                   )}

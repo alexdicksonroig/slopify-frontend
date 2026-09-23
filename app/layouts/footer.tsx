@@ -12,17 +12,17 @@ export default function Footer() {
           <div className="flex gap-8 flex-col md:flex-row">
             {/* Contact */}
             <div>
-              <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
+              <h3 className="text-xs lg:text-base font-semibold text-gray-900 uppercase tracking-wider mb-3">
                 {t("footer.contact")}
               </h3>
               <div className="space-y-2">
-                <p className="text-xs text-gray-600">
+                <p className="text-xs lg:text-base text-gray-600">
                   {t("footer.email", { email: "info@example.com" })}
                 </p>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs lg:text-base text-gray-600">
                   {t("footer.phone", { phone: "+34 91 123 4567" })}
                 </p>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs lg:text-base text-gray-600">
                   {t("footer.address", {
                     address: "Calle Gran Vía 28, 28013 Madrid, Spain",
                   })}
@@ -32,25 +32,25 @@ export default function Footer() {
 
             {/* Social */}
             <div>
-              <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
+              <h3 className="text-xs lg:text-base font-semibold text-gray-900 uppercase tracking-wider mb-3">
                 {t("footer.follow")}
               </h3>
               <div className="space-y-2">
                 <a
                   href="https://www.facebook.com"
-                  className="block text-xs text-gray-600 hover:text-gray-900 transition-colors"
+                  className="block text-xs lg:text-base text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Facebook
                 </a>
                 <a
                   href="https://x.com"
-                  className="block text-xs text-gray-600 hover:text-gray-900 transition-colors"
+                  className="block text-xs lg:text-base text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Twitter
                 </a>
                 <a
                   href="https://www.instagram.com"
-                  className="block text-xs text-gray-600 hover:text-gray-900 transition-colors"
+                  className="block text-xs lg:text-base text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Instagram
                 </a>
@@ -73,7 +73,7 @@ export default function Footer() {
           </div>
         )}
         <div className="border-t border-gray-200 pt-6">
-          <p className="text-xs text-gray-600 text-center">
+          <p className="text-xs lg:text-base text-gray-600 text-center">
             {t("footer.rights", { year: new Date().getFullYear() })}
           </p>
         </div>

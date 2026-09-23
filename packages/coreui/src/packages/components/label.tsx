@@ -16,7 +16,7 @@ export const Label: React.FC<LabelProps> = ({
     <label
       htmlFor={htmlFor}
       className={cn(
-        `text-sm font-medium leading-none peer-disabled:cursor-not-allowed
+        `text-sm lg:text-lg font-medium leading-none peer-disabled:cursor-not-allowed
         peer-disabled:opacity-70`,
         className,
       )}

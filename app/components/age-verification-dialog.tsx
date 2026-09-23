@@ -43,19 +43,19 @@ export function AgeVerificationDialog() {
       />
       <h2
         id={titleId}
-        className="text-center text-xl font-semibold tracking-wide uppercase"
+        className="text-center text-xl lg:text-3xl font-semibold tracking-wide uppercase"
       >
         {t("age-verification.title")}
       </h2>
       <p
         id={descriptionId}
-        className="text-center text-sm leading-relaxed text-muted-foreground"
+        className="text-center text-sm lg:text-lg leading-relaxed text-muted-foreground"
       >
         {t("age-verification.question")}
       </p>
       {languageOptions.length > 0 && (
         <div className="space-y-2">
-          <p id={languageLabelId} className="text-sm font-medium">
+          <p id={languageLabelId} className="text-sm lg:text-lg font-medium">
             {t("age-verification.select-language")}
           </p>
           <Select

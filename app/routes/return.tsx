@@ -97,7 +97,7 @@ export default function Return() {
             label={t("return.checking")}
             className="mx-auto text-indigo-600"
           />
-          <p className="mt-5 text-base text-gray-600">{t("return.checking")}</p>
+          <p className="mt-5 text-base lg:text-xl text-gray-600">{t("return.checking")}</p>
         </div>
       </main>
     );
@@ -110,10 +110,10 @@ export default function Return() {
           <div className="mx-auto flex size-14 items-center justify-center bg-red-50 text-red-600 [border-radius:9999px]">
             <Icon icon="x" size="xl" />
           </div>
-          <h1 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
+          <h1 className="mt-6 text-3xl lg:text-5xl font-bold tracking-tight text-gray-900">
             {t("return.error-title")}
           </h1>
-          <p className="mt-3 text-base text-gray-600">{t("return.error")}</p>
+          <p className="mt-3 text-base lg:text-xl text-gray-600">{t("return.error")}</p>
           <Button
             onClick={() => navigate("/checkout")}
             className="mt-8 h-12 px-8"
@@ -132,17 +132,17 @@ export default function Return() {
           <div className="flex size-12 items-center justify-center bg-indigo-50 text-indigo-600 [border-radius:9999px]">
             <Icon icon="check" size="xl" />
           </div>
-          <p className="mt-6 text-lg font-semibold text-indigo-600">
+          <p className="mt-6 text-lg lg:text-2xl font-semibold text-indigo-600">
             {t("return.thank-you")}
           </p>
-          <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-950 sm:text-6xl">
+          <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-950 sm:text-6xl lg:text-8xl">
             {t("return.title")}
           </h1>
-          <p className="mt-5 text-lg leading-8 text-gray-600">
+          <p className="mt-5 text-lg lg:text-2xl leading-8 text-gray-600">
             {t("return.success")}
           </p>
           {sessionId ? (
-            <p className="mt-8 text-sm text-gray-500">
+            <p className="mt-8 text-sm lg:text-lg text-gray-500">
               {t("return.reference")}: #{sessionId.slice(-12).toUpperCase()}
             </p>
           ) : null}
@@ -150,7 +150,7 @@ export default function Return() {
 
         {order && order.items.length > 0 ? (
           <section className="mt-14 border-t border-gray-200 pt-10">
-            <h2 className="text-2xl font-semibold tracking-tight text-gray-900">
+            <h2 className="text-2xl lg:text-4xl font-semibold tracking-tight text-gray-900">
               {t("cart.order-summary")}
             </h2>
 
@@ -171,7 +171,7 @@ export default function Return() {
                       <h3 className="font-semibold text-gray-900">
                         {item.name}
                       </h3>
-                      <p className="mt-2 text-sm text-gray-500">
+                      <p className="mt-2 text-sm lg:text-lg text-gray-500">
                         {t("product.quantity")} {item.quantity}
                       </p>
                     </div>
@@ -186,7 +186,7 @@ export default function Return() {
               ))}
             </ul>
 
-            <dl className="ml-auto mt-8 max-w-md space-y-4 text-sm">
+            <dl className="ml-auto mt-8 max-w-md space-y-4 text-sm lg:text-lg">
               <div className="flex justify-between text-gray-600">
                 <dt>{t("cart.subtotal")}</dt>
                 <dd className="font-medium text-gray-900">
@@ -199,7 +199,7 @@ export default function Return() {
                   {formatMoney(order.shippingInCents, order.currency)}
                 </dd>
               </div>
-              <div className="flex justify-between border-t border-gray-200 pt-4 text-lg font-semibold text-gray-900">
+              <div className="flex justify-between border-t border-gray-200 pt-4 text-lg lg:text-2xl font-semibold text-gray-900">
                 <dt>{t("cart.order-total")}</dt>
                 <dd>{formatMoney(order.totalInCents, order.currency)}</dd>
               </div>

@@ -64,7 +64,7 @@ const EmailInput = ({
 
   return (
     <div>
-      <Label htmlFor={inputId} className="block text-sm text-gray-700">
+      <Label htmlFor={inputId} className="block text-sm lg:text-lg text-gray-700">
         {t("checkout.email")}
       </Label>
       <Input
@@ -76,10 +76,10 @@ const EmailInput = ({
         onBlur={handleBlur}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? errorId : undefined}
-        className={`mt-2 h-12 border-gray-300 bg-white px-4 text-base shadow-none [border-radius:0.5rem] focus-visible:border-gray-900 focus-visible:ring-gray-900 ${error ? "border-red-500" : ""}`}
+        className={`mt-2 h-12 border-gray-300 bg-white px-4 text-base lg:text-xl shadow-none [border-radius:0.5rem] focus-visible:border-gray-900 focus-visible:ring-gray-900 ${error ? "border-red-500" : ""}`}
       />
       {error && (
-        <p id={errorId} className="mt-2 text-sm text-red-600">
+        <p id={errorId} className="mt-2 text-sm lg:text-lg text-red-600">
           {error}
         </p>
       )}
@@ -129,7 +129,7 @@ const PaymentDetails = ({
   return (
     <form onSubmit={handleSubmit}>
       <section className="pb-10">
-        <h2 className="mb-7 text-2xl font-semibold tracking-tight text-gray-900">
+        <h2 className="mb-7 text-2xl lg:text-4xl font-semibold tracking-tight text-gray-900">
           {t("checkout.contact")}
         </h2>
         <EmailInput
@@ -142,14 +142,14 @@ const PaymentDetails = ({
       </section>
 
       <section className="border-t border-gray-200 py-10">
-        <h2 className="mb-7 text-2xl font-semibold tracking-tight text-gray-900">
+        <h2 className="mb-7 text-2xl lg:text-4xl font-semibold tracking-tight text-gray-900">
           {t("checkout.shipping-address")}
         </h2>
         <ShippingAddressElement />
       </section>
 
       <section className="border-t border-gray-200 py-10">
-        <h2 className="mb-7 text-2xl font-semibold tracking-tight text-gray-900">
+        <h2 className="mb-7 text-2xl lg:text-4xl font-semibold tracking-tight text-gray-900">
           {t("checkout.payment")}
         </h2>
         <PaymentElement />
@@ -159,12 +159,12 @@ const PaymentDetails = ({
         {message && (
           <p
             role="alert"
-            className="mb-4 border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+            className="mb-4 border border-red-200 bg-red-50 px-4 py-3 text-sm lg:text-lg text-red-700"
           >
             {message}
           </p>
         )}
-        <Button disabled={isLoading} className="h-14 w-full text-base">
+        <Button disabled={isLoading} className="h-14 w-full text-base lg:text-xl">
           {isLoading ? (
             <LoadingCircle size="sm" label={t("app.loading")} />
           ) : (

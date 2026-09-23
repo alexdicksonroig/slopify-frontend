@@ -18,7 +18,7 @@ export function ColorSelector({ colors, onChange }: ColorSelectorProps) {
 
   return (
     <div>
-      <h3 className="text-sm font-medium text-gray-900">
+      <h3 className="text-sm lg:text-lg font-medium text-gray-900">
         {t("product.color")}
       </h3>
       <fieldset aria-label={t("product.choose-color")} className="mt-4">

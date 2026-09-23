@@ -22,7 +22,7 @@ export function ProductImageGallery({ images }: ProductImageGalleryProps) {
           />
         ))
       ) : (
-        <p className="text-sm text-neutral-500">Image unavailable</p>
+        <p className="text-sm lg:text-lg text-neutral-500">Image unavailable</p>
       )}
     </section>
   );

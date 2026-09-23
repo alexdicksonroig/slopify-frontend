@@ -34,7 +34,7 @@ export function CartDrawer({
       >
         <div className="flex h-full flex-col">
           <div className="flex shrink-0 items-center justify-between border-b border-gray-200 px-6 py-5">
-            <h2 className="text-2xl font-semibold tracking-tight">
+            <h2 className="text-2xl lg:text-4xl font-semibold tracking-tight">
               {t("cart.shopping-cart")}
             </h2>
             <Button
@@ -49,7 +49,7 @@ export function CartDrawer({
           </div>
           <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6">
             {!cart || cart.isEmpty ? (
-              <p className="py-8 text-sm text-gray-500">{t("cart.empty")}</p>
+              <p className="py-8 text-sm lg:text-lg text-gray-500">{t("cart.empty")}</p>
             ) : (
               <CartItemList
                 cart={cart.items}
@@ -61,7 +61,7 @@ export function CartDrawer({
           </div>
           {cart && !cart.isEmpty && (
             <div className="shrink-0 border-t border-gray-200 bg-gray-50 p-6">
-              <dl className="space-y-3 text-sm">
+              <dl className="space-y-3 text-sm lg:text-lg">
                 <div className="flex justify-between gap-4">
                   <dt>{t("cart.subtotal")}</dt>
                   <dd>{formatMoney(cart.cartTotalInCents, cart.currency)}</dd>
@@ -72,7 +72,7 @@ export function CartDrawer({
                     {formatMoney(cart.shippingPriceInCents, cart.currency)}
                   </dd>
                 </div>
-                <div className="flex justify-between gap-4 border-t border-gray-200 pt-3 text-lg font-semibold">
+                <div className="flex justify-between gap-4 border-t border-gray-200 pt-3 text-lg lg:text-2xl font-semibold">
                   <dt>{t("cart.order-total")}</dt>
                   <dd>{formatMoney(cart.orderTotalInCents, cart.currency)}</dd>
                 </div>

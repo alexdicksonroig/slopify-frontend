@@ -34,7 +34,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
               className="aspect-[4/5] w-full bg-gray-50 object-contain transition-transform duration-500 ease-out lg:hover:scale-105 motion-reduce:transition-none"
             />
           ) : (
-            <div className="flex aspect-[4/5] w-full items-center justify-center rounded bg-gray-100 text-sm text-gray-500">
+            <div className="flex aspect-[4/5] w-full items-center justify-center rounded bg-gray-100 text-sm lg:text-lg text-gray-500">
               {t("product.no-thumbnail")}
             </div>
           )}
@@ -45,15 +45,15 @@ function VariantCard({ product, variant }: VariantCardProps) {
         className="mt-1 block min-w-0 px-0.5"
         to={`/product/${product.id}/${variant.id}`}
       >
-        <h3 className="truncate text-sm font-medium leading-5 text-black">
+        <h3 className="truncate text-sm lg:text-lg font-medium leading-5 text-black">
           {product.name}
         </h3>
-        <p className="truncate text-xs leading-none text-gray-500">
+        <p className="truncate text-xs lg:text-base leading-none text-gray-500">
           {variant.selections
             .map(({ value }) => localize(value.label, language))
             .join(", ")}
         </p>
-        <p className="text-xs font-semibold leading-8 text-gray-950">
+        <p className="text-xs lg:text-base font-semibold leading-8 text-gray-950">
           {isAvailable
             ? formatMoney(unitAmount, currency)
             : t("product.unavailable")}
@@ -131,13 +131,13 @@ export default function Variants() {
   const { cards, options } = useLoaderData<typeof clientLoader>();
 
   return (
-    <div className="mx-auto w-full max-w-7xl p-3 sm:p-6 flex gap-2 flex-col">
+    <div className="mx-auto w-full max-w-7xl p-3 sm:p-6 flex gap-4 flex-col">
       <Banner />
       <div>
-        <h1 className="text-[1.7rem] font-bold tracking-tight text-gray-900 md:text-3xl">
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 md:text-3xl lg:text-5xl">
           {t("filters.new-arrivals")}
         </h1>
-        <p className="mt-1 text-sm text-gray-500 lg:hidden">
+        <p className="mt-1 text-sm lg:text-lg text-gray-500 lg:hidden">
           {t("filters.subtitle")}
         </p>
       </div>

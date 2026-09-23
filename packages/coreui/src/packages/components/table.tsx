@@ -6,7 +6,7 @@ const Table = ({
 }: React.HTMLAttributes<HTMLTableElement>) => (
   <div className="relative w-full overflow-auto">
     <table
-      className={cn("w-full caption-bottom text-sm", className)}
+      className={cn("w-full caption-bottom text-sm lg:text-lg", className)}
       {...props}
     />
   </div>
@@ -85,7 +85,7 @@ const TableCaption = ({
   ...props
 }: React.HTMLAttributes<HTMLTableCaptionElement>) => (
   <caption
-    className={cn("mt-4 text-sm text-muted-foreground", className)}
+    className={cn("mt-4 text-sm lg:text-lg text-muted-foreground", className)}
     {...props}
   />
 );

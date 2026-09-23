@@ -72,7 +72,7 @@ const FilterContent = ({
                       />
                       <label
                         htmlFor={inputId}
-                        className="ml-3 text-sm text-gray-600"
+                        className="ml-3 text-sm lg:text-lg text-gray-600"
                       >
                         {localize(value.label, language)}
                       </label>
@@ -88,7 +88,7 @@ const FilterContent = ({
         <Button
           type="button"
           variant="link"
-          className="text-sm font-normal text-muted-foreground"
+          className="text-sm lg:text-lg font-normal text-muted-foreground"
           disabled={!hasActiveFilters}
           onClick={onResetFilters}
         >
@@ -185,7 +185,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
           </button>
         </div>
         <div>
-          <h2 className="mb-4 text-lg font-medium text-gray-900">
+          <h2 className="mb-4 text-lg lg:text-2xl font-medium text-gray-900">
             {t("filters.title")}
           </h2>
           <FilterContent
@@ -209,7 +209,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
       <div>
         <div className="contents lg:block lg:border-b lg:border-gray-200">
           <div className="flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:hidden">
-            <p className="text-xs text-gray-600 lg:hidden">
+            <p className="text-xs lg:text-base text-gray-600 lg:hidden">
               {t("filters.result-count", { count: resultCount })}
             </p>
             <div className="ml-auto flex items-center gap-1 lg:block lg:min-w-56">
@@ -222,13 +222,13 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                   showSelectedValue={false}
                   variant="ghost"
                   placement="bottom"
-                  className="h-8 gap-1 rounded-md px-1.5 text-xs font-normal text-gray-700 shadow-none hover:bg-gray-50 [&_svg]:size-3.5"
+                  className="h-8 gap-1 rounded-md px-1.5 text-xs lg:text-base font-normal text-gray-700 shadow-none hover:bg-gray-50 [&_svg]:size-3.5"
                   aria-label={t("filters.sort")}
                 />
               </div>
               <Button
                 variant="ghost"
-                className="h-8 gap-1 rounded-md px-1.5 text-xs font-normal text-gray-700 shadow-none hover:bg-gray-50 lg:hidden [&_svg]:size-3.5"
+                className="h-8 gap-1 rounded-md px-1.5 text-xs lg:text-base font-normal text-gray-700 shadow-none hover:bg-gray-50 lg:hidden [&_svg]:size-3.5"
                 aria-haspopup="dialog"
                 aria-expanded={filtersOpen}
                 onClick={() => setFiltersOpen(true)}
@@ -236,7 +236,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                 <Icon icon="list-filter" size="sm" />
                 <span>{t("filters.title")}</span>
                 {activeFilters.length > 0 && (
-                  <span className="flex size-3.5 items-center justify-center rounded-full bg-gray-100 text-[9px] font-medium text-gray-700">
+                  <span className="flex size-3.5 items-center justify-center rounded-full bg-gray-100 text-xs lg:text-base font-medium text-gray-700">
                     {activeFilters.length}
                   </span>
                 )}
@@ -256,7 +256,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               showSelectedValue={false}
               variant="ghost"
               placement="bottom"
-              className="my-3 h-10 w-full justify-between px-0 text-sm font-normal text-gray-700 shadow-none hover:bg-gray-50 [&_svg]:size-4"
+              className="my-3 h-10 w-full justify-between px-0 text-sm lg:text-lg font-normal text-gray-700 shadow-none hover:bg-gray-50 [&_svg]:size-4"
               aria-label={t("filters.sort")}
             />
             <FilterContent
@@ -276,7 +276,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                     key={option.id}
                     type="button"
                     variant="outline"
-                    className="h-[34px] gap-1.5 border-gray-300 bg-gray-50 px-3 text-xs font-medium text-gray-700 shadow-none"
+                    className="h-[34px] gap-1.5 border-gray-300 bg-gray-50 px-3 text-xs lg:text-base font-medium text-gray-700 shadow-none"
                     style={{ borderRadius: 9999 }}
                     onClick={() =>
                       handleFilterChange(option.id, value.id, false)
@@ -289,14 +289,14 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                 <Button
                   type="button"
                   variant="link"
-                  className="ml-1 text-xs font-medium text-gray-500 hover:text-gray-700"
+                  className="ml-1 text-xs lg:text-base font-medium text-gray-500 hover:text-gray-700"
                   onClick={handleResetFilters}
                 >
                   {t("filters.clear-all")}
                 </Button>
               </div>
             )}
-            <p className="mb-1 hidden text-xs text-gray-500 lg:block">
+            <p className="mb-1 hidden text-xs lg:text-base text-gray-500 lg:block">
               {t("filters.product-count", { count: resultCount })}
             </p>
             {children}

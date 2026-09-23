@@ -106,11 +106,11 @@ export function VariantCartAction({
       >
         <div className="flex items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-2">
-            <h4 className="truncate text-sm font-semibold text-neutral-950">
+            <h4 className="truncate text-sm lg:text-lg font-semibold text-neutral-950">
               {product.name}
             </h4>
             <p
-              className={`shrink-0 text-xs ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
+              className={`shrink-0 text-xs lg:text-base ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
               aria-live="polite"
             >
               {stock > 0
@@ -129,7 +129,7 @@ export function VariantCartAction({
             <Icon icon="x" size="sm" />
           </Button>
         </div>
-        <dl className="mt-2 space-y-1 text-xs text-neutral-500 sm:mt-1 sm:space-y-0.5">
+        <dl className="mt-2 space-y-1 text-xs lg:text-base text-neutral-500 sm:mt-1 sm:space-y-0.5">
           {variant.selections.map(({ option, value }) => (
             <div key={option.id} className="flex min-w-0 gap-1">
               <dt>{localize(option.label, language)}:</dt>
@@ -155,7 +155,7 @@ export function VariantCartAction({
             type="submit"
             size="sm"
             disabled={!cart || isAdding || quantity < 1 || quantity > stock}
-            className="h-10 w-full min-w-0 rounded-none bg-neutral-950 px-3 text-xs uppercase hover:bg-neutral-800 disabled:bg-neutral-100 disabled:text-neutral-500 disabled:opacity-100 sm:flex-1"
+            className="h-10 w-full min-w-0 rounded-none bg-neutral-950 px-3 text-xs lg:text-base uppercase hover:bg-neutral-800 disabled:bg-neutral-100 disabled:text-neutral-500 disabled:opacity-100 sm:flex-1"
           >
             {stock === 0 ? t("product.out-of-stock") : t("product.add-to-bag")}
           </Button>

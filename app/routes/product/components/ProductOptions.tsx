@@ -19,7 +19,7 @@ export function ProductOptions({
 
   return (
     <label className="flex flex-col gap-2">
-      <span className="text-[11px] font-semibold tracking-[0.08em] text-neutral-900 uppercase">
+      <span className="text-sm lg:text-lg font-semibold tracking-[0.08em] text-neutral-900 uppercase">
         {variant.selections
           .map(({ option }) => localize(option.label, language))
           .join(" / ") || productName}
@@ -28,7 +28,7 @@ export function ProductOptions({
         <select
           value={variant.id}
           onChange={(event) => onChange(Number(event.target.value))}
-          className="h-12 w-full appearance-none border-0 border-b border-neutral-300 bg-white px-0 pr-9 text-sm font-medium text-neutral-950 outline-none transition-colors focus:border-neutral-950 focus:ring-0"
+          className="h-12 w-full appearance-none border-0 border-b border-neutral-300 bg-white px-0 pr-9 text-sm lg:text-lg font-medium text-neutral-950 outline-none transition-colors focus:border-neutral-950 focus:ring-0"
         >
           {variants.map((item) => (
             <option key={item.id} value={item.id}>

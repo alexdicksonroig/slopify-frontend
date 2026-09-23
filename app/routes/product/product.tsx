@@ -93,11 +93,11 @@ export default function ProductPage() {
         <section className="lg:pt-4">
           <div className="border-b border-neutral-200 pb-6">
             <div className="flex items-center justify-between gap-3">
-              <h1 className="text-4xl font-bold tracking-[-0.055em] text-neutral-950">
+              <h1 className="text-4xl lg:text-6xl font-bold tracking-[-0.055em] text-neutral-950">
                 {product.name}
               </h1>
               <p
-                className={`shrink-0 text-sm ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
+                className={`shrink-0 text-sm lg:text-lg ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
                 aria-live="polite"
               >
                 {stock > 0
@@ -106,10 +106,10 @@ export default function ProductPage() {
               </p>
             </div>
             <div className="mt-2 flex items-end justify-between gap-6">
-              <p className="text-sm text-neutral-500">
+              <p className="text-sm lg:text-lg text-neutral-500">
                 A bottle chosen for you
               </p>
-              <p className="shrink-0 text-3xl font-semibold tracking-[-0.04em] text-neutral-950">
+              <p className="shrink-0 text-3xl lg:text-5xl font-semibold tracking-[-0.04em] text-neutral-950">
                 {price}
               </p>
             </div>
@@ -156,13 +156,13 @@ export default function ProductPage() {
                   key={label}
                   className="group border-b border-neutral-200"
                 >
-                  <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between text-xs font-semibold tracking-[0.08em] uppercase [&::-webkit-details-marker]:hidden">
+                  <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between text-xs lg:text-base font-semibold tracking-[0.08em] uppercase [&::-webkit-details-marker]:hidden">
                     {label}
-                    <span className="text-xl font-normal group-open:rotate-45">
+                    <span className="text-xl lg:text-3xl font-normal group-open:rotate-45">
                       +
                     </span>
                   </summary>
-                  <p className="pb-5 text-sm leading-6 text-neutral-600">
+                  <p className="pb-5 text-sm lg:text-lg leading-6 text-neutral-600">
                     {detailsCopy(label, t("product.details-text"))}
                   </p>
                 </details>

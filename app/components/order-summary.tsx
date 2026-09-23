@@ -23,20 +23,20 @@ export function OrderSummary({
 
   return (
     <section className="rounded-lg border border-gray-200 bg-white px-6 py-6">
-      <h2 className="text-lg font-medium text-gray-900">
+      <h2 className="text-lg lg:text-2xl font-medium text-gray-900">
         {t("cart.order-summary")}
       </h2>
 
       <dl className="mt-6 space-y-4">
         <div className="flex items-center justify-between">
-          <dt className="text-sm text-gray-600">{t("cart.subtotal")}</dt>
-          <dd className="text-sm font-medium text-gray-900">
+          <dt className="text-sm lg:text-lg text-gray-600">{t("cart.subtotal")}</dt>
+          <dd className="text-sm lg:text-lg font-medium text-gray-900">
             {formatMoney(subtotalInCents, currency)}
           </dd>
         </div>
 
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <dt className="flex items-center text-sm text-gray-600">
+          <dt className="flex items-center text-sm lg:text-lg text-gray-600">
             {t("cart.shipping-estimate")}
             <button
               type="button"
@@ -45,13 +45,13 @@ export function OrderSummary({
               <Icon icon="info" size="xxs" />
             </button>
           </dt>
-          <dd className="text-sm font-medium text-gray-900">
+          <dd className="text-sm lg:text-lg font-medium text-gray-900">
             {formatMoney(shippingInCents, currency)}
           </dd>
         </div>
 
         <div className="flex items-center justify-between">
-          <dt className="flex items-center text-sm text-gray-600">
+          <dt className="flex items-center text-sm lg:text-lg text-gray-600">
             {t("cart.tax-estimate")}
             <button
               type="button"
@@ -60,16 +60,16 @@ export function OrderSummary({
               <Icon icon="info" size="xxs" />
             </button>
           </dt>
-          <dd className="text-sm font-medium text-gray-900">
+          <dd className="text-sm lg:text-lg font-medium text-gray-900">
             {formatMoney(taxInCents, currency)}
           </dd>
         </div>
 
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <dt className="text-base font-medium text-gray-900">
+          <dt className="text-base lg:text-xl font-medium text-gray-900">
             {t("cart.order-total")}
           </dt>
-          <dd className="text-base font-medium text-gray-900">
+          <dd className="text-base lg:text-xl font-medium text-gray-900">
             {formatMoney(totalInCents, currency)}
           </dd>
         </div>
