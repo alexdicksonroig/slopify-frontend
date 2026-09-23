@@ -136,12 +136,12 @@ export default function ProductPage() {
               <QuantitySelector
                 value={quantity}
                 onChange={setQuantity}
-                className="h-14"
+                className="h-12"
               />
               <Button
                 type="submit"
                 disabled={!cart || !hasPrice}
-                className="h-14 flex-1 justify-between rounded-none bg-neutral-950 px-5 uppercase hover:bg-neutral-800"
+                className="h-12 flex-1 justify-between rounded-none bg-neutral-950 px-3 uppercase hover:bg-neutral-800 sm:px-5"
               >
                 <span>{t("product.add-to-bag")}</span>
                 <span>{totalPrice}</span>
