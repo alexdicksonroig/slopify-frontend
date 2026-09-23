@@ -52,6 +52,14 @@ export function AgeVerificationDialog() {
       >
         {t("age-verification.question")}
       </p>
+      <div className="grid grid-cols-2 gap-3">
+        <Button type="button" variant="outline" onClick={handleExit}>
+          {t("age-verification.no")}
+        </Button>
+        <Button type="button" onClick={handleEnter}>
+          {t("age-verification.yes")}
+        </Button>
+      </div>
       {languageOptions.length > 0 && (
         <div className="flex justify-center">
           <Select
@@ -67,14 +75,6 @@ export function AgeVerificationDialog() {
           />
         </div>
       )}
-      <div className="grid grid-cols-2 gap-3">
-        <Button type="button" variant="outline" onClick={handleExit}>
-          {t("age-verification.no")}
-        </Button>
-        <Button type="button" onClick={handleEnter}>
-          {t("age-verification.yes")}
-        </Button>
-      </div>
     </Dialog>
   );
 }
