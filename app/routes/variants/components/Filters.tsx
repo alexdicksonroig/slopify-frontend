@@ -1,18 +1,11 @@
-import { type TranslationKey, useTranslate } from "@app/i18n";
+import { type TranslationKey, useLanguage, useTranslate } from "@app/i18n";
+import { localize } from "@app/lib/localized-text";
+import type { ProductOption } from "@app/lib/variant";
 import { Accordion, Button, Icon, Popover, Select } from "@library";
 import { type ReactNode, useState } from "react";
 import { useSearchParams } from "react-router";
 
-export type ProductOptionValue = {
-  id: number;
-  label: string;
-};
-
-export type ProductOption = {
-  id: number;
-  label: string;
-  possibleValues: ProductOptionValue[];
-};
+export type { ProductOption } from "@app/lib/variant";
 
 const SORT_OPTIONS = [
   { label: "Newest", value: "newest" },
@@ -24,11 +17,6 @@ const SORT_OPTION_KEYS: Partial<Record<string, TranslationKey>> = {
   newest: "filters.sort-newest",
   "price-asc": "filters.sort-price-ascending",
   "price-desc": "filters.sort-price-descending",
-};
-
-const OPTION_LABEL_KEYS: Partial<Record<string, TranslationKey>> = {
-  color: "filters.color",
-  size: "filters.size",
 };
 
 type FilterContentProps = {
@@ -45,6 +33,7 @@ const FilterContent = ({
   onResetFilters,
 }: FilterContentProps) => {
   const t = useTranslate();
+  const { language } = useLanguage();
   const hasActiveFilters = options.some((option) =>
     searchParams.has(String(option.id)),
   );
@@ -53,14 +42,11 @@ const FilterContent = ({
     <div>
       <Accordion defaultOpenItems>
         {options.map((option) => {
-          const translationKey = OPTION_LABEL_KEYS[option.label.toLowerCase()];
-          const headerText = translationKey ? t(translationKey) : option.label;
-
           return (
             <Accordion.Item
               key={option.id}
               itemId={`option-${option.id}`}
-              headerText={headerText}
+              headerText={localize(option.label, language)}
             >
               <div className="space-y-4">
                 {option.possibleValues.map((value) => {
@@ -88,7 +74,7 @@ const FilterContent = ({
                         htmlFor={inputId}
                         className="ml-3 text-sm text-gray-600"
                       >
-                        {value.label}
+                        {localize(value.label, language)}
                       </label>
                     </div>
                   );
@@ -121,6 +107,7 @@ type FiltersProps = {
 
 export function Filters({ children, options, resultCount }: FiltersProps) {
   const t = useTranslate();
+  const { language } = useLanguage();
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const activeFilters = options.flatMap((option) => {
@@ -295,7 +282,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                       handleFilterChange(option.id, value.id, false)
                     }
                   >
-                    {value.label}
+                    {localize(value.label, language)}
                     <Icon icon="x" size="xs" className="brightness-50" />
                   </Button>
                 ))}

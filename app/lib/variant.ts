@@ -1,11 +1,13 @@
+import type { LocalizedText } from "./localized-text";
+
 export type ProductOptionValue = {
   id: number;
-  label: string;
+  label: LocalizedText;
 };
 
 export type ProductOption = {
   id: number;
-  label: string;
+  label: LocalizedText;
   possibleValues: ProductOptionValue[];
 };
 

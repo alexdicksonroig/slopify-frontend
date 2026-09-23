@@ -1,8 +1,9 @@
-import { useTranslate } from "@app/i18n";
+import { useLanguage, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-to-cart.use-case";
 import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
+import { localize } from "@app/lib/localized-text";
 import type { Product } from "@app/lib/product";
 import type { ProductOption, Variant } from "@app/lib/variant";
 import { Button } from "@library";
@@ -43,6 +44,7 @@ export async function clientLoader(args: ProductLoaderArgs) {
 
 export default function ProductPage() {
   const t = useTranslate();
+  const { language } = useLanguage();
   const { cart, setCart } = useCart();
   const { product, variant } = useLoaderData<typeof clientLoader>();
   const [selections, setSelections] = useState<Record<number, number>>(() =>
@@ -143,7 +145,11 @@ export default function ProductPage() {
           </div>
 
           <ProductDetails
-            description={product.description ?? t("product.description-text")}
+            description={
+              product.description
+                ? localize(product.description, language)
+                : t("product.description-text")
+            }
           />
 
           <form className="mt-7" onSubmit={handleAddToCart}>

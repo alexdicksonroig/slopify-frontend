@@ -1,5 +1,7 @@
+import type { LocalizedText } from "./localized-text";
+
 export type Product = {
   id: number;
   name: string;
-  description: string | null;
+  description: LocalizedText | null;
 };

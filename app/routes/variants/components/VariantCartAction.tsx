@@ -1,6 +1,7 @@
-import { useTranslate } from "@app/i18n";
+import { useLanguage, useTranslate } from "@app/i18n";
 import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-to-cart.use-case";
 import { useCart } from "@app/lib/context/cart.context";
+import { localize } from "@app/lib/localized-text";
 import type { Product } from "@app/lib/product";
 import type { Variant } from "@app/lib/variant";
 import { Button, Icon, Popover } from "@library";
@@ -17,6 +18,7 @@ export function VariantCartAction({
   variant,
 }: VariantCartActionProps) {
   const t = useTranslate();
+  const { language } = useLanguage();
   const { cart, setCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const { stock } = variant;
@@ -130,8 +132,10 @@ export function VariantCartAction({
         <dl className="mt-2 space-y-1 text-xs text-neutral-500 sm:mt-1 sm:space-y-0.5">
           {variant.selections.map(({ option, value }) => (
             <div key={option.id} className="flex min-w-0 gap-1">
-              <dt>{option.label}:</dt>
-              <dd className="truncate text-neutral-800">{value.label}</dd>
+              <dt>{localize(option.label, language)}:</dt>
+              <dd className="truncate text-neutral-800">
+                {localize(value.label, language)}
+              </dd>
             </div>
           ))}
         </dl>

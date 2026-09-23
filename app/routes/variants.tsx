@@ -1,6 +1,7 @@
-import { useTranslate } from "@app/i18n";
+import { useLanguage, useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
 import { formatMoney } from "@app/lib/currency";
+import { localize } from "@app/lib/localized-text";
 import type { Product } from "@app/lib/product";
 import type { Variant, VariantListItem } from "@app/lib/variant";
 // import { Button } from "@library";
@@ -15,6 +16,7 @@ type VariantCardProps = {
 
 function VariantCard({ product, variant }: VariantCardProps) {
   const t = useTranslate();
+  const { language } = useLanguage();
   const { unitAmount, currency } = variant;
   const isAvailable = unitAmount !== null && currency !== null;
 
@@ -47,7 +49,9 @@ function VariantCard({ product, variant }: VariantCardProps) {
           {product.name}
         </h3>
         <p className="truncate text-xs leading-none text-gray-500">
-          {variant.selections.map(({ value }) => value.label).join(", ")}
+          {variant.selections
+            .map(({ value }) => localize(value.label, language))
+            .join(", ")}
         </p>
         <p className="text-xs font-semibold leading-8 text-gray-950">
           {isAvailable

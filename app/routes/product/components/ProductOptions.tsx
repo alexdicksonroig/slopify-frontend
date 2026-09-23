@@ -1,3 +1,5 @@
+import { useLanguage } from "@app/i18n";
+import { localize } from "@app/lib/localized-text";
 import type { ProductOption } from "@app/lib/variant";
 
 export type { ProductOption } from "@app/lib/variant";
@@ -13,12 +15,14 @@ export function ProductOptions({
   selections,
   onChange,
 }: ProductOptionsProps) {
+  const { language } = useLanguage();
+
   return (
     <div className="grid gap-3 sm:grid-cols-2">
       {options.map((option) => (
         <label key={option.id} className="flex flex-col gap-2">
           <span className="text-[11px] font-semibold tracking-[0.08em] text-neutral-900 uppercase">
-            {option.label}
+            {localize(option.label, language)}
           </span>
           <div className="relative">
             <select
@@ -30,7 +34,7 @@ export function ProductOptions({
             >
               {option.possibleValues.map((value) => (
                 <option key={value.id} value={value.id}>
-                  {value.label}
+                  {localize(value.label, language)}
                 </option>
               ))}
             </select>
