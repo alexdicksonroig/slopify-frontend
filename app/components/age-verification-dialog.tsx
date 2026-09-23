@@ -68,9 +68,9 @@ export function AgeVerificationDialog() {
             options={languageOptions}
             placeholder={t("header.language")}
             icon="globe"
-            variant="outline"
+            variant="ghost"
             size="sm"
-            className="min-w-32"
+            className="min-w-32 gap-1 px-1.5 [&_svg]:size-3.5"
             aria-label={t("header.language")}
           />
         </div>
