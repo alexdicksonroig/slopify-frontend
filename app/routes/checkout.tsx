@@ -17,10 +17,12 @@ export default function Checkout() {
           <CheckoutPayment cart={cart} />
         ) : (
           <>
-            <p className="text-sm lg:text-lg text-gray-500">{t("cart.empty")}</p>
+            <p className="text-sm lg:text-lg text-gray-500">
+              {t("cart.empty")}
+            </p>
             <Link
               to="/"
-              className="mt-6 inline-block text-indigo-600 hover:text-indigo-500"
+              className="mt-6 inline-block text-sm text-indigo-600 hover:text-indigo-500 lg:text-lg"
             >
               {t("return.continue")}
             </Link>

@@ -1,4 +1,3 @@
-// Not revised file
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
 import type { Cart } from "@app/lib/cart/domain/cart.entity";
@@ -20,6 +19,9 @@ import {
   useMemo,
   useState,
 } from "react";
+
+const sectionHeadingClassName =
+  "mb-7 text-2xl font-semibold tracking-tight text-gray-900 lg:text-4xl";
 
 const validateEmail = async (
   email: string,
@@ -64,7 +66,10 @@ const EmailInput = ({
 
   return (
     <div>
-      <Label htmlFor={inputId} className="block text-sm lg:text-lg text-gray-700">
+      <Label
+        htmlFor={inputId}
+        className="block text-sm lg:text-lg text-gray-700"
+      >
         {t("checkout.email")}
       </Label>
       <Input
@@ -76,7 +81,7 @@ const EmailInput = ({
         onBlur={handleBlur}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? errorId : undefined}
-        className={`mt-2 h-12 border-gray-300 bg-white px-4 text-base lg:text-xl shadow-none [border-radius:0.5rem] focus-visible:border-gray-900 focus-visible:ring-gray-900 ${error ? "border-red-500" : ""}`}
+        className={`mt-2 h-12 border-gray-300 bg-white px-4 text-base shadow-none [border-radius:0.5rem] focus-visible:border-gray-900 focus-visible:ring-gray-900 lg:text-lg ${error ? "border-red-500" : ""}`}
       />
       {error && (
         <p id={errorId} className="mt-2 text-sm lg:text-lg text-red-600">
@@ -129,9 +134,7 @@ const PaymentDetails = ({
   return (
     <form onSubmit={handleSubmit}>
       <section className="pb-10">
-        <h2 className="mb-7 text-2xl lg:text-4xl font-semibold tracking-tight text-gray-900">
-          {t("checkout.contact")}
-        </h2>
+        <h2 className={sectionHeadingClassName}>{t("checkout.contact")}</h2>
         <EmailInput
           email={email}
           setEmail={setEmail}
@@ -142,16 +145,14 @@ const PaymentDetails = ({
       </section>
 
       <section className="border-t border-gray-200 py-10">
-        <h2 className="mb-7 text-2xl lg:text-4xl font-semibold tracking-tight text-gray-900">
+        <h2 className={sectionHeadingClassName}>
           {t("checkout.shipping-address")}
         </h2>
         <ShippingAddressElement />
       </section>
 
       <section className="border-t border-gray-200 py-10">
-        <h2 className="mb-7 text-2xl lg:text-4xl font-semibold tracking-tight text-gray-900">
-          {t("checkout.payment")}
-        </h2>
+        <h2 className={sectionHeadingClassName}>{t("checkout.payment")}</h2>
         <PaymentElement />
       </section>
 
@@ -164,7 +165,10 @@ const PaymentDetails = ({
             {message}
           </p>
         )}
-        <Button disabled={isLoading} className="h-14 w-full text-base lg:text-xl">
+        <Button
+          disabled={isLoading}
+          className="h-14 w-full text-base lg:text-lg"
+        >
           {isLoading ? (
             <LoadingCircle size="sm" label={t("app.loading")} />
           ) : (
@@ -184,13 +188,13 @@ const CheckoutContents = () => {
     return (
       <output aria-label={t("app.loading")} className="block">
         <section className="pb-10">
-          <Skeleton className="h-8 w-48" />
+          <Skeleton className="h-7 w-48 lg:h-9" />
           <Skeleton className="mt-7 h-4 w-16" />
           <Skeleton className="mt-2 h-12 w-full [border-radius:0.5rem]" />
         </section>
 
         <section className="border-t border-gray-200 py-10">
-          <Skeleton className="h-8 w-56" />
+          <Skeleton className="h-7 w-56 lg:h-9" />
           <div className="mt-7 grid grid-cols-2 gap-4">
             <Skeleton className="col-span-2 h-12 [border-radius:0.5rem]" />
             <Skeleton className="h-12 [border-radius:0.5rem]" />
@@ -200,7 +204,7 @@ const CheckoutContents = () => {
         </section>
 
         <section className="border-t border-gray-200 py-10">
-          <Skeleton className="h-8 w-32" />
+          <Skeleton className="h-7 w-32 lg:h-9" />
           <Skeleton className="mt-7 h-12 w-full [border-radius:0.5rem]" />
           <Skeleton className="mt-4 h-12 w-full [border-radius:0.5rem]" />
         </section>
@@ -212,7 +216,11 @@ const CheckoutContents = () => {
     );
   }
   if (result.type === "error") {
-    return <p role="alert">{result.error.message}</p>;
+    return (
+      <p role="alert" className="text-sm text-red-600 lg:text-lg">
+        {result.error.message}
+      </p>
+    );
   }
 
   return <PaymentDetails checkout={result.checkout} />;
@@ -244,7 +252,11 @@ export function CheckoutPayment({ cart }: { cart: Cart }) {
   );
 
   if (!stripePromise) {
-    return <p>{t("checkout.unavailable")}</p>;
+    return (
+      <p className="text-sm text-gray-500 lg:text-lg">
+        {t("checkout.unavailable")}
+      </p>
+    );
   }
 
   return (
