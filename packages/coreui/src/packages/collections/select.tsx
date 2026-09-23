@@ -36,27 +36,23 @@ export const Select: React.FC<SelectProps> = ({
   return (
     <div
       className={cn(
-        "relative inline-flex items-center justify-between gap-2 whitespace-nowrap rounded-md text-sm lg:text-lg font-medium transition-colors focus-within:ring-1 focus-within:ring-ring",
-        variants[variant],
+        "relative inline-flex min-w-0 items-center justify-between gap-2 whitespace-nowrap rounded-md text-sm lg:text-lg font-medium transition-colors focus-within:outline-none focus-within:ring-2 focus-within:ring-ring/30",
+        variant === "default"
+          ? "border border-neutral-300 bg-white text-neutral-900 shadow-sm hover:border-neutral-400 hover:bg-neutral-50 focus-within:border-neutral-500"
+          : variants[variant],
         sizes[size],
         disabled && "opacity-50",
-        !selectedOption && variant === "outline" && "text-muted-foreground",
+        !selectedOption &&
+          (variant === "default" || variant === "outline") &&
+          "text-muted-foreground",
         className,
       )}
     >
-      {icon && (
-        <Icon
-          icon={icon}
-          size="sm"
-          className={variant === "default" ? "brightness-0 invert" : undefined}
-        />
-      )}
-      <span>{(showSelectedValue && selectedOption?.label) || placeholder}</span>
-      <Icon
-        icon="chevron-down"
-        size="sm"
-        className={variant === "default" ? "brightness-0 invert" : undefined}
-      />
+      {icon && <Icon icon={icon} size="sm" />}
+      <span className="min-w-0 truncate">
+        {(showSelectedValue && selectedOption?.label) || placeholder}
+      </span>
+      <Icon icon="chevron-down" size="sm" />
       <select
         {...rest}
         value={value ?? ""}
