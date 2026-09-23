@@ -41,7 +41,7 @@ export const Select: React.FC<SelectProps> = ({
           ? "border border-neutral-300 bg-white text-neutral-900 shadow-sm hover:border-neutral-400 hover:bg-neutral-50 focus-within:border-neutral-500"
           : variants[variant],
         variant === "ghost" &&
-          "font-normal text-gray-700 shadow-none hover:bg-gray-50",
+          "font-normal text-gray-700 shadow-none hover:bg-gray-50 focus-within:ring-0",
         sizes[size],
         disabled && "opacity-50",
         !selectedOption &&
