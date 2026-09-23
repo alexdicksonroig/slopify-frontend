@@ -38,6 +38,10 @@ pnpm run dev
 
 Your application will be available at `http://localhost:5173`.
 
+Visit `http://localhost:5173/dev/coreui` to preview all CoreUI components and
+interact with their examples. This route is only registered in development and
+is excluded from production builds.
+
 Configure the backend and Stripe Checkout in `.env`:
 
 ```dotenv

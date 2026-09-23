@@ -6,6 +6,9 @@ import {
 } from "@react-router/dev/routes";
 
 export default [
+  ...(process.env.NODE_ENV === "development"
+    ? [route("dev/coreui", "routes/dev/coreui.tsx")]
+    : []),
   layout("./layouts/header.tsx", [
     index("routes/variants.tsx"),
 
