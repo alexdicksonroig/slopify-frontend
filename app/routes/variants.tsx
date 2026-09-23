@@ -53,7 +53,7 @@ function VariantCard({ product, variant }: VariantCardProps) {
             .map(({ value }) => localize(value.label, language))
             .join(", ")}
         </p>
-        <p className="text-xs lg:text-base font-semibold leading-8 text-gray-950">
+        <p className="text-base lg:text-xl font-semibold leading-8 text-gray-950">
           {isAvailable
             ? formatMoney(unitAmount, currency)
             : t("product.unavailable")}
