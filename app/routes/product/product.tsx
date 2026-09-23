@@ -132,7 +132,7 @@ export default function ProductPage() {
                 navigate(`/product/${product.id}/${variantId}`)
               }
             />
-            <div className="mt-5 flex gap-3">
+            <div className="mt-5 flex gap-3 max-w-full">
               <QuantitySelector
                 value={quantity}
                 onChange={setQuantity}
