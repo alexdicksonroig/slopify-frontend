@@ -109,7 +109,7 @@ export default function ProductPage() {
               <p className="text-sm lg:text-lg text-neutral-500">
                 A bottle chosen for you
               </p>
-              <p className="shrink-0 text-3xl lg:text-5xl font-semibold tracking-[-0.04em] text-neutral-950">
+              <p className="shrink-0 text-3xl lg:text-4xl font-semibold tracking-[-0.04em] text-neutral-950">
                 {price}
               </p>
             </div>
