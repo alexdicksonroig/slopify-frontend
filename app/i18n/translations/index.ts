@@ -1,29 +1,18 @@
-import { ca } from "./ca";
-import { de } from "./de";
-import { en } from "./en";
-import { es } from "./es";
-import { fr } from "./fr";
-
-export const languageOptions = [
-  { label: "English", value: "en" as const },
-  { label: "Español", value: "es" as const },
-  { label: "Français", value: "fr" as const },
-  { label: "Deutsch", value: "de" as const },
-  { label: "Català", value: "ca" as const },
-];
-
-export type Language = (typeof languageOptions)[number]["value"];
-export const languages: readonly Language[] = languageOptions.map(
-  ({ value }) => value,
-);
+import { ca } from "./ca-ES";
+import { de } from "./de-DE";
+import { en } from "./en-US";
+import { es } from "./es-ES";
+import { fr } from "./fr-FR";
 
 export type TranslationKey = keyof typeof en;
 export type TranslationDictionary = Record<TranslationKey, string>;
 
 export const translations = {
-  en,
-  es,
-  fr,
-  de,
-  ca,
-} satisfies Record<Language, TranslationDictionary>;
+  "en-US": en,
+  "es-ES": es,
+  "fr-FR": fr,
+  "de-DE": de,
+  "ca-ES": ca,
+} satisfies Record<string, TranslationDictionary>;
+
+export type Language = string;

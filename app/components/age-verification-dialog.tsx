@@ -1,9 +1,4 @@
-import {
-  type Language,
-  languageOptions,
-  useLanguage,
-  useTranslate,
-} from "@app/i18n";
+import { useLanguage, useTranslate } from "@app/i18n";
 import { Button, Dialog, Select } from "@library";
 import { useEffect, useId, useState } from "react";
 
@@ -11,7 +6,7 @@ const AGE_VERIFICATION_SEEN_KEY = "age-verification-seen";
 
 export function AgeVerificationDialog() {
   const t = useTranslate();
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, languageOptions } = useLanguage();
   const titleId = useId();
   const descriptionId = useId();
   const languageLabelId = useId();
@@ -58,21 +53,23 @@ export function AgeVerificationDialog() {
       >
         {t("age-verification.question")}
       </p>
-      <div className="space-y-2">
-        <p id={languageLabelId} className="text-sm font-medium">
-          {t("age-verification.select-language")}
-        </p>
-        <Select
-          value={language}
-          onChange={(value) => setLanguage(value as Language)}
-          options={languageOptions}
-          placeholder={t("header.language")}
-          placement="bottom"
-          size="sm"
-          className="w-full"
-          aria-labelledby={languageLabelId}
-        />
-      </div>
+      {languageOptions.length > 0 && (
+        <div className="space-y-2">
+          <p id={languageLabelId} className="text-sm font-medium">
+            {t("age-verification.select-language")}
+          </p>
+          <Select
+            value={language}
+            onChange={setLanguage}
+            options={languageOptions}
+            placeholder={t("header.language")}
+            placement="bottom"
+            size="sm"
+            className="w-full"
+            aria-labelledby={languageLabelId}
+          />
+        </div>
+      )}
       <div className="grid grid-cols-2 gap-3">
         <Button type="button" variant="outline" onClick={handleExit}>
           {t("age-verification.no")}

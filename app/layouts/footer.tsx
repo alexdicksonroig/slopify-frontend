@@ -1,14 +1,9 @@
-import {
-  type Language,
-  languageOptions,
-  useLanguage,
-  useTranslate,
-} from "@app/i18n";
+import { useLanguage, useTranslate } from "@app/i18n";
 import { Icon, Select } from "@library";
 
 export default function Footer() {
   const t = useTranslate();
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, languageOptions } = useLanguage();
 
   return (
     <footer className="bg-white mt-auto border-t border-gray-200">
@@ -63,18 +58,20 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="my-4 flex items-center justify-end gap-1 md:shrink-0">
-          <Icon icon="globe" size="sm" />
-          <Select
-            value={language}
-            onChange={(value) => setLanguage(value as Language)}
-            options={languageOptions}
-            placeholder={t("header.language")}
-            variant="link"
-            size="sm"
-            className="min-w-32"
-          />
-        </div>
+        {languageOptions.length > 0 && (
+          <div className="my-4 flex items-center justify-end gap-1 md:shrink-0">
+            <Icon icon="globe" size="sm" />
+            <Select
+              value={language}
+              onChange={setLanguage}
+              options={languageOptions}
+              placeholder={t("header.language")}
+              variant="link"
+              size="sm"
+              className="min-w-32"
+            />
+          </div>
+        )}
         <div className="border-t border-gray-200 pt-6">
           <p className="text-xs text-gray-600 text-center">
             {t("footer.rights", { year: new Date().getFullYear() })}

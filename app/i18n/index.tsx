@@ -1,3 +1,4 @@
+import * as Api from "@app/lib/api";
 import {
   createContext,
   type PropsWithChildren,
@@ -9,13 +10,11 @@ import {
 } from "react";
 import {
   type Language,
-  languages,
   type TranslationKey,
   translations,
 } from "./translations";
 
 export type { Language, TranslationKey } from "./translations";
-export { languageOptions, languages } from "./translations";
 
 type Replacements = Record<string, string | number>;
 type Translate = (key: TranslationKey, replacements?: Replacements) => string;
@@ -23,6 +22,7 @@ type Translate = (key: TranslationKey, replacements?: Replacements) => string;
 type LanguageContextValue = {
   language: Language;
   setLanguage: (language: Language) => void;
+  languageOptions: { label: string; value: Language }[];
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
@@ -35,13 +35,25 @@ function interpolate(text: string, replacements?: Replacements): string {
 }
 
 export function LanguageProvider({ children }: PropsWithChildren) {
-  const [language, setLanguageState] = useState<Language>("ca");
+  const [language, setLanguageState] = useState<Language>("ca-ES");
+  const [languageOptions, setLanguageOptions] = useState<
+    { label: string; value: Language }[]
+  >([]);
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem(
-      LANGUAGE_STORAGE_KEY,
-    ) as Language;
-    if (languages.includes(savedLanguage)) setLanguageState(savedLanguage);
+    Api.get<{ supportedLanguages: { code: string; label: string }[] }>(
+      "site-settings",
+    )
+      .then(({ supportedLanguages }) => {
+        const options = supportedLanguages.map(({ code, label }) => ({
+          label,
+          value: code,
+        }));
+        setLanguageOptions(options);
+      })
+      .catch(() => {
+        setLanguageOptions([]);
+      });
   }, []);
 
   useEffect(() => {
@@ -54,8 +66,8 @@ export function LanguageProvider({ children }: PropsWithChildren) {
   }, []);
 
   const value = useMemo(
-    () => ({ language, setLanguage }),
-    [language, setLanguage],
+    () => ({ language, setLanguage, languageOptions }),
+    [language, setLanguage, languageOptions],
   );
 
   return (
@@ -78,7 +90,11 @@ export function useTranslate(): Translate {
 
   return useCallback(
     (key, replacements) =>
-      interpolate(translations[language][key], replacements),
+      interpolate(
+        (translations[language as keyof typeof translations] ??
+          translations["en-US"])[key],
+        replacements,
+      ),
     [language],
   );
 }
