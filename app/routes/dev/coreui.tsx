@@ -49,8 +49,8 @@ export default function CoreUIGallery() {
   ];
 
   return (
-    <main className="min-h-screen bg-background px-4 py-10 text-foreground sm:px-8">
-      <div className="mx-auto max-w-6xl space-y-8">
+    <main className="min-h-screen bg-background px-4 py-10 text-foreground sm:px-6 lg:px-4">
+      <div className="mx-auto w-full space-y-8">
         <header className="space-y-3">
           <p className="text-sm font-medium text-muted-foreground">
             Development only

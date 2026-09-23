@@ -145,7 +145,7 @@ export default function Variants() {
         </p>
       </div>
       <Filters options={options} resultCount={cards.length}>
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:gap-x-6 lg:gap-y-10">
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
           {cards.map(({ product, variant }) => (
             <VariantCard key={variant.id} product={product} variant={variant} />
           ))}
