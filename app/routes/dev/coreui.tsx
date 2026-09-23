@@ -128,7 +128,6 @@ export default function CoreUIGallery() {
               options={options}
               value={selection}
               onChange={setSelection}
-              placement="bottom"
             />
             <p className="text-sm text-muted-foreground">
               Selected value: {selection}
@@ -138,7 +137,6 @@ export default function CoreUIGallery() {
               options={options}
               placeholder="Choose an option"
               onChange={setSelection}
-              placement="bottom"
             />
             <Select
               aria-label="Disabled size"

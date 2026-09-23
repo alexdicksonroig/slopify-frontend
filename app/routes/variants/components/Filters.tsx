@@ -221,7 +221,6 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                   placeholder={t("filters.sort-by")}
                   showSelectedValue={false}
                   variant="ghost"
-                  placement="bottom"
                   className="h-8 gap-1 rounded-md px-1.5 text-xs lg:text-base font-normal text-gray-700 shadow-none hover:bg-gray-50 [&_svg]:size-3.5"
                   aria-label={t("filters.sort")}
                 />
@@ -255,7 +254,6 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               placeholder={t("filters.sort-by")}
               showSelectedValue={false}
               variant="ghost"
-              placement="bottom"
               className="my-3 h-10 w-full justify-between px-0 text-sm lg:text-lg font-normal text-gray-700 shadow-none hover:bg-gray-50 [&_svg]:size-4"
               aria-label={t("filters.sort")}
             />

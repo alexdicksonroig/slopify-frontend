@@ -1,5 +1,5 @@
 import { useLanguage, useTranslate } from "@app/i18n";
-import { Icon, Select } from "@library";
+import { Select } from "@library";
 
 export default function Footer() {
   const t = useTranslate();
@@ -59,16 +59,16 @@ export default function Footer() {
           </div>
         </div>
         {languageOptions.length > 0 && (
-          <div className="my-4 flex items-center justify-end gap-1 md:shrink-0">
-            <Icon icon="globe" size="sm" />
+          <div className="my-4 flex justify-end md:shrink-0">
             <Select
               value={language}
               onChange={setLanguage}
               options={languageOptions}
               placeholder={t("header.language")}
-              variant="link"
+              icon="globe"
               size="sm"
               className="min-w-32"
+              aria-label={t("header.language")}
             />
           </div>
         )}

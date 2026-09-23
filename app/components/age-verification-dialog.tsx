@@ -9,7 +9,6 @@ export function AgeVerificationDialog() {
   const { language, setLanguage, languageOptions } = useLanguage();
   const titleId = useId();
   const descriptionId = useId();
-  const languageLabelId = useId();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -54,19 +53,16 @@ export function AgeVerificationDialog() {
         {t("age-verification.question")}
       </p>
       {languageOptions.length > 0 && (
-        <div className="space-y-2">
-          <p id={languageLabelId} className="text-sm lg:text-lg font-medium">
-            {t("age-verification.select-language")}
-          </p>
+        <div className="flex justify-center">
           <Select
             value={language}
             onChange={setLanguage}
             options={languageOptions}
             placeholder={t("header.language")}
-            placement="bottom"
+            icon="globe"
             size="sm"
-            className="w-full"
-            aria-labelledby={languageLabelId}
+            className="min-w-32"
+            aria-label={t("header.language")}
           />
         </div>
       )}
