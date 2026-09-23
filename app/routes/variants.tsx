@@ -45,10 +45,10 @@ function VariantCard({ product, variant }: VariantCardProps) {
         className="mt-1 block min-w-0 px-0.5"
         to={`/product/${product.id}/${variant.id}`}
       >
-        <h3 className="truncate text-base lg:text-xl leading-6 text-black">
+        <h3 className="truncate text-base lg:text-xl font-medium text-black">
           {product.name}
         </h3>
-        <p className="truncate text-xs lg:text-base leading-none text-gray-500">
+        <p className="truncate text-xs lg:text-base text-gray-500">
           {variant.selections
             .map(({ value }) => localize(value.label, language))
             .join(", ")}
