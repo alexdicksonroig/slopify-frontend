@@ -87,9 +87,9 @@ export default function ProductPage() {
   };
 
   return (
-    <main className="mx-auto w-full max-w-[1440px] px-4 py-4 sm:px-6 sm:py-8 lg:px-12 lg:py-10">
+    <main className="mx-auto w-full max-w-[1440px] px-4 pt-3 pb-4 sm:px-6 sm:pt-4 sm:pb-8 lg:px-12 lg:pt-6 lg:pb-10">
       <Breadcrumb
-        className="mb-4 sm:mb-6"
+        className="mb-3 sm:mb-4"
         items={[
           { label: t("breadcrumb.home"), to: "/" },
           { label: product.name },

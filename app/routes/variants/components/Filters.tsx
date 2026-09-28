@@ -217,7 +217,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
             <p className="text-xs lg:text-base text-gray-600 lg:hidden">
               {t("filters.result-count", { count: resultCount })}
             </p>
-            <div className="ml-auto flex items-center gap-1 lg:block lg:min-w-56">
+            <div className="ml-auto flex items-center lg:block lg:min-w-56">
               <div className="min-w-0">
                 <Select
                   value={searchParams.get("sort") ?? "newest"}
@@ -227,13 +227,14 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                   showSelectedValue={false}
                   variant="ghost"
                   size="sm"
+                  className="pr-1.5 text-gray-600"
                   aria-label={t("filters.sort")}
                 />
               </div>
               <Button
                 variant="ghost"
                 size="sm"
-                className="lg:hidden"
+                className="pl-1.5 lg:hidden"
                 aria-haspopup="dialog"
                 aria-expanded={filtersOpen}
                 onClick={() => setFiltersOpen(true)}
@@ -259,7 +260,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               showSelectedValue={false}
               variant="ghost"
               size="lg"
-              className="my-3 w-full px-0"
+              className="my-3 w-full px-0 text-gray-500"
               aria-label={t("filters.sort")}
             />
             <FilterContent
