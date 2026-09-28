@@ -64,7 +64,8 @@ export const Drawer: React.FC<DrawerProps> = ({
     >
       <div
         className={cn(
-          "flex h-full flex-col bg-background text-foreground shadow-xl",
+          "flex h-full flex-col bg-background text-foreground",
+          fromRight ? "border-l" : "border-r",
           contentClassName,
         )}
       >

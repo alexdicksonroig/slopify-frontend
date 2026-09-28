@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { cn } from "../../lib/cn";
+import { Icon } from "./icon";
 
 type AccordionContext = {
   openItems: Record<string, boolean>;
@@ -103,11 +104,11 @@ const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
     <div className="flex">
       <div
         className={cn(
-          "flex flex-1 items-center justify-between py-4 text-sm lg:text-lg font-medium text-left cursor-pointer",
+          "flex flex-1 items-center justify-between py-4 text-sm lg:text-lg font-normal text-left cursor-pointer",
         )}
       >
         {children}
-        <div>{isOpen ? "-" : "+"}</div>
+        <Icon icon={isOpen ? "minus" : "plus"} size="sm" />
       </div>
     </div>
   );
@@ -120,7 +121,7 @@ const AccordionContent: React.FC<AccordionContentProps> = ({
   return (
     <div
       className={cn(
-        "grid text-sm lg:text-lg text-left",
+        "grid text-sm lg:text-lg text-left text-foreground/70",
         isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
       )}
     >

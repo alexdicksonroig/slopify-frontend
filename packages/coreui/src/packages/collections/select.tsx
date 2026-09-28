@@ -36,12 +36,10 @@ export const Select: React.FC<SelectProps> = ({
   return (
     <div
       className={cn(
-        "relative inline-flex min-w-0 items-center justify-between gap-2 whitespace-nowrap rounded-md text-sm lg:text-lg font-medium transition-colors focus-within:outline-none focus-within:ring-2 focus-within:ring-ring/30",
+        "relative inline-flex min-w-0 items-center justify-between gap-2 whitespace-nowrap rounded-md text-sm lg:text-lg font-medium transition-colors",
         variant === "default"
-          ? "border border-neutral-300 bg-white text-neutral-900 shadow-sm hover:border-neutral-400 hover:bg-neutral-50 focus-within:border-neutral-500"
+          ? "border border-input bg-background text-foreground hover:bg-accent"
           : variants[variant],
-        variant === "ghost" &&
-          "font-normal text-gray-700 shadow-none hover:bg-gray-50 focus-within:ring-0",
         sizes[size],
         disabled && "opacity-50",
         !selectedOption &&

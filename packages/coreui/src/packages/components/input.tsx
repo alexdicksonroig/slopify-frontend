@@ -14,7 +14,7 @@ const Input = ({ className, type, size = "default", ...props }: InputProps) => {
     <input
       type={type}
       className={cn(
-        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input w-full min-w-0 rounded-md border bg-transparent shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm lg:file:text-lg file:font-medium focus-visible:border-foreground focus-visible:ring-1 focus-visible:ring-foreground aria-invalid:border-destructive aria-invalid:focus-visible:ring-destructive disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input w-full min-w-0 rounded-md border bg-transparent transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm lg:file:text-lg file:font-medium focus-visible:border-ringaria-invalid:border-destructivedisabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
         sizes[size],
         className,
       )}

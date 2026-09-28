@@ -31,7 +31,7 @@ const classes = {
   mobile: {
     base: "fixed inset-x-0 bottom-0",
   },
-  surface: "rounded-md border bg-popover p-4 text-popover-foreground shadow-md",
+  surface: "rounded-md border bg-popover p-4 text-popover-foreground",
 };
 
 export const Popover: React.FC<PopoverProps> = ({
