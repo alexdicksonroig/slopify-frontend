@@ -234,7 +234,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                className="pl-1.5 lg:hidden"
+                className="pl-1.5 text-gray-600 lg:hidden"
                 aria-haspopup="dialog"
                 aria-expanded={filtersOpen}
                 onClick={() => setFiltersOpen(true)}
