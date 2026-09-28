@@ -91,7 +91,7 @@ export function VariantCartAction({
         aria-controls={popupId}
         disabled={!cart}
         onClick={() => setIsOpen((open) => !open)}
-        className="absolute right-3 bottom-3 rounded-full bg-neutral-200 text-neutral-950 hover:bg-neutral-300"
+        className="absolute right-3 bottom-3 size-6 rounded-full bg-neutral-200 text-neutral-950 hover:bg-neutral-300 after:absolute after:-inset-2.5"
       >
         <Icon icon="plus" size="sm" />
       </Button>
