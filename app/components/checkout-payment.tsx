@@ -161,10 +161,7 @@ const PaymentDetails = ({
             {message}
           </p>
         )}
-        <Button
-          disabled={isLoading}
-          className="h-14 w-full text-base lg:text-lg"
-        >
+        <Button disabled={isLoading} size="xl" className="w-full">
           {isLoading ? (
             <LoadingCircle size="sm" label={t("app.loading")} />
           ) : (
@@ -206,7 +203,7 @@ const CheckoutContents = () => {
         </section>
 
         <div className="border-t border-gray-200 pt-8">
-          <Skeleton className="h-14 w-full" />
+          <Skeleton className="h-12 w-full" />
         </div>
       </output>
     );

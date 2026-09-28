@@ -38,7 +38,8 @@ export function ProductOptions({
               .map(({ value }) => localize(value.label, language))
               .join(" / ") || productName,
         }))}
-        className="h-12 w-full"
+        size="xl"
+        className="w-full"
       />
     </div>
   );

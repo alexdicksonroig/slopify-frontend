@@ -315,7 +315,6 @@ export default function CoreUIGallery() {
               role="dialog"
               aria-modal="true"
               aria-labelledby={`${id}-dialog-title`}
-              className="gap-4 p-6"
             >
               <h2 id={`${id}-dialog-title`} className="text-xl font-semibold">
                 Example dialog
@@ -337,23 +336,22 @@ export default function CoreUIGallery() {
             <Overlay
               active={drawerOpen}
               onClick={() => setDrawerOpen(false)}
-              className="md:bg-black/15"
+              opacity="light"
             />
             <Drawer
               open={drawerOpen}
               onClose={() => setDrawerOpen(false)}
               fromRight
               hiddenFrom={false}
+              title="Example drawer"
               className="max-w-sm"
-              contentClassName="p-6"
             >
-              <h2 className="mb-4 text-xl font-semibold">Example drawer</h2>
-              <p className="mb-6">
-                A right-hand drawer available at every screen size.
-              </p>
-              <Button type="button" onClick={() => setDrawerOpen(false)}>
-                Close drawer
-              </Button>
+              <div className="space-y-6 p-6">
+                <p>A right-hand drawer available at every screen size.</p>
+                <Button type="button" onClick={() => setDrawerOpen(false)}>
+                  Close drawer
+                </Button>
+              </div>
             </Drawer>
           </Example>
           <Example title="Overlay">
@@ -368,7 +366,7 @@ export default function CoreUIGallery() {
             <Overlay
               active={overlayOpen}
               onClick={() => setOverlayOpen(false)}
-              className="md:bg-black/15"
+              opacity="light"
             />
           </Example>
         </div>

@@ -5,6 +5,7 @@ import {
   Accordion,
   Badge,
   Button,
+  Checkbox,
   Chip,
   Icon,
   Label,
@@ -63,9 +64,8 @@ const FilterContent = ({
 
                   return (
                     <div key={value.id} className="flex items-center">
-                      <input
+                      <Checkbox
                         id={inputId}
-                        type="checkbox"
                         checked={
                           searchParams.get(option.optionId) === String(value.id)
                         }
@@ -76,7 +76,6 @@ const FilterContent = ({
                             event.currentTarget.checked,
                           )
                         }
-                        className="h-4 w-4 rounded border-gray-300 text-primary"
                       />
                       <Label htmlFor={inputId} className="ml-3">
                         {localize(value.label, language)}
@@ -93,7 +92,6 @@ const FilterContent = ({
         <Button
           type="button"
           variant="link"
-          className="text-sm lg:text-lg font-normal text-muted-foreground"
           disabled={!hasActiveFilters}
           onClick={onResetFilters}
         >
@@ -205,7 +203,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
             <Button
               type="button"
               size="lg"
-              className="w-full uppercase"
+              className="w-full"
               onClick={() => setFiltersOpen(false)}
             >
               {t("filters.view-results", { count: resultCount })}
@@ -228,13 +226,14 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                   placeholder={t("filters.sort-by")}
                   showSelectedValue={false}
                   variant="ghost"
-                  className="h-8 gap-1 rounded-md px-1.5 text-xs lg:text-base"
+                  size="sm"
                   aria-label={t("filters.sort")}
                 />
               </div>
               <Button
                 variant="ghost"
-                className="h-8 gap-1 rounded-md px-1.5 text-xs lg:text-base font-normal text-gray-700 shadow-none hover:bg-gray-50 lg:hidden"
+                size="sm"
+                className="lg:hidden"
                 aria-haspopup="dialog"
                 aria-expanded={filtersOpen}
                 onClick={() => setFiltersOpen(true)}
@@ -259,7 +258,8 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               placeholder={t("filters.sort-by")}
               showSelectedValue={false}
               variant="ghost"
-              className="my-3 h-10 w-full justify-between px-0 text-sm lg:text-lg"
+              size="lg"
+              className="my-3 w-full px-0"
               aria-label={t("filters.sort")}
             />
             <FilterContent
@@ -288,7 +288,8 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                 <Button
                   type="button"
                   variant="link"
-                  className="ml-1 text-xs lg:text-base font-medium text-gray-500 hover:text-gray-700"
+                  size="sm"
+                  className="ml-1"
                   onClick={handleResetFilters}
                 >
                   {t("filters.clear-all")}

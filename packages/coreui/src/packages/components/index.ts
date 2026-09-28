@@ -10,7 +10,10 @@ import { Button, buttonVariants } from "./button";
 
 export type { BadgeProps } from "./badge";
 export type { ButtonProps, ButtonVariantProps } from "./button";
+export type { CheckboxProps } from "./checkbox";
 export type { ChipProps } from "./chip";
+export type { InputProps } from "./input";
+export type { OverlayOpacity, OverlayProps } from "./overlay";
 
 import {
   Card,
@@ -20,6 +23,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./card";
+import { Checkbox } from "./checkbox";
 import { Chip } from "./chip";
 import { Drawer } from "./drawer";
 import { Icon } from "./icon";
@@ -70,6 +74,7 @@ export {
   Button,
   buttonVariants,
   CardHOC as Card,
+  Checkbox,
   Chip,
   Drawer,
   TableHOC as Table,

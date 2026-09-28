@@ -1,10 +1,20 @@
 import { cn } from "../../lib/cn";
 
+const opacities = {
+  light: "bg-black/15",
+  medium: "bg-black/35",
+  dark: "bg-black/60",
+};
+
+export type OverlayOpacity = keyof typeof opacities;
+
 export type OverlayProps = {
   onClick?: () => void;
   className?: string;
   transparent?: boolean;
   active?: boolean;
+  // Without it the overlay is light on mobile and invisible from md up.
+  opacity?: OverlayOpacity;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Overlay: React.FC<OverlayProps> = ({
@@ -12,6 +22,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   className = "",
   transparent = false,
   active = false,
+  opacity,
   ...rest
 }) => {
   if (!active) return null;
@@ -22,7 +33,7 @@ export const Overlay: React.FC<OverlayProps> = ({
       aria-label="Close overlay"
       className={cn(
         "fixed inset-0 z-3",
-        "bg-black/15 md:bg-transparent",
+        opacity ? opacities[opacity] : "bg-black/15 md:bg-transparent",
         className,
       )}
       onClick={onClick}

@@ -30,14 +30,10 @@ export function QuantitySelector({
           variant="ghost"
           aria-label={t("product.decrease-quantity")}
           disabled={value <= min}
+          size="icon-sm"
           onClick={() => onChange(value - 1)}
-          className="aspect-square h-[calc(100%-0.5rem)] w-auto rounded-none p-0! disabled:opacity-30"
         >
-          <Icon
-            icon="minus"
-            size="sm"
-            className="pointer-events-none select-none"
-          />
+          <Icon icon="minus" size="sm" />
         </Button>
 
         <output className="min-w-5 text-center text-sm lg:text-lg font-medium text-neutral-900">
@@ -49,14 +45,10 @@ export function QuantitySelector({
           variant="ghost"
           aria-label={t("product.increase-quantity")}
           disabled={value >= max}
+          size="icon-sm"
           onClick={() => onChange(value + 1)}
-          className="aspect-square h-[calc(100%-0.5rem)] w-auto rounded-none p-0! disabled:opacity-30"
         >
-          <Icon
-            icon="plus"
-            size="sm"
-            className="pointer-events-none select-none"
-          />
+          <Icon icon="plus" size="sm" />
         </Button>
       </div>
     </fieldset>

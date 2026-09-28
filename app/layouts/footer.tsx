@@ -1,9 +1,8 @@
-import { useLanguage, useTranslate } from "@app/i18n";
-import { Select } from "@library";
+import { LanguageSelect } from "@app/components/language-select";
+import { useTranslate } from "@app/i18n";
 
 export default function Footer() {
   const t = useTranslate();
-  const { language, setLanguage, languageOptions } = useLanguage();
 
   return (
     <footer className="bg-white mt-auto border-t border-gray-200">
@@ -58,21 +57,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        {languageOptions.length > 0 && (
-          <div className="my-4 flex justify-end md:shrink-0">
-            <Select
-              value={language}
-              onChange={setLanguage}
-              options={languageOptions}
-              placeholder={t("header.language")}
-              icon="globe"
-              variant="ghost"
-              size="sm"
-              className="gap-1 px-1.5"
-              aria-label={t("header.language")}
-            />
-          </div>
-        )}
+        <div className="my-4 flex justify-end md:shrink-0">
+          <LanguageSelect />
+        </div>
         <div className="border-t border-gray-200 pt-6">
           <p className="text-xs lg:text-base text-gray-600 text-center">
             {t("footer.rights", { year: new Date().getFullYear() })}

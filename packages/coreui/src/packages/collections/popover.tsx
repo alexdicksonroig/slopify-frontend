@@ -1,5 +1,5 @@
 import { cn } from "../../lib/cn";
-import { Overlay } from "../components";
+import { Overlay, type OverlayOpacity } from "../components";
 
 export type PopoverProps = {
   open: boolean;
@@ -10,14 +10,8 @@ export type PopoverProps = {
   // outside it.
   placement?: "top" | "bottom" | "inside";
   desktopFrom?: "md" | "lg";
-  overlayOpacity?: "light" | "medium" | "dark";
+  overlayOpacity?: OverlayOpacity;
 } & React.HTMLAttributes<HTMLDivElement>;
-
-const overlayClasses = {
-  light: "bg-black/15 md:bg-black/15",
-  medium: "bg-black/35 md:bg-black/35",
-  dark: "bg-black/60 md:bg-black/60",
-};
 
 const classes = {
   desktop: {
@@ -37,8 +31,7 @@ const classes = {
   mobile: {
     base: "fixed inset-x-0 bottom-0",
   },
-  surface:
-    "rounded-md border bg-popover p-4 text-popover-foreground shadow-md",
+  surface: "rounded-md border bg-popover p-4 text-popover-foreground shadow-md",
 };
 
 export const Popover: React.FC<PopoverProps> = ({
@@ -58,7 +51,7 @@ export const Popover: React.FC<PopoverProps> = ({
       <Overlay
         active={open}
         onClick={() => onOpenChange(false)}
-        className={overlayOpacity ? overlayClasses[overlayOpacity] : undefined}
+        opacity={overlayOpacity}
       />
       <div
         {...rest}

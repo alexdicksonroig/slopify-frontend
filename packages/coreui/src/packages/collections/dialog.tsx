@@ -24,15 +24,16 @@ export const Dialog: React.FC<DialogProps> = ({
       <Overlay
         active={open}
         onClick={isModal ? undefined : () => onOpenChange(false)}
-        className="z-40 md:bg-black/15"
+        opacity="light"
+        className="z-40"
       />
       <Card
         {...rest}
         className={cn(
-          "fixed z-50 h-fit w-full sm:w-[350px]",
+          "fixed z-50 h-fit gap-6 p-6 sm:w-[350px]",
           bottomOnMobile
-            ? "inset-x-0 bottom-0 mx-auto sm:inset-x-auto sm:top-1/2 sm:left-1/2 sm:mx-0 sm:-translate-x-1/2 sm:-translate-y-1/2"
-            : "inset-0 m-auto",
+            ? "inset-x-0 bottom-0 mx-auto w-full sm:inset-x-auto sm:top-1/2 sm:left-1/2 sm:mx-0 sm:-translate-x-1/2 sm:-translate-y-1/2"
+            : "inset-0 m-auto w-[calc(100%-2rem)]",
           `${open ? "flex" : "hidden"}`,
           className,
         )}

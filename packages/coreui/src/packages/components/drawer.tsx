@@ -12,6 +12,10 @@ export type DrawerProps = {
   fromRight?: boolean;
   hiddenFrom?: DrawerBreakpoint | false;
   showCloseButton?: boolean;
+  // Accessible name of the close button; the library has no translations.
+  closeLabel?: string;
+  // Rendered in a header row next to the close button.
+  title?: React.ReactNode;
   contentClassName?: string;
 };
 
@@ -31,32 +35,59 @@ export const Drawer: React.FC<DrawerProps> = ({
   fromRight = false,
   hiddenFrom = "md",
   showCloseButton = true,
+  closeLabel = "Close",
+  title,
   contentClassName,
-}) => (
-  <div
-    inert={!open}
-    aria-hidden={!open}
-    className={cn(
-      "z-5 fixed inset-y-0 h-svh w-full overflow-y-auto transition duration-200 ease-in-out",
-      fromRight ? "right-0 translate-x-full" : "left-0 -translate-x-full",
-      hiddenFrom && HIDDEN_FROM[hiddenFrom],
-      { "translate-x-0": open },
-      className,
-    )}
-  >
-    <div className={cn("bg-white p-1 shadow-xl h-full", contentClassName)}>
-      {showCloseButton && (
-        <div
-          className={cn("w-full flex justify-start", {
-            "justify-end": fromRight,
-          })}
-        >
-          <Button onClick={onClose} variant="ghost" size="icon">
-            <Icon icon="x" className="mx-3" />
-          </Button>
-        </div>
+}) => {
+  const closeButton = showCloseButton && (
+    <Button
+      onClick={onClose}
+      variant="ghost"
+      size="icon"
+      aria-label={closeLabel}
+    >
+      <Icon icon="x" />
+    </Button>
+  );
+
+  return (
+    <div
+      inert={!open}
+      aria-hidden={!open}
+      className={cn(
+        "z-5 fixed inset-y-0 h-svh w-full overflow-y-auto transition duration-200 ease-in-out",
+        fromRight ? "right-0 translate-x-full" : "left-0 -translate-x-full",
+        hiddenFrom && HIDDEN_FROM[hiddenFrom],
+        { "translate-x-0": open },
+        className,
       )}
-      {children}
+    >
+      <div
+        className={cn(
+          "flex h-full flex-col bg-background text-foreground shadow-xl",
+          contentClassName,
+        )}
+      >
+        {title ? (
+          <div className="flex shrink-0 items-center justify-between gap-4 border-b px-6 py-4">
+            <h2 className="text-xl lg:text-2xl font-semibold tracking-tight">
+              {title}
+            </h2>
+            {closeButton}
+          </div>
+        ) : (
+          closeButton && (
+            <div
+              className={cn("flex shrink-0 justify-start p-1", {
+                "justify-end": fromRight,
+              })}
+            >
+              {closeButton}
+            </div>
+          )
+        )}
+        <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+      </div>
     </div>
-  </div>
-);
+  );
+};

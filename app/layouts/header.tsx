@@ -130,7 +130,7 @@ export default function Example() {
                   aria-expanded={cartOpen}
                   variant="ghost"
                   size="icon"
-                  className="relative h-11 w-11 overflow-visible rounded-full shadow-none"
+                  className="relative"
                 >
                   <Icon icon="shopping-bag" size="md" />
                   {cartItemCount > 0 && (

@@ -97,7 +97,9 @@ export default function Return() {
             label={t("return.checking")}
             className="mx-auto text-indigo-600"
           />
-          <p className="mt-5 text-base lg:text-xl text-gray-600">{t("return.checking")}</p>
+          <p className="mt-5 text-base lg:text-xl text-gray-600">
+            {t("return.checking")}
+          </p>
         </div>
       </main>
     );
@@ -113,10 +115,13 @@ export default function Return() {
           <h1 className="mt-6 text-3xl lg:text-5xl font-bold tracking-tight text-gray-900">
             {t("return.error-title")}
           </h1>
-          <p className="mt-3 text-base lg:text-xl text-gray-600">{t("return.error")}</p>
+          <p className="mt-3 text-base lg:text-xl text-gray-600">
+            {t("return.error")}
+          </p>
           <Button
             onClick={() => navigate("/checkout")}
-            className="mt-8 h-12 px-8"
+            size="xl"
+            className="mt-8"
           >
             {t("return.back-checkout")}
           </Button>
@@ -208,7 +213,7 @@ export default function Return() {
         ) : null}
 
         <div className="mt-12 border-t border-gray-200 pt-8">
-          <Button onClick={() => navigate("/")} className="h-12 px-8">
+          <Button onClick={() => navigate("/")} size="xl">
             {t("return.continue")}
           </Button>
         </div>

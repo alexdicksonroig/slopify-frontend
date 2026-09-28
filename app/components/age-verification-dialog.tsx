@@ -1,12 +1,12 @@
-import { useLanguage, useTranslate } from "@app/i18n";
-import { Button, Dialog, Select } from "@library";
+import { LanguageSelect } from "@app/components/language-select";
+import { useTranslate } from "@app/i18n";
+import { Button, Dialog } from "@library";
 import { useEffect, useId, useState } from "react";
 
 const AGE_VERIFICATION_SEEN_KEY = "age-verification-seen";
 
 export function AgeVerificationDialog() {
   const t = useTranslate();
-  const { language, setLanguage, languageOptions } = useLanguage();
   const titleId = useId();
   const descriptionId = useId();
   const [open, setOpen] = useState(false);
@@ -33,7 +33,6 @@ export function AgeVerificationDialog() {
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
       bottomOnMobile={false}
-      className="w-[calc(100%-2rem)] max-w-[300px] gap-5 p-5 shadow-none sm:w-[350px] sm:max-w-none sm:gap-6 sm:p-6"
     >
       <img
         src="/assets/roig-parals-logo-dark.png"
@@ -60,21 +59,7 @@ export function AgeVerificationDialog() {
           {t("age-verification.yes")}
         </Button>
       </div>
-      {languageOptions.length > 0 && (
-        <div className="flex justify-center">
-          <Select
-            value={language}
-            onChange={setLanguage}
-            options={languageOptions}
-            placeholder={t("header.language")}
-            icon="globe"
-            variant="ghost"
-            size="sm"
-            className="gap-1 px-1.5"
-            aria-label={t("header.language")}
-          />
-        </div>
-      )}
+      <LanguageSelect className="self-center" />
     </Dialog>
   );
 }
