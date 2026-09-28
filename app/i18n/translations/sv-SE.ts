@@ -10,6 +10,8 @@ export const svSe = {
   "age-verification.yes": "Ja, gå in",
   "app.loading": "Laddar",
   "banner.shop-now": "Handla nu",
+  "breadcrumb.home": "Butik",
+  "breadcrumb.label": "Brödsmulor",
   "cart.close": "Stäng vagnen",
   "cart.checkout": "Till kassan",
   "cart.edit-action": "Redigera",

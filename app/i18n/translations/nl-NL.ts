@@ -10,6 +10,8 @@ export const nlNl = {
   "age-verification.yes": "Ja, naar binnen",
   "app.loading": "Laden",
   "banner.shop-now": "Nu winkelen",
+  "breadcrumb.home": "Winkel",
+  "breadcrumb.label": "Kruimelpad",
   "cart.close": "Sluit winkelwagen",
   "cart.checkout": "Afrekenen",
   "cart.edit-action": "Bewerken",

@@ -9,6 +9,8 @@ export const es = {
   "age-verification.yes": "Sí, entrar",
   "app.loading": "Cargando",
   "banner.shop-now": "Comprar ahora",
+  "breadcrumb.home": "Tienda",
+  "breadcrumb.label": "Ruta de navegación",
   "cart.close": "Cerrar carrito",
   "cart.checkout": "Finalizar compra",
   "cart.edit-action": "Editar",

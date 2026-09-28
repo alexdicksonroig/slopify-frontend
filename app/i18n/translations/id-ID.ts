@@ -10,6 +10,8 @@ export const idId = {
   "age-verification.yes": "Ya, masuk",
   "app.loading": "Memuat",
   "banner.shop-now": "Belanja sekarang",
+  "breadcrumb.home": "Toko",
+  "breadcrumb.label": "Navigasi remah roti",
   "cart.close": "Tutup troli",
   "cart.checkout": "Lanjut ke pembayaran",
   "cart.edit-action": "Sunting",

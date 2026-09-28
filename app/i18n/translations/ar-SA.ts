@@ -10,6 +10,8 @@ export const arSa = {
   "age-verification.yes": "نعم، دخول",
   "app.loading": "جارٍ التحميل",
   "banner.shop-now": "تسوق الآن",
+  "breadcrumb.home": "المتجر",
+  "breadcrumb.label": "مسار التنقل",
   "cart.close": "إغلاق العربة",
   "cart.checkout": "إتمام الشراء",
   "cart.edit-action": "تحرير",

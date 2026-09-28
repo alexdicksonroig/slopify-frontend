@@ -10,6 +10,8 @@ export const hiIn = {
   "age-verification.yes": "हाँ, प्रवेश करें",
   "app.loading": "लोड हो रहा है",
   "banner.shop-now": "अभी खरीदें",
+  "breadcrumb.home": "दुकान",
+  "breadcrumb.label": "ब्रेडक्रंब",
   "cart.close": "कार्ट बंद करें",
   "cart.checkout": "चेकआउट",
   "cart.edit-action": "संपादित करें",

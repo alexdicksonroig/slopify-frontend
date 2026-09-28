@@ -9,6 +9,8 @@ export const ca = {
   "age-verification.yes": "Sí, entra",
   "app.loading": "S'està carregant",
   "banner.shop-now": "Compra ara",
+  "breadcrumb.home": "Botiga",
+  "breadcrumb.label": "Ruta de navegació",
   "cart.close": "Tanca la cistella",
   "cart.checkout": "Finalitza la compra",
   "cart.edit-action": "Edita",

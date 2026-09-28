@@ -7,6 +7,8 @@ export const en = {
   "age-verification.yes": "Yes, enter",
   "app.loading": "Loading",
   "banner.shop-now": "Shop Now",
+  "breadcrumb.home": "Shop",
+  "breadcrumb.label": "Breadcrumb",
   "cart.close": "Close cart",
   "cart.checkout": "Checkout",
   "cart.edit-action": "Edit",

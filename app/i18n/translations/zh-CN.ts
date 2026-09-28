@@ -9,6 +9,8 @@ export const zhCn = {
   "age-verification.yes": "是，进入",
   "app.loading": "加载中",
   "banner.shop-now": "立即选购",
+  "breadcrumb.home": "商店",
+  "breadcrumb.label": "面包屑导航",
   "cart.close": "关闭购物车",
   "cart.checkout": "结账",
   "cart.edit-action": "编辑",

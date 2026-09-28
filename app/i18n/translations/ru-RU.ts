@@ -10,6 +10,8 @@ export const ruRu = {
   "age-verification.yes": "Да, войти",
   "app.loading": "Загрузка",
   "banner.shop-now": "Купить сейчас",
+  "breadcrumb.home": "Магазин",
+  "breadcrumb.label": "Навигационная цепочка",
   "cart.close": "Закрыть корзину",
   "cart.checkout": "Оформить заказ",
   "cart.edit-action": "Редактировать",

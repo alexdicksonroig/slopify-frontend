@@ -9,6 +9,8 @@ export const zhTw = {
   "age-verification.yes": "是，進入",
   "app.loading": "載入中",
   "banner.shop-now": "立即選購",
+  "breadcrumb.home": "商店",
+  "breadcrumb.label": "麵包屑導覽",
   "cart.close": "關閉購物車",
   "cart.checkout": "結帳",
   "cart.edit-action": "編輯",

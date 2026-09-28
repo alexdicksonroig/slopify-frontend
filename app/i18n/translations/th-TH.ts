@@ -10,6 +10,8 @@ export const thTh = {
   "age-verification.yes": "ใช่ เข้าสู่เว็บไซต์",
   "app.loading": "กำลังโหลด",
   "banner.shop-now": "เลือกซื้อเลย",
+  "breadcrumb.home": "ร้านค้า",
+  "breadcrumb.label": "เส้นทางนำทาง",
   "cart.close": "ปิดรถเข็น",
   "cart.checkout": "ชำระเงิน",
   "cart.edit-action": "แก้ไข",

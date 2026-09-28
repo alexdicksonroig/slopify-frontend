@@ -9,6 +9,8 @@ export const de = {
   "age-verification.yes": "Ja, eintreten",
   "app.loading": "Wird geladen",
   "banner.shop-now": "Jetzt einkaufen",
+  "breadcrumb.home": "Shop",
+  "breadcrumb.label": "Brotkrumen-Navigation",
   "cart.close": "Warenkorb schließen",
   "cart.checkout": "Zur Kasse",
   "cart.edit-action": "Bearbeiten",

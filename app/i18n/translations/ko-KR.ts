@@ -10,6 +10,8 @@ export const koKr = {
   "age-verification.yes": "예, 입장",
   "app.loading": "불러오는 중",
   "banner.shop-now": "지금 쇼핑하기",
+  "breadcrumb.home": "상점",
+  "breadcrumb.label": "이동 경로",
   "cart.close": "장바구니 닫기",
   "cart.checkout": "결제하기",
   "cart.edit-action": "편집",

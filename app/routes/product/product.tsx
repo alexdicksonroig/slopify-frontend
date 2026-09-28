@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@app/components/breadcrumb";
 import { QuantitySelector } from "@app/components/quantity-selector";
 import { useLanguage, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
@@ -87,6 +88,13 @@ export default function ProductPage() {
 
   return (
     <main className="mx-auto w-full max-w-[1440px] px-4 py-4 sm:px-6 sm:py-8 lg:px-12 lg:py-10">
+      <Breadcrumb
+        className="mb-4 sm:mb-6"
+        items={[
+          { label: t("breadcrumb.home"), to: "/" },
+          { label: product.name },
+        ]}
+      />
       <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(24rem,1fr)] lg:gap-16">
         <ProductImageGallery images={galleryImages} />
 

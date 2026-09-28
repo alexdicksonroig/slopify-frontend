@@ -10,6 +10,8 @@ export const viVn = {
   "age-verification.yes": "Có, vào",
   "app.loading": "Đang tải",
   "banner.shop-now": "Mua ngay",
+  "breadcrumb.home": "Cửa hàng",
+  "breadcrumb.label": "Đường dẫn",
   "cart.close": "Đóng giỏ hàng",
   "cart.checkout": "Thanh toán",
   "cart.edit-action": "Chỉnh sửa",

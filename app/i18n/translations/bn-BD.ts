@@ -10,6 +10,8 @@ export const bnBd = {
   "age-verification.yes": "হ্যাঁ, প্রবেশ করুন",
   "app.loading": "লোড হচ্ছে",
   "banner.shop-now": "এখনই কিনুন",
+  "breadcrumb.home": "দোকান",
+  "breadcrumb.label": "ব্রেডক্রাম্ব",
   "cart.close": "কার্ট বন্ধ করুন",
   "cart.checkout": "চেকআউট",
   "cart.edit-action": "সম্পাদনা করুন",

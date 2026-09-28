@@ -10,6 +10,8 @@ export const trTr = {
   "age-verification.yes": "Evet, gir",
   "app.loading": "Yükleniyor",
   "banner.shop-now": "Şimdi alışveriş yap",
+  "breadcrumb.home": "Mağaza",
+  "breadcrumb.label": "İçerik haritası",
   "cart.close": "Sepeti kapat",
   "cart.checkout": "Ödemeye geç",
   "cart.edit-action": "Düzenle",

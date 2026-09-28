@@ -10,6 +10,8 @@ export const ptBr = {
   "age-verification.yes": "Sim, entrar",
   "app.loading": "Carregando",
   "banner.shop-now": "Compre agora",
+  "breadcrumb.home": "Loja",
+  "breadcrumb.label": "Trilha de navegação",
   "cart.close": "Fechar carrinho",
   "cart.checkout": "Finalizar compra",
   "cart.edit-action": "Editar",

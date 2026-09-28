@@ -10,6 +10,8 @@ export const itIt = {
   "age-verification.yes": "Sì, entra",
   "app.loading": "Caricamento",
   "banner.shop-now": "Acquista ora",
+  "breadcrumb.home": "Negozio",
+  "breadcrumb.label": "Percorso di navigazione",
   "cart.close": "Chiudi il carrello",
   "cart.checkout": "Vai alla cassa",
   "cart.edit-action": "Modifica",

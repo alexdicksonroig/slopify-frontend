@@ -9,6 +9,8 @@ export const fr = {
   "age-verification.yes": "Oui, entrer",
   "app.loading": "Chargement",
   "banner.shop-now": "Acheter maintenant",
+  "breadcrumb.home": "Boutique",
+  "breadcrumb.label": "Fil d'Ariane",
   "cart.close": "Fermer le panier",
   "cart.checkout": "Passer au paiement",
   "cart.edit-action": "Modifier",

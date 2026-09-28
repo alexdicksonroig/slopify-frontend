@@ -10,6 +10,8 @@ export const plPl = {
   "age-verification.yes": "Tak, wejdź",
   "app.loading": "Ładowanie",
   "banner.shop-now": "Kup teraz",
+  "breadcrumb.home": "Sklep",
+  "breadcrumb.label": "Ścieżka nawigacji",
   "cart.close": "Zamknij koszyk",
   "cart.checkout": "Przejdź do kasy",
   "cart.edit-action": "Edytuj",

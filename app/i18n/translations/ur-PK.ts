@@ -10,6 +10,8 @@ export const urPk = {
   "age-verification.yes": "ہاں، داخل ہوں",
   "app.loading": "لوڈ ہو رہا ہے",
   "banner.shop-now": "ابھی خریدیں",
+  "breadcrumb.home": "دکان",
+  "breadcrumb.label": "نیویگیشن راستہ",
   "cart.close": "کارٹ بند کریں۔",
   "cart.checkout": "چیک آؤٹ",
   "cart.edit-action": "ترمیم کریں۔",

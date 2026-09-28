@@ -10,6 +10,8 @@ export const ukUa = {
   "age-verification.yes": "Так, увійти",
   "app.loading": "Завантаження",
   "banner.shop-now": "Купити зараз",
+  "breadcrumb.home": "Магазин",
+  "breadcrumb.label": "Навігаційний ланцюжок",
   "cart.close": "Закрити кошик",
   "cart.checkout": "Оформити замовлення",
   "cart.edit-action": "Редагувати",

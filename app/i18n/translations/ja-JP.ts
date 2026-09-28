@@ -10,6 +10,8 @@ export const jaJp = {
   "age-verification.yes": "はい、入る",
   "app.loading": "読み込み中",
   "banner.shop-now": "今すぐ購入",
+  "breadcrumb.home": "ショップ",
+  "breadcrumb.label": "パンくずリスト",
   "cart.close": "カートを閉じる",
   "cart.checkout": "購入手続き",
   "cart.edit-action": "編集",
