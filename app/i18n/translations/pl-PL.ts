@@ -69,6 +69,7 @@ export const plPl = {
   "header.tax":
     "Wszystkie ceny zawierają podatek VAT, jeśli ma to zastosowanie",
   "header.top": "Góra",
+  "product.add": "Dodaj",
   "product.add-to-bag": "Dodaj do koszyka",
   "product.description": "Opis",
   "product.details": "Szczegóły",

@@ -69,6 +69,7 @@ export const ptPt = {
   "header.menu": "Menu",
   "header.tax": "Todos os preços incluem IVA quando aplicável",
   "header.top": "Superior",
+  "product.add": "Adicionar",
   "product.add-to-bag": "Adicionar ao carrinho",
   "product.description": "Descrição",
   "product.details": "Detalhes",

@@ -68,6 +68,7 @@ export const arSa = {
   "header.menu": "القائمة",
   "header.tax": "تشمل جميع الأسعار ضريبة القيمة المضافة حيثما ينطبق ذلك",
   "header.top": "أعلى",
+  "product.add": "أضف",
   "product.add-to-bag": "أضف إلى السلة",
   "product.description": "الوصف",
   "product.details": "التفاصيل",

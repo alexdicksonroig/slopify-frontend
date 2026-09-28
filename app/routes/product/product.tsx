@@ -145,7 +145,7 @@ export default function ProductPage() {
                 disabled={!cart || !hasPrice}
                 className="flex-1 justify-between"
               >
-                <span>{t("product.add-to-bag")}</span>
+                <span>{t("product.add")}</span>
                 <span>{totalPrice}</span>
               </Button>
             </div>

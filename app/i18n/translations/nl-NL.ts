@@ -68,6 +68,7 @@ export const nlNl = {
   "header.menu": "Menu",
   "header.tax": "Alle prijzen zijn inclusief BTW indien van toepassing",
   "header.top": "Boven",
+  "product.add": "Toevoegen",
   "product.add-to-bag": "Toevoegen aan winkelwagen",
   "product.description": "Beschrijving",
   "product.details": "Details",

@@ -68,6 +68,7 @@ export const hiIn = {
   "header.menu": "मेनू",
   "header.tax": "जहां लागू हो वहां सभी कीमतों में वैट शामिल है",
   "header.top": "शीर्ष",
+  "product.add": "जोड़ें",
   "product.add-to-bag": "बैग में जोड़ें",
   "product.description": "विवरण",
   "product.details": "विवरण",

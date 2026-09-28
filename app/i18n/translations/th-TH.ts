@@ -68,6 +68,7 @@ export const thTh = {
   "header.menu": "เมนู",
   "header.tax": "ราคาทั้งหมดรวมภาษีมูลค่าเพิ่มแล้ว หากมี",
   "header.top": "ด้านบน",
+  "product.add": "เพิ่ม",
   "product.add-to-bag": "เพิ่มลงตะกร้า",
   "product.description": "คำอธิบาย",
   "product.details": "รายละเอียด",

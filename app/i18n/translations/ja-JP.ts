@@ -68,6 +68,7 @@ export const jaJp = {
   "header.menu": "メニュー",
   "header.tax": "該当する場合、すべての価格には VAT が含まれています",
   "header.top": "トップへ",
+  "product.add": "追加",
   "product.add-to-bag": "カートに追加",
   "product.description": "説明",
   "product.details": "詳細",

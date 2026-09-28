@@ -68,6 +68,7 @@ export const itIt = {
   "header.menu": "Menu",
   "header.tax": "Tutti i prezzi sono comprensivi di IVA ove applicabile",
   "header.top": "In alto",
+  "product.add": "Aggiungi",
   "product.add-to-bag": "Aggiungi al carrello",
   "product.description": "Descrizione",
   "product.details": "Dettagli",

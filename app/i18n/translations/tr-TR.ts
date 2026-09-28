@@ -68,6 +68,7 @@ export const trTr = {
   "header.menu": "Menü",
   "header.tax": "Tüm fiyatlara geçerli olduğu durumlarda KDV dahildir",
   "header.top": "Üst",
+  "product.add": "Ekle",
   "product.add-to-bag": "Sepete ekle",
   "product.description": "Açıklama",
   "product.details": "Ayrıntılar",

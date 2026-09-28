@@ -68,6 +68,7 @@ export const svSe = {
   "header.menu": "Meny",
   "header.tax": "Alla priser inkluderar moms i förekommande fall",
   "header.top": "Överst",
+  "product.add": "Lägg till",
   "product.add-to-bag": "Lägg i varukorgen",
   "product.description": "Beskrivning",
   "product.details": "Detaljer",

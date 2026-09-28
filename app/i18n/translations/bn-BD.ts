@@ -68,6 +68,7 @@ export const bnBd = {
   "header.menu": "মেনু",
   "header.tax": "সমস্ত মূল্য যেখানে প্রযোজ্য সেখানে ভ্যাট অন্তর্ভুক্ত",
   "header.top": "শীর্ষ",
+  "product.add": "যোগ করুন",
   "product.add-to-bag": "ব্যাগে যোগ করুন",
   "product.description": "বিবরণ",
   "product.details": "বিস্তারিত",

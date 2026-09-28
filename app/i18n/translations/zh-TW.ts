@@ -67,6 +67,7 @@ export const zhTw = {
   "header.menu": "選單",
   "header.tax": "所有價格均包含增值稅（如適用）",
   "header.top": "頂部",
+  "product.add": "加入",
   "product.add-to-bag": "加入購物袋",
   "product.description": "描述",
   "product.details": "詳情",

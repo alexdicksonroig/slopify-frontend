@@ -68,6 +68,7 @@ export const urPk = {
   "header.menu": "مینو",
   "header.tax": "جہاں قابل اطلاق ہو تمام قیمتوں میں VAT شامل ہے۔",
   "header.top": "اوپر",
+  "product.add": "شامل کریں",
   "product.add-to-bag": "ٹوکری میں شامل کریں",
   "product.description": "تفصیل",
   "product.details": "تفصیلات",

@@ -69,6 +69,7 @@ export const ruRu = {
   "header.menu": "Меню",
   "header.tax": "Все цены включают НДС, где это применимо.",
   "header.top": "Топ",
+  "product.add": "Добавить",
   "product.add-to-bag": "Добавить в корзину",
   "product.description": "Описание",
   "product.details": "Подробности",

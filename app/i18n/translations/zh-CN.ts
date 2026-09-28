@@ -67,6 +67,7 @@ export const zhCn = {
   "header.menu": "菜单",
   "header.tax": "所有价格均包含增值税（如适用）",
   "header.top": "顶部",
+  "product.add": "加入",
   "product.add-to-bag": "加入购物袋",
   "product.description": "描述",
   "product.details": "详情",

@@ -68,6 +68,7 @@ export const idId = {
   "header.menu": "Menu",
   "header.tax": "Semua harga sudah termasuk PPN jika berlaku",
   "header.top": "Atas",
+  "product.add": "Tambah",
   "product.add-to-bag": "Tambahkan ke keranjang",
   "product.description": "Deskripsi",
   "product.details": "Detail",

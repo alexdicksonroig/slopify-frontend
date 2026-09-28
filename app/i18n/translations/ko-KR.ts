@@ -68,6 +68,7 @@ export const koKr = {
   "header.menu": "메뉴",
   "header.tax": "모든 가격에는 해당하는 경우 VAT가 포함됩니다.",
   "header.top": "탑",
+  "product.add": "담기",
   "product.add-to-bag": "장바구니에 담기",
   "product.description": "설명",
   "product.details": "세부정보",

@@ -68,6 +68,7 @@ export const viVn = {
   "header.menu": "Menu",
   "header.tax": "Tất cả giá đã bao gồm VAT nếu có",
   "header.top": "hàng đầu",
+  "product.add": "Thêm",
   "product.add-to-bag": "Thêm vào giỏ",
   "product.description": "Mô tả",
   "product.details": "Chi tiết",

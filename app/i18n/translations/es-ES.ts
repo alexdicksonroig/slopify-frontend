@@ -67,6 +67,7 @@ export const es = {
   "header.menu": "Menú",
   "header.tax": "Todos los precios incluyen IVA cuando corresponde",
   "header.top": "Principal",
+  "product.add": "Añadir",
   "product.add-to-bag": "Añadir a la bolsa",
   "product.description": "Descripción",
   "product.details": "Detalles",

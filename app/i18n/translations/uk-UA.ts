@@ -69,6 +69,7 @@ export const ukUa = {
   "header.menu": "Меню",
   "header.tax": "Усі ціни включають ПДВ, якщо застосовно",
   "header.top": "Топ",
+  "product.add": "Додати",
   "product.add-to-bag": "Додати до кошика",
   "product.description": "Опис",
   "product.details": "Подробиці",
