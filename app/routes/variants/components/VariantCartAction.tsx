@@ -84,16 +84,16 @@ export function VariantCartAction({
         ref={triggerRef}
         type="button"
         variant="surface"
-        size="icon"
+        size="icon-sm"
         aria-label={`${t("product.add-to-bag")}: ${product.name}`}
         aria-haspopup="dialog"
         aria-expanded={isOpen}
         aria-controls={popupId}
         disabled={!cart}
         onClick={() => setIsOpen((open) => !open)}
-        className="absolute right-3 bottom-3"
+        className="absolute right-3 bottom-3 rounded-full text-neutral-950"
       >
-        <Icon icon="shopping-bag-plus" size="md" />
+        <Icon icon="plus" size="sm" />
       </Button>
 
       <Popover
