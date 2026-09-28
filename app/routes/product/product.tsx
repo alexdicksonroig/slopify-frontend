@@ -140,8 +140,10 @@ export default function ProductPage() {
               />
               <Button
                 type="submit"
+                variant="cta"
+                size="xl"
                 disabled={!cart || !hasPrice}
-                className="h-12 flex-1 justify-between rounded-none bg-neutral-950 px-3 uppercase hover:bg-neutral-800 sm:px-5"
+                className="flex-1 justify-between"
               >
                 <span>{t("product.add-to-bag")}</span>
                 <span>{totalPrice}</span>

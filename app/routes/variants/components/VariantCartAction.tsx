@@ -83,7 +83,7 @@ export function VariantCartAction({
       <Button
         ref={triggerRef}
         type="button"
-        variant="ghost"
+        variant="surface"
         size="icon"
         aria-label={`${t("product.add-to-bag")}: ${product.name}`}
         aria-haspopup="dialog"
@@ -91,7 +91,7 @@ export function VariantCartAction({
         aria-controls={popupId}
         disabled={!cart}
         onClick={() => setIsOpen((open) => !open)}
-        className="absolute right-3 bottom-3 h-10! w-10! origin-center md:h-8! md:w-8! transform-gpu bg-white p-0! shadow-none transition-transform duration-300 ease-out hover:scale-105 hover:bg-white! hover:shadow-none active:scale-110 active:shadow-none motion-reduce:transform-none disabled:opacity-40 [border-radius:0.25rem]"
+        className="absolute right-3 bottom-3 transition-transform duration-300 ease-out hover:scale-105 active:scale-110 motion-reduce:transform-none"
       >
         <Icon icon="shopping-bag-plus" size="md" />
       </Button>
@@ -121,10 +121,10 @@ export function VariantCartAction({
           <Button
             type="button"
             variant="ghost"
-            size="icon"
+            size="icon-sm"
             aria-label="Close"
             onClick={() => setIsOpen(false)}
-            className="size-7 shrink-0 rounded-none p-0!"
+            className="shrink-0"
           >
             <Icon icon="x" size="sm" />
           </Button>
@@ -153,9 +153,10 @@ export function VariantCartAction({
           />
           <Button
             type="submit"
-            size="sm"
+            variant="cta"
+            size="lg"
             disabled={!cart || isAdding || quantity < 1 || quantity > stock}
-            className="h-10 w-full min-w-0 rounded-none bg-neutral-950 px-3 text-xs lg:text-base uppercase hover:bg-neutral-800 disabled:bg-neutral-100 disabled:text-neutral-500 disabled:opacity-100 sm:flex-1"
+            className="w-full min-w-0 sm:flex-1"
           >
             {stock === 0 ? t("product.out-of-stock") : t("product.add-to-bag")}
           </Button>

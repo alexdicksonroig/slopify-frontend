@@ -3,9 +3,11 @@ import Throttle from "./lib/throttle";
 import { Dialog, Popover, Select } from "./packages/collections";
 import {
   Accordion,
+  Badge,
   Button,
   buttonVariants,
   Card,
+  Chip,
   Drawer,
   Icon,
   Input,
@@ -26,9 +28,11 @@ export {
   Overlay,
   Table,
   Accordion,
+  Badge,
   Button,
   buttonVariants,
   Card,
+  Chip,
   Dialog,
   Input,
   Label,
@@ -39,8 +43,10 @@ export {
 };
 
 export type {
+  BadgeProps,
   ButtonProps,
   ButtonVariantProps,
+  ChipProps,
   DrawerBreakpoint,
   DrawerProps,
   IconName,

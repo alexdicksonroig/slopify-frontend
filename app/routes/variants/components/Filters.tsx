@@ -1,7 +1,16 @@
 import { type TranslationKey, useLanguage, useTranslate } from "@app/i18n";
 import { localize } from "@app/lib/localized-text";
 import type { ProductOption } from "@app/lib/variant";
-import { Accordion, Button, Icon, Label, Popover, Select } from "@library";
+import {
+  Accordion,
+  Badge,
+  Button,
+  Chip,
+  Icon,
+  Label,
+  Popover,
+  Select,
+} from "@library";
 import { type ReactNode, useState } from "react";
 import { useSearchParams } from "react-router";
 
@@ -58,8 +67,7 @@ const FilterContent = ({
                         id={inputId}
                         type="checkbox"
                         checked={
-                          searchParams.get(option.optionId) ===
-                          String(value.id)
+                          searchParams.get(option.optionId) === String(value.id)
                         }
                         onChange={(event) =>
                           onFilterChange(
@@ -234,9 +242,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                 <Icon icon="list-filter" size="sm" />
                 <span>{t("filters.title")}</span>
                 {activeFilters.length > 0 && (
-                  <span className="flex size-3.5 items-center justify-center rounded-full bg-gray-100 text-xs lg:text-base font-medium text-gray-700">
-                    {activeFilters.length}
-                  </span>
+                  <Badge variant="secondary">{activeFilters.length}</Badge>
                 )}
               </Button>
             </div>
@@ -269,18 +275,15 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
             {activeFilters.length > 0 && (
               <div className="flex flex-wrap items-center gap-2 pb-3 lg:pt-2">
                 {activeFilters.map(({ option, value }) => (
-                  <Button
+                  <Chip
                     key={option.id}
-                    type="button"
-                    variant="outline"
-                    className="h-[34px] gap-1.5 border-gray-300 bg-gray-50 px-3 text-xs lg:text-base font-medium text-gray-700 shadow-none rounded-full"
+                    removable
                     onClick={() =>
                       handleFilterChange(option.optionId, value.id, false)
                     }
                   >
                     {localize(value.label, language)}
-                    <Icon icon="x" size="xs" />
-                  </Button>
+                  </Chip>
                 ))}
                 <Button
                   type="button"

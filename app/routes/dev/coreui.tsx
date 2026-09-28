@@ -1,7 +1,9 @@
 import {
   Accordion,
+  Badge,
   Button,
   Card,
+  Chip,
   Dialog,
   Drawer,
   Icon,
@@ -57,7 +59,7 @@ export default function CoreUIGallery() {
           </p>
           <h1 className="text-4xl font-semibold">CoreUI component gallery</h1>
           <p className="text-muted-foreground">
-            All 15 UI components, with interactive examples and common states.
+            All 17 UI components, with interactive examples and common states.
           </p>
           <a className="inline-block underline underline-offset-4" href="/">
             Back to the store
@@ -85,17 +87,31 @@ export default function CoreUIGallery() {
                 key={size}
                 type="button"
                 size={size as keyof typeof sizes}
-                aria-label={size === "icon" ? "Add item" : undefined}
+                aria-label={size.startsWith("icon") ? "Add item" : undefined}
               >
-                {size === "icon" ? (
-                  <Icon icon="plus" />
-                ) : (
-                  size
-                )}
+                {size.startsWith("icon") ? <Icon icon="plus" /> : size}
               </Button>
             ))}
           </div>
         </Example>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <Example title="Badge">
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge>3</Badge>
+              <Badge variant="secondary">12</Badge>
+            </div>
+          </Example>
+          <Example title="Chip">
+            <div className="flex flex-wrap items-center gap-3">
+              <Chip>Red wine</Chip>
+              <Chip removable>750 ml</Chip>
+              <Chip removable disabled>
+                Disabled
+              </Chip>
+            </div>
+          </Example>
+        </div>
 
         <div className="grid gap-6 md:grid-cols-2">
           <Example title="Input & Label">

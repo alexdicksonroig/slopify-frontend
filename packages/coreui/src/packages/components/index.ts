@@ -5,9 +5,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./accordion";
+import { Badge } from "./badge";
 import { Button, buttonVariants } from "./button";
 
+export type { BadgeProps } from "./badge";
 export type { ButtonProps, ButtonVariantProps } from "./button";
+export type { ChipProps } from "./chip";
 
 import {
   Card,
@@ -17,6 +20,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./card";
+import { Chip } from "./chip";
 import { Drawer } from "./drawer";
 import { Icon } from "./icon";
 import { Input } from "./input";
@@ -62,9 +66,11 @@ const TableHOC = createNameSpacedComponent(Table, {
 
 export {
   AccordionHOC as Accordion,
+  Badge,
   Button,
   buttonVariants,
   CardHOC as Card,
+  Chip,
   Drawer,
   TableHOC as Table,
   Input,

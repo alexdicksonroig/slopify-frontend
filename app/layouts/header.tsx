@@ -2,7 +2,7 @@ import { CartDrawer } from "@app/components/cart-drawer";
 import { useTranslate } from "@app/i18n";
 import { getCartItemCountUseCase } from "@app/lib/cart/application/get-cart-item-count.use-case";
 import { useCart } from "@app/lib/context/cart.context";
-import { Button, cn, Icon } from "@library";
+import { Badge, Button, cn, Icon } from "@library";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useNavigation } from "react-router";
 import Footer from "./footer";
@@ -134,9 +134,9 @@ export default function Example() {
                 >
                   <Icon icon="shopping-bag" size="md" />
                   {cartItemCount > 0 && (
-                    <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center bg-indigo-600 px-1 text-xs lg:text-base font-semibold leading-none text-white rounded-full">
+                    <Badge className="absolute -right-0.5 -top-0.5 bg-indigo-600">
                       {cartItemCount}
-                    </span>
+                    </Badge>
                   )}
                   <span className="sr-only">{t("header.cart")}</span>
                 </Button>
