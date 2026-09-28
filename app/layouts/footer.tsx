@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-white mt-auto border-t border-gray-200">
-      <div className="mx-auto max-w-7xl px-4 py-12 xs:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="flex gap-8 flex-col md:flex-row">
             {/* Contact */}

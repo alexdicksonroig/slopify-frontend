@@ -135,7 +135,7 @@ export default function Return() {
           <p className="mt-6 text-lg lg:text-2xl font-semibold text-indigo-600">
             {t("return.thank-you")}
           </p>
-          <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-950 sm:text-6xl lg:text-8xl">
+          <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 lg:text-6xl">
             {t("return.title")}
           </h1>
           <p className="mt-5 text-lg lg:text-2xl leading-8 text-gray-600">
@@ -168,14 +168,14 @@ export default function Return() {
                   </div>
                   <div className="flex min-w-0 flex-1 items-start justify-between gap-5 py-1">
                     <div>
-                      <h3 className="font-semibold text-gray-900">
+                      <h3 className="text-base font-semibold text-gray-900 lg:text-xl">
                         {item.name}
                       </h3>
                       <p className="mt-2 text-sm lg:text-lg text-gray-500">
                         {t("product.quantity")} {item.quantity}
                       </p>
                     </div>
-                    <p className="shrink-0 font-medium text-gray-900">
+                    <p className="shrink-0 text-base font-medium text-gray-900 lg:text-xl">
                       {formatMoney(
                         item.unitPriceInCents * item.quantity,
                         item.currency,

@@ -93,7 +93,7 @@ export function CartItemList({
                     onClick={() => changeQuantity(item, item.quantity - 1)}
                     disabled={item.quantity === 1}
                     aria-label={t("cart.decrease", { item: item.name })}
-                    className="flex size-7 cursor-pointer items-center justify-center text-base lg:text-xl font-normal leading-none disabled:cursor-default disabled:text-gray-300"
+                    className="flex size-7 cursor-pointer items-center justify-center text-xl lg:text-3xl font-normal leading-none disabled:cursor-default disabled:text-gray-300"
                   >
                     −
                   </button>
