@@ -132,7 +132,7 @@ export default function Example() {
                   size="icon"
                   className="relative"
                 >
-                  <Icon icon="shopping-bag" size="lg" />
+                  <Icon icon="shopping-bag" size="md" />
                   {cartItemCount > 0 && (
                     <Badge className="absolute -bottom-0.5 -left-0.5 bg-indigo-600">
                       {cartItemCount}
