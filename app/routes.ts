@@ -15,5 +15,6 @@ export default [
     route("product/:id/:variantId", "routes/product/product.tsx"),
     route("checkout", "routes/checkout.tsx"),
     route("return", "routes/return.tsx"),
+    route("*", "routes/not-found.tsx"),
   ]),
 ] satisfies RouteConfig;

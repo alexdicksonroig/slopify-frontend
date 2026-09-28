@@ -32,8 +32,10 @@ export const ptBr = {
   "checkout.shipping-address": "Endereço de entrega",
   "checkout.unavailable":
     "A finalização da compra não está disponível no momento.",
+  "error.back-home": "Voltar para o início",
   "error.generic": "Erro",
   "error.not-found": "A página solicitada não foi encontrada.",
+  "error.not-found-title": "Página não encontrada",
   "error.oops": "Ops!",
   "error.unexpected": "Ocorreu um erro inesperado.",
   "filters.category": "Categoria",
