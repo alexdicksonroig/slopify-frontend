@@ -66,25 +66,21 @@ const EmailInput = ({
 
   return (
     <div>
-      <Label
-        htmlFor={inputId}
-        className="block text-sm lg:text-lg text-gray-700"
-      >
-        {t("checkout.email")}
-      </Label>
+      <Label htmlFor={inputId}>{t("checkout.email")}</Label>
       <Input
         id={inputId}
         type="email"
+        size="lg"
         autoComplete="email"
         value={email}
         onChange={handleChange}
         onBlur={handleBlur}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? errorId : undefined}
-        className={`mt-2 h-12 border-gray-300 bg-white px-4 text-base shadow-none focus-visible:border-gray-900 focus-visible:ring-gray-900 lg:text-lg ${error ? "border-red-500" : ""}`}
+        className="mt-2"
       />
       {error && (
-        <p id={errorId} className="mt-2 text-sm lg:text-lg text-red-600">
+        <p id={errorId} className="mt-2 text-sm lg:text-lg text-destructive">
           {error}
         </p>
       )}

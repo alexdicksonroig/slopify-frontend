@@ -289,7 +289,7 @@ export default function CoreUIGallery() {
                 open={popoverOpen}
                 onOpenChange={setPopoverOpen}
                 placement="bottom"
-                className="inset-x-0 rounded-lg border bg-popover p-5 shadow-md md:w-72"
+                className="md:w-72"
               >
                 <p className="mb-4">
                   Anchored on desktop; a bottom panel on mobile.

@@ -6,7 +6,9 @@ export type PopoverProps = {
   onOpenChange: (open: boolean) => void;
   className?: string;
   children: React.ReactNode;
-  placement?: "top" | "bottom";
+  // "inside" overlaps the bottom edge of the anchor instead of sitting
+  // outside it.
+  placement?: "top" | "bottom" | "inside";
   desktopFrom?: "md" | "lg";
   overlayOpacity?: "light" | "medium" | "dark";
 } & React.HTMLAttributes<HTMLDivElement>;
@@ -21,18 +23,22 @@ const classes = {
   desktop: {
     md: {
       base: "md:absolute md:transform md:bottom-auto",
-      placementTop: "md:top-0 md:-translate-y-full",
-      placementBottom: "md:top-full md:translate-y-0",
+      top: "md:top-0 md:-translate-y-full",
+      bottom: "md:top-full md:translate-y-0",
+      inside: "md:bottom-0 md:translate-y-0",
     },
     lg: {
       base: "lg:absolute lg:transform lg:bottom-auto",
-      placementTop: "lg:top-0 lg:-translate-y-full",
-      placementBottom: "lg:top-full lg:translate-y-0",
+      top: "lg:top-0 lg:-translate-y-full",
+      bottom: "lg:top-full lg:translate-y-0",
+      inside: "lg:bottom-0 lg:translate-y-0",
     },
   },
   mobile: {
-    base: "fixed bottom-0",
+    base: "fixed inset-x-0 bottom-0",
   },
+  surface:
+    "rounded-md border bg-popover p-4 text-popover-foreground shadow-md",
 };
 
 export const Popover: React.FC<PopoverProps> = ({
@@ -46,10 +52,6 @@ export const Popover: React.FC<PopoverProps> = ({
   ...rest
 }) => {
   const desktopClasses = classes.desktop[desktopFrom];
-  const desktopPlacementClasses =
-    placement === "bottom"
-      ? desktopClasses.placementBottom
-      : desktopClasses.placementTop;
 
   return (
     <>
@@ -64,9 +66,10 @@ export const Popover: React.FC<PopoverProps> = ({
         aria-hidden={!open}
         className={cn(
           "z-4",
+          classes.surface,
           classes.mobile.base,
           desktopClasses.base,
-          desktopPlacementClasses,
+          desktopClasses[placement],
           className,
           open
             ? "visible translate-y-0"

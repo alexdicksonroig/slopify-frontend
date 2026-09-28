@@ -178,7 +178,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
         overlayOpacity="light"
         role="dialog"
         aria-label={t("filters.title")}
-        className="inset-x-0 z-50 max-h-[calc(100svh-1rem)] w-full overflow-y-auto rounded-xl bg-white px-4 pt-2 pb-6 shadow-xl lg:hidden"
+        className="z-50 max-h-[calc(100svh-1rem)] overflow-y-auto lg:hidden"
       >
         <div className="flex w-full justify-end">
           <Button

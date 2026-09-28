@@ -102,7 +102,8 @@ export function VariantCartAction({
         id={popupId}
         role="dialog"
         aria-label={`${t("product.add-to-bag")}: ${product.name}`}
-        className="inset-x-0 z-20 w-full border border-neutral-200 bg-white p-4 md:top-auto md:bottom-0 md:translate-y-0 md:p-3"
+        placement="inside"
+        className="z-20"
       >
         <div className="flex items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-2">
