@@ -59,7 +59,7 @@ export default function Example() {
               onClick={() => setShowAnnouncement(false)}
               variant="ghost"
               size="icon"
-              className="absolute right-1 h-10 w-10 text-white hover:bg-white/10 hover:text-white"
+              className="absolute right-1 text-white"
             >
               <Icon icon="x" size="sm" />
               <span className="sr-only">{t("header.close-announcement")}</span>

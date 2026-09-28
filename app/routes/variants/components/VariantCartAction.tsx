@@ -91,7 +91,7 @@ export function VariantCartAction({
         aria-controls={popupId}
         disabled={!cart}
         onClick={() => setIsOpen((open) => !open)}
-        className="absolute right-3 bottom-3 transition-transform duration-300 ease-out hover:scale-105 active:scale-110 motion-reduce:transform-none"
+        className="absolute right-3 bottom-3"
       >
         <Icon icon="shopping-bag-plus" size="md" />
       </Button>

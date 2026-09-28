@@ -186,7 +186,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
             aria-label="Close filters"
             onClick={() => setFiltersOpen(false)}
           >
-            <Icon icon="x" size="lg" className="text-gray-500" />
+            <Icon icon="x" size="lg" />
           </Button>
         </div>
         <div>
