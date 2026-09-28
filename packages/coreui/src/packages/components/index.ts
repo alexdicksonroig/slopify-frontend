@@ -5,9 +5,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./accordion";
-import { Button } from "./button";
+import { Button, buttonVariants } from "./button";
 
-export type { ButtonProps } from "./button";
+export type { ButtonProps, ButtonVariantProps } from "./button";
 
 import {
   Card,
@@ -63,6 +63,7 @@ const TableHOC = createNameSpacedComponent(Table, {
 export {
   AccordionHOC as Accordion,
   Button,
+  buttonVariants,
   CardHOC as Card,
   Drawer,
   TableHOC as Table,

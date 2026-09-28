@@ -6,7 +6,7 @@ import { formatMoney } from "@app/lib/currency";
 import { localize } from "@app/lib/localized-text";
 import type { Product } from "@app/lib/product";
 import type { Variant } from "@app/lib/variant";
-import { Button } from "@library";
+import { Accordion, Button } from "@library";
 import { type FormEvent, useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
@@ -149,26 +149,15 @@ export default function ProductPage() {
             </div>
           </form>
 
-          <div className="mt-7">
+          <Accordion className="mt-7">
             {[t("product.highlights"), t("product.details"), "Shipping"].map(
               (label) => (
-                <details
-                  key={label}
-                  className="group border-b border-neutral-200"
-                >
-                  <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between text-xs lg:text-base font-semibold tracking-[0.08em] uppercase [&::-webkit-details-marker]:hidden">
-                    {label}
-                    <span className="text-xl lg:text-3xl font-normal group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <p className="pb-5 text-sm lg:text-lg leading-6 text-neutral-600">
-                    {detailsCopy(label, t("product.details-text"))}
-                  </p>
-                </details>
+                <Accordion.Item key={label} itemId={label} headerText={label}>
+                  {detailsCopy(label, t("product.details-text"))}
+                </Accordion.Item>
               ),
             )}
-          </div>
+          </Accordion>
         </section>
       </div>
     </main>

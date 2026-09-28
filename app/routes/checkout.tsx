@@ -1,6 +1,7 @@
 import { CheckoutPayment } from "@app/components/checkout-payment";
 import { useTranslate } from "@app/i18n";
 import { useCart } from "@app/lib/context/cart.context";
+import { buttonVariants } from "@library";
 import { Link } from "react-router";
 
 export default function Checkout() {
@@ -22,7 +23,7 @@ export default function Checkout() {
             </p>
             <Link
               to="/"
-              className="mt-6 inline-block text-sm text-indigo-600 hover:text-indigo-500 lg:text-lg"
+              className={buttonVariants({ variant: "link", className: "mt-6" })}
             >
               {t("return.continue")}
             </Link>

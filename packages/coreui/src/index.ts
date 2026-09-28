@@ -4,6 +4,7 @@ import { Dialog, Popover, Select } from "./packages/collections";
 import {
   Accordion,
   Button,
+  buttonVariants,
   Card,
   Drawer,
   Icon,
@@ -26,6 +27,7 @@ export {
   Table,
   Accordion,
   Button,
+  buttonVariants,
   Card,
   Dialog,
   Input,
@@ -37,6 +39,8 @@ export {
 };
 
 export type {
+  ButtonProps,
+  ButtonVariantProps,
   DrawerBreakpoint,
   DrawerProps,
   IconName,

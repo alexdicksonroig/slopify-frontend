@@ -4,7 +4,8 @@ import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-t
 import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
 import type { Cart, CartItem } from "@app/lib/cart/domain/cart.entity";
 import { formatMoney } from "@app/lib/currency";
-import { cn } from "@library";
+import { QuantitySelector } from "@app/routes/product/components/QuantitySelector";
+import { Button, cn } from "@library";
 import { Link } from "react-router";
 
 export type CartItemListProps = {
@@ -74,41 +75,24 @@ export function CartItemList({
               </p>
 
               {editable && (
-                <button
+                <Button
                   type="button"
+                  variant="link"
                   onClick={() => removeItem(item.variantId)}
                   aria-label={t("cart.remove", { item: item.name })}
-                  className="absolute right-0 top-0 cursor-pointer text-sm lg:text-lg font-medium text-indigo-700 hover:text-indigo-500"
+                  className="absolute right-0 top-0"
                 >
                   {t("cart.remove-action")}
-                </button>
+                </Button>
               )}
             </div>
 
             {editable && (
               <div className="col-start-2 mt-4">
-                <div className="flex h-9 w-28 items-center justify-between rounded-full bg-gray-100 px-3">
-                  <button
-                    type="button"
-                    onClick={() => changeQuantity(item, item.quantity - 1)}
-                    disabled={item.quantity === 1}
-                    aria-label={t("cart.decrease", { item: item.name })}
-                    className="flex size-7 cursor-pointer items-center justify-center text-xl lg:text-3xl font-normal leading-none disabled:cursor-default disabled:text-gray-300"
-                  >
-                    −
-                  </button>
-                  <span className="text-base lg:text-xl tabular-nums">
-                    {item.quantity}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => changeQuantity(item, item.quantity + 1)}
-                    aria-label={t("cart.increase", { item: item.name })}
-                    className="flex size-7 cursor-pointer items-center justify-center text-xl lg:text-3xl font-normal leading-none"
-                  >
-                    +
-                  </button>
-                </div>
+                <QuantitySelector
+                  value={item.quantity}
+                  onChange={(quantity) => changeQuantity(item, quantity)}
+                />
 
                 <p className="mt-4 text-sm lg:text-lg text-gray-950">
                   {t("cart.subtotal")}:{" "}

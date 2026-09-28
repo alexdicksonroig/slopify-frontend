@@ -7,12 +7,16 @@ const MAX_QUANTITY = 8;
 type QuantitySelectorProps = {
   value: number;
   onChange: (quantity: number) => void;
+  min?: number;
+  max?: number;
   className?: string;
 };
 
 export function QuantitySelector({
   value,
   onChange,
+  min = MIN_QUANTITY,
+  max = MAX_QUANTITY,
   className,
 }: QuantitySelectorProps) {
   const t = useTranslate();
@@ -24,8 +28,8 @@ export function QuantitySelector({
         <Button
           type="button"
           variant="ghost"
-          aria-label="Decrease quantity"
-          disabled={value <= MIN_QUANTITY}
+          aria-label={t("product.decrease-quantity")}
+          disabled={value <= min}
           onClick={() => onChange(value - 1)}
           className="aspect-square h-[calc(100%-0.5rem)] w-auto rounded-none p-0! disabled:opacity-30"
         >
@@ -43,8 +47,8 @@ export function QuantitySelector({
         <Button
           type="button"
           variant="ghost"
-          aria-label="Increase quantity"
-          disabled={value >= MAX_QUANTITY}
+          aria-label={t("product.increase-quantity")}
+          disabled={value >= max}
           onClick={() => onChange(value + 1)}
           className="aspect-square h-[calc(100%-0.5rem)] w-auto rounded-none p-0! disabled:opacity-30"
         >

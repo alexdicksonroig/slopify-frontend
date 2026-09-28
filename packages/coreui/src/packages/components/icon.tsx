@@ -31,22 +31,22 @@ export const Icon = ({
   label,
 }: IconProps) => {
   const mask = `url(${PUBLIC_PATH}/assets/icons/${icon}.svg) center / contain no-repeat`;
+  const props = {
+    className: clsx(
+      "block aspect-square shrink-0 bg-current transition-all duration-150 ease-linear",
+      ICON_HEIGHT[size],
+      className,
+    ),
+    style: {
+      mask,
+      WebkitMask: mask,
+      transform: rotate ? `rotate(${rotate}deg)` : undefined,
+    },
+  };
 
-  return (
-    <span
-      role={label ? "img" : undefined}
-      aria-hidden={label ? undefined : true}
-      aria-label={label}
-      className={clsx(
-        "block aspect-square shrink-0 bg-current transition-all duration-150 ease-linear",
-        ICON_HEIGHT[size],
-        className,
-      )}
-      style={{
-        mask,
-        WebkitMask: mask,
-        transform: rotate ? `rotate(${rotate}deg)` : undefined,
-      }}
-    />
+  return label ? (
+    <span role="img" aria-label={label} {...props} />
+  ) : (
+    <span aria-hidden {...props} />
   );
 };

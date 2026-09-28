@@ -1,7 +1,7 @@
 import { type TranslationKey, useLanguage, useTranslate } from "@app/i18n";
 import { localize } from "@app/lib/localized-text";
 import type { ProductOption } from "@app/lib/variant";
-import { Accordion, Button, Icon, Popover, Select } from "@library";
+import { Accordion, Button, Icon, Label, Popover, Select } from "@library";
 import { type ReactNode, useState } from "react";
 import { useSearchParams } from "react-router";
 
@@ -70,12 +70,9 @@ const FilterContent = ({
                         }
                         className="h-4 w-4 rounded border-gray-300 text-primary"
                       />
-                      <label
-                        htmlFor={inputId}
-                        className="ml-3 text-sm lg:text-lg text-gray-600"
-                      >
+                      <Label htmlFor={inputId} className="ml-3">
                         {localize(value.label, language)}
-                      </label>
+                      </Label>
                     </div>
                   );
                 })}
@@ -175,14 +172,16 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
         aria-label={t("filters.title")}
         className="inset-x-0 z-50 max-h-[calc(100svh-1rem)] w-full overflow-y-auto rounded-xl bg-white px-4 pt-2 pb-6 shadow-xl lg:hidden"
       >
-        <div className="flex h-8 w-full items-center justify-end">
-          <button
+        <div className="flex w-full justify-end">
+          <Button
             type="button"
+            variant="ghost"
+            size="icon"
             aria-label="Close filters"
             onClick={() => setFiltersOpen(false)}
           >
             <Icon icon="x" size="lg" className="text-gray-500" />
-          </button>
+          </Button>
         </div>
         <div>
           <h2 className="mb-4 text-lg lg:text-2xl font-medium text-gray-900">

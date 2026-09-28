@@ -19,30 +19,38 @@ export const sizes = {
   icon: "h-9 w-9",
 };
 
-export type ButtonProps = {
-  children: React.ReactNode;
+export type ButtonVariantProps = {
   className?: string;
   size?: keyof typeof sizes;
   variant?: keyof typeof variants;
-} & React.ComponentProps<"button">;
+};
 
-const Button = ({
+export type ButtonProps = {
+  children: React.ReactNode;
+} & ButtonVariantProps &
+  React.ComponentProps<"button">;
+
+// Button classes for elements that must look like a button but aren't one,
+// e.g. router links.
+const buttonVariants = ({
   className,
   variant = "default",
   size = "default",
-  ...props
-}: ButtonProps) => {
+}: ButtonVariantProps = {}) =>
+  cn(
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm lg:text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 cursor-pointer",
+    variants[variant],
+    sizes[size],
+    className,
+  );
+
+const Button = ({ className, variant, size, ...props }: ButtonProps) => {
   return (
     <button
-      className={cn(
-        "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm lg:text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 cursor-pointer",
-        variants[variant],
-        sizes[size],
-        className,
-      )}
+      className={buttonVariants({ className, variant, size })}
       {...props}
     />
   );
 };
 
-export { Button };
+export { Button, buttonVariants };

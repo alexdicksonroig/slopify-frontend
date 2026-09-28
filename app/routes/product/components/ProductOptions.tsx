@@ -1,7 +1,7 @@
 import { useLanguage } from "@app/i18n";
 import { localize } from "@app/lib/localized-text";
 import type { Variant } from "@app/lib/variant";
-import { Select } from "@library";
+import { Label, Select } from "@library";
 import { useId } from "react";
 
 interface ProductOptionsProps {
@@ -22,14 +22,11 @@ export function ProductOptions({
 
   return (
     <div className="flex flex-col gap-2">
-      <label
-        htmlFor={selectId}
-        className="text-sm lg:text-lg font-semibold tracking-[0.08em] text-neutral-900 uppercase"
-      >
+      <Label htmlFor={selectId}>
         {variant.selections
           .map(({ option }) => localize(option.label, language))
           .join(" / ") || productName}
-      </label>
+      </Label>
       <Select
         id={selectId}
         value={String(variant.id)}

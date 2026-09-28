@@ -1,7 +1,7 @@
 import { useTranslate } from "@app/i18n";
 import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
-import { Button, Drawer, Icon, Overlay } from "@library";
+import { Button, buttonVariants, Drawer, Icon, Overlay } from "@library";
 import { Link } from "react-router";
 import { CartItemList } from "./cart-item-list";
 
@@ -80,7 +80,10 @@ export function CartDrawer({
               <Link
                 to="/checkout"
                 onClick={onClose}
-                className="mt-6 flex h-12 items-center justify-center bg-primary font-semibold text-primary-foreground hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                className={buttonVariants({
+                  size: "lg",
+                  className: "mt-6 w-full",
+                })}
               >
                 {t("cart.checkout")}
               </Link>
