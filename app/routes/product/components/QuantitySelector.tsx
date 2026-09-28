@@ -32,7 +32,7 @@ export function QuantitySelector({
           <Icon
             icon="minus"
             size="sm"
-            className="pointer-events-none select-none brightness-0"
+            className="pointer-events-none select-none"
           />
         </Button>
 
@@ -51,7 +51,7 @@ export function QuantitySelector({
           <Icon
             icon="plus"
             size="sm"
-            className="pointer-events-none select-none brightness-0"
+            className="pointer-events-none select-none"
           />
         </Button>
       </div>

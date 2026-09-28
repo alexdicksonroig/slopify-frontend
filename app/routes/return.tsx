@@ -107,7 +107,7 @@ export default function Return() {
     return (
       <main className="flex min-h-[calc(100svh-5.5rem)] items-center justify-center px-6 py-16">
         <div className="max-w-lg text-center">
-          <div className="mx-auto flex size-14 items-center justify-center bg-red-50 text-red-600 [border-radius:9999px]">
+          <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-red-50 text-red-600">
             <Icon icon="x" size="xl" />
           </div>
           <h1 className="mt-6 text-3xl lg:text-5xl font-bold tracking-tight text-gray-900">
@@ -129,7 +129,7 @@ export default function Return() {
     <main className="min-h-[calc(100svh-5.5rem)] bg-white px-6 py-14 sm:px-10 sm:py-20">
       <div className="mx-auto max-w-5xl">
         <header className="max-w-3xl">
-          <div className="flex size-12 items-center justify-center bg-indigo-50 text-indigo-600 [border-radius:9999px]">
+          <div className="flex size-12 items-center justify-center rounded-full bg-indigo-50 text-indigo-600">
             <Icon icon="check" size="xl" />
           </div>
           <p className="mt-6 text-lg lg:text-2xl font-semibold text-indigo-600">
@@ -157,7 +157,7 @@ export default function Return() {
             <ul className="mt-6 divide-y divide-gray-200 border-y border-gray-200">
               {order.items.map((item) => (
                 <li key={item.variantId} className="flex gap-5 py-6 sm:gap-8">
-                  <div className="size-24 shrink-0 overflow-hidden bg-gray-50 [border-radius:0.5rem] sm:size-32">
+                  <div className="size-24 shrink-0 overflow-hidden rounded-md bg-gray-50 sm:size-32">
                     {item.thumbnailUrl ? (
                       <img
                         src={item.thumbnailUrl}

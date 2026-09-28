@@ -21,23 +21,32 @@ const ICON_HEIGHT: Record<IconSize, string> = {
   xxxxxl: "h-[80px]",
 };
 
+// The SVG is used as a mask so the icon is painted with `currentColor`
+// and can be recolored with `text-*` utilities.
 export const Icon = ({
   icon,
   size = "lg",
   className,
   rotate,
   label,
-}: IconProps) => (
-  <img
-    aria-hidden={label ? undefined : true}
-    aria-label={label}
-    alt={label ?? ""}
-    src={`${PUBLIC_PATH}/assets/icons/${icon}.svg`}
-    className={clsx(
-      "block aspect-square shrink-0 transition-all duration-150 ease-linear",
-      ICON_HEIGHT[size],
-      className,
-    )}
-    style={rotate ? { transform: `rotate(${rotate}deg)` } : undefined}
-  />
-);
+}: IconProps) => {
+  const mask = `url(${PUBLIC_PATH}/assets/icons/${icon}.svg) center / contain no-repeat`;
+
+  return (
+    <span
+      role={label ? "img" : undefined}
+      aria-hidden={label ? undefined : true}
+      aria-label={label}
+      className={clsx(
+        "block aspect-square shrink-0 bg-current transition-all duration-150 ease-linear",
+        ICON_HEIGHT[size],
+        className,
+      )}
+      style={{
+        mask,
+        WebkitMask: mask,
+        transform: rotate ? `rotate(${rotate}deg)` : undefined,
+      }}
+    />
+  );
+};

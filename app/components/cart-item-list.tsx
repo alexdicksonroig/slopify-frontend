@@ -87,7 +87,7 @@ export function CartItemList({
 
             {editable && (
               <div className="col-start-2 mt-4">
-                <div className="flex h-9 w-28 items-center justify-between bg-gray-100 px-3 [border-radius:9999px]">
+                <div className="flex h-9 w-28 items-center justify-between rounded-full bg-gray-100 px-3">
                   <button
                     type="button"
                     onClick={() => changeQuantity(item, item.quantity - 1)}

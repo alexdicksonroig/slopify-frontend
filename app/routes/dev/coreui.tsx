@@ -88,7 +88,7 @@ export default function CoreUIGallery() {
                 aria-label={size === "icon" ? "Add item" : undefined}
               >
                 {size === "icon" ? (
-                  <Icon icon="plus" className="invert" />
+                  <Icon icon="plus" />
                 ) : (
                   size
                 )}

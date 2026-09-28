@@ -181,7 +181,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
             aria-label="Close filters"
             onClick={() => setFiltersOpen(false)}
           >
-            <Icon icon="x" size="lg" className="brightness-[0.6]" />
+            <Icon icon="x" size="lg" className="text-gray-500" />
           </button>
         </div>
         <div>
@@ -221,13 +221,13 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                   placeholder={t("filters.sort-by")}
                   showSelectedValue={false}
                   variant="ghost"
-                  className="h-8 gap-1 rounded-md px-1.5 text-xs lg:text-base [&_svg]:size-3.5"
+                  className="h-8 gap-1 rounded-md px-1.5 text-xs lg:text-base"
                   aria-label={t("filters.sort")}
                 />
               </div>
               <Button
                 variant="ghost"
-                className="h-8 gap-1 rounded-md px-1.5 text-xs lg:text-base font-normal text-gray-700 shadow-none hover:bg-gray-50 lg:hidden [&_svg]:size-3.5"
+                className="h-8 gap-1 rounded-md px-1.5 text-xs lg:text-base font-normal text-gray-700 shadow-none hover:bg-gray-50 lg:hidden"
                 aria-haspopup="dialog"
                 aria-expanded={filtersOpen}
                 onClick={() => setFiltersOpen(true)}
@@ -254,7 +254,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               placeholder={t("filters.sort-by")}
               showSelectedValue={false}
               variant="ghost"
-              className="my-3 h-10 w-full justify-between px-0 text-sm lg:text-lg [&_svg]:size-4"
+              className="my-3 h-10 w-full justify-between px-0 text-sm lg:text-lg"
               aria-label={t("filters.sort")}
             />
             <FilterContent
@@ -274,13 +274,13 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                     key={option.id}
                     type="button"
                     variant="outline"
-                    className="h-[34px] gap-1.5 border-gray-300 bg-gray-50 px-3 text-xs lg:text-base font-medium text-gray-700 shadow-none [border-radius:9999px]"
+                    className="h-[34px] gap-1.5 border-gray-300 bg-gray-50 px-3 text-xs lg:text-base font-medium text-gray-700 shadow-none rounded-full"
                     onClick={() =>
                       handleFilterChange(option.optionId, value.id, false)
                     }
                   >
                     {localize(value.label, language)}
-                    <Icon icon="x" size="xs" className="brightness-50" />
+                    <Icon icon="x" size="xs" />
                   </Button>
                 ))}
                 <Button

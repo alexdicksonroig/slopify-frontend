@@ -81,7 +81,7 @@ const EmailInput = ({
         onBlur={handleBlur}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? errorId : undefined}
-        className={`mt-2 h-12 border-gray-300 bg-white px-4 text-base shadow-none [border-radius:0.5rem] focus-visible:border-gray-900 focus-visible:ring-gray-900 lg:text-lg ${error ? "border-red-500" : ""}`}
+        className={`mt-2 h-12 border-gray-300 bg-white px-4 text-base shadow-none focus-visible:border-gray-900 focus-visible:ring-gray-900 lg:text-lg ${error ? "border-red-500" : ""}`}
       />
       {error && (
         <p id={errorId} className="mt-2 text-sm lg:text-lg text-red-600">
@@ -190,23 +190,23 @@ const CheckoutContents = () => {
         <section className="pb-10">
           <Skeleton className="h-7 w-48 lg:h-9" />
           <Skeleton className="mt-7 h-4 w-16" />
-          <Skeleton className="mt-2 h-12 w-full [border-radius:0.5rem]" />
+          <Skeleton className="mt-2 h-12 w-full" />
         </section>
 
         <section className="border-t border-gray-200 py-10">
           <Skeleton className="h-7 w-56 lg:h-9" />
           <div className="mt-7 grid grid-cols-2 gap-4">
-            <Skeleton className="col-span-2 h-12 [border-radius:0.5rem]" />
-            <Skeleton className="h-12 [border-radius:0.5rem]" />
-            <Skeleton className="h-12 [border-radius:0.5rem]" />
-            <Skeleton className="col-span-2 h-12 [border-radius:0.5rem]" />
+            <Skeleton className="col-span-2 h-12" />
+            <Skeleton className="h-12" />
+            <Skeleton className="h-12" />
+            <Skeleton className="col-span-2 h-12" />
           </div>
         </section>
 
         <section className="border-t border-gray-200 py-10">
           <Skeleton className="h-7 w-32 lg:h-9" />
-          <Skeleton className="mt-7 h-12 w-full [border-radius:0.5rem]" />
-          <Skeleton className="mt-4 h-12 w-full [border-radius:0.5rem]" />
+          <Skeleton className="mt-7 h-12 w-full" />
+          <Skeleton className="mt-4 h-12 w-full" />
         </section>
 
         <div className="border-t border-gray-200 pt-8">
