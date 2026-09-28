@@ -4,7 +4,7 @@ import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-t
 import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
 import type { Cart, CartItem } from "@app/lib/cart/domain/cart.entity";
 import { formatMoney } from "@app/lib/currency";
-import { QuantitySelector } from "@app/routes/product/components/QuantitySelector";
+import { QuantitySelector } from "@app/components/quantity-selector";
 import { Button, cn } from "@library";
 import { Link } from "react-router";
 

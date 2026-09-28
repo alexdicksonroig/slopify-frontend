@@ -1,3 +1,4 @@
+import { QuantitySelector } from "@app/components/quantity-selector";
 import { useLanguage, useTranslate } from "@app/i18n";
 import { get } from "@app/lib/api";
 import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-to-cart.use-case";
@@ -12,7 +13,6 @@ import { useLoaderData, useNavigate } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
 import { ProductOptions } from "./components/ProductOptions";
-import { QuantitySelector } from "./components/QuantitySelector";
 
 type ProductLoaderArgs = {
   params: { id?: string; variantId?: string };

@@ -1,3 +1,4 @@
+import { QuantitySelector } from "@app/components/quantity-selector";
 import { useLanguage, useTranslate } from "@app/i18n";
 import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-to-cart.use-case";
 import { useCart } from "@app/lib/context/cart.context";
@@ -6,7 +7,6 @@ import type { Product } from "@app/lib/product";
 import type { Variant } from "@app/lib/variant";
 import { Button, Icon, Popover } from "@library";
 import { type FormEvent, useEffect, useRef, useState } from "react";
-import { QuantitySelector } from "../../product/components/QuantitySelector";
 
 type VariantCartActionProps = {
   product: Product;
