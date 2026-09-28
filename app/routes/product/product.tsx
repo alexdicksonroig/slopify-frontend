@@ -7,7 +7,7 @@ import { formatMoney } from "@app/lib/currency";
 import { localize } from "@app/lib/localized-text";
 import type { Product } from "@app/lib/product";
 import type { Variant } from "@app/lib/variant";
-import { Accordion, Button } from "@library";
+import { Accordion, Button, cn, Separator } from "@library";
 import { type FormEvent, useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
@@ -87,33 +87,41 @@ export default function ProductPage() {
 
   return (
     <main className="mx-auto w-full max-w-[1440px] px-4 py-4 sm:px-6 sm:py-8 lg:px-12 lg:py-10">
-      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(25rem,1fr)] lg:gap-14">
+      <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(24rem,1fr)] lg:gap-16">
         <ProductImageGallery images={galleryImages} />
 
-        <section className="lg:pt-4">
-          <div className="border-b border-neutral-200 pb-6">
-            <div className="flex items-center justify-between gap-3">
-              <h1 className="text-4xl lg:text-6xl font-bold tracking-[-0.055em] text-neutral-950">
-                {product.name}
-              </h1>
-              <p
-                className={`shrink-0 text-sm lg:text-lg ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
-                aria-live="polite"
-              >
-                {stock > 0
-                  ? t("product.stock-count", { count: stock })
-                  : t("product.out-of-stock")}
-              </p>
-            </div>
-            <div className="mt-2 flex items-end justify-between gap-6">
-              <p className="text-sm lg:text-lg text-neutral-500">
-                A bottle chosen for you
-              </p>
-              <p className="shrink-0 text-3xl lg:text-4xl font-semibold tracking-[-0.04em] text-neutral-950">
-                {price}
-              </p>
-            </div>
-          </div>
+        <section className="flex flex-col gap-6 lg:gap-7 lg:pt-2">
+          <header className="flex flex-col gap-2.5 lg:gap-3">
+            <p
+              className={cn(
+                "inline-flex items-center gap-2 self-start rounded-full px-2.5 py-1 text-xs font-medium lg:text-sm",
+                stock > 0
+                  ? "bg-emerald-50 text-emerald-700"
+                  : "bg-neutral-100 text-neutral-600",
+              )}
+              aria-live="polite"
+            >
+              <span
+                aria-hidden
+                className={cn(
+                  "size-1.5 rounded-full",
+                  stock > 0 ? "bg-emerald-600" : "bg-neutral-400",
+                )}
+              />
+              {stock > 0
+                ? t("product.stock-count", { count: stock })
+                : t("product.out-of-stock")}
+            </p>
+            <h1 className="text-4xl leading-[1.05] font-bold tracking-[-0.04em] text-balance text-neutral-950 lg:text-6xl lg:leading-[1.02]">
+              {product.name}
+            </h1>
+            <p className="text-sm text-neutral-500 lg:text-lg">
+              A bottle chosen for you
+            </p>
+            <p className="mt-1 text-3xl font-semibold tracking-[-0.03em] tabular-nums text-neutral-950 lg:mt-2 lg:text-4xl">
+              {price}
+            </p>
+          </header>
 
           <ProductDetails
             description={
@@ -123,7 +131,9 @@ export default function ProductPage() {
             }
           />
 
-          <form className="mt-7" onSubmit={handleAddToCart}>
+          <Separator />
+
+          <form className="flex flex-col gap-5" onSubmit={handleAddToCart}>
             <ProductOptions
               variants={variants}
               variant={variant}
@@ -132,7 +142,7 @@ export default function ProductPage() {
                 navigate(`/product/${product.id}/${variantId}`)
               }
             />
-            <div className="mt-5 flex gap-3 max-w-full">
+            <div className="flex max-w-full gap-2.5 sm:gap-3">
               <QuantitySelector
                 value={quantity}
                 onChange={setQuantity}
@@ -143,19 +153,21 @@ export default function ProductPage() {
                 variant="cta"
                 size="xl"
                 disabled={!cart || !hasPrice}
-                className="flex-1 justify-between"
+                className="flex-1 justify-between tracking-[0.06em]"
               >
                 <span>{t("product.add")}</span>
-                <span>{totalPrice}</span>
+                <span className="tabular-nums">{totalPrice}</span>
               </Button>
             </div>
           </form>
 
-          <Accordion className="mt-7">
+          <Accordion className="border-t">
             {[t("product.highlights"), t("product.details"), "Shipping"].map(
               (label) => (
                 <Accordion.Item key={label} itemId={label} headerText={label}>
-                  {detailsCopy(label, t("product.details-text"))}
+                  <p className="leading-relaxed text-neutral-600">
+                    {detailsCopy(label, t("product.details-text"))}
+                  </p>
                 </Accordion.Item>
               ),
             )}

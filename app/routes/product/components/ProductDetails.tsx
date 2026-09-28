@@ -4,10 +4,8 @@ interface ProductDetailsProps {
 
 export function ProductDetails({ description }: ProductDetailsProps) {
   return (
-    <div className="pt-5">
-      <p className="text-base lg:text-xl leading-6 text-neutral-700">
-        {description}
-      </p>
-    </div>
+    <p className="max-w-prose text-base leading-relaxed text-neutral-600 lg:text-lg">
+      {description}
+    </p>
   );
 }
