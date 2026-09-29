@@ -28,10 +28,15 @@ export default function Example() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="relative bg-white">
+      <header
+        className={cn(
+          "relative",
+          showAnnouncement ? "bg-indigo-600" : "bg-white",
+        )}
+      >
         <title>Store</title>
         {showAnnouncement && (
-          <div className="relative flex min-h-[42px] items-center bg-indigo-600 text-sm lg:text-lg font-semibold text-white">
+          <div className="relative flex min-h-[42px] items-center text-sm lg:text-lg font-semibold text-white">
             <div
               className={cn(
                 "absolute inset-0 flex items-center justify-center px-6 text-center transition-all duration-100 ease-linear visible opacity-100",
@@ -66,7 +71,9 @@ export default function Example() {
         )}
         <nav
           aria-label={t("header.top")}
-          className="border-b border-gray-200 px-3 sm:px-4"
+          className={cn("border-b border-gray-200 bg-white px-3 sm:px-4", {
+            "rounded-t-[1.25rem]": showAnnouncement,
+          })}
         >
           <div className="flex h-14 items-center">
             <div className="flex items-center">
