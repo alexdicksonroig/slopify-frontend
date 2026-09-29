@@ -155,7 +155,14 @@ export function VariantCartAction({
             disabled={!cart || isAdding || quantity < 1 || quantity > stock}
             className="w-full min-w-0 sm:flex-1"
           >
-            {stock === 0 ? t("product.out-of-stock") : t("product.add-to-bag")}
+            {stock === 0 ? (
+              t("product.out-of-stock")
+            ) : (
+              <>
+                {t("product.add")}
+                <Icon icon="plus" size="sm" />
+              </>
+            )}
           </Button>
         </form>
       </Popover>
