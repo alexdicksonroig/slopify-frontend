@@ -2,7 +2,7 @@ import { CartDrawer } from "@app/components/cart-drawer";
 import { useTranslate } from "@app/i18n";
 import { getCartItemCountUseCase } from "@app/lib/cart/application/get-cart-item-count.use-case";
 import { useCart } from "@app/lib/context/cart.context";
-import { Badge, Button, cn, Icon } from "@library";
+import { Badge, Button, cn, Icon, LoadingCircle } from "@library";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useNavigation } from "react-router";
 import Footer from "./footer";
@@ -151,9 +151,9 @@ export default function Example() {
       {navigation.state !== "idle" && (
         <output
           aria-label={t("app.loading")}
-          className="fixed inset-x-0 bottom-0 z-50 h-0.5 overflow-hidden"
+          className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center"
         >
-          <span className="navigation-loading-bar block h-full bg-indigo-600" />
+          <LoadingCircle size="lg" className="text-gray-900 dark:text-white" />
         </output>
       )}
     </div>

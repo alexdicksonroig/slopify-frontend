@@ -2,20 +2,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-.navigation-loading-bar {
-  width: 40%;
-  animation: navigation-loading 1s ease-in-out infinite;
-}
-
-@keyframes navigation-loading {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(350%);
-  }
-}
-
 html,
 body {
   @apply bg-white dark:bg-gray-950;
