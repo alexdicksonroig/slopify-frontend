@@ -33,6 +33,7 @@ export function AgeVerificationDialog() {
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
       bottomOnMobile={false}
+      className="p-5"
     >
       <img
         src="/assets/roig-parals-logo-dark.png"
@@ -41,7 +42,7 @@ export function AgeVerificationDialog() {
       />
       <h2
         id={titleId}
-        className="text-center text-xl lg:text-3xl font-semibold tracking-wide uppercase"
+        className="text-center text-lg lg:text-2xl font-semibold tracking-wide uppercase"
       >
         {t("age-verification.title")}
       </h2>
