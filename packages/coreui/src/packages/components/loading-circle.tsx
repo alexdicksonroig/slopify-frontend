@@ -28,12 +28,12 @@ export const LoadingCircle = ({
     viewBox="0 0 24 24"
   >
     <circle
-      className="opacity-10"
+      className="opacity-20"
       cx="12"
       cy="12"
       r="9"
       stroke="currentColor"
-      strokeWidth="0.75"
+      strokeWidth="1.5"
     />
     <circle
       cx="12"
@@ -41,9 +41,9 @@ export const LoadingCircle = ({
       r="9"
       pathLength="100"
       stroke="currentColor"
-      strokeDasharray="68 32"
+      strokeDasharray="30 70"
       strokeLinecap="round"
-      strokeWidth="0.75"
+      strokeWidth="1.5"
     />
   </svg>
 );

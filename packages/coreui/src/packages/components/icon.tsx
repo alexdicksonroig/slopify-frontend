@@ -13,7 +13,7 @@ const ICON_HEIGHT: Record<IconSize, string> = {
   xs: "h-[14px]",
   sm: "h-[16px]",
   md: "h-[18px]",
-  lg: "h-[24px]",
+  lg: "h-[22px]",
   xl: "h-[28px]",
   xxl: "h-[32px]",
   xxxl: "h-[40px]",
