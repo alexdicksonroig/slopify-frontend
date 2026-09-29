@@ -19,7 +19,7 @@ export function VariantCartAction({
 }: VariantCartActionProps) {
   const t = useTranslate();
   const { language } = useLanguage();
-  const { cart, setCart, openCart } = useCart();
+  const { cart, setCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const { stock } = variant;
   const [isAdding, setIsAdding] = useState(false);
@@ -69,7 +69,7 @@ export function VariantCartAction({
     );
     setIsAdding(false);
     setIsOpen(false);
-    openCart();
+    triggerRef.current?.focus();
   };
 
   if (variant.unitAmount === null || variant.currency === null) return null;
