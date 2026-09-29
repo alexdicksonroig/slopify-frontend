@@ -170,7 +170,7 @@ export default function ProductPage() {
             </div>
           </form>
 
-          <Accordion className="border-t">
+          <Accordion>
             {[t("product.highlights"), t("product.details"), "Shipping"].map(
               (label) => (
                 <Accordion.Item key={label} itemId={label} headerText={label}>

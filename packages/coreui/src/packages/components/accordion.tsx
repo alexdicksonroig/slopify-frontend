@@ -85,7 +85,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   };
 
   return (
-    <div className={cn("border-b", className)} {...props}>
+    <div className={cn("border-b last:border-b-0", className)} {...props}>
       <button className="w-full" onClick={handleToggle} type="button">
         <AccordionTrigger isOpen={isOpen}>{headerText}</AccordionTrigger>
       </button>
