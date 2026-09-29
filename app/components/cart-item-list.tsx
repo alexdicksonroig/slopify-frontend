@@ -2,8 +2,8 @@
 
 import { QuantitySelector } from "@app/components/quantity-selector";
 import { useTranslate } from "@app/i18n";
-import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-to-cart.use-case";
 import { deleteProductFromCartUseCase } from "@app/lib/cart/application/delete-product-from-cart.use-case";
+import { updateCartItemQuantityUseCase } from "@app/lib/cart/application/update-cart-item-quantity.use-case";
 import type { Cart, CartItem } from "@app/lib/cart/domain/cart.entity";
 import { formatMoney } from "@app/lib/currency";
 import { Button, cn } from "@library";
@@ -26,13 +26,13 @@ export function CartItemList({
 
   const changeQuantity = async (item: CartItem, quantity: number) => {
     if (quantity < 1) return;
-    const updatedCart = await addProductToCartUseCase.execute(item, quantity);
-    if (updatedCart) setCart(updatedCart);
+    setCart(
+      await updateCartItemQuantityUseCase.execute(item.variantId, quantity),
+    );
   };
 
   const removeItem = async (variantId: number) => {
-    const updatedCart = await deleteProductFromCartUseCase.execute(variantId);
-    if (updatedCart) setCart(updatedCart);
+    setCart(await deleteProductFromCartUseCase.execute(variantId));
   };
 
   return (

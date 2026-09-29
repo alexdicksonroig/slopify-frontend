@@ -19,13 +19,11 @@ export function VariantCartAction({
 }: VariantCartActionProps) {
   const t = useTranslate();
   const { language } = useLanguage();
-  const { cart, setCart } = useCart();
+  const { cart, setCart, openCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const { stock } = variant;
   const [isAdding, setIsAdding] = useState(false);
-  const cartQuantity =
-    cart?.items.find((item) => item.variantId === variant.id)?.quantity ?? 1;
-  const [quantity, setQuantity] = useState(cartQuantity);
+  const [quantity, setQuantity] = useState(1);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const popupId = `variant-cart-popup-${variant.id}`;
 
@@ -56,24 +54,22 @@ export function VariantCartAction({
       return;
 
     setIsAdding(true);
-    const updatedCart = await addProductToCartUseCase.execute(
-      {
-        variantId: variant.id,
-        productId: product.id,
-        name: product.name,
-        unitPriceInCents: unitAmount,
-        currency,
-        thumbnailUrl: variant.thumbnailUrl,
-      },
-      quantity,
+    setCart(
+      await addProductToCartUseCase.execute(
+        {
+          variantId: variant.id,
+          productId: product.id,
+          name: product.name,
+          unitPriceInCents: unitAmount,
+          currency,
+          thumbnailUrl: variant.thumbnailUrl,
+        },
+        quantity,
+      ),
     );
     setIsAdding(false);
-
-    if (updatedCart) {
-      setCart(updatedCart);
-      setIsOpen(false);
-      triggerRef.current?.focus();
-    }
+    setIsOpen(false);
+    openCart();
   };
 
   if (variant.unitAmount === null || variant.currency === null) return null;

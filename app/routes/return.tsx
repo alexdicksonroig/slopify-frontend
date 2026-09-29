@@ -1,7 +1,6 @@
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
-import { createCartUseCase } from "@app/lib/cart/application/create-cart.use-case";
-import { deleteCartUseCase } from "@app/lib/cart/application/delete-cart.use-case";
+import { clearCartUseCase } from "@app/lib/cart/application/clear-cart.use-case";
 import type { CartItem } from "@app/lib/cart/domain/cart.entity";
 import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
@@ -61,8 +60,7 @@ export default function Return() {
             totalInCents: cart.orderTotalInCents,
             currency: cart.currency,
           });
-          await deleteCartUseCase.execute();
-          const emptyCart = await createCartUseCase.execute();
+          const emptyCart = await clearCartUseCase.execute();
           if (!cancelled) {
             setCart(emptyCart);
             setStatus("success");

@@ -1,4 +1,3 @@
-import { createCartUseCase } from "@app/lib/cart/application/create-cart.use-case";
 import { getCartUseCase } from "@app/lib/cart/application/get-cart.use-case";
 import type { Cart } from "@app/lib/cart/domain/cart.entity";
 import {
@@ -12,27 +11,32 @@ import {
 
 type CartContextValue = {
   cart: Cart | null;
-  setCart: (cart: Cart | null) => void;
+  setCart: (cart: Cart) => void;
+  isCartOpen: boolean;
+  openCart: () => void;
+  closeCart: () => void;
 };
 
-const DEFAULT_SHIPPING_PRICE_IN_CENTS = 0;
 const CartContext = createContext<CartContextValue | null>(null);
 
 export function CartProvider({ children }: PropsWithChildren) {
   const [cart, setCart] = useState<Cart | null>(null);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
-    void getCartUseCase
-      .execute()
-      .then(
-        (storedCart) =>
-          storedCart ??
-          createCartUseCase.execute(DEFAULT_SHIPPING_PRICE_IN_CENTS),
-      )
-      .then(setCart);
+    void getCartUseCase.execute().then(setCart);
   }, []);
 
-  const value = useMemo(() => ({ cart, setCart }), [cart]);
+  const value = useMemo(
+    () => ({
+      cart,
+      setCart,
+      isCartOpen,
+      openCart: () => setIsCartOpen(true),
+      closeCart: () => setIsCartOpen(false),
+    }),
+    [cart, isCartOpen],
+  );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

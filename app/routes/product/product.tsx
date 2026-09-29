@@ -47,15 +47,14 @@ export async function clientLoader(args: ProductLoaderArgs) {
 export default function ProductPage() {
   const t = useTranslate();
   const { language } = useLanguage();
-  const { cart, setCart } = useCart();
+  const { cart, setCart, openCart } = useCart();
   const { product, variant, variants } = useLoaderData<typeof clientLoader>();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    const cartItem = cart?.items.find((item) => item.variantId === variant.id);
-    setQuantity(cartItem?.quantity ?? 1);
-  }, [cart, variant.id]);
+    setQuantity(1);
+  }, [variant.id]);
 
   const galleryImages = variant.coverUrl
     ? [{ src: variant.coverUrl, alt: product.name }]
@@ -72,18 +71,20 @@ export default function ProductPage() {
   const handleAddToCart = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (unitAmount === null || currency === null) return;
-    const updatedCart = await addProductToCartUseCase.execute(
-      {
-        variantId: variant.id,
-        productId: product.id,
-        name: product.name,
-        unitPriceInCents: unitAmount,
-        currency,
-        thumbnailUrl: variant.thumbnailUrl,
-      },
-      quantity,
+    setCart(
+      await addProductToCartUseCase.execute(
+        {
+          variantId: variant.id,
+          productId: product.id,
+          name: product.name,
+          unitPriceInCents: unitAmount,
+          currency,
+          thumbnailUrl: variant.thumbnailUrl,
+        },
+        quantity,
+      ),
     );
-    if (updatedCart) setCart(updatedCart);
+    openCart();
   };
 
   return (

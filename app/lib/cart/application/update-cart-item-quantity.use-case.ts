@@ -1,14 +1,15 @@
 import { Cart } from "../domain/cart.entity";
 import { cartRepository } from "../infrastructure/persistence/cart.repository";
 
-export class DeleteProductFromCartUseCase {
-  async execute(variantId: number): Promise<Cart> {
+export class UpdateCartItemQuantityUseCase {
+  async execute(variantId: number, quantity: number): Promise<Cart> {
     const cart = (await cartRepository.get()) ?? new Cart();
 
-    cart.deleteProduct(variantId);
+    cart.setItemQuantity(variantId, quantity);
     await cartRepository.save(cart);
     return cart;
   }
 }
 
-export const deleteProductFromCartUseCase = new DeleteProductFromCartUseCase();
+export const updateCartItemQuantityUseCase =
+  new UpdateCartItemQuantityUseCase();

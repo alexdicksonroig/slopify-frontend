@@ -54,10 +54,19 @@ export class Cart {
   addItem(variantId: number, quantity: number, product?: CartProduct): void {
     const item = this.cartItems.find((item) => item.variantId === variantId);
     if (item) {
-      item.quantity = quantity;
+      item.quantity += quantity;
     } else if (product) {
       this.cartItems.push({ ...product, quantity });
     }
+  }
+
+  setItemQuantity(variantId: number, quantity: number): void {
+    const item = this.cartItems.find((item) => item.variantId === variantId);
+    if (item) item.quantity = quantity;
+  }
+
+  clear(): void {
+    this.cartItems = [];
   }
 
   deleteProduct(variantId: number): void {

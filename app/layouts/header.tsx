@@ -9,14 +9,12 @@ import Footer from "./footer";
 
 export default function Example() {
   const t = useTranslate();
-  const { cart } = useCart();
+  const { cart, isCartOpen: cartOpen, openCart, closeCart } = useCart();
   const navigation = useNavigation();
   const [showFirstText, setShowFirstText] = useState(true);
   const [showAnnouncement, setShowAnnouncement] = useState(true);
-  const [cartOpen, setCartOpen] = useState(false);
 
-  const handleCartClick = () => setCartOpen(true);
-  const closeCart = () => setCartOpen(false);
+  const handleCartClick = openCart;
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -1,15 +1,14 @@
 import { Cart } from "../domain/cart.entity";
 import { cartRepository } from "../infrastructure/persistence/cart.repository";
 
-export class GetCartUseCase {
+export class ClearCartUseCase {
   async execute(): Promise<Cart> {
-    const storedCart = await cartRepository.get();
-    if (storedCart) return storedCart;
+    const cart = (await cartRepository.get()) ?? new Cart();
 
-    const cart = new Cart();
+    cart.clear();
     await cartRepository.save(cart);
     return cart;
   }
 }
 
-export const getCartUseCase = new GetCartUseCase();
+export const clearCartUseCase = new ClearCartUseCase();
