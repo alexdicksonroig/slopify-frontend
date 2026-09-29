@@ -84,6 +84,7 @@ export const koKr = {
   "product.stock-count": "${count} 재고 있음",
   "product.out-of-stock": "품절",
   "product.quantity": "수량",
+  "product.recommendations": "이런 상품은 어떠세요",
   "product.description-text":
     'Basic Tee 6팩을 사용하면 세 가지 그레이스케일 옵션으로 생동감 넘치는 개성을 완벽하게 표현할 수 있습니다. 모험심을 느끼시나요? 헤더 그레이 티셔츠를 입으세요. 트렌드세터가 되고 싶나요? 독점 컬러웨이인 "Black"을 사용해 보세요. 당신의 의상에 팝 컬러를 추가하고 싶으십니까? 우리의 흰색 티셔츠가 당신을 덮었습니다.',
   "product.unavailable": "이용 불가",

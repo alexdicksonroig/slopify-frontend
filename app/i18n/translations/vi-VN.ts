@@ -84,6 +84,7 @@ export const viVn = {
   "product.stock-count": "${count} còn hàng",
   "product.out-of-stock": "Hết hàng",
   "product.quantity": "Số lượng",
+  "product.recommendations": "Có thể bạn cũng thích",
   "product.description-text":
     "Basic Tee 6-Pack cho phép bạn thể hiện trọn vẹn cá tính sôi nổi của mình với ba tùy chọn thang độ xám. Cảm thấy phiêu lưu? Mặc một chiếc áo phông màu xám thạch nam. Bạn muốn trở thành người tạo ra xu hướng? Hãy thử màu sắc độc quyền của chúng tôi: “Đen”. Cần thêm một chút màu sắc cho trang phục của bạn? Áo thun trắng của chúng tôi đã bảo vệ bạn.",
   "product.unavailable": "Không có sẵn",

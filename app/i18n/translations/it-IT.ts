@@ -84,6 +84,7 @@ export const itIt = {
   "product.stock-count": "${count} disponibile",
   "product.out-of-stock": "Esaurito",
   "product.quantity": "Quantità",
+  "product.recommendations": "Potrebbe piacerti anche",
   "product.description-text":
     "La confezione da 6 magliette Basic ti consente di esprimere appieno la tua vibrante personalità con tre opzioni in scala di grigio. Ti senti avventuroso? Indossa una maglietta grigio melange. Vuoi essere un trendsetter? Prova la nostra colorazione esclusiva: “Black”. Hai bisogno di aggiungere un tocco di colore in più al tuo outfit? La nostra maglietta bianca ti copre.",
   "product.unavailable": "Non disponibile",

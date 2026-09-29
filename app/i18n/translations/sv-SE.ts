@@ -84,6 +84,7 @@ export const svSe = {
   "product.stock-count": "${count} i lager",
   "product.out-of-stock": "Slut i lager",
   "product.quantity": "Antal",
+  "product.recommendations": "Du kanske också gillar",
   "product.description-text":
     'Basic Tee 6-Pack låter dig uttrycka din livfulla personlighet fullt ut med tre gråskalealternativ. Känner du dig äventyrlig? Sätt på en gråmelerad t-shirt. Vill du bli en trendsättare? Prova vår exklusiva färgsättning: "Black". Behöver du lägga till en extra färg till din outfit? Vår vita t-shirt har dig täckt.',
   "product.unavailable": "Ej tillgänglig",

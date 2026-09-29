@@ -84,6 +84,7 @@ export const jaJp = {
   "product.stock-count": "${count} 在庫あり",
   "product.out-of-stock": "在庫切れ",
   "product.quantity": "数量",
+  "product.recommendations": "こちらもおすすめ",
   "product.description-text":
     "ベーシック T シャツ 6 パックでは、3 つのグレースケール オプションであなたの鮮やかな個性を完全に表現できます。冒険的な気分ですか？ヘザーグレーのTシャツを着てください。トレンドセッターになりたいですか?当社独自のカラーウェイ「ブラック」をお試しください。あなたの服装にさらにポップな色を追加する必要がありますか?当社の白い T シャツがあなたをサポートします。",
   "product.unavailable": "利用不可",

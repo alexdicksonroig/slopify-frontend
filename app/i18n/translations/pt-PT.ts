@@ -85,6 +85,7 @@ export const ptPt = {
   "product.stock-count": "${count} em stock",
   "product.out-of-stock": "Esgotado",
   "product.quantity": "Quantidade",
+  "product.recommendations": "Também poderá gostar",
   "product.description-text":
     "O Basic Tee 6-Pack permite-lhe expressar totalmente a sua personalidade vibrante com três opções de tons de cinzento. Sente-se aventureiro? Vista uma t-shirt cinza claro. Quer ser um criador de tendências? Experimente a nossa colorway exclusiva: “Black”. Precisa de adicionar um toque extra de cor à sua roupa? A nossa t-shirt branca protege você.",
   "product.unavailable": "Indisponível",

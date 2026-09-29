@@ -83,6 +83,7 @@ export const fr = {
   "product.stock-count": "${count} en stock",
   "product.out-of-stock": "Rupture de stock",
   "product.quantity": "Quantité",
+  "product.recommendations": "Vous aimerez aussi",
   "product.description-text":
     "Le lot de 6 t-shirts basiques vous permet d’exprimer votre personnalité avec trois nuances de gris. Essayez le gris chiné, notre noir exclusif ou ajoutez une touche lumineuse avec le t-shirt blanc.",
   "product.unavailable": "Indisponible",

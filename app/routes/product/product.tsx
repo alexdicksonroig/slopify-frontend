@@ -7,13 +7,14 @@ import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
 import { localize } from "@app/lib/localized-text";
 import type { Product } from "@app/lib/product";
-import type { Variant } from "@app/lib/variant";
+import type { Variant, VariantListItem } from "@app/lib/variant";
 import { Accordion, Button, cn, Separator } from "@library";
 import { type FormEvent, useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImageGallery } from "./components/ProductImageGallery";
 import { ProductOptions } from "./components/ProductOptions";
+import { Recommendations } from "./components/Recommendations";
 
 type ProductLoaderArgs = {
   params: { id?: string; variantId?: string };
@@ -27,13 +28,29 @@ async function loadProduct({ params }: ProductLoaderArgs) {
     });
   }
 
-  const [product, variant, variants] = await Promise.all([
-    get<Product>(`products/${params.id}`),
-    get<Variant>(`variants/${variantId}`),
-    get<Variant[]>(`products/${params.id}/variants`),
-  ]);
+  const [product, variant, variants, variantList, products] = await Promise.all(
+    [
+      get<Product>(`products/${params.id}`),
+      get<Variant>(`variants/${variantId}`),
+      get<Variant[]>(`products/${params.id}/variants`),
+      get<VariantListItem[]>("variants"),
+      get<Product[]>("products"),
+    ],
+  );
 
-  return { product, variant, variants };
+  const productsById = new Map(products.map((item) => [item.id, item]));
+  const recommendedVariants = await Promise.all(
+    variantList
+      .filter((item) => item.id !== variant.id)
+      .slice(0, 4)
+      .map((item) => get<Variant>(`variants/${item.id}`)),
+  );
+  const recommendations = recommendedVariants.flatMap((item) => {
+    const itemProduct = productsById.get(item.productId);
+    return itemProduct ? [{ product: itemProduct, variant: item }] : [];
+  });
+
+  return { product, variant, variants, recommendations };
 }
 
 export async function loader(args: ProductLoaderArgs) {
@@ -48,7 +65,8 @@ export default function ProductPage() {
   const t = useTranslate();
   const { language } = useLanguage();
   const { cart, setCart, openCart } = useCart();
-  const { product, variant, variants } = useLoaderData<typeof clientLoader>();
+  const { product, variant, variants, recommendations } =
+    useLoaderData<typeof clientLoader>();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
 
@@ -88,7 +106,7 @@ export default function ProductPage() {
   };
 
   return (
-    <main className="mx-auto w-full max-w-[1440px] px-4 pt-3 pb-4 sm:px-6 sm:pt-4 sm:pb-8 lg:px-12 lg:pt-6 lg:pb-10">
+    <main className="mx-auto flex min-h-[calc(100svh-5.5rem)] w-full max-w-[1440px] flex-col px-4 pt-3 pb-4 sm:px-6 sm:pt-4 sm:pb-8 lg:px-12 lg:pt-6 lg:pb-10">
       <Breadcrumb
         className="mb-3 sm:mb-4"
         items={[
@@ -183,6 +201,8 @@ export default function ProductPage() {
           </Accordion>
         </section>
       </div>
+
+      <Recommendations cards={recommendations} className="mt-auto pt-12 lg:pt-20" />
     </main>
   );
 }

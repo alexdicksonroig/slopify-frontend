@@ -21,6 +21,7 @@ export const enGb = {
   "product.description": "Description",
   "product.out-of-stock": "Out of stock",
   "product.quantity": "Quantity",
+  "product.recommendations": "You may also like",
   "return.continue": "Continue shopping",
   "return.thank-you": "Thank you!",
 };

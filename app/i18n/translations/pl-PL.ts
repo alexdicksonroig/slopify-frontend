@@ -85,6 +85,7 @@ export const plPl = {
   "product.stock-count": "${count} w magazynie",
   "product.out-of-stock": "Brak w magazynie",
   "product.quantity": "Ilość",
+  "product.recommendations": "Może ci się spodobać",
   "product.description-text":
     "Zestaw 6 koszulek Basic Tee pozwala w pełni wyrazić swoją żywą osobowość dzięki trzem opcjom w skali szarości. Masz ochotę na przygodę? Załóż szarą koszulkę. Chcesz być trendsetterem? Wypróbuj naszą ekskluzywną kolorystykę: „Black”. Chcesz dodać dodatkowy akcent kolorystyczny do swojego stroju? Nasza biała koszulka zapewni Ci wszystko.",
   "product.unavailable": "Niedostępne",
