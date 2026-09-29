@@ -199,6 +199,17 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
             onFilterChange={handleFilterChange}
             onResetFilters={handleResetFilters}
           />
+          <Select
+            value={searchParams.get("sort") ?? "newest"}
+            onChange={handleSortChange}
+            options={translatedSortOptions}
+            placeholder={t("filters.sort-by")}
+            showSelectedValue={false}
+            variant="ghost"
+            size="lg"
+            className="my-3 w-full px-3 text-gray-500"
+            aria-label={t("filters.sort")}
+          />
           <div className="mt-6">
             <Button
               type="button"
@@ -218,19 +229,6 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               {t("filters.result-count", { count: resultCount })}
             </p>
             <div className="ml-auto flex items-center lg:block lg:min-w-56">
-              <div className="min-w-0">
-                <Select
-                  value={searchParams.get("sort") ?? "newest"}
-                  onChange={handleSortChange}
-                  options={translatedSortOptions}
-                  placeholder={t("filters.sort-by")}
-                  showSelectedValue={false}
-                  variant="ghost"
-                  size="sm"
-                  className="pr-1.5 text-gray-600"
-                  aria-label={t("filters.sort")}
-                />
-              </div>
               <Button
                 variant="ghost"
                 size="sm"
@@ -252,6 +250,12 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
           {/* Filters sidebar - Desktop */}
           <aside className="hidden lg:block">
+            <FilterContent
+              options={options}
+              searchParams={searchParams}
+              onFilterChange={handleFilterChange}
+              onResetFilters={handleResetFilters}
+            />
             <Select
               value={searchParams.get("sort") ?? "newest"}
               onChange={handleSortChange}
@@ -260,14 +264,8 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               showSelectedValue={false}
               variant="ghost"
               size="lg"
-              className="my-3 w-full px-0 text-gray-500"
+              className="my-3 w-full px-3 text-gray-500"
               aria-label={t("filters.sort")}
-            />
-            <FilterContent
-              options={options}
-              searchParams={searchParams}
-              onFilterChange={handleFilterChange}
-              onResetFilters={handleResetFilters}
             />
           </aside>
 
