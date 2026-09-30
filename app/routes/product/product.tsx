@@ -8,7 +8,7 @@ import { formatMoney } from "@app/lib/currency";
 import { localize } from "@app/lib/localized-text";
 import type { Product } from "@app/lib/product";
 import type { Variant, VariantListItem } from "@app/lib/variant";
-import { Accordion, Button, cn, Separator } from "@library";
+import { Accordion, Button, cn } from "@library";
 import { type FormEvent, useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import { ProductDetails } from "./components/ProductDetails";
@@ -157,8 +157,6 @@ export default function ProductPage() {
                 : t("product.description-text")
             }
           />
-
-          <Separator />
 
           <form className="flex flex-col gap-5" onSubmit={handleAddToCart}>
             <ProductOptions
