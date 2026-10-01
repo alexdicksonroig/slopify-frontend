@@ -70,7 +70,7 @@ export const Drawer: React.FC<DrawerProps> = ({
         )}
       >
         {title ? (
-          <div className="flex shrink-0 items-center justify-between gap-4 border-b px-6 py-4">
+          <div className="flex shrink-0 items-center justify-between gap-4 px-6 py-4">
             <h2 className="text-xl lg:text-2xl font-semibold tracking-tight">
               {title}
             </h2>

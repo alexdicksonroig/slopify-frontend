@@ -59,7 +59,7 @@ export function AgeVerificationDialog() {
           <Button type="button" variant="outline" onClick={handleExit}>
             {t("age-verification.no")}
           </Button>
-          <Button type="button" onClick={handleEnter}>
+          <Button type="button" variant="secondary" onClick={handleEnter}>
             {t("age-verification.yes")}
           </Button>
         </div>

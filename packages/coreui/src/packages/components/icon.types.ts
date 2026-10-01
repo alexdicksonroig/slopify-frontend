@@ -3,6 +3,7 @@ export const ICON_NAMES = [
   "arrow-right",
   "check",
   "chevron-down",
+  "cookie",
   "globe",
   "info",
   "list-filter",
@@ -12,6 +13,7 @@ export const ICON_NAMES = [
   "plus",
   "shopping-bag",
   "shopping-bag-plus",
+  "wine",
   "x",
 ] as const;
 

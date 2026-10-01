@@ -1,7 +1,7 @@
 import { useTranslate } from "@app/i18n";
 import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
-import { buttonVariants, Drawer, Overlay } from "@library";
+import { buttonVariants, Drawer, Icon, Overlay } from "@library";
 import { Link } from "react-router";
 import { CartItemList } from "./cart-item-list";
 
@@ -35,7 +35,8 @@ export function CartDrawer({
       >
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6">
           {!cart || cart.isEmpty ? (
-            <p className="py-8 text-sm lg:text-lg text-gray-500">
+            <p className="flex h-full items-center justify-center gap-2 py-8 text-sm lg:text-lg text-gray-500">
+              <Icon icon="wine" size="md" />
               {t("cart.empty")}
             </p>
           ) : (

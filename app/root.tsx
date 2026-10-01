@@ -1,4 +1,5 @@
 import { AgeVerificationDialog } from "@app/components/age-verification-dialog";
+import { CookieBanner } from "@app/components/cookie-banner";
 import { LanguageProvider, useTranslate } from "@app/i18n";
 import { CartProvider } from "@app/lib/context/cart.context";
 import { LoadingCircle } from "@library";
@@ -51,6 +52,7 @@ export default function App() {
     <>
       <Outlet />
       <AgeVerificationDialog />
+      <CookieBanner />
     </>
   );
 }
