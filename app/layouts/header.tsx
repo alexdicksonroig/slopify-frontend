@@ -72,7 +72,7 @@ export default function Example() {
         <nav
           aria-label={t("header.top")}
           className={cn("border-b border-gray-200 bg-white px-3 sm:px-4", {
-            "rounded-t-2xl": showAnnouncement,
+            "rounded-t-xl": showAnnouncement,
           })}
         >
           <div className="flex h-14 items-center">
