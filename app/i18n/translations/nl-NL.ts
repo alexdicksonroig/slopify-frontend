@@ -90,8 +90,6 @@ export const nlNl = {
   "product.out-of-stock": "Uitverkocht",
   "product.quantity": "Aantal",
   "product.recommendations": "Misschien ook iets voor jou",
-  "product.description-text":
-    "Met het Basic Tee 6-Pack kunt u uw levendige persoonlijkheid volledig tot uitdrukking brengen met drie grijswaardenopties. Voel je je avontuurlijk? Trek een grijs gemêleerd T-shirt aan. Wil je een trendsetter zijn? Probeer onze exclusieve kleurstelling: “Black”. Wil je een extra vleugje kleur toevoegen aan je outfit? Met ons witte T-shirt zit je goed.",
   "product.unavailable": "Niet beschikbaar",
   "return.back-checkout": "Keer terug naar de kassa",
   "return.checking": "Bevestiging van uw betaling...",

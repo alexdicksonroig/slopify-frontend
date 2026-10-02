@@ -89,8 +89,6 @@ export const zhCn = {
   "product.out-of-stock": "缺货",
   "product.quantity": "数量",
   "product.recommendations": "猜你喜欢",
-  "product.description-text":
-    "基本 T 恤 6 件装可让您通过三种灰度选项充分表达您充满活力的个性。想要冒险吗？穿上石南灰色 T 恤。想成为潮流引领者吗？尝试我们的独家配色：“黑色”。需要为您的服装增添一抹流行色彩吗？我们的白 T 恤可以满足您的需求。",
   "product.unavailable": "不可用",
   "return.back-checkout": "返回结账页面",
   "return.checking": "正在确认您的付款...",

@@ -90,8 +90,6 @@ export const trTr = {
   "product.out-of-stock": "Stokta yok",
   "product.quantity": "Adet",
   "product.recommendations": "Bunları da beğenebilirsiniz",
-  "product.description-text":
-    "Basic Tee 6'lı Paket, üç gri tonlama seçeneğiyle canlı kişiliğinizi tam olarak ifade etmenize olanak tanır. Maceracı mı hissediyorsun? Heather grisi bir tişört giy. Trend belirleyici olmak ister misiniz? Özel renk grubumuzu deneyin: “Siyah”. Kıyafetinize ekstra bir renk tonu eklemeniz mi gerekiyor? Beyaz tişörtümüz sizi koruyor.",
   "product.unavailable": "Kullanılamıyor",
   "return.back-checkout": "Ödeme sayfasına dön",
   "return.checking": "Ödemeniz onaylanıyor...",

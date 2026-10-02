@@ -89,8 +89,6 @@ export const zhTw = {
   "product.out-of-stock": "缺貨",
   "product.quantity": "數量",
   "product.recommendations": "猜你喜歡",
-  "product.description-text":
-    "基本 T 卹 6 件裝可讓您透過三種灰階選項充分錶達您充滿活力的個性。想要冒險嗎？穿上石南灰色 T 卹。想成為潮流引領者嗎？試試我們的獨家配色：「黑色」。需要為您的服裝增添一抹流行色彩嗎？我們的白 T 卹可以滿足您的需求。",
   "product.unavailable": "不可用",
   "return.back-checkout": "返回結帳頁面",
   "return.checking": "正在確認您的付款...",

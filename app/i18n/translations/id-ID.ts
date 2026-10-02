@@ -90,8 +90,6 @@ export const idId = {
   "product.out-of-stock": "Stok habis",
   "product.quantity": "Jumlah",
   "product.recommendations": "Anda mungkin juga suka",
-  "product.description-text":
-    "Basic Tee 6-Pack memungkinkan Anda mengekspresikan kepribadian cerah Anda sepenuhnya dengan tiga opsi skala abu-abu. Merasa suka bertualang? Kenakan kaus abu-abu heather. Ingin menjadi trendsetter? Coba jalur warna eksklusif kami: “Hitam”. Perlu menambahkan semburat warna ekstra pada pakaian Anda? Kaus putih kami siap membantu Anda.",
   "product.unavailable": "Tidak tersedia",
   "return.back-checkout": "Kembali ke pembayaran",
   "return.checking": "Mengonfirmasi pembayaran Anda...",

@@ -150,13 +150,11 @@ export default function ProductPage() {
             </p>
           </header>
 
-          <ProductDetails
-            description={
-              product.description
-                ? localize(product.description, language)
-                : t("product.description-text")
-            }
-          />
+          {product.description && (
+            <ProductDetails
+              description={localize(product.description, language)}
+            />
+          )}
 
           <form className="flex flex-col gap-5" onSubmit={handleAddToCart}>
             <ProductOptions
@@ -167,22 +165,31 @@ export default function ProductPage() {
                 navigate(`/product/${product.id}/${variantId}`)
               }
             />
-            <div className="flex max-w-full gap-2.5 sm:gap-3">
-              <QuantitySelector
-                value={quantity}
-                onChange={setQuantity}
-                className="h-12"
-              />
-              <Button
-                type="submit"
-                variant="cta"
-                size="xl"
-                disabled={!cart || !hasPrice}
-                className="flex-1 justify-between tracking-[0.06em]"
-              >
-                <span>{t("product.add")}</span>
-                <span className="tabular-nums">{totalPrice}</span>
-              </Button>
+            <div className="flex items-center justify-between gap-4">
+              <p className="flex flex-col">
+                <span className="text-xs text-neutral-500 lg:text-sm">
+                  {t("cart.subtotal")}
+                </span>
+                <span className="text-base font-medium tabular-nums text-neutral-950 lg:text-lg">
+                  {totalPrice}
+                </span>
+              </p>
+              <div className="flex gap-2.5 sm:gap-3">
+                <QuantitySelector
+                  value={quantity}
+                  onChange={setQuantity}
+                  className="h-12"
+                />
+                <Button
+                  type="submit"
+                  variant="cta"
+                  size="xl"
+                  disabled={!cart || !hasPrice}
+                  className="tracking-[0.06em]"
+                >
+                  {t("product.add")}
+                </Button>
+              </div>
             </div>
           </form>
 

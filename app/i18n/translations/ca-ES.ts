@@ -89,8 +89,6 @@ export const ca = {
   "product.out-of-stock": "Esgotat",
   "product.quantity": "Quantitat",
   "product.recommendations": "També et pot agradar",
-  "product.description-text":
-    "El paquet de 6 samarretes bàsiques et permet expressar plenament la teva personalitat amb tres opcions en escala de grisos. Prova el gris jaspiat, el nostre negre exclusiu o afegeix un toc lluminós al teu conjunt amb la samarreta blanca.",
   "product.unavailable": "No disponible",
   "return.back-checkout": "Torna al pagament",
   "return.checking": "S'està confirmant el pagament...",

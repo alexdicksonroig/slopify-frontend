@@ -89,8 +89,6 @@ export const de = {
   "product.out-of-stock": "Ausverkauft",
   "product.quantity": "Menge",
   "product.recommendations": "Das könnte dir auch gefallen",
-  "product.description-text":
-    "Mit dem 6er-Pack Basic-T-Shirts können Sie Ihre Persönlichkeit in drei Grautönen ausdrücken. Probieren Sie meliertes Grau, unser exklusives Schwarz oder setzen Sie mit dem weißen T-Shirt einen hellen Akzent.",
   "product.unavailable": "Nicht verfügbar",
   "return.back-checkout": "Zurück zur Kasse",
   "return.checking": "Zahlung wird bestätigt...",
