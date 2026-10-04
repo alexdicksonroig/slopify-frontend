@@ -123,12 +123,9 @@ export default function ProductPage() {
             <h1 className="text-4xl leading-[1.05] font-bold tracking-[-0.04em] text-balance text-neutral-950 lg:text-6xl lg:leading-[1.02]">
               {product.name}
             </h1>
-            <p className="text-sm text-neutral-500 lg:text-lg">
-              A bottle chosen for you
-            </p>
             <p
               className={cn(
-                "mt-1 inline-flex items-center gap-2 self-start bg-transparent text-sm lg:mt-2",
+                "inline-flex items-center gap-2 self-start bg-transparent text-sm",
                 isInStock ? "text-emerald-600" : "text-neutral-500",
               )}
               aria-live="polite"
@@ -142,7 +139,7 @@ export default function ProductPage() {
               />
               {isInStock ? t("product.in-stock") : t("product.not-available")}
             </p>
-            <p className="text-3xl font-semibold tracking-[-0.03em] tabular-nums text-neutral-950 lg:text-4xl">
+            <p className="mt-1 text-3xl font-semibold tracking-[-0.03em] tabular-nums text-neutral-950 lg:mt-2 lg:text-4xl">
               {price}
             </p>
           </header>
