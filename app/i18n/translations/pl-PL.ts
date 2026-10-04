@@ -89,6 +89,7 @@ export const plPl = {
   "product.no-thumbnail": "Brak miniatury",
   "product.stock-count": "${count} w magazynie",
   "product.out-of-stock": "Brak w magazynie",
+  "product.in-stock": "Produkt dostępny (${count})",
   "product.quantity": "Ilość",
   "product.recommendations": "Może ci się spodobać",
   "product.unavailable": "Niedostępne",

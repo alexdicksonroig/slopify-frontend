@@ -88,6 +88,7 @@ export const thTh = {
   "product.no-thumbnail": "ไม่มีภาพขนาดย่อ",
   "product.stock-count": "${count} มีสินค้าในสต๊อก",
   "product.out-of-stock": "สินค้าหมด",
+  "product.in-stock": "มีสินค้าในสต๊อก (${count})",
   "product.quantity": "จำนวน",
   "product.recommendations": "คุณอาจชอบสิ่งนี้",
   "product.unavailable": "ไม่พร้อมใช้งาน",

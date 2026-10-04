@@ -79,6 +79,7 @@ export default function ProductPage() {
     : [];
   const { unitAmount, currency, stock } = variant;
   const hasPrice = unitAmount !== null && currency !== null;
+  const isInStock = stock > 0;
   const price = hasPrice
     ? formatMoney(unitAmount, currency)
     : t("product.unavailable");
@@ -88,7 +89,7 @@ export default function ProductPage() {
 
   const handleAddToCart = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (unitAmount === null || currency === null) return;
+    if (unitAmount === null || currency === null || !isInStock) return;
     setCart(
       await addProductToCartUseCase.execute(
         {
@@ -119,33 +120,28 @@ export default function ProductPage() {
 
         <section className="flex flex-col gap-6 lg:gap-7 lg:pt-2">
           <header className="flex flex-col gap-2.5 lg:gap-3">
-            <p
-              className={cn(
-                "inline-flex items-center gap-2 self-start rounded-full px-2.5 py-1 text-xs font-medium lg:text-sm",
-                stock > 0
-                  ? "bg-emerald-50 text-emerald-700"
-                  : "bg-neutral-100 text-neutral-600",
-              )}
-              aria-live="polite"
-            >
-              <span
-                aria-hidden
-                className={cn(
-                  "size-1.5 rounded-full",
-                  stock > 0 ? "bg-emerald-600" : "bg-neutral-400",
-                )}
-              />
-              {stock > 0
-                ? t("product.stock-count", { count: stock })
-                : t("product.out-of-stock")}
-            </p>
             <h1 className="text-4xl leading-[1.05] font-bold tracking-[-0.04em] text-balance text-neutral-950 lg:text-6xl lg:leading-[1.02]">
               {product.name}
             </h1>
             <p className="text-sm text-neutral-500 lg:text-lg">
               A bottle chosen for you
             </p>
-            <p className="mt-1 text-3xl font-semibold tracking-[-0.03em] tabular-nums text-neutral-950 lg:mt-2 lg:text-4xl">
+            <p
+              className="mt-1 inline-flex items-center gap-2 text-sm text-neutral-600 lg:mt-2"
+              aria-live="polite"
+            >
+              <span
+                aria-hidden
+                className={cn(
+                  "size-2 rounded-full",
+                  isInStock ? "bg-emerald-500" : "bg-neutral-400",
+                )}
+              />
+              {isInStock
+                ? t("product.in-stock", { count: stock })
+                : t("product.out-of-stock")}
+            </p>
+            <p className="text-3xl font-semibold tracking-[-0.03em] tabular-nums text-neutral-950 lg:text-4xl">
               {price}
             </p>
           </header>
@@ -177,6 +173,7 @@ export default function ProductPage() {
               <div className="flex gap-2.5 sm:gap-3">
                 <QuantitySelector
                   value={quantity}
+                  max={stock}
                   onChange={setQuantity}
                   className="h-12"
                 />
@@ -184,7 +181,7 @@ export default function ProductPage() {
                   type="submit"
                   variant="cta"
                   size="xl"
-                  disabled={!cart || !hasPrice}
+                  disabled={!cart || !hasPrice || !isInStock}
                   className="tracking-[0.06em]"
                 >
                   {t("product.add")}
@@ -207,7 +204,10 @@ export default function ProductPage() {
         </section>
       </div>
 
-      <Recommendations cards={recommendations} className="mt-auto pt-12 lg:pt-20" />
+      <Recommendations
+        cards={recommendations}
+        className="mt-auto pt-12 lg:pt-20"
+      />
     </main>
   );
 }

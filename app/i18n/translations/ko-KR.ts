@@ -88,6 +88,7 @@ export const koKr = {
   "product.no-thumbnail": "미리보기 이미지 없음",
   "product.stock-count": "${count} 재고 있음",
   "product.out-of-stock": "품절",
+  "product.in-stock": "재고 있음 (${count})",
   "product.quantity": "수량",
   "product.recommendations": "이런 상품은 어떠세요",
   "product.unavailable": "이용 불가",

@@ -88,6 +88,7 @@ export const bnBd = {
   "product.no-thumbnail": "কোনো থাম্বনেইল নেই",
   "product.stock-count": "${count} স্টকে আছে",
   "product.out-of-stock": "স্টকে নেই",
+  "product.in-stock": "পণ্য স্টকে আছে (${count})",
   "product.quantity": "পরিমাণ",
   "product.recommendations": "আপনার পছন্দ হতে পারে",
   "product.unavailable": "অনুপলব্ধ",

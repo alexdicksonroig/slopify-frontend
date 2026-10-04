@@ -88,6 +88,7 @@ export const viVn = {
   "product.no-thumbnail": "Không có hình thu nhỏ",
   "product.stock-count": "${count} còn hàng",
   "product.out-of-stock": "Hết hàng",
+  "product.in-stock": "Sản phẩm còn hàng (${count})",
   "product.quantity": "Số lượng",
   "product.recommendations": "Có thể bạn cũng thích",
   "product.unavailable": "Không có sẵn",

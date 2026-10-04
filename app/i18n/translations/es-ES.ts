@@ -87,6 +87,7 @@ export const es = {
   "product.no-thumbnail": "Sin miniatura",
   "product.stock-count": "${count} en stock",
   "product.out-of-stock": "Agotado",
+  "product.in-stock": "Producto en stock (${count})",
   "product.quantity": "Cantidad",
   "product.recommendations": "También te puede gustar",
   "product.unavailable": "No disponible",

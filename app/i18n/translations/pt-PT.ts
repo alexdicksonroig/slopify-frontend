@@ -89,6 +89,7 @@ export const ptPt = {
   "product.no-thumbnail": "Sem miniatura",
   "product.stock-count": "${count} em stock",
   "product.out-of-stock": "Esgotado",
+  "product.in-stock": "Produto em stock (${count})",
   "product.quantity": "Quantidade",
   "product.recommendations": "Também poderá gostar",
   "product.unavailable": "Indisponível",

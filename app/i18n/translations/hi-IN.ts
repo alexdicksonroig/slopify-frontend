@@ -88,6 +88,7 @@ export const hiIn = {
   "product.no-thumbnail": "कोई थंबनेल नहीं",
   "product.stock-count": "${count} स्टॉक में है",
   "product.out-of-stock": "स्टॉक में नहीं",
+  "product.in-stock": "उत्पाद स्टॉक में है (${count})",
   "product.quantity": "मात्रा",
   "product.recommendations": "आपको यह भी पसंद आ सकता है",
   "product.unavailable": "अनुपलब्ध",

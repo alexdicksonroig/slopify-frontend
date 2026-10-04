@@ -88,6 +88,7 @@ export const arSa = {
   "product.no-thumbnail": "لا توجد صورة مصغرة",
   "product.stock-count": "${count} متوفر في المخزون",
   "product.out-of-stock": "نفدت الكمية",
+  "product.in-stock": "المنتج متوفر في المخزون (${count})",
   "product.quantity": "الكمية",
   "product.recommendations": "قد يعجبك أيضًا",
   "product.unavailable": "غير متاح",

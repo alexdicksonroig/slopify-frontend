@@ -88,6 +88,7 @@ export const jaJp = {
   "product.no-thumbnail": "サムネイルなし",
   "product.stock-count": "${count} 在庫あり",
   "product.out-of-stock": "在庫切れ",
+  "product.in-stock": "在庫あり (${count})",
   "product.quantity": "数量",
   "product.recommendations": "こちらもおすすめ",
   "product.unavailable": "利用不可",

@@ -88,6 +88,7 @@ export const trTr = {
   "product.no-thumbnail": "Küçük resim yok",
   "product.stock-count": "${count} stokta",
   "product.out-of-stock": "Stokta yok",
+  "product.in-stock": "Ürün stokta (${count})",
   "product.quantity": "Adet",
   "product.recommendations": "Bunları da beğenebilirsiniz",
   "product.unavailable": "Kullanılamıyor",

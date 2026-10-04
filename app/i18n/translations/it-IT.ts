@@ -88,6 +88,7 @@ export const itIt = {
   "product.no-thumbnail": "Nessuna miniatura",
   "product.stock-count": "${count} disponibile",
   "product.out-of-stock": "Esaurito",
+  "product.in-stock": "Prodotto disponibile (${count})",
   "product.quantity": "Quantità",
   "product.recommendations": "Potrebbe piacerti anche",
   "product.unavailable": "Non disponibile",

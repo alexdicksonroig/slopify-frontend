@@ -87,6 +87,7 @@ export const zhCn = {
   "product.no-thumbnail": "无缩略图",
   "product.stock-count": "${count} 有现货",
   "product.out-of-stock": "缺货",
+  "product.in-stock": "有现货 (${count})",
   "product.quantity": "数量",
   "product.recommendations": "猜你喜欢",
   "product.unavailable": "不可用",

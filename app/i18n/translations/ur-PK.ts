@@ -88,6 +88,7 @@ export const urPk = {
   "product.no-thumbnail": "کوئی تھمب نیل نہیں۔",
   "product.stock-count": "${count} اسٹاک میں ہے۔",
   "product.out-of-stock": "اسٹاک میں نہیں",
+  "product.in-stock": "پروڈکٹ اسٹاک میں ہے (${count})",
   "product.quantity": "مقدار",
   "product.recommendations": "آپ کو یہ بھی پسند آ سکتا ہے",
   "product.unavailable": "دستیاب نہیں۔",

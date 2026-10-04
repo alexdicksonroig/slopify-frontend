@@ -87,6 +87,7 @@ export const zhTw = {
   "product.no-thumbnail": "無縮圖",
   "product.stock-count": "${count} 有現貨",
   "product.out-of-stock": "缺貨",
+  "product.in-stock": "有現貨 (${count})",
   "product.quantity": "數量",
   "product.recommendations": "猜你喜歡",
   "product.unavailable": "不可用",

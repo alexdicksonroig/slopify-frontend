@@ -88,6 +88,7 @@ export const idId = {
   "product.no-thumbnail": "Tidak ada gambar kecil",
   "product.stock-count": "${count} tersedia",
   "product.out-of-stock": "Stok habis",
+  "product.in-stock": "Produk tersedia (${count})",
   "product.quantity": "Jumlah",
   "product.recommendations": "Anda mungkin juga suka",
   "product.unavailable": "Tidak tersedia",

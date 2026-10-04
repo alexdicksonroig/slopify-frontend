@@ -2,7 +2,6 @@ import { useTranslate } from "@app/i18n";
 import { Button, cn, Icon } from "@library";
 
 const MIN_QUANTITY = 1;
-const MAX_QUANTITY = 8;
 
 type QuantitySelectorProps = {
   value: number;
@@ -16,7 +15,7 @@ export function QuantitySelector({
   value,
   onChange,
   min = MIN_QUANTITY,
-  max = MAX_QUANTITY,
+  max = Number.POSITIVE_INFINITY,
   className,
 }: QuantitySelectorProps) {
   const t = useTranslate();

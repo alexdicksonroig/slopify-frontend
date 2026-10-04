@@ -88,6 +88,7 @@ export const nlNl = {
   "product.no-thumbnail": "Geen miniatuur",
   "product.stock-count": "${count} op voorraad",
   "product.out-of-stock": "Uitverkocht",
+  "product.in-stock": "Product op voorraad (${count})",
   "product.quantity": "Aantal",
   "product.recommendations": "Misschien ook iets voor jou",
   "product.unavailable": "Niet beschikbaar",

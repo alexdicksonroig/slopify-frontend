@@ -87,6 +87,7 @@ export const ca = {
   "product.no-thumbnail": "Sense miniatura",
   "product.stock-count": "${count} en estoc",
   "product.out-of-stock": "Esgotat",
+  "product.in-stock": "Producte en estoc (${count})",
   "product.quantity": "Quantitat",
   "product.recommendations": "També et pot agradar",
   "product.unavailable": "No disponible",
