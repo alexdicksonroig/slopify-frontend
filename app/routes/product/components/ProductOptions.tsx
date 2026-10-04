@@ -1,4 +1,4 @@
-import { useLanguage } from "@app/i18n";
+import { useLanguage, useTranslate } from "@app/i18n";
 import { localize } from "@app/lib/localized-text";
 import type { Variant } from "@app/lib/variant";
 import { Label, Select } from "@library";
@@ -17,6 +17,7 @@ export function ProductOptions({
   productName,
   onChange,
 }: ProductOptionsProps) {
+  const t = useTranslate();
   const { language } = useLanguage();
   const selectId = useId();
 
@@ -33,10 +34,11 @@ export function ProductOptions({
         onChange={(value) => onChange(Number(value))}
         options={variants.map((item) => ({
           value: String(item.id),
-          label:
+          label: `${
             item.selections
               .map(({ value }) => localize(value.label, language))
-              .join(" / ") || productName,
+              .join(" / ") || productName
+          } · ${item.stock > 0 ? t("product.in-stock") : t("product.not-available")}`,
         }))}
         size="xl"
         className="w-full"

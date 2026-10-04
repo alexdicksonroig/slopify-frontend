@@ -123,6 +123,13 @@ export default function ProductPage() {
             <h1 className="text-4xl leading-[1.05] font-bold tracking-[-0.04em] text-balance text-neutral-950 lg:text-6xl lg:leading-[1.02]">
               {product.name}
             </h1>
+            {variant.selections.length > 0 && (
+              <p className="text-sm text-neutral-500 lg:text-lg">
+                {variant.selections
+                  .map(({ value }) => localize(value.label, language))
+                  .join(", ")}
+              </p>
+            )}
             <p
               className={cn(
                 "inline-flex items-center gap-2 self-start bg-transparent text-sm",
