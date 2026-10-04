@@ -127,7 +127,10 @@ export default function ProductPage() {
               A bottle chosen for you
             </p>
             <p
-              className="mt-1 inline-flex items-center gap-2 text-sm text-neutral-600 lg:mt-2"
+              className={cn(
+                "mt-1 inline-flex items-center gap-2 self-start bg-transparent text-sm lg:mt-2",
+                isInStock ? "text-emerald-600" : "text-neutral-500",
+              )}
               aria-live="polite"
             >
               <span
@@ -137,9 +140,7 @@ export default function ProductPage() {
                   isInStock ? "bg-emerald-500" : "bg-neutral-400",
                 )}
               />
-              {isInStock
-                ? t("product.in-stock", { count: stock })
-                : t("product.out-of-stock")}
+              {isInStock ? t("product.in-stock") : t("product.not-available")}
             </p>
             <p className="text-3xl font-semibold tracking-[-0.03em] tabular-nums text-neutral-950 lg:text-4xl">
               {price}
@@ -170,13 +171,18 @@ export default function ProductPage() {
                   {totalPrice}
                 </span>
               </p>
-              <div className="flex gap-2.5 sm:gap-3">
-                <QuantitySelector
-                  value={quantity}
-                  max={stock}
-                  onChange={setQuantity}
-                  className="h-12"
-                />
+              <div className="flex items-start gap-2.5 sm:gap-3">
+                <div className="flex flex-col items-center gap-1">
+                  <QuantitySelector
+                    value={quantity}
+                    max={stock}
+                    onChange={setQuantity}
+                    className="h-12"
+                  />
+                  <span className="text-xs text-neutral-500 tabular-nums">
+                    {t("product.stock-units", { count: stock })}
+                  </span>
+                </div>
                 <Button
                   type="submit"
                   variant="cta"
