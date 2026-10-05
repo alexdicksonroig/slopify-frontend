@@ -15,6 +15,7 @@ export type OverlayProps = {
   active?: boolean;
   // Without it the overlay is light on mobile and invisible from md up.
   opacity?: OverlayOpacity;
+  blur?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Overlay: React.FC<OverlayProps> = ({
@@ -23,6 +24,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   transparent = false,
   active = false,
   opacity,
+  blur = false,
   ...rest
 }) => {
   if (!active) return null;
@@ -34,6 +36,7 @@ export const Overlay: React.FC<OverlayProps> = ({
       className={cn(
         "fixed inset-0 z-3",
         opacity ? opacities[opacity] : "bg-black/15 md:bg-transparent",
+        blur && "backdrop-blur-sm",
         className,
       )}
       onClick={onClick}

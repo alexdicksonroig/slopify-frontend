@@ -8,6 +8,7 @@ export type DialogProps = {
   children: React.ReactNode;
   isModal?: boolean;
   bottomOnMobile?: boolean;
+  overlayBlur?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export const Dialog: React.FC<DialogProps> = ({
@@ -17,6 +18,7 @@ export const Dialog: React.FC<DialogProps> = ({
   children,
   isModal = true,
   bottomOnMobile = true,
+  overlayBlur = false,
   ...rest
 }) => {
   return (
@@ -25,6 +27,7 @@ export const Dialog: React.FC<DialogProps> = ({
         active={open}
         onClick={isModal ? undefined : () => onOpenChange(false)}
         opacity="light"
+        blur={overlayBlur}
         className="z-40"
       />
       <Card

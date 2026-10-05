@@ -32,6 +32,7 @@ export function AgeVerificationDialog() {
       aria-modal="true"
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
+      overlayBlur
       className="items-center gap-6 text-center"
     >
       <div className="flex flex-col items-center gap-2">
@@ -48,7 +49,7 @@ export function AgeVerificationDialog() {
         </h2>
         <p
           id={descriptionId}
-          className="text-sm text-muted-foreground sm:text-base max-w-[300px]"
+          className="text-sm text-muted-foreground sm:text-base"
         >
           {t("age-verification.question")}
         </p>
