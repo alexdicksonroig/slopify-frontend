@@ -226,7 +226,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                 showSelectedValue={false}
                 variant="ghost"
                 size="sm"
-                className="px-1.5 text-gray-600"
+                className="text-gray-600"
                 aria-label={t("filters.sort")}
               />
               <Button
@@ -264,7 +264,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               showSelectedValue={false}
               variant="ghost"
               size="lg"
-              className="my-3 w-full px-3 text-gray-500"
+              className="my-3 w-full text-gray-500"
               aria-label={t("filters.sort")}
             />
           </aside>

@@ -41,6 +41,10 @@ export const Select: React.FC<SelectProps> = ({
           ? "border border-input bg-background text-foreground hover:bg-accent"
           : variants[variant],
         sizes[size],
+        // Text-only selects (no fill, no border) sit flush so their text
+        // lines up with surrounding content.
+        (variant === "ghost" || variant === "link") &&
+          "px-0 hover:bg-transparent",
         disabled && "opacity-50",
         !selectedOption &&
           (variant === "default" || variant === "outline") &&
