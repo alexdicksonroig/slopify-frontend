@@ -91,7 +91,6 @@ export const ukUa = {
   "product.out-of-stock": "Немає в наявності",
   "product.in-stock": "В наявності",
   "product.not-available": "Недоступно",
-  "product.stock-units": "К-сть: ${count} шт.",
   "product.quantity": "Кількість",
   "product.recommendations": "Вам також може сподобатися",
   "product.unavailable": "Недоступний",

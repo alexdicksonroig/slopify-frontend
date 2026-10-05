@@ -144,7 +144,9 @@ export default function ProductPage() {
                   isInStock ? "bg-emerald-500" : "bg-neutral-400",
                 )}
               />
-              {isInStock ? t("product.in-stock") : t("product.not-available")}
+              {isInStock
+                ? t("product.stock-count", { count: stock })
+                : t("product.not-available")}
             </p>
             <p className="mt-1 text-3xl font-semibold tracking-[-0.03em] tabular-nums text-neutral-950 lg:mt-2 lg:text-4xl">
               {price}
@@ -176,17 +178,12 @@ export default function ProductPage() {
                 </span>
               </p>
               <div className="flex items-start gap-2.5 sm:gap-3">
-                <div className="flex flex-col items-center gap-1">
-                  <QuantitySelector
-                    value={quantity}
-                    max={stock}
-                    onChange={setQuantity}
-                    className="h-12"
-                  />
-                  <span className="text-xs text-neutral-500 tabular-nums">
-                    {t("product.stock-units", { count: stock })}
-                  </span>
-                </div>
+                <QuantitySelector
+                  value={quantity}
+                  max={stock}
+                  onChange={setQuantity}
+                  className="h-12"
+                />
                 <Button
                   type="submit"
                   variant="cta"
@@ -201,15 +198,24 @@ export default function ProductPage() {
           </form>
 
           <Accordion>
-            {[t("product.highlights"), t("product.details"), "Shipping"].map(
-              (label) => (
-                <Accordion.Item key={label} itemId={label} headerText={label}>
-                  <p className="leading-relaxed text-neutral-600">
-                    {detailsCopy(label, t("product.details-text"))}
-                  </p>
-                </Accordion.Item>
-              ),
-            )}
+            {(
+              [
+                { label: t("product.highlights"), icon: "sparkles" },
+                { label: t("product.details"), icon: "info" },
+                { label: "Shipping", icon: "truck" },
+              ] as const
+            ).map(({ label, icon }) => (
+              <Accordion.Item
+                key={label}
+                itemId={label}
+                headerText={label}
+                icon={icon}
+              >
+                <p className="leading-relaxed text-neutral-600">
+                  {detailsCopy(label, t("product.details-text"))}
+                </p>
+              </Accordion.Item>
+            ))}
           </Accordion>
         </section>
       </div>

@@ -89,7 +89,6 @@ export const ca = {
   "product.out-of-stock": "Esgotat",
   "product.in-stock": "En estoc",
   "product.not-available": "No disponible",
-  "product.stock-units": "Quant.: ${count} unitats",
   "product.quantity": "Quantitat",
   "product.recommendations": "També et pot agradar",
   "product.unavailable": "No disponible",

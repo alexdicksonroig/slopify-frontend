@@ -90,7 +90,6 @@ export const idId = {
   "product.out-of-stock": "Stok habis",
   "product.in-stock": "Tersedia",
   "product.not-available": "Tidak tersedia",
-  "product.stock-units": "Jml: ${count} unit",
   "product.quantity": "Jumlah",
   "product.recommendations": "Anda mungkin juga suka",
   "product.unavailable": "Tidak tersedia",

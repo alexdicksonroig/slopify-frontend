@@ -91,7 +91,6 @@ export const ptBr = {
   "product.out-of-stock": "Esgotado",
   "product.in-stock": "Em estoque",
   "product.not-available": "Indisponível",
-  "product.stock-units": "Qtd.: ${count} unidades",
   "product.quantity": "Quantidade",
   "product.recommendations": "Você também pode gostar",
   "product.unavailable": "Indisponível",

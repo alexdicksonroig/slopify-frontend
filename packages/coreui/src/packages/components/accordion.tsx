@@ -7,6 +7,7 @@ import {
 } from "react";
 import { cn } from "../../lib/cn";
 import { Icon } from "./icon";
+import type { IconName } from "./icon.types";
 
 type AccordionContext = {
   openItems: Record<string, boolean>;
@@ -29,10 +30,12 @@ type AccordionItemProps = {
   className?: string;
   itemId: string;
   headerText: string;
+  icon?: IconName;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type AccordionTriggerProps = {
   isOpen: boolean;
+  icon?: IconName;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type AccordionContentProps = {
@@ -72,6 +75,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   children,
   itemId,
   headerText,
+  icon,
   ...props
 }) => {
   const { openItems, setOpenItems } = useContext(AccordionContext);
@@ -87,7 +91,9 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   return (
     <div className={cn("border-b last:border-b-0", className)} {...props}>
       <button className="w-full" onClick={handleToggle} type="button">
-        <AccordionTrigger isOpen={isOpen}>{headerText}</AccordionTrigger>
+        <AccordionTrigger isOpen={isOpen} icon={icon}>
+          {headerText}
+        </AccordionTrigger>
       </button>
       <div>
         <AccordionContent isOpen={isOpen}>{children}</AccordionContent>
@@ -98,6 +104,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
 
 const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
   isOpen,
+  icon,
   children,
 }) => {
   return (
@@ -107,7 +114,10 @@ const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
           "flex flex-1 items-center justify-between py-4 text-base lg:text-xl font-normal text-foreground text-left cursor-pointer",
         )}
       >
-        {children}
+        <span className="flex items-center gap-3">
+          {icon && <Icon icon={icon} size="md" />}
+          {children}
+        </span>
         <Icon icon={isOpen ? "minus" : "plus"} size="sm" />
       </div>
     </div>

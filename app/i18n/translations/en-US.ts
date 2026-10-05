@@ -87,7 +87,6 @@ export const en = {
   "product.out-of-stock": "Out of stock",
   "product.in-stock": "In stock",
   "product.not-available": "Not available",
-  "product.stock-units": "Qty: ${count} units",
   "product.quantity": "Quantity",
   "product.recommendations": "You may also like",
   "product.unavailable": "Unavailable",

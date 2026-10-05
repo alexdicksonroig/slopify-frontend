@@ -89,7 +89,6 @@ export const de = {
   "product.out-of-stock": "Ausverkauft",
   "product.in-stock": "Auf Lager",
   "product.not-available": "Nicht verfügbar",
-  "product.stock-units": "Menge: ${count} Stück",
   "product.quantity": "Menge",
   "product.recommendations": "Das könnte dir auch gefallen",
   "product.unavailable": "Nicht verfügbar",

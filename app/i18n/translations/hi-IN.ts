@@ -90,7 +90,6 @@ export const hiIn = {
   "product.out-of-stock": "स्टॉक में नहीं",
   "product.in-stock": "स्टॉक में",
   "product.not-available": "उपलब्ध नहीं",
-  "product.stock-units": "मात्रा: ${count} यूनिट",
   "product.quantity": "मात्रा",
   "product.recommendations": "आपको यह भी पसंद आ सकता है",
   "product.unavailable": "अनुपलब्ध",

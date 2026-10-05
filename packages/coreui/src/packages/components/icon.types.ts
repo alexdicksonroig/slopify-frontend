@@ -13,6 +13,8 @@ export const ICON_NAMES = [
   "plus",
   "shopping-bag",
   "shopping-bag-plus",
+  "sparkles",
+  "truck",
   "wine",
   "x",
 ] as const;

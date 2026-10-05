@@ -90,7 +90,6 @@ export const svSe = {
   "product.out-of-stock": "Slut i lager",
   "product.in-stock": "I lager",
   "product.not-available": "Inte tillgänglig",
-  "product.stock-units": "Antal: ${count} st",
   "product.quantity": "Antal",
   "product.recommendations": "Du kanske också gillar",
   "product.unavailable": "Ej tillgänglig",

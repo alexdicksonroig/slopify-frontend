@@ -90,7 +90,6 @@ export const urPk = {
   "product.out-of-stock": "اسٹاک میں نہیں",
   "product.in-stock": "اسٹاک میں",
   "product.not-available": "دستیاب نہیں",
-  "product.stock-units": "مقدار: ${count} یونٹ",
   "product.quantity": "مقدار",
   "product.recommendations": "آپ کو یہ بھی پسند آ سکتا ہے",
   "product.unavailable": "دستیاب نہیں۔",

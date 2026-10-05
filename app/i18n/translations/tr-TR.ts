@@ -90,7 +90,6 @@ export const trTr = {
   "product.out-of-stock": "Stokta yok",
   "product.in-stock": "Stokta var",
   "product.not-available": "Mevcut değil",
-  "product.stock-units": "Adet: ${count}",
   "product.quantity": "Adet",
   "product.recommendations": "Bunları da beğenebilirsiniz",
   "product.unavailable": "Kullanılamıyor",

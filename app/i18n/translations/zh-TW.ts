@@ -89,7 +89,6 @@ export const zhTw = {
   "product.out-of-stock": "缺貨",
   "product.in-stock": "有現貨",
   "product.not-available": "無法購買",
-  "product.stock-units": "數量：${count} 件",
   "product.quantity": "數量",
   "product.recommendations": "猜你喜歡",
   "product.unavailable": "不可用",

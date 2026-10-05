@@ -91,7 +91,6 @@ export const ruRu = {
   "product.out-of-stock": "Нет в наличии",
   "product.in-stock": "В наличии",
   "product.not-available": "Недоступно",
-  "product.stock-units": "Кол-во: ${count} шт.",
   "product.quantity": "Количество",
   "product.recommendations": "Вам также может понравиться",
   "product.unavailable": "Недоступно",

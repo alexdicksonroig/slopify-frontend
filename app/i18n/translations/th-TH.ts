@@ -90,7 +90,6 @@ export const thTh = {
   "product.out-of-stock": "สินค้าหมด",
   "product.in-stock": "ในสต็อก",
   "product.not-available": "ไม่พร้อมจำหน่าย",
-  "product.stock-units": "จำนวน: ${count} ชิ้น",
   "product.quantity": "จำนวน",
   "product.recommendations": "คุณอาจชอบสิ่งนี้",
   "product.unavailable": "ไม่พร้อมใช้งาน",

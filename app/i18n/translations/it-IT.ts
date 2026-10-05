@@ -90,7 +90,6 @@ export const itIt = {
   "product.out-of-stock": "Esaurito",
   "product.in-stock": "Disponibile",
   "product.not-available": "Non disponibile",
-  "product.stock-units": "Qtà: ${count} unità",
   "product.quantity": "Quantità",
   "product.recommendations": "Potrebbe piacerti anche",
   "product.unavailable": "Non disponibile",

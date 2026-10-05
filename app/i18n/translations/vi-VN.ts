@@ -90,7 +90,6 @@ export const viVn = {
   "product.out-of-stock": "Hết hàng",
   "product.in-stock": "Còn hàng",
   "product.not-available": "Không có sẵn",
-  "product.stock-units": "SL: ${count} sản phẩm",
   "product.quantity": "Số lượng",
   "product.recommendations": "Có thể bạn cũng thích",
   "product.unavailable": "Không có sẵn",
