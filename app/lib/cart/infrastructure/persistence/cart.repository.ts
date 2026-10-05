@@ -1,15 +1,15 @@
 import { Cart, type CartItem } from "../../domain/cart.entity";
 
+const CART_STORAGE_KEY = "cart";
+
 type StoredCart = {
   items: CartItem[];
   shippingPriceInCents: number;
 };
 
 export class CartRepository {
-  constructor(private readonly keyPrefix = "slopify:cart:") {}
-
   async get(): Promise<Cart | null> {
-    const value = this.storage.getItem(this.key);
+    const value = this.storage.getItem(CART_STORAGE_KEY);
     if (value === null) return null;
     const storedCart: StoredCart = JSON.parse(value);
     return new Cart(storedCart.items, storedCart.shippingPriceInCents);
@@ -20,15 +20,11 @@ export class CartRepository {
       items: [...cart.items],
       shippingPriceInCents: cart.shippingPriceInCents,
     };
-    this.storage.setItem(this.key, JSON.stringify(storedCart));
+    this.storage.setItem(CART_STORAGE_KEY, JSON.stringify(storedCart));
   }
 
   async delete(): Promise<void> {
-    this.storage.removeItem(this.key);
-  }
-
-  private get key(): string {
-    return `${this.keyPrefix}active-cart`;
+    this.storage.removeItem(CART_STORAGE_KEY);
   }
 
   private get storage(): Storage {
