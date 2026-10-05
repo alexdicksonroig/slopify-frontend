@@ -79,7 +79,6 @@ export default function Variants() {
 
   return (
     <div className="mx-auto w-full max-w-7xl p-3 sm:p-6 flex gap-4 flex-col">
-      <Banner />
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl">
           {t("filters.new-arrivals")}
