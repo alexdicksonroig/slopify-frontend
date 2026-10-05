@@ -23,7 +23,7 @@ export function QuantitySelector({
   return (
     <fieldset className={cn("h-10 w-28 shrink-0 sm:w-32", className)}>
       <legend className="sr-only">{t("product.quantity")}</legend>
-      <div className="flex size-full items-center justify-between rounded-md border border-input bg-secondary px-1">
+      <div className="flex size-full items-center justify-between rounded-md border border-input bg-transparent px-1">
         <Button
           type="button"
           variant="ghost"
