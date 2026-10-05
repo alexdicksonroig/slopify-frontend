@@ -295,10 +295,10 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                 </Button>
               </div>
             )}
-            <p className="mb-1 hidden text-xs lg:text-base text-gray-500 lg:block">
+            {children}
+            <p className="mt-6 hidden text-right text-xs lg:text-base text-gray-500 lg:block">
               {t("filters.product-count", { count: resultCount })}
             </p>
-            {children}
           </div>
         </div>
       </div>
