@@ -178,17 +178,6 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
         aria-label={t("filters.title")}
         className="z-50 max-h-[calc(100svh-1rem)] overflow-y-auto lg:hidden"
       >
-        <div className="flex w-full justify-end">
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            aria-label="Close filters"
-            onClick={() => setFiltersOpen(false)}
-          >
-            <Icon icon="x" size="lg" />
-          </Button>
-        </div>
         <div>
           <h2 className="mb-4 text-lg lg:text-2xl font-medium text-gray-900">
             {t("filters.title")}

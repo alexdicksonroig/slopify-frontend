@@ -1,5 +1,5 @@
 import { cn } from "../../lib/cn";
-import { Overlay, type OverlayOpacity } from "../components";
+import { Button, Icon, Overlay, type OverlayOpacity } from "../components";
 
 export type PopoverProps = {
   open: boolean;
@@ -69,6 +69,16 @@ export const Popover: React.FC<PopoverProps> = ({
             : "invisible translate-y-full pointer-events-none",
         )}
       >
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon-sm"
+          aria-label="Close"
+          onClick={() => onOpenChange(false)}
+          className="absolute top-3 right-3"
+        >
+          <Icon icon="x" size="sm" />
+        </Button>
         {children}
       </div>
     </>

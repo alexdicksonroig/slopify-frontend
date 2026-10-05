@@ -291,16 +291,10 @@ export default function CoreUIGallery() {
                 placement="bottom"
                 className="md:w-72"
               >
-                <p className="mb-4">
+                <h3 className="pr-8 font-semibold">Popover</h3>
+                <p className="mt-2">
                   Anchored on desktop; a bottom panel on mobile.
                 </p>
-                <Button
-                  type="button"
-                  size="sm"
-                  onClick={() => setPopoverOpen(false)}
-                >
-                  Close popover
-                </Button>
               </Popover>
             </div>
           </Example>

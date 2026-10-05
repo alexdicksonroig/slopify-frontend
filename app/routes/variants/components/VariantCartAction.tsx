@@ -101,30 +101,18 @@ export function VariantCartAction({
         placement="inside"
         className="z-20"
       >
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex min-w-0 items-center gap-2">
-            <h4 className="truncate text-sm lg:text-lg font-semibold text-neutral-950">
-              {product.name}
-            </h4>
-            <p
-              className={`shrink-0 text-xs lg:text-base ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
-              aria-live="polite"
-            >
-              {stock > 0
-                ? t("product.stock-count", { count: stock })
-                : t("product.out-of-stock")}
-            </p>
-          </div>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon-sm"
-            aria-label="Close"
-            onClick={() => setIsOpen(false)}
-            className="shrink-0"
+        <div className="flex min-w-0 items-center gap-2 pr-8">
+          <h4 className="truncate text-sm lg:text-lg font-semibold text-neutral-950">
+            {product.name}
+          </h4>
+          <p
+            className={`shrink-0 text-xs lg:text-base ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
+            aria-live="polite"
           >
-            <Icon icon="x" size="sm" />
-          </Button>
+            {stock > 0
+              ? t("product.stock-count", { count: stock })
+              : t("product.out-of-stock")}
+          </p>
         </div>
         <dl className="mt-2 space-y-1 text-xs lg:text-base text-neutral-500 sm:mt-1 sm:space-y-0.5">
           {variant.selections.map(({ option, value }) => (
