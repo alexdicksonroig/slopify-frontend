@@ -23,7 +23,10 @@ export function ProductOptions({
 
   return (
     <div className="flex flex-col gap-2">
-      <Label htmlFor={selectId} className="uppercase">
+      <Label
+        htmlFor={selectId}
+        className="text-xs font-medium tracking-[0.06em] text-neutral-600 uppercase lg:text-sm"
+      >
         {variant.selections
           .map(({ option }) => localize(option.label, language))
           .join(" / ") || productName}

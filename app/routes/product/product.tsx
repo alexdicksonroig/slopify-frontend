@@ -118,37 +118,44 @@ export default function ProductPage() {
       <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(24rem,1fr)] lg:gap-16">
         <ProductImageGallery images={galleryImages} />
 
-        <section className="flex flex-col gap-6 lg:gap-7 lg:pt-2">
-          <header className="flex flex-col gap-2.5 lg:gap-3">
-            <h1 className="text-4xl leading-[1.05] font-bold tracking-[-0.04em] text-balance text-neutral-950 lg:text-6xl lg:leading-[1.02]">
-              {product.name}
-            </h1>
-            {variant.selections.length > 0 && (
-              <p className="text-sm text-neutral-500 lg:text-lg">
-                {variant.selections
-                  .map(({ value }) => localize(value.label, language))
-                  .join(", ")}
-              </p>
-            )}
-            <p
-              className={cn(
-                "inline-flex items-center gap-2 self-start bg-transparent text-sm",
-                isInStock ? "text-emerald-600" : "text-neutral-500",
-              )}
-              aria-live="polite"
-            >
-              <span
-                aria-hidden
-                className={cn(
-                  "size-2 rounded-full",
-                  isInStock ? "bg-emerald-500" : "bg-neutral-400",
+        <section className="flex flex-col gap-6 lg:gap-8 lg:pt-2">
+          <header className="flex flex-col gap-3 lg:gap-4">
+            <div className="flex flex-col gap-2">
+              <h1 className="text-4xl leading-[1.05] font-bold tracking-[-0.04em] text-balance text-neutral-950 lg:text-6xl lg:leading-[1.02]">
+                {product.name}
+              </h1>
+              <div className="flex flex-wrap items-center gap-3">
+                {variant.selections.length > 0 && (
+                  <>
+                    <p className="text-sm text-neutral-500 lg:text-lg">
+                      {variant.selections
+                        .map(({ value }) => localize(value.label, language))
+                        .join(", ")}
+                    </p>
+                    <span aria-hidden className="h-3.5 w-px bg-neutral-300" />
+                  </>
                 )}
-              />
-              {isInStock
-                ? t("product.stock-count", { count: stock })
-                : t("product.not-available")}
-            </p>
-            <p className="mt-1 text-3xl font-semibold tracking-[-0.03em] tabular-nums text-neutral-950 lg:mt-2 lg:text-4xl">
+                <p
+                  className={cn(
+                    "inline-flex items-center gap-2 text-sm lg:text-base",
+                    isInStock ? "text-emerald-700" : "text-neutral-500",
+                  )}
+                  aria-live="polite"
+                >
+                  <span
+                    aria-hidden
+                    className={cn(
+                      "size-2 rounded-full",
+                      isInStock ? "bg-emerald-500" : "bg-neutral-400",
+                    )}
+                  />
+                  {isInStock
+                    ? t("product.stock-count", { count: stock })
+                    : t("product.not-available")}
+                </p>
+              </div>
+            </div>
+            <p className="text-3xl font-semibold tracking-[-0.03em] tabular-nums text-neutral-950 lg:text-4xl">
               {price}
             </p>
           </header>
@@ -159,7 +166,7 @@ export default function ProductPage() {
             />
           )}
 
-          <form className="flex flex-col gap-5" onSubmit={handleAddToCart}>
+          <form className="flex flex-col gap-6" onSubmit={handleAddToCart}>
             <ProductOptions
               variants={variants}
               variant={variant}
@@ -168,36 +175,34 @@ export default function ProductPage() {
                 navigate(`/product/${product.id}/${variantId}`)
               }
             />
-            <div className="flex items-center justify-between gap-4">
-              <p className="flex flex-col">
-                <span className="text-xs text-neutral-500 lg:text-sm">
-                  {t("cart.subtotal")}
-                </span>
-                <span className="text-base font-medium tabular-nums text-neutral-950 lg:text-lg">
-                  {totalPrice}
-                </span>
-              </p>
-              <div className="flex items-start gap-2.5 sm:gap-3">
-                <QuantitySelector
-                  value={quantity}
-                  max={stock}
-                  onChange={setQuantity}
-                  className="h-12"
-                />
-                <Button
-                  type="submit"
-                  variant="cta"
-                  size="xl"
-                  disabled={!cart || !hasPrice || !isInStock}
-                  className="tracking-[0.06em]"
-                >
-                  {t("product.add")}
-                </Button>
-              </div>
+            <div className="flex gap-2">
+              <QuantitySelector
+                value={quantity}
+                max={stock}
+                onChange={setQuantity}
+                className="h-12"
+              />
+              <Button
+                type="submit"
+                variant="cta"
+                size="xl"
+                disabled={!cart || !hasPrice || !isInStock}
+                className="flex-1 tracking-[0.06em]"
+              >
+                {t("product.add")}
+                {hasPrice && (
+                  <>
+                    <span aria-hidden className="opacity-50">
+                      ·
+                    </span>
+                    <span className="tabular-nums">{totalPrice}</span>
+                  </>
+                )}
+              </Button>
             </div>
           </form>
 
-          <Accordion>
+          <Accordion className="mt-2 border-t">
             {(
               [
                 { label: t("product.highlights"), icon: "sparkles" },
