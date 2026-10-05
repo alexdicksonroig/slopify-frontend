@@ -61,10 +61,10 @@ export function ProductOptions({
                 onChange={() => onChange(item.id)}
                 className="sr-only"
               />
-              <span className="text-sm font-semibold text-neutral-950">
+              <span className="text-xs font-semibold text-neutral-950">
                 {valueLabel(item)}
               </span>
-              <span className="text-base tabular-nums text-neutral-950">
+              <span className="text-sm tabular-nums text-neutral-950">
                 {item.unitAmount !== null && item.currency !== null
                   ? formatMoney(item.unitAmount, item.currency)
                   : t("product.unavailable")}
