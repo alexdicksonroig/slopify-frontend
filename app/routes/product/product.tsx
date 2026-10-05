@@ -124,10 +124,10 @@ export default function ProductPage() {
               <h1 className="text-4xl leading-[1.05] font-bold tracking-[-0.04em] text-balance text-neutral-950 lg:text-6xl lg:leading-[1.02]">
                 {product.name}
               </h1>
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2">
                 {variant.selections.length > 0 && (
                   <>
-                    <p className="text-sm text-neutral-500 lg:text-lg">
+                    <p className="text-xs text-neutral-500 lg:text-lg">
                       {variant.selections
                         .map(({ value }) => localize(value.label, language))
                         .join(", ")}
@@ -137,7 +137,7 @@ export default function ProductPage() {
                 )}
                 <p
                   className={cn(
-                    "inline-flex items-center gap-2 text-sm lg:text-base",
+                    "inline-flex items-center gap-2 text-xs lg:text-base",
                     isInStock ? "text-emerald-700" : "text-neutral-500",
                   )}
                   aria-live="polite"
