@@ -32,7 +32,6 @@ export function AgeVerificationDialog() {
       aria-modal="true"
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
-      bottomOnMobile={false}
       className="items-center gap-6 text-center"
     >
       <div className="flex flex-col items-center gap-2">

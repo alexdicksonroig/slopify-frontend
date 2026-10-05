@@ -1,6 +1,6 @@
 import { useTranslate } from "@app/i18n";
-import { Button, Card, Icon } from "@library";
-import { useEffect, useState } from "react";
+import { Button, Dialog, Icon } from "@library";
+import { useEffect, useId, useState } from "react";
 
 const COOKIE_CONSENT_KEY = "cookie-consent";
 
@@ -8,6 +8,7 @@ type CookieConsent = "accepted" | "rejected";
 
 export function CookieBanner() {
   const t = useTranslate();
+  const descriptionId = useId();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -19,15 +20,17 @@ export function CookieBanner() {
     setOpen(false);
   };
 
-  if (!open) return null;
-
   return (
-    <Card
-      role="region"
+    <Dialog
+      open={open}
+      onOpenChange={setOpen}
+      role="dialog"
+      aria-modal="true"
       aria-label={t("cookie-banner.label")}
-      className="fixed inset-x-0 bottom-0 z-30 mx-auto max-w-2xl items-center gap-4 rounded-b-none border-b-0 p-4 text-center sm:p-6"
+      aria-describedby={descriptionId}
+      className="items-center gap-4 text-center"
     >
-      <div className="flex w-full items-center gap-3 sm:w-auto sm:gap-4">
+      <div className="flex w-full items-center gap-3 sm:gap-4">
         <Icon icon="cookie" size="lg" />
         <div className="grid flex-1 grid-cols-2 gap-3">
           <Button
@@ -46,9 +49,12 @@ export function CookieBanner() {
           </Button>
         </div>
       </div>
-      <p className="max-w-xl text-xs text-muted-foreground sm:text-sm">
+      <p
+        id={descriptionId}
+        className="text-xs text-muted-foreground sm:text-sm"
+      >
         {t("cookie-banner.description")}
       </p>
-    </Card>
+    </Dialog>
   );
 }

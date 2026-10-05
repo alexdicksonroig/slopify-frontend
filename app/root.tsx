@@ -51,8 +51,8 @@ export default function App() {
   return (
     <>
       <Outlet />
-      <AgeVerificationDialog />
       <CookieBanner />
+      <AgeVerificationDialog />
     </>
   );
 }
