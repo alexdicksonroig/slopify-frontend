@@ -28,14 +28,15 @@ export function CookieBanner() {
       aria-modal="true"
       aria-label={t("cookie-banner.label")}
       aria-describedby={descriptionId}
-      className="items-center gap-4 text-center"
+      className="items-center gap-4 text-center sm:top-auto sm:bottom-6 sm:right-6 sm:left-auto sm:w-auto sm:max-w-md sm:translate-x-0 sm:translate-y-0"
     >
       <div className="flex w-full items-center gap-3 sm:gap-4">
         <Icon icon="cookie" size="lg" />
-        <div className="grid flex-1 grid-cols-2 gap-3">
+        <div className="flex flex-1 gap-3">
           <Button
             type="button"
             variant="secondary"
+            className="flex-1"
             onClick={() => handleConsent("rejected")}
           >
             {t("cookie-banner.reject")}
@@ -43,6 +44,7 @@ export function CookieBanner() {
           <Button
             type="button"
             variant="secondary"
+            className="flex-1"
             onClick={() => handleConsent("accepted")}
           >
             {t("cookie-banner.accept")}
