@@ -2,7 +2,7 @@ import { cn } from "../../lib/cn";
 
 const variants = {
   default: "bg-primary text-primary-foreground",
-  secondary: "bg-secondary text-secondary-foreground",
+  secondary: "border border-input bg-secondary text-secondary-foreground",
 };
 
 export type BadgeProps = {

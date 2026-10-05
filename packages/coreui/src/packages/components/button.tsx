@@ -6,7 +6,8 @@ export const variants = {
     "bg-destructive text-destructive-foreground hover:bg-destructive/90",
   outline:
     "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-  secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+  secondary:
+    "border border-input bg-secondary text-secondary-foreground hover:bg-secondary/80",
   ghost: "hover:bg-accent hover:text-accent-foreground",
   link: "text-primary underline-offset-4 hover:underline p-0!",
   cta: "bg-foreground text-background uppercase hover:bg-foreground/85 disabled:bg-muted disabled:text-muted-foreground disabled:opacity-100",
