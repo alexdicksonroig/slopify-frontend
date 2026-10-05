@@ -36,14 +36,14 @@ export default function Example() {
       >
         <title>Store</title>
         {showAnnouncement && (
-          <div className="relative flex min-h-[42px] items-center text-sm lg:text-lg font-semibold text-white">
+          <div className="relative flex min-h-[42px] items-center text-sm lg:text-lg font-medium text-white">
             <div
               className={cn(
                 "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
                 { "invisible opacity-0": !showFirstText },
               )}
             >
-              <p className="max-w-full normal-case leading-tight">
+              <p className="max-w-full leading-tight">
                 {t("header.delivery")}
               </p>
             </div>
@@ -53,7 +53,7 @@ export default function Example() {
                 { "invisible opacity-0": showFirstText },
               )}
             >
-              <p className="max-w-full normal-case leading-tight">
+              <p className="max-w-full leading-tight">
                 {t("header.tax")}
               </p>
             </div>
