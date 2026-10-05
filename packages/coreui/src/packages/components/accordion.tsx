@@ -115,9 +115,7 @@ const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
         )}
       >
         <span className="flex items-center gap-3">
-          {icon && (
-            <Icon icon={icon} size="md" className="text-foreground/50" />
-          )}
+          {icon && <Icon icon={icon} size="md" />}
           {children}
         </span>
         <Icon icon={isOpen ? "minus" : "plus"} size="sm" />
