@@ -184,7 +184,6 @@ export default function ProductPage() {
               />
               <Button
                 type="submit"
-                variant="success"
                 size="xl"
                 disabled={!cart || !hasPrice || !isInStock}
                 className="flex-1 tracking-[0.06em]"
