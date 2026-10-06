@@ -13,7 +13,16 @@ export function SearchForm({ onClose }: SearchFormProps) {
   const preservedParams = [...searchParams].filter(([key]) => key !== "q");
 
   return (
-    <Form method="get" action="/" role="search" className="relative">
+    <Form
+      method="get"
+      action="/"
+      role="search"
+      onSubmit={() =>
+        document.activeElement instanceof HTMLElement &&
+        document.activeElement.blur()
+      }
+      className="relative"
+    >
       {preservedParams.map(([key, value]) => (
         <input key={key} type="hidden" name={key} value={value} />
       ))}
