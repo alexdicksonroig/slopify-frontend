@@ -167,7 +167,7 @@ export default function Example() {
           {isVariantsPage && searchOpen && (
             <div
               id={searchPanelId}
-              className="border-t border-gray-200 py-3 sm:py-4"
+              className="py-3 sm:py-4"
             >
               <SearchForm onClose={() => setSearchOpen(false)} />
             </div>
