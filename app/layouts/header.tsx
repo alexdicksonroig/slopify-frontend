@@ -75,12 +75,9 @@ export default function Example() {
         )}
         <nav
           aria-label={t("header.top")}
-          className={cn(
-            "relative border-b border-gray-200 bg-white px-3 sm:px-4",
-            {
-              "rounded-t-xl": showAnnouncement,
-            },
-          )}
+          className={cn("border-b border-gray-200 bg-white px-3 sm:px-4", {
+            "rounded-t-xl": showAnnouncement,
+          })}
         >
           <div className="flex h-14 items-center">
             <div className="flex items-center">
@@ -170,7 +167,7 @@ export default function Example() {
           {isVariantsPage && searchOpen && (
             <div
               id={searchPanelId}
-              className="absolute inset-x-0 top-full z-30 border-b border-gray-200 bg-white p-3 sm:p-4"
+              className="border-t border-gray-200 py-3 sm:py-4"
             >
               <SearchForm onClose={() => setSearchOpen(false)} />
             </div>
