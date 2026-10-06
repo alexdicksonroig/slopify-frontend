@@ -1,6 +1,6 @@
 import { useTranslate } from "@app/i18n";
 import { Button, Debounce, Icon, Input } from "@library";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import { Form, useSearchParams, useSubmit } from "react-router";
 
 type SearchFormProps = {
@@ -11,8 +11,8 @@ export function SearchForm({ onClose }: SearchFormProps) {
   const t = useTranslate();
   const submit = useSubmit();
   const [searchParams] = useSearchParams();
+  const query = searchParams.get("q") ?? "";
   const preservedParams = [...searchParams].filter(([key]) => key !== "q");
-  const [value, setValue] = useState(searchParams.get("q") ?? "");
   const inputRef = useRef<HTMLInputElement>(null);
   const search = useMemo(
     () =>
@@ -41,11 +41,8 @@ export function SearchForm({ onClose }: SearchFormProps) {
         ref={inputRef}
         type="search"
         name="q"
-        value={value}
-        onChange={(event) => {
-          setValue(event.currentTarget.value);
-          search(event.currentTarget);
-        }}
+        defaultValue={query}
+        onChange={(event) => search(event.currentTarget)}
         onKeyDown={(event) => event.key === "Escape" && onClose()}
         autoFocus
         maxLength={100}
@@ -53,22 +50,22 @@ export function SearchForm({ onClose }: SearchFormProps) {
         aria-label={t("header.search")}
         className="h-auto border-0 pr-10 pl-0 text-base lg:text-xl [&::-webkit-search-cancel-button]:appearance-none"
       />
-      {value && (
-        <Button
-          type="button"
-          onClick={() => {
-            setValue("");
-            inputRef.current?.focus();
-            if (inputRef.current) search(inputRef.current);
-          }}
-          variant="ghost"
-          size="icon"
-          className="absolute top-1/2 right-0 -translate-y-1/2"
-        >
-          <Icon icon="x" size="sm" />
-          <span className="sr-only">{t("header.clear-search")}</span>
-        </Button>
-      )}
+      <Button
+        type="button"
+        onClick={() => {
+          const input = inputRef.current;
+          if (!input) return;
+          input.value = "";
+          input.focus();
+          search(input);
+        }}
+        variant="ghost"
+        size="icon"
+        className="absolute top-1/2 right-0 -translate-y-1/2"
+      >
+        <Icon icon="x" size="sm" />
+        <span className="sr-only">{t("header.clear-search")}</span>
+      </Button>
     </Form>
   );
 }
