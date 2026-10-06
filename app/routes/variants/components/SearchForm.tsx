@@ -45,7 +45,7 @@ export function SearchForm({ onClose }: SearchFormProps) {
         maxLength={100}
         placeholder={`${t("header.search")}...`}
         aria-label={t("header.search")}
-        className="h-auto border-0 pl-0 text-lg lg:text-2xl"
+        className="h-auto border-0 pl-0 text-base lg:text-xl"
       />
     </Form>
   );
