@@ -1,9 +1,9 @@
 import { VariantCard } from "@app/components/variant-card";
 import { useTranslate } from "@app/i18n";
+// import { Button } from "@library";
 import * as Api from "@app/lib/api";
 import type { Product } from "@app/lib/product";
 import type { Variant, VariantListItem } from "@app/lib/variant";
-// import { Button } from "@library";
 import { useLoaderData } from "react-router";
 import { Filters, type ProductOption } from "./variants/components/Filters";
 
@@ -16,6 +16,8 @@ async function loadVariants(request: Request) {
       return valueId === null ? [] : [[optionId, valueId]];
     }),
   );
+  const query = searchParams.get("q")?.trim();
+  if (query) params.q = query;
   const [variantList, products] = await Promise.all([
     Api.get<VariantListItem[]>(
       "variants",
@@ -46,7 +48,7 @@ async function loadVariants(request: Request) {
     return product ? [{ product, variant }] : [];
   });
 
-  return { cards, options };
+  return { cards, options, query };
 }
 
 export async function loader({ request }: { request: Request }) {
@@ -75,24 +77,36 @@ const Banner = () => {
 
 export default function Variants() {
   const t = useTranslate();
-  const { cards, options } = useLoaderData<typeof clientLoader>();
+  const { cards, options, query } = useLoaderData<typeof clientLoader>();
 
   return (
-    <div className="mx-auto w-full max-w-7xl p-3 sm:p-6 flex gap-4 flex-col">
+    <div className="mx-auto w-full max-w-7xl p-3 sm:p-6 flex gap-2 flex-col">
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl">
-          {t("filters.new-arrivals")}
+          {query
+            ? t("filters.search-results", { query })
+            : t("filters.new-arrivals")}
         </h1>
         <p className="mt-1 text-sm lg:text-lg text-gray-500 lg:hidden">
           {t("filters.subtitle")}
         </p>
       </div>
       <Filters options={options} resultCount={cards.length}>
-        <div className="grid grid-cols-2 gap-2 md:gap-3 md:grid-cols-3">
-          {cards.map(({ product, variant }) => (
-            <VariantCard key={variant.id} product={product} variant={variant} />
-          ))}
-        </div>
+        {query && cards.length === 0 ? (
+          <p className="py-12 text-center text-sm lg:text-lg text-gray-500">
+            {t("filters.no-results", { query })}
+          </p>
+        ) : (
+          <div className="grid grid-cols-2 gap-2 md:gap-3 md:grid-cols-3">
+            {cards.map(({ product, variant }) => (
+              <VariantCard
+                key={variant.id}
+                product={product}
+                variant={variant}
+              />
+            ))}
+          </div>
+        )}
         <p className="sr-only">
           {t("filters.result-count", { count: cards.length })}
         </p>

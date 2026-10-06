@@ -11,6 +11,7 @@ export const ICON_NAMES = [
   "menu",
   "minus",
   "plus",
+  "search",
   "shopping-bag",
   "shopping-bag-plus",
   "sparkles",

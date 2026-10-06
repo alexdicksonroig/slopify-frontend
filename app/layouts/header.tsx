@@ -2,15 +2,19 @@ import { CartDrawer } from "@app/components/cart-drawer";
 import { useTranslate } from "@app/i18n";
 import { getCartItemCountUseCase } from "@app/lib/cart/application/get-cart-item-count.use-case";
 import { useCart } from "@app/lib/context/cart.context";
+import { SearchForm } from "@app/routes/variants/components/SearchForm";
 import { Badge, Button, cn, Icon, LoadingCircle } from "@library";
-import { useEffect, useState } from "react";
-import { Link, Outlet, useNavigation } from "react-router";
+import { useEffect, useId, useState } from "react";
+import { Link, Outlet, useLocation, useNavigation } from "react-router";
 import Footer from "./footer";
 
 export default function Example() {
   const t = useTranslate();
   const { cart, isCartOpen: cartOpen, openCart, closeCart } = useCart();
   const navigation = useNavigation();
+  const isVariantsPage = useLocation().pathname === "/";
+  const searchPanelId = useId();
+  const [searchOpen, setSearchOpen] = useState(false);
   const [showFirstText, setShowFirstText] = useState(true);
   const [showAnnouncement, setShowAnnouncement] = useState(true);
 
@@ -36,7 +40,7 @@ export default function Example() {
       >
         <title>Store</title>
         {showAnnouncement && (
-          <div className="relative flex min-h-[42px] items-center text-xs sm:text-sm lg:text-lg font-medium text-white">
+          <div className="relative flex min-h-[42px] items-center text-sm sm:text-sm lg:text-lg font-medium text-white">
             <div
               className={cn(
                 "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
@@ -71,9 +75,12 @@ export default function Example() {
         )}
         <nav
           aria-label={t("header.top")}
-          className={cn("border-b border-gray-200 bg-white px-3 sm:px-4", {
-            "rounded-t-xl": showAnnouncement,
-          })}
+          className={cn(
+            "relative border-b border-gray-200 bg-white px-3 sm:px-4",
+            {
+              "rounded-t-xl": showAnnouncement,
+            },
+          )}
         >
           <div className="flex h-14 items-center">
             <div className="flex items-center">
@@ -91,7 +98,19 @@ export default function Example() {
               </Link>
             </div>
 
-            <div className="ml-auto flex items-center">
+            <div className="ml-3 flex flex-1 items-center justify-end">
+              {isVariantsPage && (
+                <Button
+                  onClick={() => setSearchOpen(!searchOpen)}
+                  aria-expanded={searchOpen}
+                  aria-controls={searchPanelId}
+                  variant="ghost"
+                  size="icon"
+                >
+                  <Icon icon="search" size="lg" />
+                  <span className="sr-only">{t("header.search")}</span>
+                </Button>
+              )}
               {/* Disabled for now
               <div
                 className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end
@@ -148,6 +167,14 @@ export default function Example() {
               </div>
             </div>
           </div>
+          {isVariantsPage && searchOpen && (
+            <div
+              id={searchPanelId}
+              className="absolute inset-x-0 top-full z-30 border-b border-gray-200 bg-white p-3 sm:p-4"
+            >
+              <SearchForm onClose={() => setSearchOpen(false)} />
+            </div>
+          )}
         </nav>
       </header>
       <div className="flex-1">

@@ -1,7 +1,7 @@
 import { cn } from "../../lib/cn";
 
 const sizes = {
-  default: "h-9 px-3 py-1 text-base md:text-sm lg:text-lg",
+  default: "h-9 px-3.5 text-base",
   lg: "h-12 px-4 text-base lg:text-lg",
 };
 
