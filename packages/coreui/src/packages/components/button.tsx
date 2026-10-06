@@ -10,7 +10,8 @@ export const variants = {
     "border border-input bg-secondary text-secondary-foreground hover:bg-secondary/80",
   ghost: "hover:bg-accent hover:text-accent-foreground",
   link: "text-primary underline-offset-4 hover:underline p-0!",
-  cta: "bg-foreground text-background uppercase hover:bg-foreground/85 disabled:bg-muted disabled:text-muted-foreground disabled:opacity-100",
+  success:
+    "bg-success text-success-foreground uppercase hover:bg-success/90 disabled:bg-muted disabled:text-muted-foreground disabled:opacity-100",
   surface: "bg-background text-foreground hover:bg-background/90",
 };
 

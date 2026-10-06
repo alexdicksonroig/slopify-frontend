@@ -138,7 +138,7 @@ export function VariantCartAction({
           />
           <Button
             type="submit"
-            variant="cta"
+            variant="success"
             size="lg"
             disabled={!cart || isAdding || quantity < 1 || quantity > stock}
             className="w-full min-w-0 sm:flex-1"

@@ -18,7 +18,7 @@ export default function NotFound() {
         {t("error.not-found")}
       </p>
       <Button
-        variant="cta"
+        variant="default"
         size="xl"
         className="mt-8"
         onClick={() => navigate("/")}
