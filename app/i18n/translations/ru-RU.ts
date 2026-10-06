@@ -73,7 +73,7 @@ export const ruRu = {
   "header.basket-total": "Всего в корзине",
   "header.cart": "Товары в корзине, просмотреть корзину",
   "header.close-announcement": "Закрыть объявление",
-  "header.close-search": "Закрыть поиск",
+  "header.clear-search": "Очистить поиск",
   "header.company": "Магазин дома",
   "header.delivery":
     "Получите бесплатную доставку при заказе на сумму более 30 евро.",

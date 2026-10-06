@@ -72,7 +72,7 @@ export const fr = {
   "header.basket-total": "Total du panier",
   "header.cart": "Articles dans le panier, voir le panier",
   "header.close-announcement": "Fermer l’annonce",
-  "header.close-search": "Fermer la recherche",
+  "header.clear-search": "Effacer la recherche",
   "header.company": "Accueil de Store",
   "header.delivery": "Livraison gratuite dès 30€ d’achat",
   "header.language": "Choisir la langue",

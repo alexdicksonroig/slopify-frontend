@@ -73,7 +73,7 @@ export const viVn = {
   "header.basket-total": "Tổng số giỏ",
   "header.cart": "Các mặt hàng trong giỏ hàng, xem túi",
   "header.close-announcement": "Đóng thông báo",
-  "header.close-search": "Đóng tìm kiếm",
+  "header.clear-search": "Xóa tìm kiếm",
   "header.company": "Cửa hàng nhà",
   "header.delivery": "Nhận giao hàng miễn phí cho đơn hàng trên 30 €",
   "header.language": "Chọn ngôn ngữ",

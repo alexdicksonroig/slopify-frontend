@@ -73,7 +73,7 @@ export const idId = {
   "header.basket-total": "Jumlah keranjang",
   "header.cart": "Barang di keranjang, lihat tas",
   "header.close-announcement": "Tutup pengumuman",
-  "header.close-search": "Tutup pencarian",
+  "header.clear-search": "Hapus pencarian",
   "header.company": "Simpan di rumah",
   "header.delivery": "Dapatkan pengiriman gratis untuk pesanan di atas 30€",
   "header.language": "Pilih bahasa",

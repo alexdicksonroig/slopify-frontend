@@ -73,7 +73,7 @@ export const ukUa = {
   "header.basket-total": "Загальний кошик",
   "header.cart": "Товари в кошику, переглянути сумку",
   "header.close-announcement": "Закрити оголошення",
-  "header.close-search": "Закрити пошук",
+  "header.clear-search": "Очистити пошук",
   "header.company": "Магазин додому",
   "header.delivery":
     "Отримайте безкоштовну доставку при замовленні на суму понад 30 євро",

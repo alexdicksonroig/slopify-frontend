@@ -70,7 +70,7 @@ export const en = {
   "header.basket-total": "Basket total",
   "header.cart": "Items in cart, view bag",
   "header.close-announcement": "Close announcement",
-  "header.close-search": "Close search",
+  "header.clear-search": "Clear search",
   "header.company": "Store home",
   "header.delivery": "Get free delivery on orders over 30€",
   "header.language": "Select language",

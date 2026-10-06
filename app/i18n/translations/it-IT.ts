@@ -73,7 +73,7 @@ export const itIt = {
   "header.basket-total": "Totale carrello",
   "header.cart": "Articoli nel carrello, visualizza il carrello",
   "header.close-announcement": "Chiudi annuncio",
-  "header.close-search": "Chiudi ricerca",
+  "header.clear-search": "Cancella ricerca",
   "header.company": "Conservare a casa",
   "header.delivery": "Ottieni la consegna gratuita per ordini superiori a 30€",
   "header.language": "Seleziona la lingua",

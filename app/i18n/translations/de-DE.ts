@@ -72,7 +72,7 @@ export const de = {
   "header.basket-total": "Warenkorbsumme",
   "header.cart": "Artikel im Warenkorb, Warenkorb anzeigen",
   "header.close-announcement": "Hinweis schließen",
-  "header.close-search": "Suche schließen",
+  "header.clear-search": "Suche löschen",
   "header.company": "Store-Startseite",
   "header.delivery": "Kostenlose Lieferung ab 30€ Bestellwert",
   "header.language": "Sprache auswählen",

@@ -72,7 +72,7 @@ export const zhTw = {
   "header.basket-total": "籃子總數",
   "header.cart": "購物車中的商品，查看包包",
   "header.close-announcement": "關閉公告",
-  "header.close-search": "關閉搜尋",
+  "header.clear-search": "清除搜尋",
   "header.company": "商店首頁",
   "header.delivery": "訂單滿 30 歐元即可享有免運服務",
   "header.language": "選擇語言",

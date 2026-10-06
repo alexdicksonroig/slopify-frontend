@@ -72,7 +72,7 @@ export const es = {
   "header.basket-total": "Total del carrito",
   "header.cart": "Artículos en el carrito, ver bolsa",
   "header.close-announcement": "Cerrar aviso",
-  "header.close-search": "Cerrar búsqueda",
+  "header.clear-search": "Borrar búsqueda",
   "header.company": "Inicio de Store",
   "header.delivery": "Envío gratis en pedidos superiores a 30€",
   "header.language": "Seleccionar idioma",

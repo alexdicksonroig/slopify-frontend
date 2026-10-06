@@ -73,7 +73,7 @@ export const koKr = {
   "header.basket-total": "바구니 합계",
   "header.cart": "장바구니에 담긴 상품, 장바구니 보기",
   "header.close-announcement": "공지 닫기",
-  "header.close-search": "검색 닫기",
+  "header.clear-search": "검색어 지우기",
   "header.company": "홈 저장",
   "header.delivery": "30€ 이상 주문 시 무료 배송 혜택을 받으세요",
   "header.language": "언어 선택",

@@ -72,7 +72,7 @@ export const zhCn = {
   "header.basket-total": "篮子总数",
   "header.cart": "购物车中的商品，查看包",
   "header.close-announcement": "关闭公告",
-  "header.close-search": "关闭搜索",
+  "header.clear-search": "清除搜索",
   "header.company": "商店首页",
   "header.delivery": "订单满 30 欧元即可享受免费送货服务",
   "header.language": "选择语言",

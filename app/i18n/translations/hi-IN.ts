@@ -73,7 +73,7 @@ export const hiIn = {
   "header.basket-total": "टोकरी कुल",
   "header.cart": "कार्ट में आइटम, बैग देखें",
   "header.close-announcement": "घोषणा बंद करें",
-  "header.close-search": "खोज बंद करें",
+  "header.clear-search": "खोज साफ़ करें",
   "header.company": "घर पर भंडार करें",
   "header.delivery": "30€ से अधिक के ऑर्डर पर निःशुल्क डिलीवरी प्राप्त करें",
   "header.language": "भाषा चुनें",

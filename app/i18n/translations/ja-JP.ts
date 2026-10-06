@@ -73,7 +73,7 @@ export const jaJp = {
   "header.basket-total": "バスケットの合計",
   "header.cart": "カート内のアイテム、バッグの表示",
   "header.close-announcement": "閉店のお知らせ",
-  "header.close-search": "検索を閉じる",
+  "header.clear-search": "検索をクリア",
   "header.company": "ストアホーム",
   "header.delivery": "30ユーロ以上のご注文で送料無料",
   "header.language": "言語を選択",

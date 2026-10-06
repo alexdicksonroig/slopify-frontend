@@ -73,7 +73,7 @@ export const trTr = {
   "header.basket-total": "Sepet toplamı",
   "header.cart": "Sepetteki ürünler, çantayı görüntüle",
   "header.close-announcement": "Duyuruyu kapat",
-  "header.close-search": "Aramayı kapat",
+  "header.clear-search": "Aramayı temizle",
   "header.company": "Evde mağaza",
   "header.delivery": "30 € üzeri siparişlerde ücretsiz teslimattan yararlanın",
   "header.language": "Dil seçin",

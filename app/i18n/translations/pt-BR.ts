@@ -74,7 +74,7 @@ export const ptBr = {
   "header.basket-total": "Total da cesta",
   "header.cart": "Itens no carrinho, ver sacola",
   "header.close-announcement": "Fechar anúncio",
-  "header.close-search": "Fechar busca",
+  "header.clear-search": "Limpar busca",
   "header.company": "Armazene em casa",
   "header.delivery": "Obtenha entrega gratuita em encomendas superiores a 30€",
   "header.language": "Selecionar idioma",

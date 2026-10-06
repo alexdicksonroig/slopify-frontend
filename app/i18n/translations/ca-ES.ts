@@ -72,7 +72,7 @@ export const ca = {
   "header.basket-total": "Total de la cistella",
   "header.cart": "Articles a la cistella, mostra la cistella",
   "header.close-announcement": "Tanca l’avís",
-  "header.close-search": "Tanca la cerca",
+  "header.clear-search": "Esborra la cerca",
   "header.company": "Inici de Store",
   "header.delivery": "Enviament gratuït en comandes superiors a 30 €",
   "header.language": "Selecciona l'idioma",

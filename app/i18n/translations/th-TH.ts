@@ -73,7 +73,7 @@ export const thTh = {
   "header.basket-total": "รวมตะกร้า",
   "header.cart": "สินค้าในรถเข็น ดูกระเป๋า",
   "header.close-announcement": "ปิดประกาศ",
-  "header.close-search": "ปิดการค้นหา",
+  "header.clear-search": "ล้างการค้นหา",
   "header.company": "เก็บบ้าน",
   "header.delivery": "รับการจัดส่งฟรีเมื่อสั่งซื้อเกิน 30 ยูโร",
   "header.language": "เลือกภาษา",

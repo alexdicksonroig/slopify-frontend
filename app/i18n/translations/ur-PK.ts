@@ -73,7 +73,7 @@ export const urPk = {
   "header.basket-total": "ٹوکری کل",
   "header.cart": "ٹوکری میں اشیاء، بیگ دیکھیں",
   "header.close-announcement": "بند کرنے کا اعلان",
-  "header.close-search": "تلاش بند کریں",
+  "header.clear-search": "تلاش صاف کریں",
   "header.company": "گھر اسٹور کریں۔",
   "header.delivery": "30 € سے زیادہ کے آرڈر پر مفت ڈیلیوری حاصل کریں۔",
   "header.language": "زبان منتخب کریں",

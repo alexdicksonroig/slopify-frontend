@@ -73,7 +73,7 @@ export const arSa = {
   "header.basket-total": "مجموع السلة",
   "header.cart": "العناصر الموجودة في سلة التسوق، عرض الحقيبة",
   "header.close-announcement": "إعلان إغلاق",
-  "header.close-search": "إغلاق البحث",
+  "header.clear-search": "مسح البحث",
   "header.company": "تخزين المنزل",
   "header.delivery": "احصل على توصيل مجاني للطلبات التي تزيد قيمتها عن 30 يورو",
   "header.language": "اختر اللغة",

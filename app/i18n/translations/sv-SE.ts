@@ -73,7 +73,7 @@ export const svSe = {
   "header.basket-total": "Korg totalt",
   "header.cart": "Artiklar i varukorg, visningsväska",
   "header.close-announcement": "Stäng meddelande",
-  "header.close-search": "Stäng sökning",
+  "header.clear-search": "Rensa sökning",
   "header.company": "Förvara hem",
   "header.delivery": "Få fri frakt vid beställningar över 30€",
   "header.language": "Välj språk",

@@ -73,7 +73,7 @@ export const nlNl = {
   "header.basket-total": "Totaal mandje",
   "header.cart": "Artikelen in winkelwagen, bekijk tas",
   "header.close-announcement": "Sluit aankondiging",
-  "header.close-search": "Zoeken sluiten",
+  "header.clear-search": "Zoekopdracht wissen",
   "header.company": "Winkel thuis",
   "header.delivery": "Ontvang gratis levering bij bestellingen boven de 30€",
   "header.language": "Taal kiezen",

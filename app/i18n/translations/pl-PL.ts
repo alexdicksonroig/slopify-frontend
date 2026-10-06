@@ -73,7 +73,7 @@ export const plPl = {
   "header.basket-total": "Suma koszyka",
   "header.cart": "Artykuły w koszyku, zobacz torbę",
   "header.close-announcement": "Zamknij ogłoszenie",
-  "header.close-search": "Zamknij wyszukiwanie",
+  "header.clear-search": "Wyczyść wyszukiwanie",
   "header.company": "Przechowuj w domu",
   "header.delivery": "Uzyskaj bezpłatną dostawę przy zamówieniach powyżej 30 €",
   "header.language": "Wybierz język",

@@ -73,7 +73,7 @@ export const bnBd = {
   "header.basket-total": "মোট ঝুড়ি",
   "header.cart": "কার্ট আইটেম, দেখুন ব্যাগ",
   "header.close-announcement": "বন্ধ ঘোষণা",
-  "header.close-search": "অনুসন্ধান বন্ধ করুন",
+  "header.clear-search": "অনুসন্ধান মুছুন",
   "header.company": "বাড়িতে স্টোর করুন",
   "header.delivery": "30 ইউরোর বেশি অর্ডারে বিনামূল্যে ডেলিভারি পান",
   "header.language": "ভাষা নির্বাচন করুন",
