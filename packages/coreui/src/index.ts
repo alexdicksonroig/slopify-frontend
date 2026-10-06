@@ -1,5 +1,6 @@
 import { cn } from "./lib/cn";
 import Throttle from "./lib/throttle";
+import Debounce from "./lib/debounce";
 import { Dialog, Popover, Select } from "./packages/collections";
 import {
   Accordion,
@@ -42,6 +43,7 @@ export {
   Skeleton,
   Select,
   Throttle,
+  Debounce,
 };
 
 export type {
