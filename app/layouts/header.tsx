@@ -47,7 +47,7 @@ export default function Example() {
                 { "invisible opacity-0": !showFirstText },
               )}
             >
-              <p className="max-w-full whitespace-nowrap leading-tight">
+              <p className="max-w-full text-balance leading-tight sm:whitespace-nowrap">
                 {t("header.delivery")}
               </p>
             </div>
@@ -57,7 +57,7 @@ export default function Example() {
                 { "invisible opacity-0": showFirstText },
               )}
             >
-              <p className="max-w-full whitespace-nowrap leading-tight">
+              <p className="max-w-full text-balance leading-tight sm:whitespace-nowrap">
                 {t("header.tax")}
               </p>
             </div>
