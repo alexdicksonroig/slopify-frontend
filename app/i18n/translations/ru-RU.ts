@@ -6,7 +6,7 @@ export const ruRu = {
   "age-verification.question":
     "Пожалуйста, подтвердите, что вы достигли возраста, с которого разрешено употребление алкоголя в вашей стране или регионе.",
   "age-verification.select-language": "Выберите свой язык",
-  "age-verification.title": "Добро пожаловать в Роиг Паралс",
+  "age-verification.title": "Добро пожаловать в ${name}",
   "age-verification.yes": "Да, войти",
   "app.loading": "Загрузка",
   "banner.shop-now": "Купить сейчас",
@@ -68,7 +68,7 @@ export const ruRu = {
   "footer.email": "Электронная почта: ${email}",
   "footer.follow": "Следуйте за нами",
   "footer.phone": "Телефон: ${phone}",
-  "footer.rights": "© ${year} Магазин. Все права защищены.",
+  "footer.rights": "© ${year} ${name}. Все права защищены.",
   "header.back": "Назад",
   "header.basket-total": "Всего в корзине",
   "header.cart": "Товары в корзине, просмотреть корзину",
@@ -76,7 +76,7 @@ export const ruRu = {
   "header.clear-search": "Очистить поиск",
   "header.company": "Магазин дома",
   "header.delivery":
-    "Получите бесплатную доставку при заказе на сумму более 30 евро.",
+    "Получите бесплатную доставку при заказе на сумму более ${amount}.",
   "header.language": "Выбрать язык",
   "header.menu": "Меню",
   "header.search": "Поиск товаров",

@@ -1,4 +1,5 @@
 import { LanguageSelect } from "@app/components/language-select";
+import { storeConfig } from "@app/config/store";
 import { useTranslate } from "@app/i18n";
 import { Button, Dialog } from "@library";
 import { useEffect, useId, useState } from "react";
@@ -36,16 +37,12 @@ export function AgeVerificationDialog() {
       className="items-center gap-6 text-center"
     >
       <div className="flex flex-col items-center gap-2">
-        <img
-          src="/assets/roig-parals-logo-dark.png"
-          alt=""
-          className="mb-4 h-12 w-auto"
-        />
+        <img src={storeConfig.logoUrl} alt="" className="mb-4 h-12 w-auto" />
         <h2
           id={titleId}
           className="text-xl font-semibold tracking-wide uppercase sm:text-xl"
         >
-          {t("age-verification.title")}
+          {t("age-verification.title", { name: storeConfig.name })}
         </h2>
         <p
           id={descriptionId}

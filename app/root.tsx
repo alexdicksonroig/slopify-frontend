@@ -1,5 +1,6 @@
 import { AgeVerificationDialog } from "@app/components/age-verification-dialog";
 import { CookieBanner } from "@app/components/cookie-banner";
+import { storeConfig } from "@app/config/store";
 import { LanguageProvider, useTranslate } from "@app/i18n";
 import { CartProvider } from "@app/lib/context/cart.context";
 import { LoadingCircle } from "@library";
@@ -17,7 +18,7 @@ import "./app.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ca">
+    <html lang={storeConfig.defaultLanguage}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -52,7 +53,7 @@ export default function App() {
     <>
       <Outlet />
       <CookieBanner />
-      <AgeVerificationDialog />
+      {storeConfig.ageVerification && <AgeVerificationDialog />}
     </>
   );
 }

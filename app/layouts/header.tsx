@@ -1,7 +1,9 @@
 import { CartDrawer } from "@app/components/cart-drawer";
+import { storeConfig } from "@app/config/store";
 import { useTranslate } from "@app/i18n";
 import { getCartItemCountUseCase } from "@app/lib/cart/application/get-cart-item-count.use-case";
 import { useCart } from "@app/lib/context/cart.context";
+import { formatMoney } from "@app/lib/currency";
 import { SearchForm } from "@app/routes/variants/components/SearchForm";
 import { Badge, Button, cn, Icon, LoadingCircle } from "@library";
 import { useEffect, useId, useState } from "react";
@@ -38,7 +40,7 @@ export default function Example() {
           showAnnouncement ? "bg-indigo-600" : "bg-white",
         )}
       >
-        <title>Store</title>
+        <title>{storeConfig.name}</title>
         {showAnnouncement && (
           <div className="relative flex min-h-[42px] items-center overflow-hidden text-sm sm:text-sm lg:text-lg font-medium text-white">
             <div
@@ -48,7 +50,12 @@ export default function Example() {
               )}
             >
               <p className="whitespace-nowrap leading-tight">
-                {t("header.delivery")}
+                {t("header.delivery", {
+                  amount: formatMoney(
+                    storeConfig.freeShippingThresholdInCents,
+                    storeConfig.currency,
+                  ),
+                })}
               </p>
             </div>
             <div
@@ -89,7 +96,7 @@ export default function Example() {
                 <span className="sr-only">{t("header.company")}</span>
                 <img
                   alt=""
-                  src="/assets/roig-parals-logo-dark.png"
+                  src={storeConfig.logoUrl}
                   className="h-10 w-auto"
                 />
               </Link>

@@ -1,3 +1,5 @@
+import { storeConfig } from "@app/config/store";
+
 export type CartProduct = {
   variantId: number;
   productId: number;
@@ -25,7 +27,7 @@ export class Cart {
   }
 
   get currency(): string {
-    return this.cartItems[0]?.currency ?? "EUR";
+    return this.cartItems[0]?.currency ?? storeConfig.currency;
   }
 
   get cartTotalInCents(): number {

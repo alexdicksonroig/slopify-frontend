@@ -6,7 +6,7 @@ export const ukUa = {
   "age-verification.question":
     "Будь ласка, підтвердьте, що ви досягли віку, встановленого законодавством у вашій країні чи регіоні.",
   "age-verification.select-language": "Виберіть свою мову",
-  "age-verification.title": "Ласкаво просимо до Roig Parals",
+  "age-verification.title": "Ласкаво просимо до ${name}",
   "age-verification.yes": "Так, увійти",
   "app.loading": "Завантаження",
   "banner.shop-now": "Купити зараз",
@@ -68,7 +68,7 @@ export const ukUa = {
   "footer.email": "Електронна адреса: ${email}",
   "footer.follow": "Слідкуйте за нами",
   "footer.phone": "Телефон: ${phone}",
-  "footer.rights": "© Магазин ${year}. Всі права захищені.",
+  "footer.rights": "© ${name} ${year}. Всі права захищені.",
   "header.back": "Назад",
   "header.basket-total": "Загальний кошик",
   "header.cart": "Товари в кошику, переглянути сумку",
@@ -76,7 +76,7 @@ export const ukUa = {
   "header.clear-search": "Очистити пошук",
   "header.company": "Магазин додому",
   "header.delivery":
-    "Отримайте безкоштовну доставку при замовленні на суму понад 30 євро",
+    "Отримайте безкоштовну доставку при замовленні на суму понад ${amount}",
   "header.language": "Вибрати мову",
   "header.menu": "Меню",
   "header.search": "Пошук товарів",

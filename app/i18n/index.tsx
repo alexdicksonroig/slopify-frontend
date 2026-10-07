@@ -1,3 +1,4 @@
+import { storeConfig } from "@app/config/store";
 import * as Api from "@app/lib/api";
 import {
   createContext,
@@ -35,7 +36,9 @@ function interpolate(text: string, replacements?: Replacements): string {
 }
 
 export function LanguageProvider({ children }: PropsWithChildren) {
-  const [language, setLanguageState] = useState<Language>("ca-ES");
+  const [language, setLanguageState] = useState<Language>(
+    storeConfig.defaultLanguage,
+  );
   const [languageOptions, setLanguageOptions] = useState<
     { label: string; value: Language }[]
   >([]);
