@@ -33,72 +33,62 @@ type FilterContentProps = {
   options: ProductOption[];
   searchParams: URLSearchParams;
   onFilterChange: (optionId: string, valueId: number, checked: boolean) => void;
-  onResetFilters: () => void;
+  size?: "default" | "sm";
+  itemClassName?: string;
 };
 
 const FilterContent = ({
   options,
   searchParams,
   onFilterChange,
-  onResetFilters,
+  size = "default",
+  itemClassName,
 }: FilterContentProps) => {
-  const t = useTranslate();
   const { language } = useLanguage();
-  const hasActiveFilters = options.some((option) =>
-    searchParams.has(option.optionId),
-  );
 
   return (
-    <div>
-      <Accordion defaultOpenItems>
-        {options.map((option) => {
-          return (
-            <Accordion.Item
-              key={option.id}
-              itemId={`option-${option.id}`}
-              headerText={localize(option.label, language)}
-            >
-              <div className="space-y-4">
-                {option.possibleValues.map((value) => {
-                  const inputId = `option-${option.id}-value-${value.id}`;
+    <Accordion defaultOpenItems size={size}>
+      {options.map((option) => {
+        return (
+          <Accordion.Item
+            key={option.id}
+            itemId={`option-${option.id}`}
+            headerText={localize(option.label, language)}
+            className={itemClassName}
+          >
+            <div className={size === "sm" ? "space-y-3" : "space-y-4"}>
+              {option.possibleValues.map((value) => {
+                const inputId = `${size}-option-${option.id}-value-${value.id}`;
 
-                  return (
-                    <div key={value.id} className="flex items-center">
-                      <Checkbox
-                        id={inputId}
-                        checked={
-                          searchParams.get(option.optionId) === String(value.id)
-                        }
-                        onChange={(event) =>
-                          onFilterChange(
-                            option.optionId,
-                            value.id,
-                            event.currentTarget.checked,
-                          )
-                        }
-                      />
-                      <Label htmlFor={inputId} className="ml-3">
-                        {localize(value.label, language)}
-                      </Label>
-                    </div>
-                  );
-                })}
-              </div>
-            </Accordion.Item>
-          );
-        })}
-      </Accordion>
-      <div className="mt-4 flex justify-start">
-        <Button
-          type="button"
-          variant="link"
-          disabled={!hasActiveFilters}
-          onClick={onResetFilters}
-        >
-          {t("filters.reset")}
-        </Button>
-      </div>
-    </div>
+                return (
+                  <div key={value.id} className="flex items-center gap-3">
+                    <Checkbox
+                      id={inputId}
+                      checked={
+                        searchParams.get(option.optionId) === String(value.id)
+                      }
+                      onChange={(event) =>
+                        onFilterChange(
+                          option.optionId,
+                          value.id,
+                          event.currentTarget.checked,
+                        )
+                      }
+                    />
+                    <Label
+                      htmlFor={inputId}
+                      className={size === "sm" ? "lg:text-sm" : undefined}
+                    >
+                      {localize(value.label, language)}
+                    </Label>
+                  </div>
+                );
+              })}
+            </div>
+          </Accordion.Item>
+        );
+      })}
+    </Accordion>
   );
 };
 
@@ -186,8 +176,17 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
             options={options}
             searchParams={searchParams}
             onFilterChange={handleFilterChange}
-            onResetFilters={handleResetFilters}
           />
+          <div className="mt-4 flex justify-start">
+            <Button
+              type="button"
+              variant="link"
+              disabled={activeFilters.length === 0}
+              onClick={handleResetFilters}
+            >
+              {t("filters.reset")}
+            </Button>
+          </div>
           <div className="mt-6">
             <Button
               type="button"
@@ -238,30 +237,51 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
 
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
           {/* Filters sidebar - Desktop */}
-          <aside className="hidden lg:block">
-            <FilterContent
-              options={options}
-              searchParams={searchParams}
-              onFilterChange={handleFilterChange}
-              onResetFilters={handleResetFilters}
-            />
+          <aside className="hidden pt-3 lg:flex lg:flex-col lg:gap-3 lg:self-start">
             <Select
               value={searchParams.get("sort") ?? "newest"}
               onChange={handleSortChange}
               options={translatedSortOptions}
               placeholder={t("filters.sort-by")}
-              showSelectedValue={false}
-              variant="ghost"
-              size="lg"
-              className="my-3 w-full text-gray-500"
+              className="w-full lg:text-sm"
               aria-label={t("filters.sort")}
             />
+            <div className="rounded-md border border-input bg-background">
+              <div className="flex items-center gap-2 border-b px-4 py-3">
+                <h2 className="text-sm font-semibold text-foreground">
+                  {t("filters.title")}
+                </h2>
+                {activeFilters.length > 0 && (
+                  <Badge variant="secondary">{activeFilters.length}</Badge>
+                )}
+                <Button
+                  type="button"
+                  variant="link"
+                  size="sm"
+                  className="ml-auto"
+                  disabled={activeFilters.length === 0}
+                  onClick={handleResetFilters}
+                >
+                  {t("filters.reset")}
+                </Button>
+              </div>
+              <FilterContent
+                options={options}
+                searchParams={searchParams}
+                onFilterChange={handleFilterChange}
+                size="sm"
+                itemClassName="px-4"
+              />
+              <p className="border-t px-4 py-3 text-sm text-muted-foreground">
+                {t("filters.product-count", { count: resultCount })}
+              </p>
+            </div>
           </aside>
 
           {/* Main content */}
           <div className="pt-3 lg:col-span-3">
             {activeFilters.length > 0 && (
-              <div className="flex flex-wrap items-center gap-2 pb-3 lg:pt-2">
+              <div className="flex flex-wrap items-center gap-2 pb-3">
                 {activeFilters.map(({ option, value }) => (
                   <Chip
                     key={option.id}
@@ -285,9 +305,6 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               </div>
             )}
             {children}
-            <p className="mt-6 hidden text-right text-xs lg:text-base text-gray-500 lg:block">
-              {t("filters.product-count", { count: resultCount })}
-            </p>
           </div>
         </div>
       </div>

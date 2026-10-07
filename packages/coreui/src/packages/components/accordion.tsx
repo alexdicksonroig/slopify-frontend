@@ -9,12 +9,16 @@ import { cn } from "../../lib/cn";
 import { Icon } from "./icon";
 import type { IconName } from "./icon.types";
 
+type AccordionSize = "default" | "sm";
+
 type AccordionContext = {
+  size: AccordionSize;
   openItems: Record<string, boolean>;
   setOpenItems: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
 };
 
 const AccordionContext = createContext<AccordionContext>({
+  size: "default",
   openItems: {},
   setOpenItems: () => {},
 });
@@ -23,6 +27,7 @@ type AccordionProps = {
   children: React.ReactNode;
   className?: string;
   defaultOpenItems?: boolean;
+  size?: AccordionSize;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type AccordionItemProps = {
@@ -35,17 +40,20 @@ type AccordionItemProps = {
 
 type AccordionTriggerProps = {
   isOpen: boolean;
+  size?: AccordionSize;
   icon?: IconName;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type AccordionContentProps = {
   isOpen: boolean;
+  size?: AccordionSize;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const Accordion: React.FC<AccordionProps> = ({
   children,
   className,
   defaultOpenItems = false,
+  size = "default",
   ...props
 }) => {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>(() => {
@@ -62,7 +70,7 @@ const Accordion: React.FC<AccordionProps> = ({
   });
 
   return (
-    <AccordionContext value={{ openItems, setOpenItems }}>
+    <AccordionContext value={{ size, openItems, setOpenItems }}>
       <div className={cn("flex flex-col", className)} {...props}>
         {children}
       </div>
@@ -78,7 +86,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   icon,
   ...props
 }) => {
-  const { openItems, setOpenItems } = useContext(AccordionContext);
+  const { size, openItems, setOpenItems } = useContext(AccordionContext);
   const isOpen = openItems[itemId] ?? false;
 
   const handleToggle = () => {
@@ -91,12 +99,14 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   return (
     <div className={cn("border-b last:border-b-0", className)} {...props}>
       <button className="w-full" onClick={handleToggle} type="button">
-        <AccordionTrigger isOpen={isOpen} icon={icon}>
+        <AccordionTrigger isOpen={isOpen} icon={icon} size={size}>
           {headerText}
         </AccordionTrigger>
       </button>
       <div>
-        <AccordionContent isOpen={isOpen}>{children}</AccordionContent>
+        <AccordionContent isOpen={isOpen} size={size}>
+          {children}
+        </AccordionContent>
       </div>
     </div>
   );
@@ -105,20 +115,33 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
 const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
   isOpen,
   icon,
+  size = "default",
   children,
 }) => {
   return (
     <div className="flex">
       <div
         className={cn(
-          "flex flex-1 items-center justify-between py-4 text-base lg:text-xl font-normal text-foreground text-left cursor-pointer",
+          "flex flex-1 items-center justify-between text-foreground text-left cursor-pointer",
+          size === "sm"
+            ? "py-3.5 text-sm font-medium"
+            : "py-4 text-base lg:text-xl font-normal",
         )}
       >
         <span className="flex items-center gap-3">
           {icon && <Icon icon={icon} size="md" />}
           {children}
         </span>
-        <Icon icon={isOpen ? "minus" : "plus"} size="sm" />
+        {size === "sm" ? (
+          <Icon
+            icon="chevron-down"
+            size="sm"
+            rotate={isOpen ? 180 : undefined}
+            className="text-muted-foreground"
+          />
+        ) : (
+          <Icon icon={isOpen ? "minus" : "plus"} size="sm" />
+        )}
       </div>
     </div>
   );
@@ -126,17 +149,19 @@ const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
 
 const AccordionContent: React.FC<AccordionContentProps> = ({
   isOpen,
+  size = "default",
   children,
 }) => {
   return (
     <div
       className={cn(
-        "grid text-sm lg:text-lg text-left text-foreground/70",
+        "grid text-left text-foreground/70",
+        size === "sm" ? "text-sm" : "text-sm lg:text-lg",
         isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
       )}
     >
       <div className="overflow-hidden">
-        <div className="pb-4">{children}</div>
+        <div className={size === "sm" ? "pb-3.5" : "pb-4"}>{children}</div>
       </div>
     </div>
   );
