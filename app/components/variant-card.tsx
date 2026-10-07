@@ -41,10 +41,10 @@ export function VariantCard({ product, variant, className }: VariantCardProps) {
         <VariantCartAction product={product} variant={variant} />
       </div>
       <Link
-        className="mt-1 block min-w-0 px-0.5"
+        className="mt-1 block min-w-0 px-2"
         to={`/product/${product.id}/${variant.id}`}
       >
-        <h3 className="truncate text-base lg:text-xl font-medium text-black">
+        <h3 className="truncate text-base lg:text-2xl font-medium text-black">
           {product.name}
         </h3>
         <p className="truncate text-xs lg:text-base text-gray-500">
