@@ -1,6 +1,11 @@
-import { useTranslate } from "@app/i18n";
-import * as Api from "@app/lib/api";
+import { useLanguage, useTranslate } from "@app/i18n";
 import type { Cart } from "@app/lib/cart/domain/cart.entity";
+import { formatMoney } from "@app/lib/currency";
+import {
+  createCheckoutSession,
+  getCheckoutKey,
+  getStripe,
+} from "@app/lib/stripe";
 import { Button, Input, Label, LoadingCircle, Skeleton } from "@library";
 import {
   CheckoutElementsProvider,
@@ -9,7 +14,6 @@ import {
   type StripeCheckoutElementsValue,
   useCheckoutElements,
 } from "@stripe/react-stripe-js/checkout";
-import { loadStripe } from "@stripe/stripe-js";
 import {
   type ChangeEvent,
   type Dispatch,
@@ -144,12 +148,12 @@ const PaymentDetails = ({
         <h2 className={sectionHeadingClassName}>
           {t("checkout.shipping-address")}
         </h2>
-        <ShippingAddressElement />
+        <ShippingAddressElement className="min-h-60" />
       </section>
 
       <section className="border-t border-gray-200 py-10">
         <h2 className={sectionHeadingClassName}>{t("checkout.payment")}</h2>
-        <PaymentElement />
+        <PaymentElement className="min-h-72" />
       </section>
 
       <div className="border-t border-gray-200 pt-8">
@@ -173,97 +177,151 @@ const PaymentDetails = ({
   );
 };
 
-const CheckoutContents = () => {
-  const result = useCheckoutElements();
+const CheckoutSkeleton = () => {
   const t = useTranslate();
 
-  if (result.type === "loading") {
-    return (
-      <output aria-label={t("app.loading")} className="block">
-        <section className="pb-10">
-          <Skeleton className="h-7 w-48 lg:h-9" />
-          <Skeleton className="mt-7 h-4 w-16" />
-          <Skeleton className="mt-2 h-12 w-full" />
-        </section>
+  return (
+    <output aria-label={t("app.loading")} className="block">
+      <section className="pb-10">
+        <Skeleton className="h-7 w-48 sm:h-8" />
+        <Skeleton className="mt-6 h-4 w-16" />
+        <Skeleton className="mt-2 h-12 w-full" />
+      </section>
 
-        <section className="border-t border-gray-200 py-10">
-          <Skeleton className="h-7 w-56 lg:h-9" />
-          <div className="mt-7 grid grid-cols-2 gap-4">
-            <Skeleton className="col-span-2 h-12" />
-            <Skeleton className="h-12" />
-            <Skeleton className="h-12" />
-            <Skeleton className="col-span-2 h-12" />
-          </div>
-        </section>
-
-        <section className="border-t border-gray-200 py-10">
-          <Skeleton className="h-7 w-32 lg:h-9" />
-          <Skeleton className="mt-7 h-12 w-full" />
-          <Skeleton className="mt-4 h-12 w-full" />
-        </section>
-
-        <div className="border-t border-gray-200 pt-8">
-          <Skeleton className="h-12 w-full" />
+      <section className="border-t border-gray-200 py-10">
+        <Skeleton className="h-7 w-56 sm:h-8" />
+        <div className="mt-6 grid grid-cols-2 gap-3">
+          <Skeleton className="col-span-2 h-12" />
+          <Skeleton className="col-span-2 h-12" />
+          <Skeleton className="col-span-2 h-12" />
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
         </div>
-      </output>
-    );
-  }
+      </section>
+
+      <section className="border-t border-gray-200 py-10">
+        <Skeleton className="h-7 w-32 sm:h-8" />
+        <Skeleton className="mt-6 h-12 w-full" />
+        <div className="mt-3 grid grid-cols-2 gap-3">
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
+        </div>
+      </section>
+
+      <div className="border-t border-gray-200 pt-8">
+        <Skeleton className="h-14 w-full" />
+      </div>
+    </output>
+  );
+};
+
+const CheckoutForm = () => {
+  const result = useCheckoutElements();
+
   if (result.type === "error") {
     return (
-      <p
-        role="alert"
-        className="p-4 text-sm text-red-600"
-      >
+      <p role="alert" className="text-sm text-red-600">
         {result.error.message}
       </p>
     );
   }
 
+  if (result.type === "loading") return <CheckoutSkeleton />;
+
   return <PaymentDetails checkout={result.checkout} />;
 };
 
-const stripePublishableKey = (
-  import.meta as unknown as {
-    env: { VITE_STRIPE_PUBLISHABLE_KEY?: string };
-  }
-).env.VITE_STRIPE_PUBLISHABLE_KEY;
-const stripePromise = stripePublishableKey
-  ? loadStripe(stripePublishableKey)
-  : null;
+const OrderSummary = ({ cart }: { cart: Cart }) => {
+  const t = useTranslate();
+  const result = useCheckoutElements();
+  // Prefer Stripe's totals once loaded so they match the pay button.
+  const checkout = result.type === "success" ? result.checkout : null;
+  const money = (stripeAmount: number | undefined, cartAmount: number) =>
+    checkout && stripeAmount !== undefined
+      ? formatMoney(stripeAmount, checkout.currency)
+      : formatMoney(cartAmount, cart.currency);
+
+  return (
+    <section className="border border-gray-200 bg-gray-50 p-6">
+      <h2 className="text-lg font-semibold tracking-tight text-gray-900">
+        {t("cart.order-summary")}
+      </h2>
+      <ul className="mt-4 divide-y divide-gray-200 border-y border-gray-200">
+        {cart.items.map((item) => (
+          <li
+            key={item.variantId}
+            className="flex justify-between gap-4 py-4 text-sm"
+          >
+            <span className="min-w-0 text-gray-900">
+              {item.name}
+              <span className="ml-2 text-gray-500">× {item.quantity}</span>
+            </span>
+            <span className="shrink-0 font-medium text-gray-900">
+              {formatMoney(
+                item.unitPriceInCents * item.quantity,
+                item.currency,
+              )}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <dl className="mt-4 space-y-3 text-sm">
+        <div className="flex justify-between gap-4">
+          <dt className="text-gray-600">{t("cart.subtotal")}</dt>
+          <dd className="text-gray-900">
+            {money(
+              checkout?.total.subtotal.minorUnitsAmount,
+              cart.cartTotalInCents,
+            )}
+          </dd>
+        </div>
+        <div className="flex justify-between gap-4">
+          <dt className="text-gray-600">{t("cart.shipping-estimate")}</dt>
+          <dd className="text-gray-900">
+            {money(
+              checkout?.total.shippingRate.minorUnitsAmount,
+              cart.shippingPriceInCents,
+            )}
+          </dd>
+        </div>
+        <div className="flex justify-between gap-4 border-t border-gray-200 pt-3 text-base font-semibold text-gray-900">
+          <dt>{t("cart.order-total")}</dt>
+          <dd>
+            {money(
+              checkout?.total.total.minorUnitsAmount,
+              cart.orderTotalInCents,
+            )}
+          </dd>
+        </div>
+      </dl>
+    </section>
+  );
+};
 
 export function CheckoutPayment({ cart }: { cart: Cart }) {
   const t = useTranslate();
-  const items = cart.items;
-
-  const checkoutKey = useMemo(
-    () =>
-      items
-        .map(({ variantId, quantity }) => `${variantId}:${quantity}`)
-        .join(","),
-    [items],
-  );
+  const { language } = useLanguage();
+  const checkoutKey = getCheckoutKey(cart.items);
+  const stripe = useMemo(() => getStripe(language), [language]);
   const clientSecret = useMemo(
-    () => Api.post<string>("create-checkout-session", { items }),
-    [items],
+    () => createCheckoutSession(cart.items),
+    [cart.items],
   );
 
-  if (!stripePromise) {
-    return (
-      <p className="text-sm text-gray-500">
-        {t("checkout.unavailable")}
-      </p>
-    );
+  if (!stripe) {
+    return <p className="text-sm text-gray-500">{t("checkout.unavailable")}</p>;
   }
 
   return (
     <CheckoutElementsProvider
-      key={checkoutKey}
-      stripe={stripePromise}
+      key={`${language}|${checkoutKey}`}
+      stripe={stripe}
       options={{
         clientSecret,
         elementsOptions: {
           appearance: {
             theme: "stripe",
+            disableAnimations: true,
             variables: {
               borderRadius: "8px",
               colorPrimary: "#111827",
@@ -277,7 +335,12 @@ export function CheckoutPayment({ cart }: { cart: Cart }) {
         },
       }}
     >
-      <CheckoutContents />
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-16">
+        <div className="lg:sticky lg:top-8 lg:order-last lg:self-start">
+          <OrderSummary cart={cart} />
+        </div>
+        <CheckoutForm />
+      </div>
     </CheckoutElementsProvider>
   );
 }

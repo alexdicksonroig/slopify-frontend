@@ -1,5 +1,6 @@
 import { storeConfig } from "@app/config/store";
 import * as Api from "@app/lib/api";
+import { LoadingCircle } from "@library";
 import {
   createContext,
   type PropsWithChildren,
@@ -35,10 +36,21 @@ function interpolate(text: string, replacements?: Replacements): string {
   );
 }
 
+// Picks the first browser language we have translations for, matching e.g. "es" to "es-ES"
+function getBrowserLanguage(): Language | undefined {
+  const supported = Object.keys(translations);
+  for (const browserLanguage of navigator.languages) {
+    const match =
+      supported.find((code) => code === browserLanguage) ??
+      supported.find(
+        (code) => code.split("-")[0] === browserLanguage.split("-")[0],
+      );
+    if (match) return match;
+  }
+}
+
 export function LanguageProvider({ children }: PropsWithChildren) {
-  const [language, setLanguageState] = useState<Language>(
-    storeConfig.defaultLanguage,
-  );
+  const [language, setLanguageState] = useState<Language>();
   const [languageOptions, setLanguageOptions] = useState<
     { label: string; value: Language }[]
   >([]);
@@ -60,7 +72,14 @@ export function LanguageProvider({ children }: PropsWithChildren) {
   }, []);
 
   useEffect(() => {
-    document.documentElement.lang = language;
+    const storedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    setLanguageState(
+      storedLanguage ?? getBrowserLanguage() ?? storeConfig.defaultLanguage,
+    );
+  }, []);
+
+  useEffect(() => {
+    if (language) document.documentElement.lang = language;
   }, [language]);
 
   const setLanguage = useCallback((nextLanguage: Language) => {
@@ -69,9 +88,17 @@ export function LanguageProvider({ children }: PropsWithChildren) {
   }, []);
 
   const value = useMemo(
-    () => ({ language, setLanguage, languageOptions }),
+    () => language && { language, setLanguage, languageOptions },
     [language, setLanguage, languageOptions],
   );
+
+  if (!value) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-white dark:bg-gray-950">
+        <LoadingCircle size="lg" className="text-gray-900 dark:text-white" />
+      </div>
+    );
+  }
 
   return (
     <LanguageContext.Provider value={value}>

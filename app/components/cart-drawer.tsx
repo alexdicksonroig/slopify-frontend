@@ -66,6 +66,7 @@ export function CartDrawer({
             </dl>
             <Link
               to="/checkout"
+              prefetch="intent"
               onClick={onClose}
               className={buttonVariants({
                 size: "lg",

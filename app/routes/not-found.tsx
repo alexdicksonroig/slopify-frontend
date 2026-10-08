@@ -7,16 +7,14 @@ export default function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <main className="mx-auto flex min-h-[calc(100svh-5.5rem)] w-full max-w-xl flex-col items-center justify-center px-4 py-16 text-center">
+    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col items-center justify-center text-center">
       <p className="text-7xl font-bold tracking-[-0.05em] text-neutral-950 lg:text-8xl">
         404
       </p>
       <h1 className="mt-4 text-2xl font-semibold tracking-tight text-neutral-950 sm:text-3xl">
         {t("error.not-found-title")}
       </h1>
-      <p className="mt-3 text-base text-neutral-600">
-        {t("error.not-found")}
-      </p>
+      <p className="mt-3 text-base text-neutral-600">{t("error.not-found")}</p>
       <Button
         variant="default"
         size="xl"
@@ -25,6 +23,6 @@ export default function NotFound() {
       >
         {t("error.back-home")}
       </Button>
-    </main>
+    </div>
   );
 }

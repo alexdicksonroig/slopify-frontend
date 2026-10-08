@@ -94,11 +94,7 @@ export default function Example() {
                 className="inline-flex h-12 w-auto items-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
               >
                 <span className="sr-only">{t("header.company")}</span>
-                <img
-                  alt=""
-                  src={storeConfig.logoUrl}
-                  className="h-10 w-auto"
-                />
+                <img alt="" src={storeConfig.logoUrl} className="h-10 w-auto" />
               </Link>
             </div>
 
@@ -172,18 +168,16 @@ export default function Example() {
             </div>
           </div>
           {isVariantsPage && searchOpen && (
-            <div
-              id={searchPanelId}
-              className="px-4 py-3 sm:px-6 sm:py-4"
-            >
+            <div id={searchPanelId} className="px-4 py-3 sm:px-6 sm:py-4">
               <SearchForm onClose={() => setSearchOpen(false)} />
             </div>
           )}
         </nav>
       </header>
-      <div className="flex-1">
+      {/* Shared page padding: routes only set their own max width */}
+      <main className="flex min-h-[calc(100svh-5.5rem)] flex-1 flex-col px-3 py-6 sm:px-4 sm:py-8 lg:py-10">
         <Outlet />
-      </div>
+      </main>
       <Footer />
       <CartDrawer open={cartOpen} onClose={closeCart} />
       {navigation.state !== "idle" && (

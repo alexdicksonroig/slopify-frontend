@@ -16,6 +16,11 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 
+export const links: Route.LinksFunction = () => [
+  { rel: "preconnect", href: "https://js.stripe.com" },
+  { rel: "preconnect", href: "https://api.stripe.com" },
+];
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang={storeConfig.defaultLanguage}>
