@@ -97,7 +97,7 @@ export default function Variants() {
             {t("filters.no-results", { query })}
           </p>
         ) : (
-          <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-4 sm:gap-y-10 md:grid-cols-3">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-2 sm:gap-y-8 md:grid-cols-3">
             {cards.map(({ product, variant }) => (
               <VariantCard
                 key={variant.id}

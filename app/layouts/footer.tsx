@@ -7,9 +7,10 @@ export default function Footer() {
 
   return (
     <footer className="bg-white mt-auto border-t border-gray-200">
-      {/* Columns match the variants grid: filter + first item column, then one per item column */}
+      {/* Columns match the variants grid: filter + first item column, then one per item column.
+          The column gap must equal the variants grid's column gap for the edges to line up. */}
       <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[50%_1fr_1fr] lg:gap-x-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[50%_1fr_1fr] lg:gap-x-2">
           {/* Contact */}
           <div>
             <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">

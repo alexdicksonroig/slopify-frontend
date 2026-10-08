@@ -234,7 +234,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 pt-2 lg:grid-cols-4 lg:pt-0">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 lg:pt-0">
           {/* Filters sidebar - Desktop */}
           <aside className="hidden lg:flex lg:flex-col lg:gap-3 lg:self-start">
             <Select
