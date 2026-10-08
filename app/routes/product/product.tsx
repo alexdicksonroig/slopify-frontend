@@ -160,6 +160,15 @@ export default function ProductPage() {
             </p>
           </header>
 
+          <ProductOptions
+            variants={variants}
+            variant={variant}
+            productName={product.name}
+            onChange={(variantId) =>
+              navigate(`/product/${product.id}/${variantId}`)
+            }
+          />
+
           {product.description && (
             <ProductDetails
               description={localize(product.description, language)}
@@ -167,14 +176,6 @@ export default function ProductPage() {
           )}
 
           <form className="flex flex-col gap-6" onSubmit={handleAddToCart}>
-            <ProductOptions
-              variants={variants}
-              variant={variant}
-              productName={product.name}
-              onChange={(variantId) =>
-                navigate(`/product/${product.id}/${variantId}`)
-              }
-            />
             <div className="flex gap-2">
               <QuantitySelector
                 value={quantity}

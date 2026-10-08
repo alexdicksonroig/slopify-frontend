@@ -59,7 +59,7 @@ export default function Footer() {
               name: storeConfig.name,
             })}
           </p>
-          <div className="sm:justify-self-end">
+          <div className="self-end sm:self-auto sm:justify-self-end">
             <LanguageSelect />
           </div>
         </div>

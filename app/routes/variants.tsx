@@ -81,6 +81,7 @@ export default function Variants() {
 
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-6 sm:gap-6 sm:px-6 sm:py-8 lg:gap-8 lg:py-10">
+      <Banner />
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-4xl">
           {query
@@ -97,7 +98,7 @@ export default function Variants() {
             {t("filters.no-results", { query })}
           </p>
         ) : (
-          <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-2 sm:gap-y-8 md:grid-cols-3">
+          <div className="grid grid-cols-2 gap-x-2 gap-y-8 sm:gap-x-2 sm:gap-y-8 md:grid-cols-3">
             {cards.map(({ product, variant }) => (
               <VariantCard
                 key={variant.id}
