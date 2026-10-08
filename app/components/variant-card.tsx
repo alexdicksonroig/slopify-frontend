@@ -40,24 +40,19 @@ export function VariantCard({ product, variant, className }: VariantCardProps) {
         </Link>
         <VariantCartAction product={product} variant={variant} />
       </div>
-      <Link
-        className="mt-1 block min-w-0 px-2"
-        to={`/product/${product.id}/${variant.id}`}
-      >
-        <h3 className="truncate text-base lg:text-2xl font-medium text-black">
-          {product.name}
-        </h3>
-        <p className="truncate text-xs lg:text-base text-gray-500">
-          {variant.selections
-            .map(({ value }) => localize(value.label, language))
-            .join(", ")}
-        </p>
-        <p className="text-sm lg:text-lg font-semibold leading-8 text-gray-950">
-          {isAvailable
-            ? formatMoney(unitAmount, currency)
-            : t("product.unavailable")}
-        </p>
-      </Link>
+      <h3 className="truncate text-base lg:text-2xl font-medium text-black">
+        {product.name}
+      </h3>
+      <p className="truncate text-xs lg:text-base text-gray-500">
+        {variant.selections
+          .map(({ value }) => localize(value.label, language))
+          .join(", ")}
+      </p>
+      <p className="text-sm lg:text-lg font-semibold leading-8 text-gray-950">
+        {isAvailable
+          ? formatMoney(unitAmount, currency)
+          : t("product.unavailable")}
+      </p>
     </article>
   );
 }
