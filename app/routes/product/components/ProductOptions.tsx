@@ -61,17 +61,17 @@ export function ProductOptions({
                 onChange={() => onChange(item.id)}
                 className="sr-only"
               />
-              <span className="text-xs font-semibold text-neutral-950">
+              <span className="text-xs font-semibold text-neutral-950 lg:text-sm">
                 {valueLabel(item)}
               </span>
-              <span className="text-sm tabular-nums text-neutral-950">
+              <span className="text-sm tabular-nums text-neutral-950 lg:text-base">
                 {item.unitAmount !== null && item.currency !== null
                   ? formatMoney(item.unitAmount, item.currency)
                   : t("product.unavailable")}
               </span>
               <span
                 className={cn(
-                  "text-xs",
+                  "text-xs lg:text-sm",
                   isInStock ? "text-emerald-700" : "text-neutral-500",
                 )}
               >

@@ -200,8 +200,8 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
         </div>
       </Popover>
       <div>
-        <div className="contents lg:block lg:border-b lg:border-gray-200">
-          <div className="flex min-h-10 items-center justify-between gap-4 border-b border-gray-200 bg-white lg:hidden">
+        <div className="contents">
+          <div className="flex min-h-10 items-center justify-between gap-4 bg-white lg:hidden">
             <p className="text-xs lg:text-base text-gray-600 lg:hidden">
               {t("filters.result-count", { count: resultCount })}
             </p>
@@ -234,10 +234,9 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
             </div>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+        <div className="lg:pt-3 grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
           {/* Filters sidebar - Desktop */}
-          <aside className="hidden pt-3 lg:flex lg:flex-col lg:gap-3 lg:self-start">
+          <aside className="hidden lg:flex lg:flex-col lg:gap-3 lg:self-start">
             <Select
               value={searchParams.get("sort") ?? "newest"}
               onChange={handleSortChange}
@@ -279,7 +278,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
           </aside>
 
           {/* Main content */}
-          <div className="pt-3 lg:col-span-3">
+          <div className="lg:col-span-3">
             {activeFilters.length > 0 && (
               <div className="flex flex-wrap items-center gap-2 pb-3">
                 {activeFilters.map(({ option, value }) => (
