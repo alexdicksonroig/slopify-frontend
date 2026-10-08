@@ -33,7 +33,7 @@ export function VariantCard({ product, variant, className }: VariantCardProps) {
               className="aspect-[4/5] w-full bg-gray-50 object-contain transition-transform duration-500 ease-out lg:hover:scale-105 motion-reduce:transition-none"
             />
           ) : (
-            <div className="flex aspect-[4/5] w-full items-center justify-center rounded bg-gray-100 text-sm lg:text-lg text-gray-500">
+            <div className="flex aspect-[4/5] w-full items-center justify-center rounded bg-gray-100 px-4 text-sm text-gray-500">
               {t("product.no-thumbnail")}
             </div>
           )}
@@ -41,18 +41,18 @@ export function VariantCard({ product, variant, className }: VariantCardProps) {
         <VariantCartAction product={product} variant={variant} />
       </div>
       <Link
-        className="mt-2 block lg:mt-3"
+        className="mt-3 block"
         to={`/product/${product.id}/${variant.id}`}
       >
-        <h3 className="truncate text-base lg:text-2xl font-medium text-black">
+        <h3 className="truncate text-base font-medium text-black sm:text-lg">
           {product.name}
         </h3>
-        <p className="truncate text-xs lg:text-base text-gray-500">
+        <p className="mt-0.5 truncate text-xs text-gray-500 sm:text-sm">
           {variant.selections
             .map(({ value }) => localize(value.label, language))
             .join(", ")}
         </p>
-        <p className="text-sm lg:text-lg font-semibold leading-8 text-gray-950">
+        <p className="mt-1 text-sm font-semibold leading-8 text-gray-950 sm:text-base">
           {isAvailable
             ? formatMoney(unitAmount, currency)
             : t("product.unavailable")}

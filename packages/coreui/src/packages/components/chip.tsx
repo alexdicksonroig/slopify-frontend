@@ -15,7 +15,7 @@ export const Chip = ({
   <button
     type="button"
     className={cn(
-      "inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-input bg-muted px-3 text-xs lg:text-base font-medium text-foreground transition-colors hover:border-ring focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+      "inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-input bg-muted px-3 text-xs font-medium text-foreground transition-colors hover:border-ring focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
       className,
     )}
     {...props}

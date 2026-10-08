@@ -80,24 +80,24 @@ export default function Variants() {
   const { cards, options, query } = useLoaderData<typeof clientLoader>();
 
   return (
-    <div className="mx-auto w-full max-w-7xl p-3 sm:p-6 flex gap-2 flex-col">
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-6 sm:gap-6 sm:px-6 sm:py-8 lg:gap-8 lg:py-10">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-4xl">
           {query
             ? t("filters.search-results", { query })
             : t("filters.new-arrivals")}
         </h1>
-        <p className="mt-1 text-sm lg:text-lg text-gray-500 lg:hidden">
+        <p className="mt-1.5 text-sm text-gray-500 sm:text-base">
           {t("filters.subtitle")}
         </p>
       </div>
       <Filters options={options} resultCount={cards.length}>
         {query && cards.length === 0 ? (
-          <p className="py-12 text-center text-sm lg:text-lg text-gray-500">
+          <p className="px-6 py-16 text-center text-sm text-gray-500">
             {t("filters.no-results", { query })}
           </p>
         ) : (
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-4 sm:gap-y-10 md:grid-cols-3">
             {cards.map(({ product, variant }) => (
               <VariantCard
                 key={variant.id}

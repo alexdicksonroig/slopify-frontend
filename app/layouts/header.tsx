@@ -42,10 +42,10 @@ export default function Example() {
       >
         <title>{storeConfig.name}</title>
         {showAnnouncement && (
-          <div className="relative flex min-h-[42px] items-center overflow-hidden text-sm sm:text-sm lg:text-lg font-medium text-white">
+          <div className="relative flex min-h-[42px] items-center overflow-hidden px-12 text-sm font-medium text-white">
             <div
               className={cn(
-                "absolute inset-0 flex items-center justify-center text-center transition-all duration-100 ease-linear visible opacity-100",
+                "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
                 { "invisible opacity-0": !showFirstText },
               )}
             >
@@ -60,7 +60,7 @@ export default function Example() {
             </div>
             <div
               className={cn(
-                "absolute inset-0 flex items-center justify-center text-center transition-all duration-100 ease-linear visible opacity-100",
+                "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
                 { "invisible opacity-0": showFirstText },
               )}
             >
@@ -82,11 +82,11 @@ export default function Example() {
         )}
         <nav
           aria-label={t("header.top")}
-          className={cn("border-b border-gray-200 bg-white px-3 sm:px-4", {
+          className={cn("border-b border-gray-200 bg-white", {
             "rounded-t-xl": showAnnouncement,
           })}
         >
-          <div className="flex h-14 items-center">
+          <div className="flex h-14 items-center px-4 sm:px-6">
             <div className="flex items-center">
               {/* Logo */}
               <Link
@@ -174,7 +174,7 @@ export default function Example() {
           {isVariantsPage && searchOpen && (
             <div
               id={searchPanelId}
-              className="py-3 sm:py-4"
+              className="px-4 py-3 sm:px-6 sm:py-4"
             >
               <SearchForm onClose={() => setSearchOpen(false)} />
             </div>

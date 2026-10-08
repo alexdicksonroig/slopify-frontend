@@ -21,7 +21,7 @@ import {
 } from "react";
 
 const sectionHeadingClassName =
-  "mb-7 text-2xl font-semibold tracking-tight text-gray-900 lg:text-4xl";
+  "mb-6 text-xl font-semibold tracking-tight text-gray-900 sm:text-2xl";
 
 const validateEmail = async (
   email: string,
@@ -80,7 +80,7 @@ const EmailInput = ({
         className="mt-2"
       />
       {error && (
-        <p id={errorId} className="mt-2 text-sm lg:text-lg text-destructive">
+        <p id={errorId} className="mt-2 text-sm text-destructive">
           {error}
         </p>
       )}
@@ -156,7 +156,7 @@ const PaymentDetails = ({
         {message && (
           <p
             role="alert"
-            className="mb-4 border border-red-200 bg-red-50 px-4 py-3 text-sm lg:text-lg text-red-700"
+            className="mb-4 border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
           >
             {message}
           </p>
@@ -210,7 +210,10 @@ const CheckoutContents = () => {
   }
   if (result.type === "error") {
     return (
-      <p role="alert" className="text-sm text-red-600 lg:text-lg">
+      <p
+        role="alert"
+        className="p-4 text-sm text-red-600"
+      >
         {result.error.message}
       </p>
     );
@@ -246,7 +249,7 @@ export function CheckoutPayment({ cart }: { cart: Cart }) {
 
   if (!stripePromise) {
     return (
-      <p className="text-sm text-gray-500 lg:text-lg">
+      <p className="text-sm text-gray-500">
         {t("checkout.unavailable")}
       </p>
     );

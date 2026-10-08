@@ -58,20 +58,20 @@ export function CartItemList({
                 <img
                   src={item.thumbnailUrl}
                   alt={item.name}
-                  className="size-full object-cover"
+                  className="size-full object-cover p-2"
                 />
               ) : (
-                <span className="flex size-full items-center justify-center px-3 text-center text-xs lg:text-base text-gray-400">
+                <span className="flex size-full items-center justify-center px-3 text-center text-xs text-gray-400">
                   {t("product.no-thumbnail")}
                 </span>
               )}
             </Link>
 
             <div className="relative min-w-0 pr-20">
-              <h2 className="text-sm font-medium leading-snug text-gray-950 sm:text-base lg:text-xl">
+              <h2 className="text-sm font-medium leading-snug text-gray-950 sm:text-base">
                 <Link to={productUrl}>{item.name}</Link>
               </h2>
-              <p className="mt-3 text-lg lg:text-2xl font-medium text-gray-950">
+              <p className="mt-2 text-base font-medium text-gray-950">
                 {formatMoney(item.unitPriceInCents, item.currency)}
               </p>
 
@@ -95,7 +95,7 @@ export function CartItemList({
                   onChange={(quantity) => changeQuantity(item, quantity)}
                 />
 
-                <p className="mt-4 text-sm lg:text-lg text-gray-950">
+                <p className="mt-4 text-sm text-gray-950">
                   {t("cart.subtotal")}:{" "}
                   <strong>
                     {formatMoney(

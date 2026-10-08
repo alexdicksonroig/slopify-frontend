@@ -125,7 +125,7 @@ const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
           "flex flex-1 items-center justify-between text-foreground text-left cursor-pointer",
           size === "sm"
             ? "py-3.5 text-sm font-medium"
-            : "py-4 text-base lg:text-xl font-normal",
+            : "py-4 text-base font-normal",
         )}
       >
         <span className="flex items-center gap-3">
@@ -156,7 +156,7 @@ const AccordionContent: React.FC<AccordionContentProps> = ({
     <div
       className={cn(
         "grid text-left text-foreground/70",
-        size === "sm" ? "text-sm" : "text-sm lg:text-lg",
+        "text-sm",
         isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
       )}
     >

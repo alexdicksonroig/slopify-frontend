@@ -49,7 +49,7 @@ export function SearchForm({ onClose }: SearchFormProps) {
         maxLength={100}
         placeholder={`${t("header.search")}...`}
         aria-label={t("header.search")}
-        className="h-auto border-0 pr-10 pl-0 text-base lg:text-xl [&::-webkit-search-cancel-button]:appearance-none"
+        className="h-auto border-0 pr-10 pl-0 text-base [&::-webkit-search-cancel-button]:appearance-none"
       />
       <Button
         type="button"

@@ -107,7 +107,7 @@ export default function ProductPage() {
   };
 
   return (
-    <main className="mx-auto flex min-h-[calc(100svh-5.5rem)] w-full max-w-[1440px] flex-col px-4 pt-3 pb-4 sm:px-6 sm:pt-4 sm:pb-8 lg:px-12 lg:pt-6 lg:pb-10">
+    <main className="mx-auto flex min-h-[calc(100svh-5.5rem)] w-full max-w-[1440px] flex-col px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
       <Breadcrumb
         className="mb-3 sm:mb-4"
         items={[
@@ -115,19 +115,19 @@ export default function ProductPage() {
           { label: product.name },
         ]}
       />
-      <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(24rem,1fr)] lg:gap-16">
+      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(24rem,1fr)] lg:gap-14">
         <ProductImageGallery images={galleryImages} />
 
         <section className="flex flex-col gap-6 lg:gap-8 lg:pt-2">
           <header className="flex flex-col gap-3 lg:gap-4">
             <div className="flex flex-col gap-2">
-              <h1 className="text-4xl leading-[1.05] font-bold tracking-[-0.04em] text-balance text-neutral-950 lg:text-6xl lg:leading-[1.02]">
+              <h1 className="text-4xl leading-[1.05] font-bold tracking-[-0.04em] text-balance text-neutral-950 lg:text-5xl lg:leading-[1.02]">
                 {product.name}
               </h1>
               <div className="flex flex-wrap items-center gap-2">
                 {variant.selections.length > 0 && (
                   <>
-                    <p className="text-xs text-neutral-500 lg:text-lg">
+                    <p className="text-sm text-neutral-500">
                       {variant.selections
                         .map(({ value }) => localize(value.label, language))
                         .join(", ")}
@@ -137,7 +137,7 @@ export default function ProductPage() {
                 )}
                 <p
                   className={cn(
-                    "inline-flex items-center gap-2 text-xs lg:text-base",
+                    "inline-flex items-center gap-2 text-sm",
                     isInStock ? "text-emerald-700" : "text-neutral-500",
                   )}
                   aria-live="polite"
@@ -155,7 +155,7 @@ export default function ProductPage() {
                 </p>
               </div>
             </div>
-            <p className="text-3xl font-semibold tracking-[-0.03em] tabular-nums text-neutral-950 lg:text-4xl">
+            <p className="text-3xl font-semibold tracking-[-0.03em] tabular-nums text-neutral-950">
               {price}
             </p>
           </header>

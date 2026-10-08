@@ -35,7 +35,7 @@ export function QuantitySelector({
           <Icon icon="minus" size="sm" />
         </Button>
 
-        <output className="min-w-5 text-center text-sm lg:text-lg font-medium text-neutral-900">
+        <output className="min-w-5 text-center text-sm font-medium text-neutral-900">
           {value}
         </output>
 

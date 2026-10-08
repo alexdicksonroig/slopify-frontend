@@ -31,7 +31,7 @@ export function ProductOptions({
     <div className="flex flex-col gap-3">
       <p
         id={labelId}
-        className="text-xs font-medium tracking-[0.06em] text-neutral-600 uppercase lg:text-sm"
+        className="text-xs font-medium tracking-[0.06em] text-neutral-600 uppercase"
       >
         {variant.selections
           .map(({ option }) => localize(option.label, language))
@@ -61,17 +61,17 @@ export function ProductOptions({
                 onChange={() => onChange(item.id)}
                 className="sr-only"
               />
-              <span className="text-xs font-semibold text-neutral-950 lg:text-sm">
+              <span className="text-sm font-semibold text-neutral-950">
                 {valueLabel(item)}
               </span>
-              <span className="text-sm tabular-nums text-neutral-950 lg:text-base">
+              <span className="text-sm tabular-nums text-neutral-950">
                 {item.unitAmount !== null && item.currency !== null
                   ? formatMoney(item.unitAmount, item.currency)
                   : t("product.unavailable")}
               </span>
               <span
                 className={cn(
-                  "text-xs lg:text-sm",
+                  "text-xs",
                   isInStock ? "text-emerald-700" : "text-neutral-500",
                 )}
               >

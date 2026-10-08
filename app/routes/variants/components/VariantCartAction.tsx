@@ -102,11 +102,11 @@ export function VariantCartAction({
         className="z-20"
       >
         <div className="flex min-w-0 items-center gap-2 pr-8">
-          <h4 className="truncate text-sm lg:text-lg font-semibold text-neutral-950">
+          <h4 className="truncate text-sm font-semibold text-neutral-950">
             {product.name}
           </h4>
           <p
-            className={`shrink-0 text-xs lg:text-base ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
+            className={`shrink-0 text-xs ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
             aria-live="polite"
           >
             {stock > 0
@@ -114,7 +114,7 @@ export function VariantCartAction({
               : t("product.out-of-stock")}
           </p>
         </div>
-        <dl className="mt-2 space-y-1 text-xs lg:text-base text-neutral-500 sm:mt-1 sm:space-y-0.5">
+        <dl className="mt-2 space-y-1 text-xs text-neutral-500 sm:mt-1 sm:space-y-0.5">
           {variant.selections.map(({ option, value }) => (
             <div key={option.id} className="flex min-w-0 gap-1">
               <dt>{localize(option.label, language)}:</dt>

@@ -77,7 +77,7 @@ const FilterContent = ({
                     />
                     <Label
                       htmlFor={inputId}
-                      className={size === "sm" ? "lg:text-sm" : undefined}
+                      className={size === "sm" ? "text-sm" : undefined}
                     >
                       {localize(value.label, language)}
                     </Label>
@@ -169,7 +169,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
         className="z-50 max-h-[calc(100svh-1rem)] overflow-y-auto lg:hidden"
       >
         <div>
-          <h2 className="mb-4 text-lg lg:text-2xl font-medium text-gray-900">
+          <h2 className="mb-4 text-lg font-medium text-gray-900">
             {t("filters.title")}
           </h2>
           <FilterContent
@@ -201,8 +201,8 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
       </Popover>
       <div>
         <div className="contents">
-          <div className="flex min-h-10 items-center justify-between gap-4 bg-white lg:hidden">
-            <p className="text-xs lg:text-base text-gray-600 lg:hidden">
+          <div className="flex min-h-10 items-center justify-between gap-3 bg-white lg:hidden">
+            <p className="text-xs text-gray-600 lg:hidden">
               {t("filters.result-count", { count: resultCount })}
             </p>
             <div className="ml-auto flex items-center gap-1 lg:block lg:min-w-56">
@@ -234,7 +234,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
             </div>
           </div>
         </div>
-        <div className="lg:pt-3 grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 pt-2 lg:grid-cols-4 lg:pt-0">
           {/* Filters sidebar - Desktop */}
           <aside className="hidden lg:flex lg:flex-col lg:gap-3 lg:self-start">
             <Select
@@ -242,7 +242,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               onChange={handleSortChange}
               options={translatedSortOptions}
               placeholder={t("filters.sort-by")}
-              className="w-full lg:text-sm"
+              className="w-full"
               aria-label={t("filters.sort")}
             />
             <div className="rounded-md border border-input bg-background">
@@ -280,7 +280,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
           {/* Main content */}
           <div className="lg:col-span-3">
             {activeFilters.length > 0 && (
-              <div className="flex flex-wrap items-center gap-2 pb-3">
+              <div className="flex flex-wrap items-center gap-2 pb-4">
                 {activeFilters.map(({ option, value }) => (
                   <Chip
                     key={option.id}

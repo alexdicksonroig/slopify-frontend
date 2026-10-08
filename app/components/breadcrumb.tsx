@@ -21,7 +21,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
       aria-label={t("breadcrumb.label")}
       className={cn("min-w-0", className)}
     >
-      <ol className="flex min-w-0 items-center gap-1.5 text-sm text-neutral-500 lg:text-base">
+      <ol className="flex min-w-0 items-center gap-1.5 text-sm text-neutral-500">
         {items.map((item, index) => {
           const isCurrent = index === items.length - 1;
 

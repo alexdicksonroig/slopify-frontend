@@ -18,11 +18,11 @@ export function Recommendations({ cards, className }: RecommendationsProps) {
   if (cards.length === 0) return null;
 
   return (
-    <section className={cn("flex flex-col gap-3 lg:gap-4", className)}>
-      <h2 className="text-xl font-medium text-neutral-950 lg:text-3xl">
+    <section className={cn("flex flex-col gap-5 lg:gap-6", className)}>
+      <h2 className="text-2xl font-medium text-neutral-950">
         {t("product.recommendations")}
       </h2>
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-4 md:grid-cols-3 lg:grid-cols-4">
         {cards.slice(0, 4).map(({ product, variant }, index) => (
           <VariantCard
             key={variant.id}

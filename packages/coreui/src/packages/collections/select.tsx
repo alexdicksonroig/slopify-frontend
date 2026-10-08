@@ -36,7 +36,7 @@ export const Select: React.FC<SelectProps> = ({
   return (
     <div
       className={cn(
-        "relative inline-flex min-w-0 items-center justify-between gap-2 whitespace-nowrap rounded-md text-sm lg:text-lg font-medium transition-colors",
+        "relative inline-flex min-w-0 items-center justify-between gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors",
         variant === "default"
           ? "border border-input bg-background text-foreground hover:bg-accent"
           : variants[variant],
