@@ -80,7 +80,7 @@ export default function Variants() {
   const { cards, options, query } = useLoaderData<typeof clientLoader>();
 
   return (
-    <div className="mx-auto flex w-full max-w-page flex-col gap-3 sm:gap-6 lg:gap-8 lg:pt-page-gap lg:px-page-gap">
+    <div className="mx-auto flex w-full max-w-page flex-col gap-3 lg:gap-5 lg:pt-page-gap lg:px-page-gap">
       <Banner />
       <div className="px-page-gap">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-4xl">
