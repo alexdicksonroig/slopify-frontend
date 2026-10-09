@@ -245,8 +245,8 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
               className="w-full"
               aria-label={t("filters.sort")}
             />
-            <div className="rounded-md border border-input bg-background">
-              <div className="flex items-center gap-2 border-b px-4 py-3">
+            <div className="bg-background">
+              <div className="flex items-center gap-2">
                 <h2 className="text-sm font-semibold text-foreground">
                   {t("filters.title")}
                 </h2>
@@ -269,9 +269,9 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                 searchParams={searchParams}
                 onFilterChange={handleFilterChange}
                 size="sm"
-                itemClassName="px-4"
+                itemClassName="border-b-0"
               />
-              <p className="border-t px-4 py-3 text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground">
                 {t("filters.product-count", { count: resultCount })}
               </p>
             </div>

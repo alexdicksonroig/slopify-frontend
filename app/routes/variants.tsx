@@ -63,7 +63,7 @@ const Banner = () => {
   // const t = useTranslate();
 
   return (
-    <div className="h-35 rounded sm:h-60 p-3 sm:p-4 bg-linear-to-br from-gray-50 to-gray-200 flex items-end justify-end">
+    <div className="h-35 lg:rounded sm:h-60 p-3 sm:p-4 bg-linear-to-br from-gray-50 to-gray-200 flex items-end justify-end">
       {/* <Button
         className="rounded-[9999px] bg-white font-normal"
         variant="secondary"
