@@ -80,7 +80,7 @@ export default function Variants() {
   const { cards, options, query } = useLoaderData<typeof clientLoader>();
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 sm:gap-6 lg:gap-8">
+    <div className="mx-auto flex w-full max-w-page flex-col gap-3 sm:gap-6 lg:gap-8">
       <Banner />
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-4xl">
@@ -98,7 +98,7 @@ export default function Variants() {
             {t("filters.no-results", { query })}
           </p>
         ) : (
-          <div className="grid grid-cols-2 gap-x-2 gap-y-8 sm:gap-x-2 sm:gap-y-8 md:grid-cols-3">
+          <div className="grid grid-cols-2 gap-x-2 gap-y-5 sm:gap-x-2 sm:gap-y-8 md:grid-cols-3">
             {cards.map(({ product, variant }) => (
               <VariantCard
                 key={variant.id}

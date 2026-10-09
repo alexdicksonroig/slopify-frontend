@@ -7,12 +7,11 @@ export default function Footer() {
 
   return (
     <footer className="bg-white mt-auto border-t border-gray-200">
-      {/* Columns match the variants grid: filter + first item column, then one per item column.
-          The column gap must equal the variants grid's column gap for the edges to line up. */}
-      <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[50%_1fr_1fr] lg:gap-x-2">
+      {/* Padding and columns match the page: main's p-3 (box-content keeps it outside the max width) and the 4-column card grid with gap-x-2 */}
+      <div className="mx-auto box-content max-w-page px-3 py-10 sm:py-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-x-2">
           {/* Contact */}
-          <div>
+          <div className="lg:col-span-2">
             <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
               {t("footer.contact")}
             </h3>
@@ -51,7 +50,7 @@ export default function Footer() {
       </div>
       <div className="border-t border-gray-200">
         {/* Empty first cell keeps the copyright centered with the select on the right */}
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-4 px-4 py-6 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:px-6">
+        <div className="mx-auto box-content flex max-w-page flex-col items-center gap-4 px-3 py-6 sm:grid sm:grid-cols-[1fr_auto_1fr]">
           <div className="hidden sm:block" />
           <p className="text-xs text-gray-600 text-center">
             {t("footer.rights", {

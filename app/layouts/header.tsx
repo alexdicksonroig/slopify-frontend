@@ -175,7 +175,7 @@ export default function Example() {
         </nav>
       </header>
       {/* Shared page padding: routes only set their own max width */}
-      <main className="flex min-h-[calc(100svh-5.5rem)] flex-1 flex-col px-3 py-6 sm:px-4 sm:py-8 lg:py-10">
+      <main className="flex min-h-[calc(100svh-5.5rem)] flex-1 flex-col p-3 lg:p-4">
         <Outlet />
       </main>
       <Footer />

@@ -107,7 +107,7 @@ export default function ProductPage() {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col">
+    <div className="mx-auto flex w-full max-w-page flex-1 flex-col">
       <Breadcrumb
         className="mb-3 sm:mb-4"
         items={[
@@ -227,7 +227,7 @@ export default function ProductPage() {
 
       <Recommendations
         cards={recommendations}
-        className="mt-auto pt-12 lg:pt-20"
+        className="mt-auto pt-16 lg:pt-20"
       />
     </div>
   );
