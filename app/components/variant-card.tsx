@@ -40,9 +40,8 @@ export function VariantCard({ product, variant, className }: VariantCardProps) {
         </Link>
         <VariantCartAction product={product} variant={variant} />
       </div>
-      <Link
-        className="mt-3 block"
-        to={`/product/${product.id}/${variant.id}`}
+      <div
+        className="block p-page-gap"
       >
         <h3 className="truncate text-base font-medium text-black sm:text-lg">
           {product.name}
@@ -57,7 +56,7 @@ export function VariantCard({ product, variant, className }: VariantCardProps) {
             ? formatMoney(unitAmount, currency)
             : t("product.unavailable")}
         </p>
-      </Link>
+      </div>
     </article>
   );
 }

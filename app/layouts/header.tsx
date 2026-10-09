@@ -86,7 +86,7 @@ export default function Example() {
             "rounded-t-xl": showAnnouncement,
           })}
         >
-          <div className="flex h-14 items-center px-4 sm:px-6">
+          <div className="flex h-14 items-center px-page-gap">
             <div className="flex items-center">
               {/* Logo */}
               <Link
@@ -175,7 +175,7 @@ export default function Example() {
         </nav>
       </header>
       {/* Shared page padding: routes only set their own max width */}
-      <main className="flex min-h-[calc(100svh-5.5rem)] flex-1 flex-col p-3 lg:p-4">
+      <main className="flex min-h-[calc(100svh-5.5rem)] flex-1 flex-col">
         <Outlet />
       </main>
       <Footer />

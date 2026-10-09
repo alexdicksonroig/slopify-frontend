@@ -17,6 +17,7 @@ body {
 
 @theme {
   --container-page: 1140px;
+  --spacing-page-gap: 0.6rem;
   --font-sans:
     ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";

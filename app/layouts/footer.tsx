@@ -50,7 +50,7 @@ export default function Footer() {
       </div>
       <div className="border-t border-gray-200">
         {/* Empty first cell keeps the copyright centered with the select on the right */}
-        <div className="mx-auto box-content flex max-w-page flex-col items-center gap-4 px-3 py-6 sm:grid sm:grid-cols-[1fr_auto_1fr]">
+        <div className="mx-auto box-content flex max-w-page flex-col items-center gap-4 px-page-gap py-6 sm:grid sm:grid-cols-[1fr_auto_1fr]">
           <div className="hidden sm:block" />
           <p className="text-xs text-gray-600 text-center">
             {t("footer.rights", {

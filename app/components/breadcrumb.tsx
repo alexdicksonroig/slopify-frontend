@@ -19,7 +19,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
   return (
     <nav
       aria-label={t("breadcrumb.label")}
-      className={cn("min-w-0", className)}
+      className={cn("min-w-0 py-page-gap", className)}
     >
       <ol className="flex min-w-0 items-center gap-1.5 text-sm text-neutral-500">
         {items.map((item, index) => {

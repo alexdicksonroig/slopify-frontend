@@ -201,7 +201,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
       </Popover>
       <div>
         <div className="contents">
-          <div className="flex min-h-10 items-center justify-between gap-3 bg-white lg:hidden">
+          <div className="px-page-gap flex min-h-10 items-center justify-between gap-3 bg-white lg:hidden">
             <p className="text-xs text-gray-600 lg:hidden">
               {t("filters.result-count", { count: resultCount })}
             </p>
