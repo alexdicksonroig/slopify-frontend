@@ -4,7 +4,7 @@ interface ProductDetailsProps {
 
 export function ProductDetails({ description }: ProductDetailsProps) {
   return (
-    <p className="max-w-prose text-base leading-6 text-pretty text-neutral-600 lg:leading-7">
+    <p className="text-base leading-6 text-pretty text-neutral-600 lg:leading-7">
       {description}
     </p>
   );
