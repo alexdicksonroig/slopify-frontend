@@ -34,12 +34,7 @@ export default function Example() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header
-        className={cn(
-          "relative",
-          showAnnouncement ? "bg-gray-100" : "bg-white",
-        )}
-      >
+      <header className="relative bg-white">
         <title>{storeConfig.name}</title>
         {showAnnouncement && (
           <div className="relative flex min-h-[42px] items-center overflow-hidden px-12 text-sm text-gray-600">
@@ -83,7 +78,7 @@ export default function Example() {
         <nav
           aria-label={t("header.top")}
           className={cn("border-b border-gray-200 bg-white", {
-            "rounded-t-xl": showAnnouncement,
+            "rounded-t-2xl": showAnnouncement,
           })}
         >
           <div className="flex h-14 items-center px-page-gap">
