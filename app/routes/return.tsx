@@ -93,7 +93,7 @@ export default function Return() {
           <LoadingCircle
             size="lg"
             label={t("return.checking")}
-            className="mx-auto text-indigo-600"
+            className="mx-auto text-gray-900"
           />
           <p className="mt-5 text-base text-gray-600">{t("return.checking")}</p>
         </div>
@@ -127,10 +127,10 @@ export default function Return() {
   return (
     <div className="mx-auto w-full max-w-5xl">
       <header className="max-w-3xl">
-        <div className="flex size-12 items-center justify-center rounded-full bg-indigo-50 text-indigo-600">
+        <div className="flex size-12 items-center justify-center rounded-full bg-gray-100 text-gray-900">
           <Icon icon="check" size="xl" />
         </div>
-        <p className="mt-6 text-base font-semibold text-indigo-600">
+        <p className="mt-6 text-base font-semibold text-gray-900">
           {t("return.thank-you")}
         </p>
         <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">

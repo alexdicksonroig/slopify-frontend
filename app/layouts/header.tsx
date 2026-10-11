@@ -37,12 +37,12 @@ export default function Example() {
       <header
         className={cn(
           "relative",
-          showAnnouncement ? "bg-indigo-600" : "bg-white",
+          showAnnouncement ? "bg-gray-50" : "bg-white",
         )}
       >
         <title>{storeConfig.name}</title>
         {showAnnouncement && (
-          <div className="relative flex min-h-[42px] items-center overflow-hidden px-12 text-sm font-medium text-white">
+          <div className="relative flex min-h-[42px] items-center overflow-hidden px-12 text-sm font-medium text-gray-900">
             <div
               className={cn(
                 "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
@@ -73,7 +73,7 @@ export default function Example() {
               onClick={() => setShowAnnouncement(false)}
               variant="ghost"
               size="icon"
-              className="absolute right-1 text-white"
+              className="absolute right-1 text-gray-900"
             >
               <Icon icon="x" size="sm" />
               <span className="sr-only">{t("header.close-announcement")}</span>
@@ -158,7 +158,7 @@ export default function Example() {
                 >
                   <Icon icon="shopping-bag" size="lg" />
                   {cartItemCount > 0 && (
-                    <Badge className="absolute -bottom-0.5 -left-0.5 bg-indigo-600">
+                    <Badge className="absolute -bottom-0.5 -left-0.5 bg-red-600">
                       {cartItemCount}
                     </Badge>
                   )}
