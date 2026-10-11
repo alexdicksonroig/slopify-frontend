@@ -82,7 +82,7 @@ export default function Variants() {
   return (
     <div className="mx-auto flex w-full max-w-page flex-col gap-3 lg:gap-5 lg:pt-page-gap lg:px-page-gap">
       <Banner />
-      <div className="px-page-gap">
+      <div className="px-page-gap lg:px-0">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-4xl">
           {query
             ? t("filters.search-results", { query })
