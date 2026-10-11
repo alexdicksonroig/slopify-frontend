@@ -37,12 +37,12 @@ export default function Example() {
       <header
         className={cn(
           "relative",
-          showAnnouncement ? "bg-gray-50" : "bg-white",
+          showAnnouncement ? "bg-gray-100" : "bg-white",
         )}
       >
         <title>{storeConfig.name}</title>
         {showAnnouncement && (
-          <div className="relative flex min-h-[42px] items-center overflow-hidden px-12 text-sm font-medium text-gray-900">
+          <div className="relative flex min-h-[42px] items-center overflow-hidden px-12 text-sm text-gray-600">
             <div
               className={cn(
                 "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
