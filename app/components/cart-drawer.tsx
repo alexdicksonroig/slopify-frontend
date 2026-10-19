@@ -31,7 +31,7 @@ export function CartDrawer({
         hiddenFrom={false}
         title={t("cart.shopping-cart")}
         closeLabel={t("cart.close")}
-        className="z-50 sm:max-w-xl"
+        className="z-50 max-w-[94%] sm:max-w-xl"
       >
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6">
           {!cart || cart.isEmpty ? (
