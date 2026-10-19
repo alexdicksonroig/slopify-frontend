@@ -1,12 +1,10 @@
-import { QuantitySelector } from "@app/components/quantity-selector";
-import { useLanguage, useTranslate } from "@app/i18n";
+import { useTranslate } from "@app/i18n";
 import { addProductToCartUseCase } from "@app/lib/cart/application/add-product-to-cart.use-case";
 import { useCart } from "@app/lib/context/cart.context";
-import { localize } from "@app/lib/localized-text";
 import type { Product } from "@app/lib/product";
 import type { Variant } from "@app/lib/variant";
-import { Button, Icon, Popover } from "@library";
-import { type FormEvent, useEffect, useRef, useState } from "react";
+import { Button, Icon } from "@library";
+import { useState } from "react";
 
 type VariantCartActionProps = {
   product: Product;
@@ -18,40 +16,14 @@ export function VariantCartAction({
   variant,
 }: VariantCartActionProps) {
   const t = useTranslate();
-  const { language } = useLanguage();
-  const { cart, setCart } = useCart();
-  const [isOpen, setIsOpen] = useState(false);
-  const { stock } = variant;
+  const { cart, setCart, openCart } = useCart();
   const [isAdding, setIsAdding] = useState(false);
-  const [quantity, setQuantity] = useState(1);
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const popupId = `variant-cart-popup-${variant.id}`;
+  const { unitAmount, currency, stock } = variant;
 
-  useEffect(() => {
-    if (!isOpen) return;
+  if (unitAmount === null || currency === null) return null;
 
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-        triggerRef.current?.focus();
-      }
-    };
-
-    document.addEventListener("keydown", closeOnEscape);
-    return () => document.removeEventListener("keydown", closeOnEscape);
-  }, [isOpen]);
-
-  const handleAddToCart = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const { unitAmount, currency } = variant;
-    if (
-      !cart ||
-      unitAmount === null ||
-      currency === null ||
-      quantity < 1 ||
-      quantity > stock
-    )
-      return;
+  const handleAddToCart = async () => {
+    if (!cart || stock < 1) return;
 
     setIsAdding(true);
     setCart(
@@ -64,96 +36,24 @@ export function VariantCartAction({
           currency,
           thumbnailUrl: variant.thumbnailUrl,
         },
-        quantity,
+        1,
       ),
     );
     setIsAdding(false);
-    setIsOpen(false);
-    triggerRef.current?.focus();
+    openCart();
   };
 
-  if (variant.unitAmount === null || variant.currency === null) return null;
-
   return (
-    <>
-      <Button
-        ref={triggerRef}
-        type="button"
-        variant="surface"
-        size="icon-sm"
-        aria-label={`${t("product.add-to-bag")}: ${product.name}`}
-        aria-haspopup="dialog"
-        aria-expanded={isOpen}
-        aria-controls={popupId}
-        disabled={!cart}
-        onClick={() => setIsOpen((open) => !open)}
-        className="absolute right-3 bottom-3 size-6 rounded-full bg-neutral-200 text-neutral-950 hover:bg-neutral-300 after:absolute after:-inset-2.5"
-      >
-        <Icon icon="plus" size="sm" />
-      </Button>
-
-      <Popover
-        open={isOpen}
-        onOpenChange={setIsOpen}
-        id={popupId}
-        role="dialog"
-        aria-label={`${t("product.add-to-bag")}: ${product.name}`}
-        placement="inside"
-        className="z-20"
-      >
-        <div className="flex min-w-0 items-center gap-2 pr-8">
-          <h4 className="truncate text-sm font-semibold text-neutral-950">
-            {product.name}
-          </h4>
-          <p
-            className={`shrink-0 text-xs ${stock > 0 ? "text-emerald-700" : "text-neutral-500"}`}
-            aria-live="polite"
-          >
-            {stock > 0
-              ? t("product.stock-count", { count: stock })
-              : t("product.out-of-stock")}
-          </p>
-        </div>
-        <dl className="mt-2 space-y-1 text-xs text-neutral-500 sm:mt-1 sm:space-y-0.5">
-          {variant.selections.map(({ option, value }) => (
-            <div key={option.id} className="flex min-w-0 gap-1">
-              <dt>{localize(option.label, language)}:</dt>
-              <dd className="truncate text-neutral-800">
-                {localize(value.label, language)}
-              </dd>
-            </div>
-          ))}
-        </dl>
-
-        <form
-          className="mt-4 flex flex-col gap-3 sm:mt-3 sm:flex-row sm:gap-2"
-          onSubmit={handleAddToCart}
-        >
-          <QuantitySelector
-            value={quantity}
-            min={0}
-            max={stock}
-            onChange={setQuantity}
-            className="w-full sm:w-28"
-          />
-          <Button
-            type="submit"
-            variant="success"
-            size="lg"
-            disabled={!cart || isAdding || quantity < 1 || quantity > stock}
-            className="w-full min-w-0 sm:flex-1"
-          >
-            {stock === 0 ? (
-              t("product.out-of-stock")
-            ) : (
-              <>
-                {t("product.add")}
-                <Icon icon="plus" size="sm" />
-              </>
-            )}
-          </Button>
-        </form>
-      </Popover>
-    </>
+    <Button
+      type="button"
+      variant="surface"
+      size="icon-sm"
+      aria-label={`${t("product.add-to-bag")}: ${product.name}`}
+      disabled={!cart || isAdding || stock < 1}
+      onClick={handleAddToCart}
+      className="absolute right-3 bottom-3 size-6 rounded-full bg-neutral-200 text-neutral-950 hover:bg-neutral-300 after:absolute after:-inset-2.5"
+    >
+      <Icon icon="plus" size="sm" />
+    </Button>
   );
 }

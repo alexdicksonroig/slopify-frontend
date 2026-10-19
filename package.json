@@ -10,7 +10,7 @@
     "lint-format": "biome check --write"
   },
   "dependencies": {
-    "@coreui": "workspace:*",
+    "@slopify/coreui": "workspace:*",
     "@react-router/node": "7.18.3",
     "@react-router/serve": "7.18.3",
     "@stripe/react-stripe-js": "^6.8.2",
