@@ -7,8 +7,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-white mt-auto border-t border-gray-200">
-      {/* Padding and columns match the page: main's p-3 (box-content keeps it outside the max width) and the 4-column card grid with gap-x-2 */}
-      <div className="mx-auto box-content max-w-page px-3 py-10 sm:py-12">
+      {/* Padding and columns match the page: px-page-gap (box-content keeps it outside the max width) and the 4-column card grid with gap-x-2 */}
+      <div className="mx-auto box-content max-w-page px-page-gap py-10 sm:py-12">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-x-2">
           {/* Contact */}
           <div className="lg:col-span-2">

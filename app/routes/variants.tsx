@@ -80,7 +80,7 @@ export default function Variants() {
   const { cards, options, query } = useLoaderData<typeof clientLoader>();
 
   return (
-    <div className="mx-auto flex w-full max-w-page flex-col gap-3 lg:gap-5 lg:pt-page-gap lg:px-page-gap">
+    <div className="mx-auto flex w-full max-w-page flex-col gap-3 lg:gap-5 lg:px-page-gap lg:pt-page-top">
       <Banner />
       <div className="px-page-gap lg:px-0">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-4xl">
@@ -94,7 +94,7 @@ export default function Variants() {
       </div>
       <Filters options={options} resultCount={cards.length}>
         {query && cards.length === 0 ? (
-          <p className="px-6 py-16 text-center text-sm text-gray-500">
+          <p className="px-page-gap py-16 text-center text-sm text-gray-500">
             {t("filters.no-results", { query })}
           </p>
         ) : (

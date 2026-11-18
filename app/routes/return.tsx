@@ -88,7 +88,7 @@ export default function Return() {
 
   if (status === "checking") {
     return (
-      <div className="flex flex-1 items-center justify-center">
+      <div className="flex flex-1 items-center justify-center p-page-gap">
         <div className="text-center">
           <LoadingCircle
             size="lg"
@@ -103,7 +103,7 @@ export default function Return() {
 
   if (status === "error") {
     return (
-      <div className="flex flex-1 items-center justify-center">
+      <div className="flex flex-1 items-center justify-center p-page-gap">
         <div className="max-w-lg text-center">
           <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-red-50 text-red-600">
             <Icon icon="x" size="xl" />
@@ -125,7 +125,7 @@ export default function Return() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-5xl">
+    <div className="mx-auto w-full max-w-5xl px-page-gap pt-page-top pb-page-gap">
       <header className="max-w-3xl">
         <div className="flex size-12 items-center justify-center rounded-full bg-gray-100 text-gray-900">
           <Icon icon="check" size="xl" />

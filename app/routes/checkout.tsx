@@ -9,7 +9,7 @@ export default function Checkout() {
   const { cart } = useCart();
 
   return (
-    <div className="mx-auto w-full max-w-xl lg:max-w-6xl">
+    <div className="mx-auto w-full max-w-xl px-page-gap pt-page-top pb-page-gap lg:max-w-6xl">
       <h1 className="mb-10 text-4xl font-bold tracking-tight text-gray-900">
         {t("cart.checkout")}
       </h1>

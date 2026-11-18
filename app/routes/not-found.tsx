@@ -7,7 +7,7 @@ export default function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col items-center justify-center text-center">
+    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col items-center justify-center p-page-gap text-center">
       <p className="text-7xl font-bold tracking-[-0.05em] text-neutral-950 lg:text-8xl">
         404
       </p>

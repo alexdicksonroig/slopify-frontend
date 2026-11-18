@@ -79,7 +79,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="container mx-auto px-4 py-16 sm:px-6">
+    <main className="container mx-auto px-page-gap py-16">
       <h1 className="text-3xl sm:text-4xl">{message}</h1>
       <p className="mt-3 text-base">{details}</p>
       {stack && (

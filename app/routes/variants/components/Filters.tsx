@@ -280,7 +280,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
           {/* Main content */}
           <div className="lg:col-span-3">
             {activeFilters.length > 0 && (
-              <div className="flex flex-wrap items-center gap-2 pb-4">
+              <div className="flex flex-wrap items-center gap-2 px-page-gap pb-4 lg:px-0">
                 {activeFilters.map(({ option, value }) => (
                   <Chip
                     key={option.id}

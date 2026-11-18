@@ -73,7 +73,7 @@ export default function Example() {
               onClick={() => setShowAnnouncement(false)}
               variant="ghost"
               size="icon"
-              className="absolute right-1 text-gray-900"
+              className="absolute right-page-gap text-gray-900"
             >
               <Icon icon="x" size="sm" />
               <span className="sr-only">{t("header.close-announcement")}</span>
@@ -168,13 +168,13 @@ export default function Example() {
             </div>
           </div>
           {isVariantsPage && searchOpen && (
-            <div id={searchPanelId} className="px-4 py-3 sm:px-6 sm:py-4">
+            <div id={searchPanelId} className="px-page-gap py-3 sm:py-4">
               <SearchForm onClose={() => setSearchOpen(false)} />
             </div>
           )}
         </nav>
       </header>
-      {/* Shared page padding: routes only set their own max width */}
+      {/* No shared padding: each route applies px-page-gap itself so banners and grids can go full-bleed */}
       <main className="flex min-h-[calc(100svh-5.5rem)] flex-1 flex-col">
         <Outlet />
       </main>
