@@ -1,3 +1,5 @@
+import { OrderTotals } from "@app/components/order-totals";
+import { PageTitle } from "@app/components/page-title";
 import { useTranslate } from "@app/i18n";
 import * as Api from "@app/lib/api";
 import { clearCartUseCase } from "@app/lib/cart/application/clear-cart.use-case";
@@ -93,9 +95,11 @@ export default function Return() {
           <LoadingCircle
             size="lg"
             label={t("return.checking")}
-            className="mx-auto text-gray-900"
+            className="mx-auto text-neutral-950"
           />
-          <p className="mt-5 text-base text-gray-600">{t("return.checking")}</p>
+          <p className="mt-5 text-base text-neutral-600">
+            {t("return.checking")}
+          </p>
         </div>
       </div>
     );
@@ -108,10 +112,8 @@ export default function Return() {
           <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-red-50 text-red-600">
             <Icon icon="x" size="xl" />
           </div>
-          <h1 className="mt-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {t("return.error-title")}
-          </h1>
-          <p className="mt-3 text-base text-gray-600">{t("return.error")}</p>
+          <PageTitle className="mt-6">{t("return.error-title")}</PageTitle>
+          <p className="mt-3 text-base text-neutral-600">{t("return.error")}</p>
           <Button
             onClick={() => navigate("/checkout")}
             size="xl"
@@ -125,37 +127,35 @@ export default function Return() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-page-gap pt-page-top pb-page-gap">
+    <div className="mx-auto w-full max-w-5xl px-page-gap pt-page-top pb-page-bottom">
       <header className="max-w-3xl">
-        <div className="flex size-12 items-center justify-center rounded-full bg-gray-100 text-gray-900">
+        <div className="flex size-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-950">
           <Icon icon="check" size="xl" />
         </div>
-        <p className="mt-6 text-base font-semibold text-gray-900">
+        <p className="mt-6 text-base font-semibold text-neutral-950">
           {t("return.thank-you")}
         </p>
-        <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-          {t("return.title")}
-        </h1>
-        <p className="mt-5 text-lg leading-8 text-gray-600">
+        <PageTitle className="mt-2">{t("return.title")}</PageTitle>
+        <p className="mt-5 text-lg leading-8 text-neutral-600">
           {t("return.success")}
         </p>
         {sessionId ? (
-          <p className="mt-8 text-sm text-gray-500">
+          <p className="mt-8 text-sm text-neutral-500">
             {t("return.reference")}: #{sessionId.slice(-12).toUpperCase()}
           </p>
         ) : null}
       </header>
 
       {order && order.items.length > 0 ? (
-        <section className="mt-14 border-t border-gray-200 pt-10">
-          <h2 className="text-2xl font-semibold tracking-tight text-gray-900">
+        <section className="mt-14 border-t border-neutral-200 pt-10">
+          <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">
             {t("cart.order-summary")}
           </h2>
 
-          <ul className="mt-6 divide-y divide-gray-200 border-y border-gray-200">
+          <ul className="mt-6 divide-y divide-neutral-200 border-y border-neutral-200">
             {order.items.map((item) => (
               <li key={item.variantId} className="flex gap-5 py-6 sm:gap-8">
-                <div className="size-24 shrink-0 overflow-hidden rounded-md bg-gray-50 sm:size-32">
+                <div className="size-24 shrink-0 overflow-hidden rounded-md bg-neutral-50 sm:size-32">
                   {item.thumbnailUrl ? (
                     <img
                       src={item.thumbnailUrl}
@@ -166,14 +166,14 @@ export default function Return() {
                 </div>
                 <div className="flex min-w-0 flex-1 items-start justify-between gap-5 py-1">
                   <div>
-                    <h3 className="text-base font-semibold text-gray-900">
+                    <h3 className="text-base font-semibold text-neutral-950">
                       {item.name}
                     </h3>
-                    <p className="mt-2 text-sm text-gray-500">
+                    <p className="mt-2 text-sm text-neutral-500">
                       {t("product.quantity")} {item.quantity}
                     </p>
                   </div>
-                  <p className="shrink-0 text-base font-medium text-gray-900">
+                  <p className="shrink-0 text-base font-medium text-neutral-950">
                     {formatMoney(
                       item.unitPriceInCents * item.quantity,
                       item.currency,
@@ -184,28 +184,16 @@ export default function Return() {
             ))}
           </ul>
 
-          <dl className="ml-auto mt-8 max-w-md space-y-4 text-sm">
-            <div className="flex justify-between text-gray-600">
-              <dt>{t("cart.subtotal")}</dt>
-              <dd className="font-medium text-gray-900">
-                {formatMoney(order.subtotalInCents, order.currency)}
-              </dd>
-            </div>
-            <div className="flex justify-between text-gray-600">
-              <dt>{t("cart.shipping-estimate")}</dt>
-              <dd className="font-medium text-gray-900">
-                {formatMoney(order.shippingInCents, order.currency)}
-              </dd>
-            </div>
-            <div className="flex justify-between border-t border-gray-200 pt-4 text-lg font-semibold text-gray-900">
-              <dt>{t("cart.order-total")}</dt>
-              <dd>{formatMoney(order.totalInCents, order.currency)}</dd>
-            </div>
-          </dl>
+          <OrderTotals
+            className="ml-auto mt-8 max-w-md"
+            subtotal={formatMoney(order.subtotalInCents, order.currency)}
+            shipping={formatMoney(order.shippingInCents, order.currency)}
+            total={formatMoney(order.totalInCents, order.currency)}
+          />
         </section>
       ) : null}
 
-      <div className="mt-12 border-t border-gray-200 pt-8">
+      <div className="mt-12 border-t border-neutral-200 pt-8">
         <Button onClick={() => navigate("/")} size="xl">
           {t("return.continue")}
         </Button>

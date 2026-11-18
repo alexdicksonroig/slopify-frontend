@@ -1,3 +1,4 @@
+import { OrderTotals } from "@app/components/order-totals";
 import { useLanguage, useTranslate } from "@app/i18n";
 import type { Cart } from "@app/lib/cart/domain/cart.entity";
 import { formatMoney } from "@app/lib/currency";
@@ -25,7 +26,7 @@ import {
 } from "react";
 
 const sectionHeadingClassName =
-  "mb-6 text-xl font-semibold tracking-tight text-gray-900 sm:text-2xl";
+  "mb-6 text-xl font-semibold tracking-tight text-neutral-950 sm:text-2xl";
 
 const validateEmail = async (
   email: string,
@@ -144,19 +145,19 @@ const PaymentDetails = ({
         />
       </section>
 
-      <section className="border-t border-gray-200 py-10">
+      <section className="border-t border-neutral-200 py-10">
         <h2 className={sectionHeadingClassName}>
           {t("checkout.shipping-address")}
         </h2>
         <ShippingAddressElement className="min-h-60" />
       </section>
 
-      <section className="border-t border-gray-200 py-10">
+      <section className="border-t border-neutral-200 py-10">
         <h2 className={sectionHeadingClassName}>{t("checkout.payment")}</h2>
         <PaymentElement className="min-h-72" />
       </section>
 
-      <div className="border-t border-gray-200 pt-8">
+      <div className="border-t border-neutral-200 pt-8">
         {message && (
           <p
             role="alert"
@@ -188,7 +189,7 @@ const CheckoutSkeleton = () => {
         <Skeleton className="mt-2 h-12 w-full" />
       </section>
 
-      <section className="border-t border-gray-200 py-10">
+      <section className="border-t border-neutral-200 py-10">
         <Skeleton className="h-7 w-56 sm:h-8" />
         <div className="mt-6 grid grid-cols-2 gap-3">
           <Skeleton className="col-span-2 h-12" />
@@ -199,7 +200,7 @@ const CheckoutSkeleton = () => {
         </div>
       </section>
 
-      <section className="border-t border-gray-200 py-10">
+      <section className="border-t border-neutral-200 py-10">
         <Skeleton className="h-7 w-32 sm:h-8" />
         <Skeleton className="mt-6 h-12 w-full" />
         <div className="mt-3 grid grid-cols-2 gap-3">
@@ -208,7 +209,7 @@ const CheckoutSkeleton = () => {
         </div>
       </section>
 
-      <div className="border-t border-gray-200 pt-8">
+      <div className="border-t border-neutral-200 pt-8">
         <Skeleton className="h-14 w-full" />
       </div>
     </output>
@@ -242,21 +243,21 @@ const OrderSummary = ({ cart }: { cart: Cart }) => {
       : formatMoney(cartAmount, cart.currency);
 
   return (
-    <section className="border border-gray-200 bg-gray-50 p-6">
-      <h2 className="text-lg font-semibold tracking-tight text-gray-900">
+    <section className="border border-neutral-200 bg-neutral-50 p-6">
+      <h2 className="text-lg font-semibold tracking-tight text-neutral-950">
         {t("cart.order-summary")}
       </h2>
-      <ul className="mt-4 divide-y divide-gray-200 border-y border-gray-200">
+      <ul className="mt-4 divide-y divide-neutral-200 border-y border-neutral-200">
         {cart.items.map((item) => (
           <li
             key={item.variantId}
             className="flex justify-between gap-4 py-4 text-sm"
           >
-            <span className="min-w-0 text-gray-900">
+            <span className="min-w-0 text-neutral-950">
               {item.name}
-              <span className="ml-2 text-gray-500">× {item.quantity}</span>
+              <span className="ml-2 text-neutral-500">× {item.quantity}</span>
             </span>
-            <span className="shrink-0 font-medium text-gray-900">
+            <span className="shrink-0 font-medium text-neutral-950">
               {formatMoney(
                 item.unitPriceInCents * item.quantity,
                 item.currency,
@@ -265,35 +266,21 @@ const OrderSummary = ({ cart }: { cart: Cart }) => {
           </li>
         ))}
       </ul>
-      <dl className="mt-4 space-y-3 text-sm">
-        <div className="flex justify-between gap-4">
-          <dt className="text-gray-600">{t("cart.subtotal")}</dt>
-          <dd className="text-gray-900">
-            {money(
-              checkout?.total.subtotal.minorUnitsAmount,
-              cart.cartTotalInCents,
-            )}
-          </dd>
-        </div>
-        <div className="flex justify-between gap-4">
-          <dt className="text-gray-600">{t("cart.shipping-estimate")}</dt>
-          <dd className="text-gray-900">
-            {money(
-              checkout?.total.shippingRate.minorUnitsAmount,
-              cart.shippingPriceInCents,
-            )}
-          </dd>
-        </div>
-        <div className="flex justify-between gap-4 border-t border-gray-200 pt-3 text-base font-semibold text-gray-900">
-          <dt>{t("cart.order-total")}</dt>
-          <dd>
-            {money(
-              checkout?.total.total.minorUnitsAmount,
-              cart.orderTotalInCents,
-            )}
-          </dd>
-        </div>
-      </dl>
+      <OrderTotals
+        className="mt-4"
+        subtotal={money(
+          checkout?.total.subtotal.minorUnitsAmount,
+          cart.cartTotalInCents,
+        )}
+        shipping={money(
+          checkout?.total.shippingRate.minorUnitsAmount,
+          cart.shippingPriceInCents,
+        )}
+        total={money(
+          checkout?.total.total.minorUnitsAmount,
+          cart.orderTotalInCents,
+        )}
+      />
     </section>
   );
 };
@@ -309,7 +296,9 @@ export function CheckoutPayment({ cart }: { cart: Cart }) {
   );
 
   if (!stripe) {
-    return <p className="text-sm text-gray-500">{t("checkout.unavailable")}</p>;
+    return (
+      <p className="text-sm text-neutral-500">{t("checkout.unavailable")}</p>
+    );
   }
 
   return (
@@ -324,8 +313,8 @@ export function CheckoutPayment({ cart }: { cart: Cart }) {
             disableAnimations: true,
             variables: {
               borderRadius: "8px",
-              colorPrimary: "#111827",
-              colorText: "#111827",
+              colorPrimary: "#0a0a0a",
+              colorText: "#0a0a0a",
               colorDanger: "#dc2626",
               fontFamily:
                 "ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji",

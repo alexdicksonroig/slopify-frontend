@@ -169,7 +169,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
         className="z-50 max-h-[calc(100svh-1rem)] overflow-y-auto lg:hidden"
       >
         <div>
-          <h2 className="mb-4 text-lg font-medium text-gray-900">
+          <h2 className="mb-4 text-lg font-medium text-neutral-950">
             {t("filters.title")}
           </h2>
           <FilterContent
@@ -202,7 +202,7 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
       <div>
         <div className="contents">
           <div className="px-page-gap flex min-h-10 items-center justify-between gap-3 bg-white lg:hidden">
-            <p className="text-xs text-gray-600 lg:hidden">
+            <p className="text-xs text-neutral-600 lg:hidden">
               {t("filters.result-count", { count: resultCount })}
             </p>
             <div className="ml-auto flex items-center gap-1 lg:block lg:min-w-56">
@@ -214,13 +214,13 @@ export function Filters({ children, options, resultCount }: FiltersProps) {
                 showSelectedValue={false}
                 variant="ghost"
                 size="sm"
-                className="text-gray-600"
+                className="text-neutral-600"
                 aria-label={t("filters.sort")}
               />
               <Button
                 variant="ghost"
                 size="sm"
-                className="pl-1.5 text-gray-600 lg:hidden"
+                className="pl-1.5 text-neutral-600 lg:hidden"
                 aria-haspopup="dialog"
                 aria-expanded={filtersOpen}
                 onClick={() => setFiltersOpen(true)}

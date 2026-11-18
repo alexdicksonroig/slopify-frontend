@@ -37,12 +37,12 @@ export default function Example() {
       <header
         className={cn(
           "relative",
-          showAnnouncement ? "bg-gray-100" : "bg-white",
+          showAnnouncement ? "bg-neutral-100" : "bg-white",
         )}
       >
         <title>{storeConfig.name}</title>
         {showAnnouncement && (
-          <div className="relative flex min-h-[42px] items-center overflow-hidden px-12 text-sm text-gray-600">
+          <div className="relative flex min-h-[42px] items-center overflow-hidden px-12 text-sm text-neutral-600">
             <div
               className={cn(
                 "absolute inset-0 flex items-center justify-center px-12 text-center transition-all duration-100 ease-linear visible opacity-100",
@@ -73,7 +73,7 @@ export default function Example() {
               onClick={() => setShowAnnouncement(false)}
               variant="ghost"
               size="icon"
-              className="absolute right-page-gap text-gray-900"
+              className="absolute right-page-gap text-neutral-950"
             >
               <Icon icon="x" size="sm" />
               <span className="sr-only">{t("header.close-announcement")}</span>
@@ -82,7 +82,7 @@ export default function Example() {
         )}
         <nav
           aria-label={t("header.top")}
-          className={cn("border-b border-gray-200 bg-white", {
+          className={cn("border-b border-neutral-200 bg-white", {
             "rounded-t-xl": showAnnouncement,
           })}
         >
@@ -118,13 +118,13 @@ export default function Example() {
               >
                 <a
                   href="/"
-                  className="text-sm lg:text-lg font-medium text-gray-700 hover:text-gray-800"
+                  className="text-sm lg:text-lg font-medium text-neutral-700 hover:text-neutral-800"
                 >
                   Create account
                 </a>
                 <a
                   href="/"
-                  className="text-sm lg:text-lg font-medium text-gray-700 hover:text-gray-800 flex items-center gap-1"
+                  className="text-sm lg:text-lg font-medium text-neutral-700 hover:text-neutral-800 flex items-center gap-1"
                 >
                   Sign in
                   <Icon icon="arrow-right" size="sm" />
@@ -134,7 +134,7 @@ export default function Example() {
               <div className="hidden lg:ml-8 lg:flex">
                 <a
                   href="/"
-                  className="flex items-center text-gray-700 hover:text-gray-800"
+                  className="flex items-center text-neutral-700 hover:text-neutral-800"
                 >
                   <img
                     alt=""
@@ -185,7 +185,10 @@ export default function Example() {
           aria-label={t("app.loading")}
           className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center"
         >
-          <LoadingCircle size="lg" className="text-gray-900 dark:text-white" />
+          <LoadingCircle
+            size="lg"
+            className="text-neutral-950 dark:text-white"
+          />
         </output>
       )}
     </div>

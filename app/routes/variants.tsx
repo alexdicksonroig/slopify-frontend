@@ -1,3 +1,4 @@
+import { PageTitle } from "@app/components/page-title";
 import { VariantCard } from "@app/components/variant-card";
 import { useTranslate } from "@app/i18n";
 // import { Button } from "@library";
@@ -63,7 +64,7 @@ const Banner = () => {
   // const t = useTranslate();
 
   return (
-    <div className="h-35 lg:rounded sm:h-60 p-3 sm:p-4 bg-linear-to-br from-gray-50 to-gray-200 flex items-end justify-end">
+    <div className="h-35 lg:rounded sm:h-60 p-3 sm:p-4 bg-linear-to-br from-neutral-50 to-neutral-200 flex items-end justify-end">
       {/* <Button
         className="rounded-[9999px] bg-white font-normal"
         variant="secondary"
@@ -80,25 +81,25 @@ export default function Variants() {
   const { cards, options, query } = useLoaderData<typeof clientLoader>();
 
   return (
-    <div className="mx-auto flex w-full max-w-page flex-col gap-3 lg:gap-5 lg:px-page-gap lg:pt-page-top">
+    <div className="mx-auto flex w-full max-w-page flex-col gap-3 lg:gap-5 pb-page-bottom lg:px-page-gap lg:pt-page-top">
       <Banner />
       <div className="px-page-gap lg:px-0">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-4xl">
+        <PageTitle>
           {query
             ? t("filters.search-results", { query })
             : t("filters.new-arrivals")}
-        </h1>
-        <p className="mt-1.5 text-sm text-gray-500 sm:text-base">
+        </PageTitle>
+        <p className="mt-1.5 text-sm text-neutral-500 sm:text-base">
           {t("filters.subtitle")}
         </p>
       </div>
       <Filters options={options} resultCount={cards.length}>
         {query && cards.length === 0 ? (
-          <p className="px-page-gap py-16 text-center text-sm text-gray-500">
+          <p className="px-page-gap py-16 text-center text-sm text-neutral-500">
             {t("filters.no-results", { query })}
           </p>
         ) : (
-          <div className="grid grid-cols-2 gap-1 gap-y-0 sm:gap-2 sm:gap-y-0 md:grid-cols-3 mb-9">
+          <div className="grid grid-cols-2 gap-1 gap-y-0 sm:gap-2 sm:gap-y-0 md:grid-cols-3">
             {cards.map(({ product, variant }) => (
               <VariantCard
                 key={variant.id}

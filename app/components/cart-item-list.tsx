@@ -38,7 +38,7 @@ export function CartItemList({
   return (
     <ul
       className={cn(
-        "mt-8 divide-y divide-gray-200 border-y border-gray-200",
+        "mt-8 divide-y divide-neutral-200 border-y border-neutral-200",
         className,
       )}
     >
@@ -61,17 +61,17 @@ export function CartItemList({
                   className="size-full object-cover p-2"
                 />
               ) : (
-                <span className="flex size-full items-center justify-center px-3 text-center text-xs text-gray-400">
+                <span className="flex size-full items-center justify-center px-3 text-center text-xs text-neutral-400">
                   {t("product.no-thumbnail")}
                 </span>
               )}
             </Link>
 
             <div className="relative min-w-0 pr-20">
-              <h2 className="text-sm font-medium leading-snug text-gray-950 sm:text-base">
+              <h2 className="text-sm font-medium leading-snug text-neutral-950 sm:text-base">
                 <Link to={productUrl}>{item.name}</Link>
               </h2>
-              <p className="mt-2 text-base font-medium text-gray-950">
+              <p className="mt-2 text-base font-medium text-neutral-950">
                 {formatMoney(item.unitPriceInCents, item.currency)}
               </p>
 
@@ -95,7 +95,7 @@ export function CartItemList({
                   onChange={(quantity) => changeQuantity(item, quantity)}
                 />
 
-                <p className="mt-4 text-sm text-gray-950">
+                <p className="mt-4 text-sm text-neutral-950">
                   {t("cart.subtotal")}:{" "}
                   <strong>
                     {formatMoney(

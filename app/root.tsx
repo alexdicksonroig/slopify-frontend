@@ -1,5 +1,6 @@
 import { AgeVerificationDialog } from "@app/components/age-verification-dialog";
 import { CookieBanner } from "@app/components/cookie-banner";
+import { PageTitle } from "@app/components/page-title";
 import { storeConfig } from "@app/config/store";
 import { LanguageProvider, useTranslate } from "@app/i18n";
 import { CartProvider } from "@app/lib/context/cart.context";
@@ -46,9 +47,9 @@ export function HydrateFallback() {
   return (
     <output
       aria-label={t("app.loading")}
-      className="flex min-h-screen items-center justify-center bg-white dark:bg-gray-950"
+      className="flex min-h-screen items-center justify-center bg-white dark:bg-neutral-950"
     >
-      <LoadingCircle size="lg" className="text-gray-900 dark:text-white" />
+      <LoadingCircle size="lg" className="text-neutral-950 dark:text-white" />
     </output>
   );
 }
@@ -80,7 +81,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   return (
     <main className="container mx-auto px-page-gap py-16">
-      <h1 className="text-3xl sm:text-4xl">{message}</h1>
+      <PageTitle>{message}</PageTitle>
       <p className="mt-3 text-base">{details}</p>
       {stack && (
         <pre className="mt-8 w-full overflow-x-auto p-4 text-xs">

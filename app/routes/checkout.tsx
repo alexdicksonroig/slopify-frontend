@@ -1,4 +1,5 @@
 import { CheckoutPayment } from "@app/components/checkout-payment";
+import { PageTitle } from "@app/components/page-title";
 import { useTranslate } from "@app/i18n";
 import { useCart } from "@app/lib/context/cart.context";
 import { buttonVariants } from "@library";
@@ -9,15 +10,13 @@ export default function Checkout() {
   const { cart } = useCart();
 
   return (
-    <div className="mx-auto w-full max-w-xl px-page-gap pt-page-top pb-page-gap lg:max-w-6xl">
-      <h1 className="mb-10 text-4xl font-bold tracking-tight text-gray-900">
-        {t("cart.checkout")}
-      </h1>
+    <div className="mx-auto w-full max-w-xl px-page-gap pt-page-top pb-page-bottom lg:max-w-6xl">
+      <PageTitle className="mb-10">{t("cart.checkout")}</PageTitle>
       {!cart ? null : !cart.isEmpty ? (
         <CheckoutPayment cart={cart} />
       ) : (
         <>
-          <p className="text-base text-gray-500">{t("cart.empty")}</p>
+          <p className="text-base text-neutral-500">{t("cart.empty")}</p>
           <Link
             to="/"
             className={buttonVariants({ variant: "link", className: "mt-6" })}

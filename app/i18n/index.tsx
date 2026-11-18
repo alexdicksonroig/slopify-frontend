@@ -94,8 +94,8 @@ export function LanguageProvider({ children }: PropsWithChildren) {
 
   if (!value) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-white dark:bg-gray-950">
-        <LoadingCircle size="lg" className="text-gray-900 dark:text-white" />
+      <div className="flex min-h-screen items-center justify-center bg-white dark:bg-neutral-950">
+        <LoadingCircle size="lg" className="text-neutral-950 dark:text-white" />
       </div>
     );
   }

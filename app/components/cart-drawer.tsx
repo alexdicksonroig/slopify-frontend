@@ -1,3 +1,4 @@
+import { OrderTotals } from "@app/components/order-totals";
 import { useTranslate } from "@app/i18n";
 import { useCart } from "@app/lib/context/cart.context";
 import { formatMoney } from "@app/lib/currency";
@@ -35,7 +36,7 @@ export function CartDrawer({
       >
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6">
           {!cart || cart.isEmpty ? (
-            <p className="flex h-full items-center justify-center gap-2 py-8 text-sm text-gray-500">
+            <p className="flex h-full items-center justify-center gap-2 py-8 text-sm text-neutral-500">
               <Icon icon="wine" size="md" />
               {t("cart.empty")}
             </p>
@@ -49,21 +50,12 @@ export function CartDrawer({
           )}
         </div>
         {cart && !cart.isEmpty && (
-          <div className="shrink-0 border-t border-gray-200 bg-gray-50 p-6">
-            <dl className="space-y-3 text-sm">
-              <div className="flex justify-between gap-4">
-                <dt>{t("cart.subtotal")}</dt>
-                <dd>{formatMoney(cart.cartTotalInCents, cart.currency)}</dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt>{t("cart.shipping-estimate")}</dt>
-                <dd>{formatMoney(cart.shippingPriceInCents, cart.currency)}</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-t border-gray-200 pt-3 text-lg font-semibold">
-                <dt>{t("cart.order-total")}</dt>
-                <dd>{formatMoney(cart.orderTotalInCents, cart.currency)}</dd>
-              </div>
-            </dl>
+          <div className="shrink-0 border-t border-neutral-200 bg-neutral-50 p-6">
+            <OrderTotals
+              subtotal={formatMoney(cart.cartTotalInCents, cart.currency)}
+              shipping={formatMoney(cart.shippingPriceInCents, cart.currency)}
+              total={formatMoney(cart.orderTotalInCents, cart.currency)}
+            />
             <Link
               to="/checkout"
               prefetch="intent"

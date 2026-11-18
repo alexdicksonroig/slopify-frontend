@@ -107,7 +107,7 @@ export default function ProductPage() {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-page flex-1 flex-col px-page-gap pt-page-top">
+    <div className="mx-auto flex w-full max-w-page flex-1 flex-col px-page-gap pt-page-top pb-page-bottom">
       <Breadcrumb
         items={[
           { label: t("breadcrumb.home"), to: "/" },

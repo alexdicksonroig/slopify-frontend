@@ -6,23 +6,23 @@ export default function Footer() {
   const t = useTranslate();
 
   return (
-    <footer className="bg-white mt-auto border-t border-gray-200">
+    <footer className="bg-white mt-auto border-t border-neutral-200">
       {/* Padding and columns match the page: px-page-gap (box-content keeps it outside the max width) and the 4-column card grid with gap-x-2 */}
       <div className="mx-auto box-content max-w-page px-page-gap py-10 sm:py-12">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-x-2">
           {/* Contact */}
           <div className="lg:col-span-2">
-            <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
+            <h3 className="text-xs font-semibold text-neutral-950 uppercase tracking-wider mb-3">
               {t("footer.contact")}
             </h3>
             <div className="space-y-2">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-neutral-600">
                 {t("footer.email", { email: storeConfig.contact.email })}
               </p>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-neutral-600">
                 {t("footer.phone", { phone: storeConfig.contact.phone })}
               </p>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-neutral-600">
                 {t("footer.address", {
                   address: storeConfig.contact.address,
                 })}
@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
           {/* Social */}
           <div>
-            <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
+            <h3 className="text-xs font-semibold text-neutral-950 uppercase tracking-wider mb-3">
               {t("footer.follow")}
             </h3>
             <div className="space-y-2">
@@ -39,7 +39,7 @@ export default function Footer() {
                 <a
                   key={url}
                   href={url}
-                  className="block text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                  className="block text-sm text-neutral-600 hover:text-neutral-950 transition-colors"
                 >
                   {label}
                 </a>
@@ -48,11 +48,11 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-gray-200">
+      <div className="border-t border-neutral-200">
         {/* Empty first cell keeps the copyright centered with the select on the right */}
         <div className="mx-auto box-content flex max-w-page flex-col items-center gap-4 px-page-gap py-6 sm:grid sm:grid-cols-[1fr_auto_1fr]">
           <div className="hidden sm:block" />
-          <p className="text-xs text-gray-600 text-center">
+          <p className="text-xs text-neutral-600 text-center">
             {t("footer.rights", {
               year: new Date().getFullYear(),
               name: storeConfig.name,
